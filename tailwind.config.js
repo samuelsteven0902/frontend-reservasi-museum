@@ -1,4 +1,8 @@
 module.exports = {
+    content: [
+        "./src/**/*.{js,jsx,ts,tsx}",
+        'node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}'
+      ],
     mode: 'jit',
     purge: ['./src/**/*.js', './public/index.html'],
     darkMode: false, // or 'media' or 'class'
@@ -22,5 +26,7 @@ module.exports = {
     variants: {
         extend: {},
     },
-    plugins: [],
+    plugins: [
+        require('flowbite/plugin'),
+    ],
 };

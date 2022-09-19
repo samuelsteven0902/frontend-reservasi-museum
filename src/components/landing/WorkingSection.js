@@ -9,30 +9,59 @@ import Paragraph from '@material-tailwind/react/Paragraph';
 import StatusCard from 'components/landing/StatusCard';
 import Teamwork from 'assets/img/teamwork.jpeg';
 import { useEffect, useRef, useState } from 'react';
-import { Calendar, DateRangePicker } from 'react-date-range';
+import { Calendar } from 'react-date-range';
 import { addDays, format, isMonday } from 'date-fns';
-import {excludeDates} from 'react-datepicker';
+import { Link,  useHistory } from 'react-router-dom';
 
-export default function WorkingSection() {
+export default function WorkingSection({setRes}) {
     const [museum, setMuseum] = useState("Pilih Museum");
     const [category, setCategory] = useState("Pilih Category");
-    const [disabledCategory , setDisabledCategory] = useState("true");
-    const [disabledDate , setDisabledDate] = useState("true");
+    const [disabledCategory , setDisabledCategory] = useState(true);
+    const [disabledDate , setDisabledDate] = useState(true);
     const [calendar, setCalendar] = useState('');
     const [open,setOpen] = useState(false);
-    const [libur, setLibur] = useState('')
+    // const [libur, setLibur] = useState('')
+    const [input,setInput] = useState({
+        museum : '',
+        category : '',
+        calendar : ''
+        
+    })
+    const redirect = useHistory();
 
     const refOne = useRef(null)
 
-    useEffect(() => {
-      setCalendar(format(new Date(), 'MM/dd/yyyy'));
-      document.addEventListener("keydown", hidenOnEscape , true)
-      document.addEventListener("click", hideOnClickOutside , true    )
+    const handleInput =(e) =>{
+        setInput({...input,[e.target.name]:e.target.value}) 
+        console.log(e);
+    }
 
-    }, [])
+    const cekMuseum = () =>{
+        if(input.museum === "museum_keris" || "museum_radya_pustaka") {
+            setDisabledCategory(false);
+            console.log('masuk');
+        }
+    }
+
+    const cekCategory = () =>{
+        if(category !== ''){
+            setDisabledDate(false);
+           }
+    }
+
+    useEffect(() => {
+    //   setRes(input); 
+      setCalendar(format(new Date(), 'MM/dd/yyyy'));
+      document.addEventListener("keydown", hidenOnEscape , true);
+      document.addEventListener("click", hideOnClickOutside , true    );
+      
+      
+    //   setInput({...input,museum:museum}) 
+
+    }, [input])
     
     const hidenOnEscape = (e) =>{
-        console.log(e.key);
+        // console.log(e.key);
         if( e.key === "Escape"){
             setOpen(false)
         }
@@ -75,15 +104,16 @@ export default function WorkingSection() {
         )
       }
 
-      const hariLibur = (day) =>{
-        setLibur(isMonday(day));
-        // console.log(libur);
-      }
+    //   const hariLibur = (day) =>{
+    //     setLibur(isMonday(day));
+    //   }
 
       const saveData = () => {
-
+        // setRes({input});
+        redirect.push('/input-data')
       }
-
+    
+console.log(input);
     return (
         <section className="pb-20 bg-gray-100 -mt-32">
             <div className="container max-w-7xl mx-auto px-4">
@@ -94,26 +124,29 @@ export default function WorkingSection() {
                     
                     <select value={museum} className="w-full mx-5 p-2.5 text-gray-500 bg-white border rounded-md shadow-sm outline-none appearance-none focus:border-indigo-600" 
                         onChange={(e) => {
+                            // handleInput(e);
+                            setInput({...input,museum:e.target.value})
+                            cekMuseum()
+                            console.log(input); 
                             const selectedMuseum = e.target.value;
                             setMuseum(selectedMuseum);
-                            if(museum == "museum_keris" || "museum_radya_pustaka") {
-                                // document.getElementById("category").removeAttribute("disabled");
-                                setDisabledCategory(false);
-                            } }}>
+                            console.log(museum);  
+                           
+                             }}>
                         <option disabled>Pilih Museum</option>
                         <option value="museum_keris">Museum Keris</option>
                         <option value="museum_radya_pustaka">Museum Radya Pustaka</option>
                     </select>
 
-                    <select id="category" value={category} className="w-full mx-5 p-2.5 text-gray-500 bg-white border rounded-md shadow-sm outline-none appearance-none focus:border-indigo-600" onChange={(e) => {
-                        const selectedCategory = e.target.value;
-                        setCategory(selectedCategory); 
-                       if(category !== ''){
-                        setDisabledDate(false);
-                       }
+                    <select value={category} id="category" className="w-full mx-5 p-2.5 text-gray-500 bg-white border rounded-md shadow-sm outline-none appearance-none focus:border-indigo-600" onChange={(e) => {
+                            setInput({...input,category:e.target.value})
+                            cekCategory()
+                            console.log(e);
+                        setCategory(e.target.value); 
+                       
                         }} 
                     disabled={disabledCategory} 
-                    >  
+                    > 
                         <option disabled>Pilih Kategori</option>
                         <option value="umum">Umum</option>
                         <option value="mahasiswa">Mahasiswa</option>
@@ -122,7 +155,8 @@ export default function WorkingSection() {
                         <option value="rombongan_pelajar">Rombongan Pelajar</option>
                         <option value="wna">Wisatawan Asing</option>
                     </select>
-                    <input value={calendar} readOnly onClick={()=> setOpen(open => !open)} className="relative" disabled={disabledDate}/>
+                    <input value={calendar} readOnly onClick={(e)=>{ setOpen(open => !open); 
+                        setInput({...input,calendar:e.target.value}); console.log(e)} } className="relative" disabled={disabledDate} />
                     <div ref={refOne} className="absolute">
                         
                         {open && 
@@ -140,9 +174,11 @@ export default function WorkingSection() {
                 </div>
                     </StatusCard>
                 </div>
-
                 <div className='flex flex-wrap relative justify-center '>
-                    <button type='submit' className="inline-block px-6 py-2.5 bg-gray-200 text-gray-700 font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-300 hover:shadow-lg focus:bg-gray-300 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-400 active:shadow-lg transition duration-150 ease-in-out">Pesan Tiket</button>
+                    <Link className="inline-block px-6 py-2.5 bg-gray-200 text-gray-700 font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-300 hover:shadow-lg focus:bg-gray-300 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-400 active:shadow-lg transition duration-150 ease-in-out" to={{
+                        pathname:"/input-data",
+                        state : {input},
+                    }}>Pesan Tiket</Link>
                 </div>
                 </form>
 

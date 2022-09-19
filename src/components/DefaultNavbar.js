@@ -7,20 +7,14 @@ import NavbarBrand from '@material-tailwind/react/NavbarBrand';
 import NavbarToggler from '@material-tailwind/react/NavbarToggler';
 import NavbarCollapse from '@material-tailwind/react/NavbarCollapse';
 import Nav from '@material-tailwind/react/Nav';
-import NavLink from '@material-tailwind/react/NavLink';
-import Dropdown from '@material-tailwind/react/Dropdown';
-import DropdownItem from '@material-tailwind/react/DropdownItem';
-import Icon from '@material-tailwind/react/Icon';
-import Button from '@material-tailwind/react/Button';
 
 export default function DefaultNavbar() {
     const [openNavbar, setOpenNavbar] = useState(false);
-
     return (
-        <Navbar color="transparent" navbar>
+        <Navbar className='opacity-50' navbar>
             <NavbarContainer>
                 <NavbarWrapper>
-                    <a href="" target="_blank" rel="noreferrer" >
+                    <a href='/#' target="_blank" rel="noreferrer" >
                         <NavbarBrand>Reservasi Museum</NavbarBrand>
                     </a>
                     <NavbarToggler  onClick={() => setOpenNavbar(!openNavbar)}  color="white" />
