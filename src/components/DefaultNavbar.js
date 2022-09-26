@@ -11,7 +11,7 @@ import Nav from '@material-tailwind/react/Nav';
 export default function DefaultNavbar() {
     const [openNavbar, setOpenNavbar] = useState(false);
     return (
-        <Navbar className='opacity-50' navbar>
+        <Navbar className='bg-white' color='none'  navbar>
             <NavbarContainer>
                 <NavbarWrapper>
                     <a href='/#' target="_blank" rel="noreferrer" >
@@ -22,20 +22,23 @@ export default function DefaultNavbar() {
 
                 <NavbarCollapse open={openNavbar}>
                     <Nav>
-                        <div className="flex flex-col z-50 lg:flex-row lg:items-center">
+                        <div className="flex flex-col z-50 py-2 pr-10 lg:flex-row lg:items-center">
                             
-                            <Link to="/" className='px-5 mx-3 text-white font-bold border rounded-sm'>
-                                Landing
+                            <Link to="/" className='px-5 mx-3 text-black font-bold  rounded-sm'>
+                                Home
                             </Link>
-                            <Link to="/profile" className='px-5 mx-3 text-white font-bold border rounded-sm'>
+                            <Link to="/" className='px-5 mx-3 text-black font-bold  rounded-sm'>
+                                About
+                            </Link>
+                            <Link to="/profile" className='px-5 mx-3 text-black font-bold  rounded-sm'>
                                 Profile
                             </Link>
-                            <Link to="/login" className='px-5 mx-3 text-white font-bold border rounded-sm'>
-                                Login
+                            <Link to="/login" className='px-5 mx-3 text-black font-bold  rounded-sm'>
+                                Login as Admin
                             </Link>
-                            <Link to="/register" className='px-5 mx-3 text-white font-bold border rounded-sm'>
+                            {/* <Link to="/register" className='px-5 mx-3 text-black font-bold  rounded-sm'>
                                 Register
-                            </Link>
+                            </Link> */}
                            
                         </div>
                     </Nav>

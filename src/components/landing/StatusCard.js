@@ -28,13 +28,14 @@ import Paragraph from '@material-tailwind/react/Paragraph';
 
 export default function StatusCard({  title, children }) {
     return (
-        <div className="w-full px-4 flex justify-center text-center">
-            <Card>
-                <CardBody>
-                    <H6 color="gray">{title}</H6>
+        <div className="w-full px-4 flex justify-center py text-center ">
+            {/* <Card colors='red'> */}
+                    <div className='w-full bg-[#A70B0B] rounded-xl shadow-lg pt-3 px-4 '>
+                <CardBody >
                     <Paragraph color="blueGray">{children}</Paragraph>
                 </CardBody>
-            </Card>
+                    </div>
+            {/* </Card> */}
         </div>
     );
 }

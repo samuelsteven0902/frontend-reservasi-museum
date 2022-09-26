@@ -4,6 +4,9 @@ import Profile from 'pages/Profile';
 import Login from 'pages/Login';
 import Register from 'pages/Register';
 import InputData from 'pages/InputData';
+import Pembayaran from 'pages/Pembayaran';
+import Tiket from 'pages/Tiket';
+
 
 // Font Awesome Style Sheet
 import '@fortawesome/fontawesome-free/css/all.min.css';
@@ -20,6 +23,8 @@ function App() {
             <Route exact path="/login" component={Login} />
             <Route exact path="/register" component={Register}  />
             <Route path="/input-data" component={InputData}/>
+            <Route path="/pembayaran" component={Pembayaran}/>
+            <Route path="/tiket" component={Tiket}/>
         </Switch>
     );
 }

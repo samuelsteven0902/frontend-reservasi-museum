@@ -2,7 +2,7 @@
   "name": "reservasi-museum",
   "version": "1.1.0",
   "private": true,
-  "homepage": "https://demos.creative-tim.com/material-tailwind-kit-react/#/",
+  "homepage": "",
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.3",
     "@material-tailwind/react": "^0.3.4",

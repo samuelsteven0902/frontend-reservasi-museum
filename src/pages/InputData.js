@@ -15,7 +15,7 @@ function InputData() {
         </div>
         <main>
           <Header />
-          <FormInput data={stateParamVal}/>
+          <FormInput dataAwal={stateParamVal}/>
         </main>
         <DefaultFooter />
     </>

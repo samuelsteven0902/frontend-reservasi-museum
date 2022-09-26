@@ -1,7 +1,8 @@
 module.exports = {
     content: [
         "./src/**/*.{js,jsx,ts,tsx}",
-        'node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}'
+        'node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}',
+        "./node_modules/flowbite/**/*.js"
       ],
     mode: 'jit',
     purge: ['./src/**/*.js', './public/index.html'],
@@ -17,7 +18,7 @@ module.exports = {
                 'login-background':
                     "linear-gradient(rgba(0,0,0, 0.75), rgba(0,0,0, 0.75)), url('/src/assets/img/background-1920x1280.jpg')",
                 'landing-background':
-                    "linear-gradient(rgba(0,0,0, 0.75), rgba(0,0,0, 0.75)), url('/src/assets/img/MuseumKeris.jpg')",
+                    "linear-gradient(rgba(0,0,0, 0), rgba(0,0,0, 0)), url('/src/assets/img/MuseumKeris.png')",
                 'profile-background':
                     "linear-gradient(rgba(0,0,0, 0.75), rgba(0,0,0, 0.75)), url('/src/assets/img/background-1920x1080.jpg')",
             }),

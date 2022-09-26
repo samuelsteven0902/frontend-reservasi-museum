@@ -10,11 +10,11 @@ export default function Landing() {
         <>
             <div className="absolute w-full z-20">
                 <DefaultNavbar />
-            </div>
+            </div>  
             <main>
                 <Header />
                 <WorkingSection />
-                <TeamSection />
+                {/* <TeamSection /> */}
                 <ContactSection />
             </main>
             <DefaultFooter />

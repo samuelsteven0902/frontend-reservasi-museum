@@ -11,7 +11,7 @@ export default function Form() {
                 <div className="relative flex flex-col min-w-0 break-words w-full mb-6">
                     <div className="flex-auto p-5 lg:p-10">
                         <div className="w-full text-center">
-                            <H3 color="gray">Want to work with us?</H3>
+                            <H3 color="gray">Kritik dan Saran</H3>
                             <Paragraph color="blueGray">
                                 Complete this form and we will get back to you
                                 in 24 hours.
@@ -21,7 +21,7 @@ export default function Form() {
                             <div className="flex gap-8 mt-16 mb-12">
                                 <Input
                                     type="text"
-                                    placeholder="Full Name"
+                                    placeholder="Nama Lengkap"
                                     color="lightBlue"
                                 />
                                 <Input
@@ -31,10 +31,10 @@ export default function Form() {
                                 />
                             </div>
 
-                            <Textarea color="lightBlue" placeholder="Message" />
+                            <Textarea color="lightBlue" placeholder="Kritik / Saran" />
 
                             <div className="flex justify-center mt-10">
-                                <Button color="lightBlue" ripple="light">
+                                <Button color="red" ripple="light">
                                     Send Message
                                 </Button>
                             </div>
