@@ -27,7 +27,7 @@ function WorkingSection(input) {
             kategori:input.data.kategori,
             tanggal:input.data.tanggal,
             foto:input.data.foto,
-            harga:input.input,  
+            harga_awal:input.input,  
             pembayaran: 'cash',
         }
 
@@ -96,17 +96,14 @@ function WorkingSection(input) {
   return (
     <div>
 
-        <div className='container p-8 flex mx-auto justify-center'>
+        <div className='container p-8 flex mx-auto justify-center bg-gray-100'>
 
-            <div className='w-1/3 '>
-                <div className='py-12'>
+            <div className='w-2/3 '>
+                <div className='py-12 px-8 container bg-white '>
                     <p className='font-bold text-xl'>Total :</p>
                     <p className='text-6xl font-bold'>Rp. {input.input}</p>
                 </div>
-            </div>
-            <div className='w-1/2 '>
-            {/* <!-- component --> */}
-                <div class="flex flex-col">
+                <div class="flex flex-col px-8 bg-white py-12">
                 <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8 ">
                     <div class="overflow-hidden">
@@ -140,14 +137,20 @@ function WorkingSection(input) {
                             
                         </tbody>
                         </table>
-                        <button className='bg-blue-300 rounded-md py-2 px-4' onClick={handleCash}>Cash</button>
-                    </div>
+                        </div>
                     </div>
                 </div>
+                   
+                </div>
+            </div>
+            <div className='w-1/3 '>
+                <div className='bg-white mx-8'>
+                    <p>Detail Pesanan</p>
                 </div>
             </div>
 
         </div>
+                 <button className='bg-blue-300 rounded-md py-2 px-4' onClick={handleCash}>Cash</button>
 
     </div>
   )

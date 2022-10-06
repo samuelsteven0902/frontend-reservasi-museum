@@ -14,6 +14,7 @@ function FormInput(dataAwal) {
         kota :'',
         phone:'',
         jumlah:'',
+        jumlah:'',
         foto: null,
         attachment: null,
         error_list: [],
@@ -187,8 +188,9 @@ function FormInput(dataAwal) {
                     </div>
                 </div>
 
+
                     {/* INPUTAN FILE */}
-                <div id='foto' className='flex justify-around'>
+                {/* <div id='foto' className='flex justify-around'>
                     <div id='umum' className="max-w-96 mb-4 mx-12 ">
                     <div className="flex justify-center">
                         <div className="mb-3 w-96">
@@ -204,55 +206,8 @@ function FormInput(dataAwal) {
                     </div>
    
                     </div>
-                    {/* <img src={imageUrl} height="100px" /> */}
-
-                    <div id='rombonganUmum' className="max-w-96 mb-4 mx-12 hidden">
-                    <div className="flex justify-center">
-                        <div className="mb-3 w-96">
-                            <label for="formFile" className="form-label inline-block mb-2 text-gray-700">Attachment</label>
-                            <input name='attachment'  onChange={handleInput} value={dataPengunjung.attachment} className="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" type="file" id="formFile" />
-                        </div>
-                    </div>   
-                    </div>
-                </div>
-
-                {/* <div id='ktm' className='hidden'>
-                    <div className="max-w-96 mb-4 mx-12">
-                    <div className="flex justify-center">
-                        <div className="mb-3 w-96">
-                            <label for="formFile" className="form-label inline-block mb-2 text-gray-700">Foto KTM</label>
-                            <input name='foto'  onChange={handleInput} value={dataPengunjung.foto} className="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" type="file" id="formFile" />
-                        <span className="text-sm text-red-500">{dataPengunjung.error_list.foto}</span>
-                        </div>
-                    </div>   
-                    </div>
-                </div>
-                
-                <div id='kia' className='flex justify-around'>
-                    <div className="flex justify-center">
-                        <div id='pelajar' className="mb-3 w-96 hidden">
-                            <label for="formFile" className="form-label inline-block mb-2 text-gray-700">Foto KIA</label>
-                            <input name='foto' className="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" type="file" id="formFile" />                        
-                            <span className="text-sm text-red-500">{dataPengunjung.error_list.foto}</span>
-                        </div>
-                    </div>   
-                    <div id='rombonganPelajar' className="mb-3 w-96 hidden">
-                        <label for="formFile" className="form-label inline-block mb-2 text-gray-700">Attachment</label>
-                        <input name='attachment'  onChange={handleInput} value={dataPengunjung.attachment}  className="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" type="file" id="formFile" />
-                    </div>
-                </div>
-
-                <div id='passport' className='hidden'>
-                    <div className="max-w-96 mb-4 mx-12">
-                    <div className="flex justify-center">
-                        <div className="mb-3 w-96">
-                            <label for="formFile" className="form-label inline-block mb-2 text-gray-700">Foto passport</label>
-                            <input name='foto'  onChange={handleInput} value={dataPengunjung.foto}  className="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" type="file" id="formFile" />
-                            <span className="text-sm text-red-500">{dataPengunjung.error_list.foto}</span>
-                        </div>
-                    </div>   
-                    </div>
                 </div> */}
+
 
                 <div className="flex items-start mb-4">
                     <input id="checkbox-2" aria-describedby="checkbox-2" type="checkbox" className="bg-gray-50 border-gray-300 focus:ring-3 focus:ring-blue-300 h-4 w-4 rounded" />

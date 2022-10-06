@@ -6,6 +6,7 @@ import Register from 'pages/Register';
 import InputData from 'pages/InputData';
 import Pembayaran from 'pages/Pembayaran';
 import Tiket from 'pages/Tiket';
+import Admin from 'layout/Admin';
 
 
 // Font Awesome Style Sheet
@@ -25,6 +26,7 @@ function App() {
             <Route path="/input-data" component={InputData}/>
             <Route path="/pembayaran" component={Pembayaran}/>
             <Route path="/tiket" component={Tiket}/>
+            <Route path="/admin" component={Admin}/>
         </Switch>
     );
 }

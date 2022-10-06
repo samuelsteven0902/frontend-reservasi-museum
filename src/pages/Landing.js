@@ -4,6 +4,7 @@ import Header from 'components/landing/Header';
 import WorkingSection from 'components/landing/WorkingSection';
 import TeamSection from 'components/landing/TeamSection';
 import ContactSection from 'components/landing/ContactSection';
+import HargaTiket from 'info/HargaTiket';
 
 export default function Landing() {
     return (
@@ -11,9 +12,10 @@ export default function Landing() {
             <div className="absolute w-full z-20">
                 <DefaultNavbar />
             </div>  
-            <main>
+            <main className=''>
                 <Header />
                 <WorkingSection />
+                <HargaTiket />
                 {/* <TeamSection /> */}
                 <ContactSection />
             </main>

@@ -10,6 +10,7 @@
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^13.1.9",
     "axios": "^0.27.2",
+    "chart.js": "2.9.4",
     "date-fns": "^2.29.2",
     "flowbite": "^1.5.3",
     "flowbite-react": "^0.1.11",
