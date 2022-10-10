@@ -5,6 +5,8 @@ import WorkingSection from 'components/landing/WorkingSection';
 import TeamSection from 'components/landing/TeamSection';
 import ContactSection from 'components/landing/ContactSection';
 import HargaTiket from 'info/HargaTiket';
+import FooterPengunjung from 'components/FooterPengunjung';
+import Informasi from 'info/Informasi';
 
 export default function Landing() {
     return (
@@ -16,10 +18,12 @@ export default function Landing() {
                 <Header />
                 <WorkingSection />
                 <HargaTiket />
+                <Informasi />
                 {/* <TeamSection /> */}
-                <ContactSection />
+                {/* <ContactSection /> */}
             </main>
-            <DefaultFooter />
+            <FooterPengunjung />
+            {/* <DefaultFooter /> */}
         </>
     );
 }

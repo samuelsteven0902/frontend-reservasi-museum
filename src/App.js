@@ -7,6 +7,7 @@ import InputData from 'pages/InputData';
 import Pembayaran from 'pages/Pembayaran';
 import Tiket from 'pages/Tiket';
 import Admin from 'layout/Admin';
+import 'react-dates/initialize';
 
 
 // Font Awesome Style Sheet
