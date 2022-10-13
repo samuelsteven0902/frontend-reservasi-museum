@@ -7,6 +7,7 @@ import InputData from 'pages/InputData';
 import Pembayaran from 'pages/Pembayaran';
 import Tiket from 'pages/Tiket';
 import Admin from 'layout/Admin';
+import SuperAdmin from 'layout/superadmin';
 import 'react-dates/initialize';
 
 
@@ -36,6 +37,7 @@ function App() {
             <Route path="/about" component={About}/>
             
 
+            <Route path="/superadmin" component={SuperAdmin}/>
         </Switch>
     );
 }
