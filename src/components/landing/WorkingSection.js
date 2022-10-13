@@ -34,6 +34,12 @@ export default function WorkingSection({setRes}) {
         calendar : 'Pilih Museum Dulu'
         
     })
+    const [namaInput, setNamaInput] = useState({
+        namaMuseum : 'Pilih Museum',
+        namaCategory : 'Pilih Museum Dulu',
+        namaCalendar : 'Pilih Museum Dulu'
+        
+    })
 
     const redirect = useHistory();
 
@@ -181,18 +187,20 @@ console.log(input);
                             const option =  el.getAttribute('id'); 
                             const selectedMuseum = e.target.id;
                             setMuseumId(option)
-                            setInput({...input,museum:e.target.value})
-                            console.log(option);
+                            setInput({...input,museum:option})
+                            setNamaInput({...input,namaMuseum:e.target.value})
+                            console.log(e.target);
                             console.log(selectedMuseum);
                             cekMuseum()
                             // console.log(e); 
                             // setMuseum(selectedMuseum);
                            
                              }}>
-                        <option >{input.museum}</option>
+                        <option >{namaInput.namaMuseum}</option>
                         {museum && museum.map((item,index) =>{
+                            // console.log(item.id);
                             return(
-                                <option key={index} id={item.id} value={item.id}>{item.nama_museum}</option>
+                                <option key={index} id={item.id} value={item.nama_museum}>{item.nama_museum}</option>
                             )})}
 
                         {/* <option value="museum_keris" className='text-gray-800'>Museum Keris</option>
@@ -200,19 +208,24 @@ console.log(input);
                     </select>
 
                     <select value={{label: input.category}} id="category" className="w-1/3 mx-5 p-2.5 text-gray-500 text-center bg-white border rounded-md shadow-sm outline-none appearance-none focus:border-red-800 focus:outline-none" onChange={(e) => {
-                            setInput({...input,category:e.target.value})
+                        
+                        const index = e.target.selectedIndex;
+                        const el = e.target.childNodes[index]
+                        const option =  el.getAttribute('id');
+                        setInput({...input,category:option})
+                        setNamaInput({...input,namaCategory:e.target.value})
                             cekCategory()
                         // setCategory(e.target.value); 
                        
                         }} 
                     disabled={disabledCategory} 
                     > 
-                        <option >{input.category}</option>
+                        <option >{namaInput.namaCategory}</option>
 
-                        {category && typeof category !== 'string'  && category.map((itemm)=>{
+                        {category && typeof category !== 'string'  && category.map((itemm,indexx)=>{
                         //   console.log(itemm);   
                           return(
-                            <option key={itemm.id} id={itemm.id} value={itemm.id}>{itemm.nama_kategori}</option>
+                            <option key={indexx} id={itemm.id} value={itemm.nama_kategori}>{itemm.nama_kategori}</option>
                             )})}
 
                         {/* <option value="umum">Umum</option>
