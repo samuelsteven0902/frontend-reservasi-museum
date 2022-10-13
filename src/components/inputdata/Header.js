@@ -7,6 +7,7 @@ function Header({state,harga}) {
     const id_category = state.category
     console.log(state);
 
+    console.log(harga);
 
     
     const rupiah = (number)=>{
@@ -23,7 +24,7 @@ function Header({state,harga}) {
             
             <div className=" mx-auto z-20 w-[80%]">
                 
-            <p className="text-center w-full text-white font-bold text-4xl ">Museum Keris Nusantara</p>
+            <p className="text-center w-full text-white font-bold text-4xl ">{state.museum == 1 ? "Museum Keris Nuasantara": "Museum Radya Pustaka"}</p>
                 <div className="items-center flex flex-wrap bg-[#A70B0B] mt-9 rounded-b-xl pb-7">
                     <div className="w-full  px-4 ml-auto mr-auto text-center">
                         <div className="text-gray-200">

@@ -4,7 +4,10 @@ import { useHistory } from 'react-router-dom';
 import swal from 'sweetalert';
 import qris from '../../assets/img/pembayaran/Qris.png'
 import tunai from '../../assets/img/pembayaran/Tunai.png'
-import panah from '../../assets/img/pembayaran/panah.png'
+import detail from '../../assets/img/pembayaran/detail.png'
+import identitas from '../../assets/img/pembayaran/identitas.png'
+import pilih from '../../assets/img/pembayaran/pilih.png'
+import total from '../../assets/img/pembayaran/total.png'
 import 'flowbite';
 
 function WorkingSection(input) {
@@ -112,11 +115,11 @@ function WorkingSection(input) {
         <div className='container p-8 flex mx-auto justify-center bg-gray-100'>
 
             <div className='w-2/3 my-12 mx-4'>
-                <div className='container flex bg-white shadow-xl rounded-2xl py-6'>
-                    <div className='w-1/6 '>
-                        
+                <div className='container flex bg-white shadow-xl rounded-2xl py-4'>
+                    <div className='w-1/6 flex mx-auto justify-center'>
+                    <img src={identitas}  className='w-16 h-16'/>
                     </div>
-                    <div className='w-5/6 justify-around'>
+                    <div className='w-5/6 justify-around '>
                         <p className='my-5 font-bold text-3xl'>Identitas diri</p>
                         <div className='flex'>
                             <div className='font-bold'>
@@ -140,8 +143,9 @@ function WorkingSection(input) {
 
                 </div>
 
-                <div className='container flex bg-white my-12 shadow-xl rounded-2xl py-6'>
-                    <div className='w-1/6 '>
+                <div className='container flex bg-white my-6 shadow-xl rounded-2xl py-4'>
+                    <div className='w-1/6 flex mx-auto justify-center '>
+                    <img src={total}  className='w-16 h-16'/>
                         
                     </div>
                     <div className='w-5/6'>
@@ -152,8 +156,9 @@ function WorkingSection(input) {
                     </div>
                 </div>
 
-                <div className='container flex bg-white my-12 shadow-xl rounded-2xl py-6'>
-                    <div className='w-1/6 '>
+                <div className='container flex bg-white my-6 shadow-xl rounded-2xl py-4'>
+                    <div className='w-1/6 flex mx-auto justify-center '>
+                    <img src={pilih}  className='w-16 h-16'/>
                         
                     </div>
                     <div className='w-5/6 ' >
@@ -237,8 +242,10 @@ function WorkingSection(input) {
             
             <div className='w-1/3 my-12 mx-4'>
                 <div className='container flex bg-white shadow-xl rounded-2xl py-6'>
-                    <div className='w-1/6'></div>
-                    <div className='bg-white w-2/3 mx-8'>
+                    <div className='w-1/6 flex mx-auto justify-center '>
+                    <img src={pilih}  className='w-16 h-16'/>
+                    </div>
+                    <div className='bg-white w-2/3 mx-4'>
                         <p className='my-5 font-bold text-3xl'>Detail Pesanan</p>
                         <p>Pesanan Tiket masuk pada</p>
                         <p>{input.data.museum}</p>
