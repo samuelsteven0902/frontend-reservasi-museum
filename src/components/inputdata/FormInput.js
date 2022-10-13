@@ -242,8 +242,8 @@ function FormInput({dataAwal,hargaa}) {
 
                 <div>
                     <p>Syarat dan Ketentuan Pengunjung</p>
-                    <p>1. Dilarang membawa makan dan minuman selama didalam Museum Keris</p>
-                    <p>2. Dilarang memegang  Properti didalam Museum Keris</p>
+                    <p>1. Makanan dan Minuman dititipkan ke loket selama didalam Museum </p>
+                    <p>2. Dilarang memegang  properti didalam Museum </p>
                     <p>3. Dilarang membuang sampah sembarangan</p>
                 </div>
                 

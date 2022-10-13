@@ -16,7 +16,7 @@ function WorkingSection(input) {
     console.log(input);
     const handleCash = () =>{
         // console.log(input.data);
-        setPembayaran('cash')
+        setPembayaran('Tunai')
         console.log(pembayaran);
 
         const data = {
@@ -29,7 +29,7 @@ function WorkingSection(input) {
             tanggal:input.data.tanggal,
             foto:input.data.foto,
             harga_awal:input.input,  
-            pembayaran: 'cash',
+            pembayaran: 'Tunai',
         }
 
         // swal({
@@ -164,7 +164,7 @@ function WorkingSection(input) {
                                     <img src={tunai}  className='w-1/4 '/>
                                     <p className='text-center text-2xl'>  Tunai </p>
                                 </div>
-                                <input  type="radio" value="tunai" checked={pembayaran === "Male"}  onChange={onValueChange}
+                                <input  type="radio" value="Tunai" checked={pembayaran === "Male"}  onChange={onValueChange}
                                 className ='ml-24 w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600'
                                 />
                             </label>

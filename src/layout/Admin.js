@@ -16,6 +16,7 @@ import Maps from "components/admin/Maps.js";
 import Settings from "components/admin/Settings.js";
 import Tables from "components/admin/Tables.js";
 import DataPengunjung from "components/admin/DataPengunjung";
+import Jadwal from "components/admin/Jadwal.js";
 
 export default function Admin() {
   return (
@@ -32,6 +33,7 @@ export default function Admin() {
             <Route path="/admin/settings" exact component={Settings} />
             <Route path="/admin/tables" exact component={Tables} />
             <Route path="/admin/data-pengunjung" exact component={DataPengunjung} />
+            <Route path="/admin/jadwal" exact component={Jadwal} />
             <Redirect from="/admin" to="/admin/dashboard" />
           </Switch>
           <FooterAdmin />
