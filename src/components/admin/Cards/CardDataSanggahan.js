@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 import TableDropdown from "../Dropdowns/TableDropdown.js";
 import axios from "axios";
 
-export default function CardTable({ color }) {
+export default function CardDataSanggahan({ color }) {
   
   const [loading,setLoading] = useState(true)
   const [pengunjung,setPengunjung] = useState([])
@@ -241,10 +241,10 @@ export default function CardTable({ color }) {
   );
 }
 
-CardTable.defaultProps = {
+CardDataSanggahan.defaultProps = {
   color: "light",
 };
 
-CardTable.propTypes = {
+CardDataSanggahan.propTypes = {
   color: PropTypes.oneOf(["light", "dark"]),
 };

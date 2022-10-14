@@ -2,7 +2,7 @@ import React from "react";
 
 // components
 
-export default function CardSettings() {
+export default function CardJadwal() {
   return (
     <>
       <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
@@ -13,7 +13,7 @@ export default function CardSettings() {
               className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
               type="button"
             >
-              Settings
+              Jadwal
             </button>
           </div>
         </div>
