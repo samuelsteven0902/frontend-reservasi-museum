@@ -4,7 +4,11 @@ import { useHistory } from 'react-router-dom';
 import swal from 'sweetalert';
 import qris from '../../assets/img/pembayaran/Qris.png'
 import tunai from '../../assets/img/pembayaran/Tunai.png'
-import panah from '../../assets/img/pembayaran/panah.png'
+import detail from '../../assets/img/pembayaran/detail.png'
+import identitas from '../../assets/img/pembayaran/identitas.png'
+import pilih from '../../assets/img/pembayaran/pilih.png'
+import total from '../../assets/img/pembayaran/total.png'
+import 'flowbite';
 
 function WorkingSection(input) {
     
@@ -12,7 +16,7 @@ function WorkingSection(input) {
     const [pembayaran,setPembayaran] = useState('')
     const history = useHistory();
 
-    console.log(input.data);
+    console.log(input);
     const handleCash = () =>{
         // console.log(input.data);
         setPembayaran('cash')
@@ -91,6 +95,18 @@ function WorkingSection(input) {
       
       
     }, [pembayaran])
+
+    const rupiah = (number)=>{
+        return new Intl.NumberFormat("id-ID", {
+          style: "currency",
+          currency: "IDR"
+        }).format(number);
+      }
+
+      const onValueChange = (e) => {
+        // setPembayaran(e)
+        setPembayaran(e.target.value)
+      }
     
 
   return (
@@ -98,8 +114,87 @@ function WorkingSection(input) {
 
         <div className='container p-8 flex mx-auto justify-center bg-gray-100'>
 
-            <div className='w-2/3 '>
-                <div className='py-12 px-8 container bg-white '>
+            <div className='w-2/3 my-12 mx-4'>
+                <div className='container flex bg-white shadow-xl rounded-2xl py-4'>
+                    <div className='w-1/6 flex mx-auto justify-center'>
+                    <img src={identitas}  className='w-16 h-16'/>
+                    </div>
+                    <div className='w-5/6 justify-around '>
+                        <p className='my-5 font-bold text-3xl'>Identitas diri</p>
+                        <div className='flex'>
+                            <div className='font-bold'>
+                                <p className='my-3'>Nama: </p>
+                                <p className='mb-3'>Nomor Hp: </p>
+                            </div>
+                            <div className='pl-2'>
+                                <p className='my-3'>{input.data.nama}</p>
+                                <p className='mb-3'>{input.data.phone}</p>
+                            </div>
+                            <div className='pl-24 font-bold'>
+                                {/* <p>NIK</p> */}
+                                <p className='my-3 '>Asal Kota : </p>
+                            </div>
+                            <div className='pl-3 '>
+                                {/* <p>NIK</p> */}
+                                <p className='my-3 '>{input.data.kota}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div className='container flex bg-white my-6 shadow-xl rounded-2xl py-4'>
+                    <div className='w-1/6 flex mx-auto justify-center '>
+                    <img src={total}  className='w-16 h-16'/>
+                        
+                    </div>
+                    <div className='w-5/6'>
+                        <p className='my-5 font-bold text-3xl'>Total Pemmbayaran</p>
+                        <div className='w-full text-right pr-12'>
+                            <p className='my-5 font-bold text-3xl'>{rupiah(input.input)} -</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div className='container flex bg-white my-6 shadow-xl rounded-2xl py-4'>
+                    <div className='w-1/6 flex mx-auto justify-center '>
+                    <img src={pilih}  className='w-16 h-16'/>
+                        
+                    </div>
+                    <div className='w-5/6 ' >
+                        <p className='font-bold text-3xl py-4'>Pilih Metode Pembayaran</p>
+                        <div className='w-full mx-auto justify-center'>
+                            <label className='flex max-w-full items-center hover:bg-gray-100 p-5 mx-5 rounded-3xl my-5 transition-all duration-500 ease-in-out'>
+                                <div className='flex w-2/3 justify-around items-center p-4'>
+                                    <img src={tunai}  className='w-1/4 '/>
+                                    <p className='text-center text-2xl'>  Tunai </p>
+                                </div>
+                                <input  type="radio" value="tunai" checked={pembayaran === "Male"}  onChange={onValueChange}
+                                className ='ml-24 w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600'
+                                />
+                            </label>
+                            <label  className='cursor-not-allowed flex max-w-full items-center hover:bg-gray-100 p-5 mx-5 rounded-3xl my-5 transition-all duration-500 ease-in-out'>
+                                <div className='flex w-2/3 justify-around items-center p-4'>
+                                    <img src={qris}  className='w-1/4'/>
+                                    <p className='text-center text-2xl'>  Qris </p>
+                                </div>
+                                <input disabled={true} type="radio" value="qris" checked={pembayaran === "Female"} onChange={onValueChange}
+                                className ='ml-24 w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600'
+                                />
+                            </label>
+                        </div>
+                        <div className='flex justify-end'>
+                            <div className='w-1/2 flex'>
+                                <p className='p-6 pr-12 font-bold text-xl'>Pembayaran : </p>
+                                <p className='p-6 pr-12 font-bold text-xl'>{pembayaran}</p>
+                            </div>    
+                        </div>
+                    </div>
+                    <div>
+                    </div>
+                </div>
+                
+                {/* <div className=' container bg-white mt-12 '>
                     <p className='font-bold text-xl'>Total :</p>
                     <p className='text-6xl font-bold'>Rp. {input.input}</p>
                 </div>
@@ -141,17 +236,57 @@ function WorkingSection(input) {
                     </div>
                 </div>
                    
-                </div>
+                </div> */}
+            
             </div>
-            <div className='w-1/3 '>
-                <div className='bg-white mx-8'>
-                    <p>Detail Pesanan</p>
+            
+            <div className='w-1/3 my-12 mx-4'>
+                <div className='container flex bg-white shadow-xl rounded-2xl py-6'>
+                    <div className='w-1/6 flex mx-auto justify-center '>
+                    <img src={pilih}  className='w-16 h-16'/>
+                    </div>
+                    <div className='bg-white w-2/3 mx-4'>
+                        <p className='my-5 font-bold text-3xl'>Detail Pesanan</p>
+                        <p>Pesanan Tiket masuk pada</p>
+                        <p>{input.data.museum}</p>
+                        <div className='flex'>
+                            <img />
+                            <div>
+                                <p>Tanggal Pemesanan</p>
+                                <p>{input.data.tanggal}</p>
+                            </div>
+                        </div>
+                        <div className='flex'>
+                            <img />
+                            <div>
+                                <p>Kategori</p>
+                                <p>{input.data.kategori}</p>
+                            </div>
+                        </div>
+                        <div className='flex'>
+                            <img />
+                            <div>
+                                <p>Jumlah Tiket</p>
+                                <p>{input.data.jumlah}</p>
+                            </div>
+                        </div>
+                        <div className='flex'>
+                            <img />
+                            <div>
+                                <p>Harga satuan</p>
+                                {/* <p>{input.data.tanggal}</p> */}
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
         </div>
-                 <button className='bg-blue-300 rounded-md py-2 px-4' onClick={handleCash}>Cash</button>
+        <div className='bg-gray-100 flex justify-center'>
+            
+            <button className='bg-[#A70B0B] rounded-full py-4 px-8 text-white tracking-wider font-semibold' onClick={handleCash}>Selanjutnya</button>
 
+        </div>
     </div>
   )
 }

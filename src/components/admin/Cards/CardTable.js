@@ -46,7 +46,7 @@ export default function CardTable({ color }) {
                   {item.kota}
                 </td>
                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                  {item.negara}
+                  {item.negara == null?"Indonesia":item.negara}
                 </td>
                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                   {item.jumlah}
@@ -61,7 +61,10 @@ export default function CardTable({ color }) {
                   {item.harga_akhir}
                 </td>
                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                  {item.attachment}
+                  {item.attachment == null?"none":item.attachment}
+                </td>
+                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                  {item.pembayaran}
                 </td>
                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                   {item.status}
@@ -197,6 +200,16 @@ export default function CardTable({ color }) {
                   }
                 >
                   Attachment
+                </th>
+                <th
+                  className={
+                    "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
+                    (color === "light"
+                      ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
+                      : "bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700")
+                  }
+                >
+                  Pembayaran
                 </th>
                 <th
                   className={
