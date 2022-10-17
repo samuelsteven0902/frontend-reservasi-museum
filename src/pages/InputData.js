@@ -1,3 +1,4 @@
+import axios from 'axios';
 import DefaultFooter from 'components/DefaultFooter';
 import DefaultNavbar from 'components/DefaultNavbar';
 import FormInput from 'components/inputdata/FormInput';
@@ -9,20 +10,39 @@ function InputData() {
   const stateParamVal = useLocation().state.input;
   console.log(stateParamVal);
   const id_category = stateParamVal.category
+  const id_museum = stateParamVal.museum
 
   const [harga,setHarga] = useState();
 
   useEffect(() => {
     const fetchHarga = async () =>
     {
-      const resHarga = await fetch(`http://localhost:8000/api/show_harga/${id_category}`);
+
+      const dataId= {
+        id_category:id_category,
+        id_museum:id_museum
+      }
+
+      const resHarga = await fetch(`http://localhost:8000/api/show_harga/${id_category}`, dataId);
       const res = await resHarga.json()
       setHarga(res.harga[0])
-      console.log(await harga)
+      
+      // const resHarga = await axios.post(`http://localhost:8000/api/show_data/${id_category}`, dataId)
+      //                         .then(res=>{ console.log(res); setHarga(res.data.data[0]); })
+      // console.log(await harga)
+
     }
 
     fetchHarga();
   }, [])
+
+// useEffect(() => {
+  
+//   const resHarga = await axios.post
+
+// }, [])
+
+
   return (
     <>
         <div className="absolute w-full z-20">
