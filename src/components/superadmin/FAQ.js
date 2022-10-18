@@ -8,7 +8,7 @@ export default function FAQ() {
   return (
     <>
       <div className="flex flex-wrap">
-        <div className="w-full lg:w-8/12 px-4">
+        <div className="w-full px-4">
           <InfoFAQ />
         </div>
       </div>

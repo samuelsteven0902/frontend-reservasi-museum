@@ -1,354 +1,315 @@
-import React from 'react'
-import "flowbite"
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import 'flowbite'
+import swal from "sweetalert";
+
 
 function CardMasterTiket() {
 
-  return (
-  <div className='container px-24 relative flex flex-col min-w-0 break-words w-full mb-6  rounded '>
+const [loading,setLoading] = useState(true)
+const [loadingHarga,setLoadingHarga] = useState(true)
+
+const [semuaHarga,setSemuaHarga] = useState()
+const [idHarga,setIdHarga] = useState()
+const [hargaUpdate,sethargaUpdate] = useState([])
+
+const [harga,setHarga] = useState()
+
+
+
+console.log(semuaHarga);
+
+
+useEffect(() => {
+  
+    axios.get('http://localhost:8000/api/show_harga')
+        .then(res=>{setSemuaHarga(res.data.harga);console.log(res); setLoading(false) })
+      
+        console.log(idHarga);
+
+    idHarga !== undefined &&  axios.get(`http://localhost:8000/api/edit-harga/${idHarga}`).then(res=>{
+        setHarga(res.data.harga[0]);console.log(res.data.harga[0]);setLoadingHarga(false);
+    })
+    }, [idHarga])
+
+const handleHarga = async(e) =>{
+    setIdHarga(...e.target.id)
+    console.log(idHarga);
+
+}
+
+
+const handleInput = (e) => {
+    e.persist();
+    setHarga({...harga, [e.target.name]: e.target.value });
+    console.log(harga);
+}
+
+const updateHarga = (e) => {
+    // console.log(e.currentTarget[5]);
+    e.preventDefault();
     
-    <div class="flex flex-col " >
-        <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-            <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
-            <div class="overflow-hidden shadow-lg rounded-xl m-2">
-                <table class="min-w-full ">
-                <thead class="border-b bg-white ">
+    // const student_id = props.match.params.id;
+    // const data = studentInput;
+    
+
+    const thisClicked = e.currentTarget[5];
+    thisClicked.innerText = "Updating";
+    const data = {
+        biasa: harga.hari_biasa,
+        libur: harga.hari_libur,
+    }
+
+    axios.put(`http://localhost:8000/api/update-harga/${idHarga}`, data).then(res=>{
+        if(res.data.status === 200)
+        {
+            console.log('berhasil');
+            swal("Success",res.data.message,"success").then(e=>
+                window.location.reload(false));
+            // history.push('/students');
+            
+        }
+        else if(res.data.status === 422)
+        {
+            // swal("All fields are mandetory","","error");
+        }
+        else if(res.data.status === 404)
+        {
+            // swal("Error",res.data.message,"error");
+            // history.push('/students');
+        }
+    });
+}
+
+const deleteStudent = (e, id) => {
+    e.preventDefault();
+    
+    const thisClicked = e.currentTarget;
+    thisClicked.innerText = "Deleting";
+
+    axios.delete(`http://localhost:8000/api/hapus-harga/${idHarga}`).then(res=>{
+        if(res.data.status === 200)
+        {
+            swal("Deleted!",res.data.message,"success");
+            thisClicked.closest("tr").remove();
+        }
+        else if(res.data.status === 404)
+        {
+            swal("Error",res.data.message,"error");
+            thisClicked.innerText = "Delete";
+        }
+    });
+}
+
+function getFirstLetters(str) {
+    const firstLetters = str
+      .split(' ')
+      .map(word => word[0])
+      .join('');
+  
+    return firstLetters;
+  }
+
+  const rupiah = (number)=>{
+    return new Intl.NumberFormat("id-ID", {
+    //   style: "currency",
+      currency: "IDR"
+    }).format(number);
+  }
+
+
+
+if(loading)
+{
+    return <h4>Loading Student Data...</h4> 
+}
+else
+{
+    var harga_HTMLTABLE = ''
+
+    harga_HTMLTABLE = semuaHarga.map((item,index)=>{
+        return(
+            <tr className="bg-white border-b" key={index}>
+                    <td className=" text-gray-900 px-6 py-4 whitespace-nowrap">
+                        {item.id}
+                    </td>
+                    <td className=" text-gray-900  px-6 py-4 whitespace-nowrap">
+                        {getFirstLetters(item.nama_museum)}
+                    </td>
+                    <td className=" text-gray-900  px-6 py-4 whitespace-nowrap">
+                        {item.nama_kategori}
+                    </td>
+                    <td className=" text-gray-900  px-6 py-4 whitespace-nowrap">
+                        {rupiah(item.hari_biasa)}
+                    </td>
+                    <td className=" text-gray-900  px-6 py-4 whitespace-nowrap">
+                        {rupiah(item.hari_libur)}
+                    </td>
+                    <td className=" text-gray-900 px-6 py-4 whitespace-nowrap ">
+                     
+                    
+                    <button type="button" className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" data-bs-toggle="modal" id={item.id_kategori} data-bs-target="#exampleModalCenteredScrollable" onClick={handleHarga}>
+                        Edit
+                    </button>
+
+
+                    {/* <button type="button" className="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900" onClick={(e) => deleteStudent(e, item.id)}>Hapus</button> */}
+                    
+                    </td>
+                    </tr>
+        )
+    })
+}
+
+
+
+
+  return (
+  <div className='container relative flex flex-col min-w-0 break-words w-full mb-6  rounded '>
+    
+    <div className="flex flex-col " >
+        <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
+            <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+            <div className="overflow-hidden shadow-lg rounded-xl m-2">
+                <table className="min-w-full ">
+                <thead className="border-b bg-white ">
                     <tr className=''>
-                    <th scope="col" class="text-xl font-medium text-[#A70B0B] px-6 py-4 text-center ">
+                    <th scope="col" className="text-xl font-medium text-[#A70B0B] px-6 py-4 text-center ">
                         No
                     </th>
-                    <th scope="col" class="text-xl font-medium text-[#A70B0B] px-6 py-4 text-center">
+                    <th scope="col" className="text-xl font-medium text-[#A70B0B] px-6 py-4 text-center">
+                        Museum
+                    </th>
+                    <th scope="col" className="text-xl font-medium text-[#A70B0B] px-6 py-4 text-center">
                         Kategori
                     </th>
-                    <th scope="col" class="text-xl font-medium text-[#A70B0B] px-6 py-4 text-center">
+                    <th scope="col" className="text-xl font-medium text-[#A70B0B] px-6 py-4 text-center">
                         Harga Hari Biasa
                     </th>
-                    <th scope="col" class="text-xl font-medium text-[#A70B0B] px-6 py-4 text-center">
+                    <th scope="col" className="text-xl font-medium text-[#A70B0B] px-6 py-4 text-center">
                         Harga Hari Libur
                     </th>
-                    <th scope="col" class="text-xl font-medium text-[#A70B0B] px-6 py-4 text-center">
+                    <th scope="col" className="text-xl font-medium text-[#A70B0B] px-6 py-4 text-center">
                         Aksi
                     </th>
                     </tr>
                 </thead>
                 <tbody className=''>
-                <tr class="bg-white border-b">
-                    <td class=" text-gray-900 px-6 py-4 whitespace-nowrap">
-                        1
-                    </td>
-                    <td class=" text-gray-900  px-6 py-4 whitespace-nowrap">
-                        Umum
-                    </td>
-                    <td class=" text-gray-900  px-6 py-4 whitespace-nowrap">
-                        Rp. 7.500,-
-                    </td>
-                    <td class=" text-gray-900  px-6 py-4 whitespace-nowrap">
-                        Rp. 10.000,-
-                    </td>
-                    <td class=" text-gray-900 px-6 py-4 whitespace-nowrap ">
-                     
-                    <button class="block text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200  font-medium rounded-full text-sm px-5 py-2.5 text-center dark:bg-gray-700 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button" data-modal-toggle="authentication-modal">
-                        Ubah
-                    </button>
-
-                    <div id="authentication-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full">
-                        <div class="relative p-4 w-full max-w-md h-full md:h-auto">
-                            <div class="relative bg-white rounded-lg shadow dark:bg-gray-600 ">
-                                <button type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-left dark:hover:bg-gray-800 dark:hover:text-white" data-modal-toggle="authentication-modal">
-                                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                                    <span class="sr-only">Close modal</span>
-                                </button>
-                                <div class="py-6 px-6 lg:px-8">
-                                    <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Ubah Harga</h3>
-                                    <form class="space-y-6" action="#">
-                                        <div>
-                                            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Kategori</label>
-                                            <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="name@company.com" required />
-                                        </div>
-                                        <div>
-                                            <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Harga Hari Biasa</label>
-                                            <input type="password" name="password" id="password" placeholder="15000" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required />
-                                        </div>
-                                        <div>
-                                            <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Harga Hari Libur</label>
-                                            <input type="password" name="password" id="password" placeholder="17000" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required />
-                                        </div>
-                                        
-                                        
-                                        <button type="submit" class="w-full text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">Ubah</button>
-                                    </form>
+                    {harga_HTMLTABLE}
+                    
+                    <div className="modal fade fixed bg-gray-300 z-50 p-32 px-52 items-center m-auto w-screen bg-opacity-60 top-0 left-0 hidden h-screen outline-none overflow-x-hidden overflow-y-auto " id="exampleModalCenteredScrollable" tabIndex="-1" aria-labelledby="exampleModalCenteredScrollable" aria-modal="true" role="dialog">
+                    <div className="modal-dialog w-full h-full my-auto modal-dialog-centered modal-dialog-scrollable relative items-center pointer-events-none px-40">
+                        <div className="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto my-auto bg-white bg-clip-padding rounded-md outline-none text-current">
+                        <div className="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
+                            <h5 className="text-xl font-medium leading-normal text-gray-800" id="exampleModalCenteredScrollableLabel">
+                            Modal title
+                            </h5>
+                            <button type="button"
+                            className="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"
+                            data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        
+                      {loadingHarga?
+                             <form onSubmit={updateHarga} >
+                             <div className="modal-body relative p-4">
+                                 <div className='justify-around md:mt-0 mt-8'>    
+                                     <div className="w-96 mb-4 mx-auto ">
+                                         <label className="block text-gray-700 text-sm font-bold mb-2" for="username">
+                                             Nama Museum
+                                         </label>
+                                         <input name='phone'  className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-gray-200 cursor-not-allowed" id="username" type="text" value="Loading Harga Data..." disabled={true} />
+                                         <span className="text-sm text-red-500"></span>
+                                     </div>
+                                     <div className="w-96 mb-4  mx-auto md:mt-0 mt-8">
+                                         <label className="block text-gray-700 text-sm font-bold mb-2" for="username">
+                                             Harga Nama Kategori
+                                         </label>
+                                         <input name='jumlah'  className="shadow appearance-none bg-gray-200 cursor-not-allowed border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" value="Loading Harga Data..." disabled={true}/>
+                                         <span className="text-sm text-red-500"></span>
+                                     </div>
+                                     <div className="w-96 mb-4  mx-auto md:mt-0 mt-8">
+                                         <label className="block text-gray-700 text-sm font-bold mb-2" for="username">
+                                             Harga Hari Biasa
+                                         </label>
+                                         <input name='hari_biasa' onChange={handleInput}  className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="Loading Harga Data..." />
+                                         <span className="text-sm text-red-500"></span>
+                                     </div>
+                                     <div className="w-96 mb-4  mx-auto md:mt-0 mt-8">
+                                         <label className="block text-gray-700 text-sm font-bold mb-2" for="username">
+                                             Hari Libur
+                                         </label>
+                                         <input name='hari_libur' onChange={handleInput}  className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="Loading Harga Data..." />
+                                         <span className="text-sm text-red-500"></span>
+                                     </div>
+                                 </div>
+                             </div>
+     
+                             <div
+                                 className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
+                                 <button type="button"
+                                 className="inline-block px-6 py-2.5 bg-purple-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-purple-700 hover:shadow-lg focus:bg-purple-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-purple-800 active:shadow-lg transition duration-150 ease-in-out"
+                                 data-bs-dismiss="modal">
+                                 Close
+                                 </button>
+                                 <button type="submit"
+                                 className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out ml-1" id="idSave">
+                                 Save changes
+                                 </button>
+                             </div>
+                             
+                         </form>:
+                            <form onSubmit={updateHarga} >
+                            <div className="modal-body relative p-4">
+                                <div className='justify-around md:mt-0 mt-8'>    
+                                    <div className="w-96 mb-4 mx-auto ">
+                                        <label className="block text-gray-700 text-sm font-bold mb-2" for="username">
+                                            Nama Museum
+                                        </label>
+                                        <input name='phone'  className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-gray-200 cursor-not-allowed" id="username" type="text" value={harga.nama_museum} disabled={true} />
+                                        <span className="text-sm text-red-500"></span>
+                                    </div>
+                                    <div className="w-96 mb-4  mx-auto md:mt-0 mt-8">
+                                        <label className="block text-gray-700 text-sm font-bold mb-2" for="username">
+                                            Harga Nama Kategori
+                                        </label>
+                                        <input name='jumlah'  className="shadow appearance-none bg-gray-200 cursor-not-allowed border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" value={harga.nama_kategori} disabled={true}/>
+                                        <span className="text-sm text-red-500"></span>
+                                    </div>
+                                    <div className="w-96 mb-4  mx-auto md:mt-0 mt-8">
+                                        <label className="block text-gray-700 text-sm font-bold mb-2" for="username">
+                                            Harga Hari Biasa
+                                        </label>
+                                        <input name='hari_biasa' onChange={handleInput}  className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="number" value={harga.hari_biasa} />
+                                        <span className="text-sm text-red-500"></span>
+                                    </div>
+                                    <div className="w-96 mb-4  mx-auto md:mt-0 mt-8">
+                                        <label className="block text-gray-700 text-sm font-bold mb-2" for="username">
+                                            Hari Libur
+                                        </label>
+                                        <input name='hari_libur' onChange={handleInput}  className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"   value={harga.hari_libur} />
+                                        <span className="text-sm text-red-500"></span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div> 
-                    <button type="button" class="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Hapus</button>
-                    
-                    </td>
-                    </tr>
-                    <tr class="bg-white border-b">
-                    <td class=" text-gray-900 px-6 py-4 whitespace-nowrap">
-                        2
-                    </td>
-                    <td class=" text-gray-900  px-6 py-4 whitespace-nowrap">
-                        Mahasiswa
-                    </td>
-                    <td class=" text-gray-900  px-6 py-4 whitespace-nowrap">
-                        Rp. 5.000,-
-                    </td>
-                    <td class=" text-gray-900  px-6 py-4 whitespace-nowrap">
-                        Rp. 7.500,-
-                    </td>
-                    <td class=" text-gray-900 px-6 py-4 whitespace-nowrap ">
-                     
-                    <button class="block text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200  font-medium rounded-full text-sm px-5 py-2.5 text-center dark:bg-gray-700 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button" data-modal-toggle="authentication-modal">
-                        Ubah
-                    </button>
-
-                    <div id="authentication-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full">
-                        <div class="relative p-4 w-full max-w-md h-full md:h-auto">
-                            <div class="relative bg-white rounded-lg shadow dark:bg-gray-600 ">
-                                <button type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-left dark:hover:bg-gray-800 dark:hover:text-white" data-modal-toggle="authentication-modal">
-                                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                                    <span class="sr-only">Close modal</span>
+    
+                            <div
+                                className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
+                                <button type="button"
+                                className="inline-block px-6 py-2.5 bg-purple-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-purple-700 hover:shadow-lg focus:bg-purple-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-purple-800 active:shadow-lg transition duration-150 ease-in-out"
+                                data-bs-dismiss="modal">
+                                Close
                                 </button>
-                                <div class="py-6 px-6 lg:px-8">
-                                    <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Ubah Harga</h3>
-                                    <form class="space-y-6" action="#">
-                                        <div>
-                                            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Kategori</label>
-                                            <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="name@company.com" required />
-                                        </div>
-                                        <div>
-                                            <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Harga Hari Biasa</label>
-                                            <input type="password" name="password" id="password" placeholder="15000" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required />
-                                        </div>
-                                        <div>
-                                            <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Harga Hari Libur</label>
-                                            <input type="password" name="password" id="password" placeholder="17000" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required />
-                                        </div>
-                                        
-                                        
-                                        <button type="submit" class="w-full text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">Ubah</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div> 
-                    <button type="button" class="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Hapus</button>
-                    
-                    </td>
-                    </tr>
-                    <tr class="bg-white border-b">
-                    <td class=" text-gray-900 px-6 py-4 whitespace-nowrap">
-                        3
-                    </td>
-                    <td class=" text-gray-900  px-6 py-4 whitespace-nowrap">
-                    Pelajar
-                    </td>
-                    <td class=" text-gray-900  px-6 py-4 whitespace-nowrap">
-                        Rp. 4.000,-
-                    </td>
-                    <td class=" text-gray-900  px-6 py-4 whitespace-nowrap">
-                        Rp. 5.000,-
-                    </td>
-                    <td class=" text-gray-900 px-6 py-4 whitespace-nowrap ">
-                     
-                    <button class="block text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200  font-medium rounded-full text-sm px-5 py-2.5 text-center dark:bg-gray-700 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button" data-modal-toggle="authentication-modal">
-                        Ubah
-                    </button>
-
-                    <div id="authentication-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full">
-                        <div class="relative p-4 w-full max-w-md h-full md:h-auto">
-                            <div class="relative bg-white rounded-lg shadow dark:bg-gray-600 ">
-                                <button type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-left dark:hover:bg-gray-800 dark:hover:text-white" data-modal-toggle="authentication-modal">
-                                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                                    <span class="sr-only">Close modal</span>
+                                <button type="submit"
+                                className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out ml-1">
+                                Save changes
                                 </button>
-                                <div class="py-6 px-6 lg:px-8">
-                                    <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Ubah Harga</h3>
-                                    <form class="space-y-6" action="#">
-                                        <div>
-                                            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Kategori</label>
-                                            <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="name@company.com" required />
-                                        </div>
-                                        <div>
-                                            <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Harga Hari Biasa</label>
-                                            <input type="password" name="password" id="password" placeholder="15000" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required />
-                                        </div>
-                                        <div>
-                                            <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Harga Hari Libur</label>
-                                            <input type="password" name="password" id="password" placeholder="17000" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required />
-                                        </div>
-                                        
-                                        
-                                        <button type="submit" class="w-full text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">Ubah</button>
-                                    </form>
-                                </div>
                             </div>
+                            
+                        </form> }
+    
                         </div>
-                    </div> 
-                    <button type="button" class="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Hapus</button>
-                    
-                    </td>
-                    </tr>
-                    <tr class="bg-white border-b">
-                    <td class=" text-gray-900 px-6 py-4 whitespace-nowrap">
-                        4
-                    </td>
-                    <td class=" text-gray-900  px-6 py-4 whitespace-nowrap">
-                    Rombongan Umum min.50 orang
-                    </td>
-                    <td class=" text-gray-900  px-6 py-4 whitespace-nowrap">
-                        Rp. 5.000,-
-                    </td>
-                    <td class=" text-gray-900  px-6 py-4 whitespace-nowrap">
-                        Rp. 7.500,-
-                    </td>
-                    <td class=" text-gray-900 px-6 py-4 whitespace-nowrap ">
-                     
-                    <button class="block text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200  font-medium rounded-full text-sm px-5 py-2.5 text-center dark:bg-gray-700 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button" data-modal-toggle="authentication-modal">
-                        Ubah
-                    </button>
-
-                    <div id="authentication-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full">
-                        <div class="relative p-4 w-full max-w-md h-full md:h-auto">
-                            <div class="relative bg-white rounded-lg shadow dark:bg-gray-600 ">
-                                <button type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-left dark:hover:bg-gray-800 dark:hover:text-white" data-modal-toggle="authentication-modal">
-                                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                                    <span class="sr-only">Close modal</span>
-                                </button>
-                                <div class="py-6 px-6 lg:px-8">
-                                    <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Ubah Harga</h3>
-                                    <form class="space-y-6" action="#">
-                                        <div>
-                                            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Kategori</label>
-                                            <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="name@company.com" required />
-                                        </div>
-                                        <div>
-                                            <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Harga Hari Biasa</label>
-                                            <input type="password" name="password" id="password" placeholder="15000" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required />
-                                        </div>
-                                        <div>
-                                            <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Harga Hari Libur</label>
-                                            <input type="password" name="password" id="password" placeholder="17000" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required />
-                                        </div>
-                                        
-                                        
-                                        <button type="submit" class="w-full text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">Ubah</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div> 
-                    <button type="button" class="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Hapus</button>
-                    
-                    </td>
-                    </tr>
-                    <tr class="bg-white border-b">
-                    <td class=" text-gray-900 px-6 py-4 whitespace-nowrap">
-                        5
-                    </td>
-                    <td class=" text-gray-900  px-6 py-4 whitespace-nowrap">
-                    Rombongan Pelajar min.50 orang
-                    </td>
-                    <td class=" text-gray-900  px-6 py-4 whitespace-nowrap">
-                        Rp. 4.000,-
-                    </td>
-                    <td class=" text-gray-900  px-6 py-4 whitespace-nowrap">
-                        Rp. 5.000,-
-                    </td>
-                    <td class=" text-gray-900 px-6 py-4 whitespace-nowrap ">
-                     
-                    <button class="block text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200  font-medium rounded-full text-sm px-5 py-2.5 text-center dark:bg-gray-700 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button" data-modal-toggle="authentication-modal">
-                        Ubah
-                    </button>
-
-                    <div id="authentication-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full">
-                        <div class="relative p-4 w-full max-w-md h-full md:h-auto">
-                            <div class="relative bg-white rounded-lg shadow dark:bg-gray-600 ">
-                                <button type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-left dark:hover:bg-gray-800 dark:hover:text-white" data-modal-toggle="authentication-modal">
-                                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                                    <span class="sr-only">Close modal</span>
-                                </button>
-                                <div class="py-6 px-6 lg:px-8">
-                                    <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Ubah Harga</h3>
-                                    <form class="space-y-6" action="#">
-                                        <div>
-                                            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Kategori</label>
-                                            <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="name@company.com" required />
-                                        </div>
-                                        <div>
-                                            <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Harga Hari Biasa</label>
-                                            <input type="password" name="password" id="password" placeholder="15000" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required />
-                                        </div>
-                                        <div>
-                                            <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Harga Hari Libur</label>
-                                            <input type="password" name="password" id="password" placeholder="17000" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required />
-                                        </div>
-                                        
-                                        
-                                        <button type="submit" class="w-full text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">Ubah</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div> 
-                    <button type="button" class="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Hapus</button>
-                    
-                    </td>
-                    </tr>
-                    <tr class="bg-white border-b">
-                    <td class=" text-gray-900 px-6 py-4 whitespace-nowrap">
-                        6
-                    </td>
-                    <td class=" text-gray-900  px-6 py-4 whitespace-nowrap">
-                        Wisatawan Asing
-                    </td>
-                    <td class=" text-gray-900  px-6 py-4 whitespace-nowrap">
-                        Rp. 15.000,-
-                    </td>
-                    <td class=" text-gray-900  px-6 py-4 whitespace-nowrap">
-                        Rp. 20.000,-
-                    </td>
-                    <td class=" text-gray-900 px-6 py-4 whitespace-nowrap ">
-                     
-                    <button class="block text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200  font-medium rounded-full text-sm px-5 py-2.5 text-center dark:bg-gray-700 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button" data-modal-toggle="authentication-modal">
-                        Ubah
-                    </button>
-
-                    <div id="authentication-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full">
-                        <div class="relative p-4 w-full max-w-md h-full md:h-auto">
-                            <div class="relative bg-white rounded-lg shadow dark:bg-gray-600 ">
-                                <button type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-left dark:hover:bg-gray-800 dark:hover:text-white" data-modal-toggle="authentication-modal">
-                                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                                    <span class="sr-only">Close modal</span>
-                                </button>
-                                <div class="py-6 px-6 lg:px-8">
-                                    <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Ubah Harga</h3>
-                                    <form class="space-y-6" action="#">
-                                        <div>
-                                            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Kategori</label>
-                                            <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="name@company.com" required />
-                                        </div>
-                                        <div>
-                                            <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Harga Hari Biasa</label>
-                                            <input type="password" name="password" id="password" placeholder="15000" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required />
-                                        </div>
-                                        <div>
-                                            <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Harga Hari Libur</label>
-                                            <input type="password" name="password" id="password" placeholder="17000" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required />
-                                        </div>
-                                        
-                                        
-                                        <button type="submit" class="w-full text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">Ubah</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div> 
-                    <button type="button" class="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Hapus</button>
-                    
-                    </td>
-                    </tr>
+                    </div>
+                    </div>
                 </tbody>
                 </table>
             </div>

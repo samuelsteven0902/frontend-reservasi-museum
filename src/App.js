@@ -9,6 +9,7 @@ import Tiket from 'pages/Tiket';
 import Admin from 'layout/Admin';
 import SuperAdmin from 'layout/superadmin';
 import 'react-dates/initialize';
+import 'tw-elements';
 
 
 // Font Awesome Style Sheet

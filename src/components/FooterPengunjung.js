@@ -13,8 +13,8 @@ function FooterPengunjung() {
 
   return (
     <>
-        <footer className="relative bg-gray-100 pt-8 h-[25rem]">
-            <div className="container max-w-7xl m-auto w-full h-full bg-cover bg-center absolute bottom-0 bg-no-repeat  bg-clip-content bg bg-landing-bawah">
+        <footer className="relative bg-gray-100 pt-8 h-[25rem] w-full">
+            <div className=" m-auto w-full h-full bg-cover bg-center absolute bottom-0 bg-no-repeat  bg-clip-content bg bg-landing-bawah">
                 <div className=" flex flex-wrap text-center lg:text-left pt-6 bg-gray- h-full"  style={sectionStyle}>
                     <div className='w-1/2 m-auto'>
                         <ul className='text-center text-black'>
