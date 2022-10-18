@@ -14,6 +14,8 @@ module.exports = {
             sans: ['Roboto', 'sans-serif'],
             serif: ['"Roboto Slab"', 'serif'],
             body: ['Roboto', 'sans-serif'],
+            poppins: ["Poppins", "sans-serif"],
+
         },
         extend: {
             backgroundImage: () => ({

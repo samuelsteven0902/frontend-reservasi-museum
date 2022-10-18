@@ -4,31 +4,38 @@ import CardBody from '@material-tailwind/react/CardBody';
 import CardFooter from '@material-tailwind/react/CardFooter';
 import H5 from '@material-tailwind/react/Heading5';
 import InputIcon from '@material-tailwind/react/InputIcon';
-import Checkbox from '@material-tailwind/react/Checkbox';
 import Button from '@material-tailwind/react/Button';
-import DefaultNavbar from 'components/DefaultNavbar';
-import SimpleFooter from 'components/SimpleFooter';
+import Header from 'components/login/Header';
 import Page from 'components/login/Page';
 import Container from 'components/login/Container';
 
+
 export default function Login() {
+
     return (
+    <>
+        <div className=''>
+                <Header/>
+        </div>
+        <div className='mt-44 '>
+            
         <Page>
-            <DefaultNavbar />
             <Container>
                 <Card>
-                    <CardHeader color="lightBlue">
-                        <H5 color="white" style={{ marginBottom: 0 }}>
-                            Login
-                        </H5>
+                    <CardHeader color='red'>
+                            <H5 color="black" style={{ marginBottom: 0 }}>
+                                Login
+                            </H5>
                     </CardHeader>
 
                     <CardBody>
+                        <br>
+                        </br>
                         <div className="mb-12 px-4 bg-bb">
                             <InputIcon
                                 type="email"
                                 color="lightBlue"
-                                placeholder="Email Address"
+                                placeholder="Email"
                                 iconName="email"
                             />
                         </div>
@@ -40,29 +47,30 @@ export default function Login() {
                                 iconName="lock"
                             />
                         </div>
-                        <div className="mb-4 px-4">
+                        {/* <div className="mb-4 px-4">
                             <Checkbox
                                 color="lightBlue"
                                 text="Remember Me"
                                 id="remember"
                             />
-                        </div>
+                        </div> */}
                     </CardBody>
                     <CardFooter>
-                        <div className="flex justify-center bg-bb">
+                        <div className="flex justify-center yb">
                             <Button
-                                color="lightBlue"
+                                color="red"
                                 buttonType="link"
                                 size="lg"
                                 ripple="dark"
                             >
-                                Get Started
+                                Login
                             </Button>
                         </div>
                     </CardFooter>
                 </Card>
             </Container>
-            <SimpleFooter />
         </Page>
+        </div>
+        </>
     );
 }
