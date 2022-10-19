@@ -1,53 +1,76 @@
 import React from 'react'
+import qr from '../../assets/img/tiket/qr.png'
 
 function Content() {
   return (
   
     // className="items-center flex flex-wrap bg-[#A70B0B]">
 
-      <div className>
-        <button class="ml-96 mt-10 bg-[#A70B0B] hover:bg-[#A70B0B]  text-white font-bold py-4 px-8 rounded-full focus:outline-none focus:shadow-outline">
-        Download
-        </button>
-      <div className=" mx-1 z-10 w-[80%]">
-        
-      </div>
-        <div className="items-center flex flex-wrap bg-[#A70B0B] mt-14 pt-32pb-20">
+      <div classNamec='container mx-auto justify-center'>
+        <div className='flex justify-center'>
+          <button class=" mt-10 bg-[#A70B0B] hover:bg-[#A70B0B]  text-white font-bold py-4 px-8 rounded-full focus:outline-none focus:shadow-outline">
+          Download
+          </button>
+        </div>
+        <div className="  bg-[#A70B0B] mt-14 pt-12 pb-1 mx-32">
           
           <div className="w-auto px-10 ml-auto mr-auto text-center">
             <div className="text-gray-200">
-              <p color="gray-200">
-                Museum Keris Nusantara
+                <p className='text-3xl font-bold'>
+                UPT Museum
               </p>
             </div>
           </div>
 
           <div className="w-auto px-4 ml-auto mr-auto text-center">
             <div className="text-gray-200">
-              <p color="gray-200">
-                Museum Keris Nusantara
+              <p className='my-3 text-lg'>
+              XXXX.XXXXX-XXXXXX.XXXXXXXX-XXXXXXX
               </p>
             </div>
           </div>
 
-          <div className="w-auto px-4 ml-auto mr-auto text-center">
-            <div className="text-gray-200">
-              <p color="gray-200">
-                Museum Keris Nusantara
-              </p>
+          <div className="flex text-white">
+            <div className='w-1/3 px-12'>
+              <div className='my-3'>
+                <p className=' text-lg'>Tujuan Wisata</p>
+                <p className='text-xl font-bold'>Museum Kris Nusantara</p>
+              </div>
+              <div className='my-3' >
+                <p className=' text-lg'>Tanggal Pemesanan</p>
+                <p  className='text-xl font-bold'>08 September 2022</p>
+              </div>
+              <div className='my-3'>
+                <p className=' text-lg'>Atas Nama</p>
+                <p  className='text-xl font-bold'>Maba Nurul</p>
+              </div>
+            </div>
+            <div className='w-1/3'>
+              <div  className='my-3'>
+                  <p className=' text-lg'>Jumlah Pengunjung</p>
+                  <p  className='text-xl font-bold'>12</p>
+                </div>
+                <div  className='my-3'>
+                  <p className=' text-lg'>Status Pembayaran</p>
+                  <p  className='text-xl font-bold'>SUDAH / BELUM</p>
+                </div>
+            </div>
+            <div className='w-1/3 items-center justify-center mx-auto'>
+              <p className='text-center text-xl font-semibold my-1'>Scan QR code</p>
+              <img src={qr} className="mx-auto w-[40%] "/>
+              <p className='text-center text-3xl font-semibold py-4'>Rp.xxx.000.00</p>
             </div>
           </div>
 
-          <div className="w-auto px-4 ml-auto mr-auto text-center">
-            <div className="text-gray-200">
-              <p color="gray-200">
-                Museum Keris Nusantara
-              </p>
-            </div>
+          <div className="w-full mx-auto text-center text-white my-12">
+            <p className='text-gray-300'>Datang sesuai tanggal pada tiket!</p>
+            <p>Harap simpan tiket ini untuk ditunjukkan di lokasi museum!</p>
+          </div>
+
+
           </div>
 
         </div>
-      </div>
   )
 }
 

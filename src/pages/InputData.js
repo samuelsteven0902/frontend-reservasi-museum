@@ -1,3 +1,4 @@
+import axios from 'axios';
 import DefaultFooter from 'components/DefaultFooter';
 import DefaultNavbar from 'components/DefaultNavbar';
 import FormInput from 'components/inputdata/FormInput';
@@ -9,28 +10,50 @@ function InputData() {
   const stateParamVal = useLocation().state.input;
   console.log(stateParamVal);
   const id_category = stateParamVal.category
+  const id_museum = stateParamVal.museum
 
-  const [harga,setHarga] = useState();
+  const [data,setData] = useState();
 
   useEffect(() => {
-    const fetchHarga = async () =>
+    window.scrollTo(0, 0);
+  }, [])
+
+  useEffect(() => {
+    const fetchData = async () =>
     {
-      const resHarga = await fetch(`http://localhost:8000/api/show_harga/${id_category}`);
-      const res = await resHarga.json()
-      setHarga(res.harga[0])
-      console.log(await harga)
+
+      const dataId= {
+        id_category:id_category,
+        id_museum:id_museum
+      }
+
+      // const resHarga = await fetch(`http://localhost:8000/api/show_harga/${id_category}`, dataId);
+      // const res = await resHarga.json()
+      
+      const resData = await axios.post(`http://localhost:8000/api/show_data/${id_category}`, dataId)
+                              .then(res=>{ console.log(res); setData(res.data.data[0]); })
+      // console.log(await harga)
+
     }
 
-    fetchHarga();
+    fetchData();
   }, [])
+
+// useEffect(() => {
+  
+//   const resHarga = await axios.post
+
+// }, [])
+
+
   return (
     <>
         <div className="absolute w-full z-20">
               <DefaultNavbar />
-        </div>
-        <main>
-          <Header state={stateParamVal} harga={harga}/>
-          <FormInput dataAwal={stateParamVal} hargaa={harga}/>
+        </div >
+        <main className='bg-gray-100 relative'>
+          <Header state={stateParamVal} data={data} />
+          <FormInput dataAwal={stateParamVal} dataa={data}/>
         </main>
         <DefaultFooter />
     </>

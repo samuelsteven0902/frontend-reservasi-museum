@@ -5,7 +5,7 @@ import TabelPerHarga from './TabelPerHarga'
 
 function HargaTiket() {
   return (
-    <div className='container bg-gray-100 p-10'>
+    <div className='mx-auto bg-gray-100 sm:p-10'>
         <div className='bg-white rounded-md shadow py-6 pb-12'>
             <div className=' justify-center items-center rounded '>
             {/* <div className='w-full text-center py-3'>
