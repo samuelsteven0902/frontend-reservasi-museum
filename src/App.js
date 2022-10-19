@@ -9,6 +9,7 @@ import Tiket from 'pages/Tiket';
 import Admin from 'layout/Admin';
 import SuperAdmin from 'layout/superadmin';
 import 'react-dates/initialize';
+import 'tw-elements';
 
 
 // Font Awesome Style Sheet
@@ -16,6 +17,10 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 
 // Tailwind CSS Style Sheet
 import 'assets/styles/tailwind.css';
+import Panduan from 'pages/Panduan';
+import Faq from 'pages/Faq';
+import About from 'pages/About';
+
 
 function App() {
 
@@ -29,6 +34,12 @@ function App() {
             <Route path="/pembayaran" component={Pembayaran}/>
             <Route path="/tiket" component={Tiket}/>
             <Route path="/admin" component={Admin}/>
+            <Route path="/panduan" component={Panduan}/>
+            <Route path="/faq" component={Faq}/>
+            <Route path="/about" component={About}/>
+
+            
+
             <Route path="/superadmin" component={SuperAdmin}/>
         </Switch>
     );

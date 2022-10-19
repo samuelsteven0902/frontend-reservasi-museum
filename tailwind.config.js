@@ -2,7 +2,9 @@ module.exports = {
     content: [
         "./src/**/*.{js,jsx,ts,tsx}",
         'node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}',
-        "./node_modules/flowbite/**/*.js"
+        "./node_modules/flowbite/**/*.js",
+        './src/**/*.{html,js}', 
+        './node_modules/tw-elements/dist/js/**/*.js'
       ],
     mode: 'jit',
     purge: ['./src/**/*.js', './public/index.html'],
@@ -12,6 +14,8 @@ module.exports = {
             sans: ['Roboto', 'sans-serif'],
             serif: ['"Roboto Slab"', 'serif'],
             body: ['Roboto', 'sans-serif'],
+            poppins: ["Poppins", "sans-serif"],
+
         },
         extend: {
             backgroundImage: () => ({
@@ -32,6 +36,6 @@ module.exports = {
         extend: {},
     },
     plugins: [
-        require('flowbite/plugin'),
+        require('flowbite/plugin','tw-elements/dist/plugin'),
     ],
 };

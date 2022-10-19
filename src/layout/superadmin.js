@@ -18,6 +18,7 @@ import Admin from "components/superadmin/Admin.js";
 import Pemasukan from "components/superadmin/Pemasukan";
 import Panduan from "components/superadmin/Panduan.js";
 import FAQ from "components/superadmin/FAQ.js"
+import 'tw-elements';
 
 export default function SuperAdmin() {
   return (

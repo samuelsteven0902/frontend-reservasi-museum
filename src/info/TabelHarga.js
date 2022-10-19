@@ -2,7 +2,7 @@ import React from 'react'
 
 function TabelHarga() {
   return (
-  <div className='container px-24'>
+  <div className='container px-4 sm:px-24 mx-auto'>
     
     <div class="flex flex-col " >
         <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
