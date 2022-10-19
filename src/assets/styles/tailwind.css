@@ -778,14 +778,14 @@ video {
 	margin-bottom: 0.25rem;
 }.mr-1{
 	margin-right: 0.25rem;
+}.mt-3{
+	margin-top: 0.75rem;
 }.-ml-20{
 	margin-left: -5rem;
 }.mt-20{
 	margin-top: 5rem;
 }.mr-2{
 	margin-right: 0.5rem;
-}.mt-3{
-	margin-top: 0.75rem;
 }.mt-1{
 	margin-top: 0.25rem;
 }.mr-3{
@@ -1023,12 +1023,12 @@ video {
 	border-bottom-width: 1px;
 }.border-t{
 	border-top-width: 1px;
+}.border-t-0{
+	border-top-width: 0px;
 }.border-l-0{
 	border-left-width: 0px;
 }.border-r-0{
 	border-right-width: 0px;
-}.border-t-0{
-	border-top-width: 0px;
 }.border-solid{
 	border-style: solid;
 }.border-none{
@@ -2624,8 +2624,6 @@ video {
 		margin-bottom: 0px;
 	}.xl\:w-8\/12{
 		width: 66.666667%;
-	}.xl\:w-4\/12{
-		width: 33.333333%;
 	}.xl\:w-3\/12{
 		width: 25%;
 	}
