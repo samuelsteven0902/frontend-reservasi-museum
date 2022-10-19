@@ -12,7 +12,7 @@ import 'flowbite';
 export default function DefaultNavbar() {
     const [openNavbar, setOpenNavbar] = useState(false);
     return (
-        <Navbar className='bg-white' color='none'  navbar>
+        <Navbar className='bg-white fixed w-full bg-opacity-75 z-50' color='none'  navbar>
             <NavbarContainer>
                 <NavbarWrapper>
                     <a href='/#' target="_blank" rel="noreferrer" >

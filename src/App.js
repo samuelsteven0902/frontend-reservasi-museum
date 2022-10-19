@@ -21,6 +21,7 @@ import Panduan from 'pages/Panduan';
 import Faq from 'pages/Faq';
 import About from 'pages/About';
 
+
 function App() {
 
     return (
@@ -36,6 +37,7 @@ function App() {
             <Route path="/panduan" component={Panduan}/>
             <Route path="/faq" component={Faq}/>
             <Route path="/about" component={About}/>
+
             
 
             <Route path="/superadmin" component={SuperAdmin}/>
