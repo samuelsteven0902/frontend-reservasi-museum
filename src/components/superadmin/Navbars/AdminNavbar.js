@@ -1,4 +1,5 @@
 import React from "react";
+import profile from '../../../assets/img/admin/profile.png'
 
 import UserDropdown from "../Dropdowns/UserDropdown.js";
 
@@ -31,7 +32,8 @@ export default function Navbar() {
           </form>
           {/* User */}
           <ul className="flex-col md:flex-row list-none items-center hidden md:flex">
-            <UserDropdown />
+            {/* <UserDropdown /> */}
+            <img src={profile} className="rounded-full w-12 h-12"/>
           </ul>
         </div>
       </nav>
