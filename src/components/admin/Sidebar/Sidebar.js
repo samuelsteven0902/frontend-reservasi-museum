@@ -1,4 +1,5 @@
 /*eslint-disable*/
+import LogOut from "pages/LogOut.js";
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -172,6 +173,7 @@ export default function Sidebar() {
                 </Link>
               </li>
             </ul>
+            <LogOut />
 
 
             {/* Divider */}
