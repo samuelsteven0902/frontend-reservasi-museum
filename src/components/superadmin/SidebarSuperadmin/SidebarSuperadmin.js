@@ -25,7 +25,7 @@ export default function SidebarSuperadmin() {
             className="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
             to="/"
           >
-            RESERVASI
+            UPT MUSEUM
           </Link>
           {/* User */}
           <ul className="md:hidden items-center flex flex-wrap list-none">
@@ -51,7 +51,7 @@ export default function SidebarSuperadmin() {
                     className="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
                     to="/"
                   >
-                    Notus React
+                    UPT MUSEUM
                   </Link>
                 </div>
                 <div className="w-6/12 flex justify-end">
@@ -80,7 +80,7 @@ export default function SidebarSuperadmin() {
             <hr className="my-4 md:min-w-full" />
             {/* Heading */}
             <h6 className="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
-              SUPERADMIN
+              Dashboard
             </h6>
             {/* Navigation */}
 
@@ -89,21 +89,21 @@ export default function SidebarSuperadmin() {
                 <Link
                   className={
                     "text-xs uppercase py-3 font-bold block " +
-                    (window.location.href.indexOf("/superadmin/home") !== -1
+                    (window.location.href.indexOf("/superadmin/grafik") !== -1
                       ? "text-lightBlue-500 hover:text-lightBlue-600"
                       : "text-blueGray-700 hover:text-blueGray-500")
                   }
-                  to="/superadmin/home"
+                  to="/superadmin/grafik"
                 >
                   <i
                     className={
                       "fas fa-tv mr-2 text-sm " +
-                      (window.location.href.indexOf("/superadmin/home") !== -1
+                      (window.location.href.indexOf("/superadmin/grafik") !== -1
                         ? "opacity-75"
                         : "text-blueGray-300")
                     }
                   ></i>{" "}
-                  Home
+                  Grafik
                 </Link>
               </li>
 
@@ -184,7 +184,6 @@ export default function SidebarSuperadmin() {
             {/* Navigation */}
 
             <ul className="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
-
               <li className="items-center">
                 <Link
                   className={
@@ -197,7 +196,7 @@ export default function SidebarSuperadmin() {
                 >
                   <i
                     className={
-                      "fas fa-map-marked mr-2 text-sm " +
+                      "fa-solid fa-book-open mr-2 text-sm " +
                       (window.location.href.indexOf("/superadmin/panduan") !== -1
                         ? "opacity-75"
                         : "text-blueGray-300")
@@ -219,7 +218,7 @@ export default function SidebarSuperadmin() {
                 >
                   <i
                     className={
-                      "fas fa-map-marked mr-2 text-sm " +
+                      "fa-solid fa-comments mr-2 text-sm " +
                       (window.location.href.indexOf("/superadmin/faq") !== -1
                         ? "opacity-75"
                         : "text-blueGray-300")
@@ -231,8 +230,33 @@ export default function SidebarSuperadmin() {
             </ul>
             <LogOut />
 
-            {/* Divider */}
-            <hr className="my- 4 md:min-w-full" />
+            <hr className="my-1 md:min-w-full" />
+            <ul className="md:flex-col md:min-w-full flex flex-col list-none">
+              <li className="items-center">
+                <Link
+                  className={
+                    "text-xs uppercase py-3 font-bold block " +
+                    (window.location.href.indexOf("/superadmin/logout") !== -1
+                      ? "text-lightBlue-500 hover:text-lightBlue-600"
+                      : "text-blueGray-700 hover:text-blueGray-500")
+                  }
+                  to="/superadmin/logout"
+                >
+                  <i
+                    className={ 
+                      "fa-solid fa-right-from-bracket mr-2 text-sm " +
+                      (window.location.href.indexOf("/superadmin/logout") !== -1
+                        ? "opacity-50"
+                        : "text-blueGray-300")
+                    }
+                  ></i>{" "}
+                  Logout
+                </Link>
+              </li>
+            </ul>
+
+            {/* Divider
+            <hr className="my- 4 md:min-w-full" /> */}
           </div>
         </div>
       </nav>

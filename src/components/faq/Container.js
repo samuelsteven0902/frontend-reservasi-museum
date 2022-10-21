@@ -7,7 +7,7 @@ export default function Container({  }) {
     return (
         <div className='container bg-gray-100 p-10 h-screen'>
             <div className='bg-white rounded-md shadow py-6 pb-12 mt-12'>
-                <div className='flex justify-center pt-3'>
+                <div className='flex justify-center pt-3 pb-5'>
                     <button className="w-32 text-white bg-[#A70B0B] font-poppins text-lg rounded-xl">FAQ</button>
                 </div>     
                 <div id="accordion-collapse "  className='w-11/12 mx-auto'  data-accordion="collapse">
@@ -51,14 +51,7 @@ export default function Container({  }) {
                         </ul>
                         </div>
                     </div>
-                </div>
-
-                
-
-              
-
-
-                
+                </div>                
             </div>
         </div>
         

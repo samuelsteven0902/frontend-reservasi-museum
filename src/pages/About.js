@@ -1,5 +1,6 @@
 import Container from 'components/about/Container';
 import DefaultNavbar from 'components/DefaultNavbar';
+import FooterPengunjung from 'components/FooterPengunjung';
 
 
 export default function About() {
@@ -13,6 +14,9 @@ export default function About() {
                 className="w-full px-4 ml-auto mr-auto text-center">
                 <Container/>
                 </main>
+            </div>
+            <div>
+                <FooterPengunjung/>
             </div>
         </>
     );
