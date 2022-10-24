@@ -1,4 +1,5 @@
 /*eslint-disable*/
+import LogOut from "pages/LogOut.js";
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -227,6 +228,7 @@ export default function SidebarSuperadmin() {
                 </Link>
               </li>
             </ul>
+            <LogOut />
 
             <hr className="my-1 md:min-w-full" />
             <ul className="md:flex-col md:min-w-full flex flex-col list-none">
