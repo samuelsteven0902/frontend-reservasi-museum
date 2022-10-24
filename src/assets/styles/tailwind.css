@@ -651,8 +651,6 @@ video {
 	right: 0.625rem;
 }.right-2{
 	right: 0.5rem;
-}.-right-5{
-	right: -1.25rem;
 }.right-5{
 	right: 1.25rem;
 }.z-50{
@@ -675,16 +673,12 @@ video {
 	margin: 0.5rem;
 }.m-3{
 	margin: 0.75rem;
-}.-m-24{
-	margin: -6rem;
-}.m-5{
-	margin: 1.25rem;
 }.-m-20{
 	margin: -5rem;
+}.m-5{
+	margin: 1.25rem;
 }.-m-16{
 	margin: -4rem;
-}.-m-10{
-	margin: -2.5rem;
 }.mx-auto{
 	margin-left: auto;
 	margin-right: auto;
@@ -894,8 +888,6 @@ video {
 	height: 5rem;
 }.h-modal{
 	height: calc(100% - 2rem);
-}.h-1{
-	height: 0.25rem;
 }.w-full{
 	width: 100%;
 }.w-10{
@@ -954,8 +946,6 @@ video {
 	width: 50%;
 }.w-screen{
 	width: 100vw;
-}.w-28{
-	width: 7rem;
 }.min-w-full{
 	min-width: 100%;
 }.min-w-0{
@@ -1206,9 +1196,6 @@ video {
 }.bg-orange-200{
 	--tw-bg-opacity: 1;
 	background-color: rgba(252, 217, 189, var(--tw-bg-opacity));
-}.bg-red-600{
-	--tw-bg-opacity: 1;
-	background-color: rgba(224, 36, 36, var(--tw-bg-opacity));
 }.bg-red-700{
 	--tw-bg-opacity: 1;
 	background-color: rgba(200, 30, 30, var(--tw-bg-opacity));
@@ -1224,6 +1211,9 @@ video {
 }.bg-purple-600{
 	--tw-bg-opacity: 1;
 	background-color: rgba(126, 58, 242, var(--tw-bg-opacity));
+}.bg-red-600{
+	--tw-bg-opacity: 1;
+	background-color: rgba(224, 36, 36, var(--tw-bg-opacity));
 }.bg-opacity-75{
 	--tw-bg-opacity: 0.75;
 }.bg-opacity-60{
@@ -1342,12 +1332,6 @@ video {
 }.px-40{
 	padding-left: 10rem;
 	padding-right: 10rem;
-}.px-9{
-	padding-left: 2.25rem;
-	padding-right: 2.25rem;
-}.px-20{
-	padding-left: 5rem;
-	padding-right: 5rem;
 }.pt-8{
 	padding-top: 2rem;
 }.pb-6{
@@ -1428,10 +1412,6 @@ video {
 	padding-bottom: 1rem;
 }.pt-1{
 	padding-top: 0.25rem;
-}.pr-3{
-	padding-right: 0.75rem;
-}.pr-9{
-	padding-right: 2.25rem;
 }.text-center{
 	text-align: center;
 }.text-justify{
@@ -2765,19 +2745,14 @@ video {
 	}.md\:px-16{
 		padding-left: 4rem;
 		padding-right: 4rem;
-	}.md\:px-5{
-		padding-left: 1.25rem;
-		padding-right: 1.25rem;
 	}.md\:pt-64{
 		padding-top: 16rem;
 	}.md\:pl-24{
 		padding-left: 6rem;
-	}.md\:pt-32{
-		padding-top: 8rem;
-	}.md\:pb-2{
-		padding-bottom: 0.5rem;
 	}.md\:pt-10{
 		padding-top: 2.5rem;
+	}.md\:pb-2{
+		padding-bottom: 0.5rem;
 	}.md\:text-left{
 		text-align: left;
 	}.md\:opacity-100{
@@ -2880,8 +2855,6 @@ video {
 		margin-bottom: 0px;
 	}.xl\:w-8\/12{
 		width: 66.666667%;
-	}.xl\:w-4\/12{
-		width: 33.333333%;
 	}.xl\:w-3\/12{
 		width: 25%;
 	}.xl\:px-32{
