@@ -20,6 +20,8 @@ import 'assets/styles/tailwind.css';
 import Panduan from 'pages/Panduan';
 import Faq from 'pages/Faq';
 import About from 'pages/About';
+import AuthUser from 'components/AuthUser';
+import ProtectedRoute from 'ProtectedRoute';
 
 
 function App() {
@@ -33,14 +35,16 @@ function App() {
             <Route path="/input-data" component={InputData}/>
             <Route path="/pembayaran" component={Pembayaran}/>
             <Route path="/tiket" component={Tiket}/>
-            <Route path="/admin" component={Admin}/>
+            <Route path="/authuser" component={AuthUser}/>
+            {/* <Route path="/admin" component={Admin}/> */}
             <Route path="/panduan" component={Panduan}/>
             <Route path="/faq" component={Faq}/>
             <Route path="/about" component={About}/>
+            <ProtectedRoute path="/admin" render={props=><Admin {...props} />}/>
 
             
 
-            <Route path="/superadmin" component={SuperAdmin}/>
+            <ProtectedRoute path="/superadmin" render={props=><SuperAdmin {...props} />}/>
         </Switch>
     );
 }

@@ -9,7 +9,7 @@ function Informasi() {
                 <p className='text-black text-4xl font-bold'>INFORMASI</p>
             </div>
             <div className='flex justify-around pt-16 '>
-                <Link to='/panduan'><button className='bg-[#A70B0B] py-7 px-4 text-xl text-white border-white border-4 shadow-2xl rounded-lg font-semibold hover:bg-red-700 transition-all duration-500 '>PANDUAN<br></br> PEMESANAN TIKET</button> </Link> 
+                <Link to='/panduan'><button className='bg-[#A70B0B] w-56 h-28 py-7 px-4 text-xl text-white border-white border-4 shadow-2xl rounded-lg font-semibold hover:bg-red-700 transition-all duration-500 '>PANDUAN<br></br> PEMESANAN TIKET</button> </Link> 
                 <Link to='/Faq'><button className='bg-[#A70B0B] w-56 h-28 py-7 px-4 text-xl text-white border-white border-4 shadow-2xl rounded-lg font-semibold hover:bg-red-700 transition-all duration-500 '>FAQ</button></Link>
             </div>
         </div>

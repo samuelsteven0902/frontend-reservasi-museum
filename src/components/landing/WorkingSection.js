@@ -67,7 +67,7 @@ export default function WorkingSection({setRes}) {
             setDisabledDate(false);
             categoryClass.classList.add('font-bold','text-gray-800')
             setCalendar(format(new Date(), 'MM/dd/yyyy'))
-           }
+        }
     }
 
     useEffect(() => {
@@ -77,7 +77,6 @@ export default function WorkingSection({setRes}) {
                 console.log(res.data.museum);
             }) 
         }
-      
         // setCalendar(format(new Date(), 'MM/dd/yyyy'));
         fetchMuseum();
     }, [])
@@ -132,40 +131,39 @@ export default function WorkingSection({setRes}) {
     }
 
 
-      function customDayContent(day) {
+    function customDayContent(day) {
         let extraDot = null;
         if (isSunday(day)) {
-          extraDot = (
-            <div
-              style={{
-                height: "5px",
-                width: "5px",
-                borderRadius: "100%",
-                background: "orange",
-                position: "absolute",
-                top: 2,
-                right: 2,
-              }}
-            />
-            
-          )
+            extraDot = (
+                <div
+                style={{
+                    height: "5px",
+                    width: "5px",
+                    borderRadius: "100%",
+                    background: "orange",
+                    position: "absolute",
+                    top: 2,
+                    right: 2,
+                }}
+                />
+            )
         }
         return (
-          <div>
-            {extraDot}
-            <span>{format(day, "d")}</span>
-          </div>
+            <div>
+                {extraDot}
+                <span>{format(day, "d")}</span>
+            </div>
         )
-      }
+    }
 
     //   const hariLibur = (day) =>{
     //     setLibur(isMonday(day));
     //   }
 
-      const saveData = () => {
+    const saveData = () => {
         // setRes({input});
         redirect.push('/input-data')
-      }
+    }
     
 // console.log(museum);
 // console.log(category);
@@ -193,8 +191,7 @@ console.log(input);
                             cekMuseum()
                             // console.log(e); 
                             // setMuseum(selectedMuseum);
-                           
-                             }}>
+                        }}>
                         <option >{namaInput.namaMuseum}</option>
                         {museum && museum.map((item,index) =>{
                             // console.log(item.id);
@@ -211,14 +208,13 @@ console.log(input);
                         setInput({...input,category:option})
                         setNamaInput({...input,namaCategory:e.target.value})
                         cekCategory()
-                       
                         }} 
                     disabled={disabledCategory} 
                     > 
                         <option lassName='p-7 m-5 text-xl'>{namaInput.namaCategory}</option>
 
                         {category && typeof category !== 'string'  && category.map((itemm,indexx)=>{
-                          return(
+                        return(
                             <option  key={indexx} id={itemm.id} value={itemm.nama_kategori} c>{itemm.nama_kategori}</option>
                             )})}
                     </select>
@@ -239,7 +235,7 @@ console.log(input);
                             dayContentRenderer={customDayContent}
                             calendarFocus
                             excludeDates={[addDays(new Date(), 21), addDays(new Date(), 15)]}
-                             />
+                            />
                         }
                     </div>
                 </div>
