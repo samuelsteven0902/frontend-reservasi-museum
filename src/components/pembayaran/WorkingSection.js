@@ -35,8 +35,10 @@ function WorkingSection(input) {
             foto:input.data.foto,
             harga_awal:input.input,  
             pembayaran: 'cash',
+            // status: 1,
         }
 
+        console.log(data);
         // swal({
         //     title: "Anda yakin Pembayaran cash ?",
         //     text: "Pembayaran akan dilakukan secara Cash!",
