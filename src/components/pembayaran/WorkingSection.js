@@ -35,7 +35,7 @@ function WorkingSection(input) {
             foto:input.data.foto,
             harga_awal:input.input,  
             pembayaran: 'cash',
-            status: 'belum lunas',
+            // status: 1,
         }
 
         console.log(data);

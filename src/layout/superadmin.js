@@ -38,6 +38,7 @@ export default function SuperAdmin() {
             <Route path="/superadmin/panduan" exact component={Panduan} />
             <Route path="/superadmin/faq" exact component={FAQ} />
             <Redirect from="/superadmin" to="/superadmin/dashboard" />
+            <Redirect from="/admin" to="/superadmin/dashboard" />
           </Switch>
           <FooterAdmin />
         </div>

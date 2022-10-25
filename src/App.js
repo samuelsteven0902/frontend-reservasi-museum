@@ -1,4 +1,4 @@
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import Landing from 'pages/Landing';
 import Profile from 'pages/Profile';
 import Login from 'pages/Login';
@@ -45,6 +45,7 @@ function App() {
             
 
             <ProtectedRoute path="/superadmin" render={props=><SuperAdmin {...props} />}/>
+            <Redirect to="/" />
         </Switch>
     );
 }

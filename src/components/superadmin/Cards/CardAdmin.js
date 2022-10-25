@@ -1,8 +1,124 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
+import swal from 'sweetalert'
 
 function CardAdmin() {
+
+    const [admin,setAdmin] = useState()
+    const [loading,setLoading] = useState(true)
+    const [input,setInput] = useState({
+        nama: '',
+        email: '',
+        password: ''
+    })
+
+    const handleInput = (e) => {
+        e.persist();
+        setInput({...input, [e.target.name]: e.target.value })
+    }
+    console.log(input);
+
+    const handleSubmit = (e) =>{
+        e.preventDefault()
+
+        const data = {
+            nama:input.nama,
+            email:input.email,
+            password:input.password,
+        }
+        console.log(data);
+
+        axios.post(`http://localhost:8000/api/add_admin`, data).then(res=>{
+            console.log(res);
+        })
+
+
+        
+    }
+
+    const deleteFAQ = (e, id) => {
+        e.preventDefault();
+        
+        // const thisClicked = e.currentTarget;
+        // thisClicked.innerText = "Deleting";
+    
+        swal({
+            title: "Anda Yakin menghapus Id Admin "+ id+ " ?",
+            text: "Sekali Hapus, anda tidak bisa mencadangkannya lagi!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+                axios.delete(`http://localhost:8000/api/delete_admin/${id}`).then(res=>{
+                    if(res.data.status === 200)
+                    {
+                        // console.log('berhasil delet');
+                        swal("Deleted!",res.data.message,"success").then(e=>
+                            window.location.reload(false));;
+                        // thisClicked.closest("tr").remove();
+                    }
+                    else if(res.data.status === 404)
+                    {
+                        // swal("Error",res.data.message,"error");
+                        // thisClicked.innerText = "Delete";
+                    }})
+            } else {
+              swal("Data anda aman!");
+            }
+    
+        
+       
+        })}
+
+    useEffect(() => {
+      axios.get(`http://localhost:8000/api/show_admin`).then(res=>{console.log(res.data.admin); setAdmin(res.data.admin); setLoading(false)})
+
+      
+    }, [])
+    
+
+    if(loading)
+    {
+        return <h4> Loading Data Admin...</h4>
+    }
+    else
+    {
+        var ADMIN_HTMLTABLE = '';
+
+        ADMIN_HTMLTABLE = admin.map((item,index)=>{
+            return (
+                <>
+                
+                    
+                <tr class="border-b bg-white" key={index}>
+                    <td class=" text-gray-900 px-6 py-4 whitespace-nowrap text-center">
+                        {item.id}
+                    </td>
+                    <td class=" text-gray-900 px-6 py-4 whitespace-nowrap text-center">
+                        {item.name}
+                    </td>
+                    <td class=" text-gray-900  px-6 py-4 whitespace-nowrap text-center">
+                        {item.email}
+                    </td>
+                    <td class=" text-gray-900  px-6 py-4 whitespace-nowrap text-center" >
+                    Sensor
+                    </td>
+                    <td class=" text-gray-900 px-6 py-4 whitespace-nowrap ">
+                        <button type="button" class="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900" onClick={e=>deleteFAQ(e,item.id)}>Hapus</button>
+                    </td>
+                    
+             
+                    </tr>
+
+                </>
+            )
+        })
+    }
+
   return (
-  <div className='container px-24 relative flex flex-col min-w-0 break-words w-full mb-6  rounded '>
+  <div className='container px-12 relative flex flex-col min-w-0 break-words w-full mb-6  rounded '>
     
     <div class="flex flex-col " >
         <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -12,7 +128,7 @@ function CardAdmin() {
                 <thead class="border-b bg-white ">
                     <tr className=''>
                     <th scope="col" class="text-xl font-medium text-[#A70B0B] px-6 py-4 text-center ">
-                        No
+                        Admin ID
                     </th>
                     <th scope="col" class="text-xl font-medium text-[#A70B0B] px-6 py-4 text-center">
                         Nama Admin
@@ -29,65 +145,81 @@ function CardAdmin() {
                     </tr>
                 </thead>
                 <tbody className=''>
-                    <tr class="border-b bg-white">
-                    <td class=" text-gray-900 px-6 py-4 whitespace-nowrap text-center">
-                        1
-                    </td>
-                    <td class=" text-gray-900 px-6 py-4 whitespace-nowrap text-center">
-                        Sabila Wibu
-                    </td>
-                    <td class=" text-gray-900  px-6 py-4 whitespace-nowrap text-center">
-                        baubawang@gmail.com
-                    </td>
-                    <td class=" text-gray-900  px-6 py-4 whitespace-nowrap text-center">
-                    Baubawang123
-                    </td>
-                    <td class=" text-gray-900 px-6 py-4 whitespace-nowrap ">
-                     
-                    <button class="block text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200  font-medium rounded-full text-sm px-5 py-2.5 text-center dark:bg-gray-700 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button" data-modal-toggle="authentication-modal">
-                        Edit
-                    </button>
-
-                    <div id="authentication-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full">
-                        <div class="relative p-4 w-full max-w-md h-full md:h-auto">
-                            <div class="relative bg-white rounded-lg shadow dark:bg-gray-600 ">
-                                <button type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-left dark:hover:bg-gray-800 dark:hover:text-white" data-modal-toggle="authentication-modal">
-                                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                                    <span class="sr-only">Close modal</span>
-                                </button>
-                                <div class="py-6 px-6 lg:px-8">
-                                    <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Ubah Data Admin</h3>
-                                    <form class="space-y-6" action="#">
-                                        <div>
-                                            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Nama Admin</label>
-                                            <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="name@company.com" required />
-                                        </div>
-                                        <div>
-                                            <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Email</label>
-                                            <input type="password" name="password" id="password" placeholder="15000" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required />
-                                        </div>
-                                        <div>
-                                            <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Password</label>
-                                            <input type="password" name="password" id="password" placeholder="17000" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required />
-                                        </div>
-                                        
-                                        
-                                        <button type="submit" class="w-full text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">Ubah</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div> 
-                    <button type="button" class="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Hapus</button>
-                    
-                    </td>
-                    
-             
-                    </tr>
+                    {ADMIN_HTMLTABLE}
                 </tbody>
                 </table>
             </div>
             </div>
+            <div>
+  <button type="button" class="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out" data-bs-toggle="modal" data-bs-target="#tambahFAQ"  >Tambah Admin</button>
+
+  <div className="modal fade fixed bg-gray-300 z-50 p-32 px-52 items-center m-auto w-screen bg-opacity-60 top-0 left-0 hidden h-screen outline-none overflow-x-hidden overflow-y-auto " id="tambahFAQ" tabIndex="-1" aria-labelledby="tambahFAQ" aria-modal="true" role="dialog">
+                    <div className="modal-dialog w-full h-full my-auto modal-dialog-centered modal-dialog-scrollable relative items-center pointer-events-none px-40">
+                        <div className="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto my-auto bg-white bg-clip-padding rounded-md outline-none text-current">
+                        <div className="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
+                            <h5 className="text-xl font-medium leading-normal text-gray-800" id="TambahFAQlabel">
+                            Tambah FAQ
+                            </h5>
+                            <button type="button"
+                            className="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"
+                            data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        
+                            <form  onSubmit={handleSubmit}>
+                            <div className="modal-body relative p-4">
+                                <div className='justify-around md:mt-0 mt-8'>    
+                                    <div className="w-96 mb-4 mx-auto ">
+                                        <label className="block text-gray-700 text-sm font-bold mb-2" for="username">
+                                            Nama
+                                        </label>
+                                        <input name='nama'  className="shadow appearance-none border rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-gray-200" type="text" 
+                                         onChange={handleInput}
+                                         />
+                                        <span className="text-sm text-red-500"></span>
+                                    </div>
+                                    <div className="w-96 mb-4 mx-auto ">
+                                        <label className="block text-gray-700 text-sm font-bold mb-2" for="username">
+                                            Email
+                                        </label>
+                                        <input name='email'  className="shadow appearance-none border rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-gray-200" type="text" 
+                                         onChange={handleInput}
+                                         />
+                                        <span className="text-sm text-red-500"></span>
+                                    </div>
+                                    <div className="w-96 mb-4 mx-auto ">
+                                        <label className="block text-gray-700 text-sm font-bold mb-2" for="username">
+                                            Password
+                                        </label>
+                                        <input name='password'  className="shadow appearance-none border rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-gray-200" type="password" 
+                                         onChange={handleInput}
+                                         />
+                                        <span className="text-sm text-red-500"></span>
+                                    </div>
+                                    
+                                    
+                                </div>
+                            </div>
+    
+                            <div
+                                className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
+                                <button type="button"
+                                className="inline-block px-6 py-2.5 bg-purple-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-purple-700 hover:shadow-lg focus:bg-purple-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-purple-800 active:shadow-lg transition duration-150 ease-in-out"
+                                data-bs-dismiss="modal">
+                                Tutup
+                                </button>
+                                <button type="submit"
+                                className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out ml-1">
+                                Tambah FAQ
+                                </button>
+                            </div>
+                            
+                        </form> 
+    
+                        </div>
+                    </div>
+                    </div>
+  
+  </div>
         </div>
     </div>
   </div>

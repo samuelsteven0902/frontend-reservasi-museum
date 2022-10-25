@@ -39,6 +39,7 @@ export default function Admin() {
             <Route path="/admin/data-sanggahan" exact component={DataSanggahan} />
             <Route path="/admin/data-kehadiran" exact component={DataKehadiran} />
             <Redirect from="/admin" to="/admin/dashboard" />
+            <Redirect from="/superadmin" to="/admin/dashboard" />
           </Switch>
           <FooterAdmin />
         </div>

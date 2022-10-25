@@ -1,5 +1,5 @@
 import axios from 'axios'
-import CardTable from './Cards/CardPemasukan'
+import CardPemasukan from './Cards/CardPemasukan'
 import React, { useEffect, useState } from 'react'
 
 function Pemasukan() {
@@ -9,7 +9,7 @@ function Pemasukan() {
     <>
       <div className="flex flex-wrap mt-4">
         <div className="w-full mb-12 px-4">
-          <CardTable />
+          <CardPemasukan />
         </div>
       </div>
     </>

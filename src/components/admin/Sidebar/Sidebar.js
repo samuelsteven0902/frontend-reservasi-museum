@@ -91,7 +91,7 @@ export default function Sidebar() {
                     "text-xs uppercase py-3 font-bold block " +
                     (window.location.href.indexOf("/admin/grafik") !== -1
                       ? "text-lightBlue-500 hover:text-lightBlue-600"
-                      : "text-blueGray-700 hover:text-blueGray-500")
+                      : "text-blueGray-700 hover:text-blueGray-500  hover:bg-gray-100 rounded-xl pl-4 duration-300 transition-all hover:pl-6")
                   }
                   to="/admin/grafik"
                 >
@@ -157,7 +157,7 @@ export default function Sidebar() {
                     "text-xs uppercase py-3 font-bold block " +
                     (window.location.href.indexOf("/admin/data-pengunjung") !== -1
                       ? "text-lightBlue-500 hover:text-lightBlue-600"
-                      : "text-blueGray-700 hover:text-blueGray-500")
+                      : "text-blueGray-700 hover:text-blueGray-500  hover:bg-gray-100 rounded-xl pl-4 duration-300 transition-all hover:pl-6")
                   }
                   to="/admin/data-pengunjung"
                 >
@@ -166,7 +166,7 @@ export default function Sidebar() {
                       "fas fa-map-marked mr-2 text-sm " +
                       (window.location.href.indexOf("/admin/data-pengunjung") !== -1
                         ? "opacity-75"
-                        : "text-blueGray-300")
+                        : "text-blueGray-300 ")
                     }
                   ></i>{" "}
                   Data Pengunjung
@@ -178,7 +178,7 @@ export default function Sidebar() {
                     "text-xs uppercase py-3 font-bold block " +
                     (window.location.href.indexOf("/admin/data-sanggahan") !== -1
                       ? "text-lightBlue-500 hover:text-lightBlue-600"
-                      : "text-blueGray-700 hover:text-blueGray-500")
+                      : "text-blueGray-700 hover:text-blueGray-500  hover:bg-gray-100 rounded-xl pl-4 duration-300 transition-all hover:pl-6")
                   }
                   to="/admin/data-sanggahan"
                 >
@@ -193,6 +193,32 @@ export default function Sidebar() {
                   Data Sanggahan
                 </Link>
               </li>
+
+
+              <li className="items-center">
+                <Link
+                  className={
+                    "fa-solid fa-file text-xs uppercase py-3 font-bold block " +
+                    (window.location.href.indexOf("/admin/data-kehadiran") !== -1
+                      ? "text-lightBlue-500 hover:text-lightBlue-600"
+                      : "text-blueGray-700 hover:text-blueGray-500  hover:bg-gray-100 rounded-xl pl-4 duration-300 transition-all hover:pl-6")
+                  }
+                  to="/admin/data-kehadiran"
+                >
+                  <i
+                    className={ 
+                      "fa-solid fa-right-from-bracket mr-2 text-sm " +
+                      (window.location.href.indexOf("/admin/data-kehadiran") !== -1
+                        ? "opacity-50"
+                        : "text-blueGray-300")
+                    }
+                  ></i>{" "}
+                    Data Kehadiran
+                </Link>
+              </li>
+
+            <hr className="mt-5 md:min-w-full" />
+
               <li className="items-center">
                 <Link
                   className={
@@ -214,33 +240,11 @@ export default function Sidebar() {
                   <LogOut />
                 </Link>
               </li>
-              <li className="items-center">
-                <Link
-                  className={
-                    "text-xs uppercase py-3 font-bold block " +
-                    (window.location.href.indexOf("/admin/data-kehadiran") !== -1
-                      ? "text-lightBlue-500 hover:text-lightBlue-600"
-                      : "text-blueGray-700 hover:text-blueGray-500")
-                  }
-                  to="/admin/data-kehadiran"
-                >
-                  <i
-                    className={ 
-                      "fa-solid fa-right-from-bracket mr-2 text-sm " +
-                      (window.location.href.indexOf("/admin/data-kehadiran") !== -1
-                        ? "opacity-50"
-                        : "text-blueGray-300")
-                    }
-                  ></i>{" "}
-                  Data Kehadiran
-                </Link>
-              </li>
                   
             </ul>
 
 
             {/* Divider */}
-            <hr className="my-4 md:min-w-full" />
           </div>
         </div>
       </nav>
