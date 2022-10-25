@@ -1,7 +1,75 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom';
+import axios, { Axios } from 'axios';
 import qr from '../../assets/img/tiket/qr.png'
 
-function Content() {
+function Content(input) {
+
+  // const data = data;
+  const [pembayaran,setPembayaran] = useState('')
+  const [danger,setDanger] = useState('')
+  const history = useHistory();
+
+  console.log(input);
+  const handleCash = () =>{
+      // console.log(input.data);
+      if(pembayaran !== '' || input.input == 0){
+          setPembayaran('Tunai')
+      console.log(pembayaran);
+
+
+  const data = {
+    nama:input.data.nama,
+    kota:input.data.kota,
+    phone:input.data.phone,
+    jumlah:input.data.jumlah,
+    museum:input.data.museum,
+    kategori:input.data.kategori,
+    tanggal:input.data.tanggal,
+    foto:input.data.foto,
+    harga_awal:input.input,  
+    pembayaran: 'cash',
+    status: 'belum lunas',
+}
+
+console.log(data);
+
+axios.post(`http://localhost:8000/api/add-pengunjung`, data).then(res => {
+
+                    console.log(res.data);
+                    if(res.data.status === 200)
+                    {
+                        console.log('MANTAB BERHASIL');
+                        history.push('/tiket');
+                    }
+                    else if(res.data.status === 422)
+                    {
+                        console.log('ada yang salah di BE');
+                    }
+                });
+        }else{
+            setDanger("Silahkan pilih pembayaran terlebih dahulu")
+        }
+
+    }
+
+    useEffect(() => {
+      
+      
+    }, [pembayaran])
+
+    const rupiah = (number)=>{
+        return new Intl.NumberFormat("id-ID", {
+          style: "currency",
+          currency: "IDR"
+        }).format(number);
+      }
+
+      const onValueChange = (e) => {
+        // setPembayaran(e)
+        setPembayaran(e.target.value)
+      }
+    
   return (
   
     // className="items-center flex flex-wrap bg-[#A70B0B]">
@@ -37,17 +105,17 @@ function Content() {
 
               <div className='my-3'>
                 <p className=' text-lg'>Tujuan Wisata</p>
-                <p className='text-xl font-bold'>Museum Kris Nusantara</p>
+                <p className='text-xl font-bold'>{input.data.kategori}</p>
               </div>
 
               <div className='my-3' >
                 <p className=' text-lg'>Tanggal Pemesanan</p>
-                <p  className='text-xl font-bold'>08 September 2022</p>
+                <p  className='text-xl font-bold'>{input.data.tanggal}</p>
               </div>
 
               <div className='my-3'>
                 <p className=' text-lg'>Atas Nama</p>
-                <p  className='text-xl font-bold'>Maba Nurul</p>
+                <p  className='text-xl font-bold'>{input.data.nama}</p>
               </div>
 
             </div>
@@ -56,7 +124,7 @@ function Content() {
 
               <div className='my-3'>
                 <p className=' text-lg'>Jumlah Pengunjung</p>
-                <p  className='text-xl font-bold'>12</p>
+                <p  className='text-xl font-bold'>{input.data.jumlah}</p>
               </div>
 
               <div  className='my-3'>
@@ -69,7 +137,7 @@ function Content() {
             <div className='w-1/3 items-center justify-center mx-auto'>
               <p className='text-center text-xl font-semibold my-1'>Scan QR code</p>
               <img src={qr} className="mx-auto w-[40%] "/>
-              <p className='text-center text-3xl font-semibold py-4'>Rp.xxx.000.00</p>
+              <p className='text-center text-3xl font-semibold py-4'>{rupiah(input.input)} -</p>
             </div>
             
           </div>
