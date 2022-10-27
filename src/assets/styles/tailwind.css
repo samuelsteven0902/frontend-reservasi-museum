@@ -1231,9 +1231,6 @@ video {
 }.bg-purple-600{
 	--tw-bg-opacity: 1;
 	background-color: rgba(126, 58, 242, var(--tw-bg-opacity));
-}.bg-red-600{
-	--tw-bg-opacity: 1;
-	background-color: rgba(224, 36, 36, var(--tw-bg-opacity));
 }.bg-opacity-75{
 	--tw-bg-opacity: 0.75;
 }.bg-opacity-60{
