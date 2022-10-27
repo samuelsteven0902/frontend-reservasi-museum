@@ -31,10 +31,10 @@ export default function Navbar() {
             </div>
           </form> */}
           {/* User */}
-          <ul className="flex-col md:flex-row list-none items-center hidden md:flex">
-            {/* <UserDropdown /> */}
+          {/* <ul className="flex-col md:flex-row list-none items-center hidden md:flex">
+            <UserDropdown />
           <img src={profile} className="rounded-full w-12 h-12 mr-3"/>
-          </ul>
+          </ul> */}
         </div>
       </nav>
       {/* End Navbar */}

@@ -2,6 +2,7 @@
 import LogOut from "pages/LogOut.js";
 import React from "react";
 import { Link } from "react-router-dom";
+import profile from '../../../assets/img/admin/profile.png'
 
 import NotificationDropdown from "../Dropdowns/NotificationDropdown.js";
 import UserDropdown from "../Dropdowns/UserDropdown.js";
@@ -20,22 +21,37 @@ export default function Sidebar() {
           >
             <i className="fas fa-bars"></i>
           </button>
+
           {/* Brand */}
-          <Link
-            className="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
-            to="/"
-          >
-            UPT MUSEUM
-          </Link>
+          
+          <div className="flex">
+            <ul className="flex-col md:flex-row list-none items-center hidden md:flex">
+              <img src={profile} className="rounded-full w-12 h-12 mr-3"/>             
+            </ul>
+            <div> 
+              <Link 
+                className="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold pt-3 px-0"
+                to="/"> 
+                UPT MUSEUM
+              </Link>
+              <p
+                className="md:block md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold pb-4 px-0"
+                to="/">
+                ADMIN
+              </p>
+              </div>
+          </div>
+
           {/* User */}
-          <ul className="md:hidden items-center flex flex-wrap list-none">
+          {/* <ul className="md:hidden items-center flex flex-wrap list-none">
             <li className="inline-block relative">
               <NotificationDropdown />
             </li>
             <li className="inline-block relative">
               <UserDropdown />
             </li>
-          </ul>
+          </ul> */}
+
           {/* Collapse */}
           <div
             className={
@@ -85,6 +101,7 @@ export default function Sidebar() {
             {/* Navigation */}
 
             <ul className="md:flex-col md:min-w-full flex flex-col list-none">
+
               <li className="items-center">
                 <Link
                   className={
@@ -107,50 +124,6 @@ export default function Sidebar() {
                 </Link>
               </li>
 
-              {/* <li className="items-center">
-                <Link
-                  className={
-                    "text-xs uppercase py-3 font-bold block " +
-                    (window.location.href.indexOf("/admin/settings") !== -1
-                      ? "text-lightBlue-500 hover:text-lightBlue-600"
-                      : "text-blueGray-700 hover:text-blueGray-500")
-                  }
-                  to="/admin/settings"
-                >
-                  <i
-                    className={
-                      "fas fa-tools mr-2 text-sm " +
-                      (window.location.href.indexOf("/admin/settings") !== -1
-                        ? "opacity-75"
-                        : "text-blueGray-300")
-                    }
-                  ></i>{" "}
-                  Settings
-                </Link>
-              </li> */}
-
-              {/* <li className="items-center">
-                <Link
-                  className={
-                    "text-xs uppercase py-3 font-bold block " +
-                    (window.location.href.indexOf("/admin/tables") !== -1
-                      ? "text-lightBlue-500 hover:text-lightBlue-600"
-                      : "text-blueGray-700 hover:text-blueGray-500")
-                  }
-                  to="/admin/tables"
-                >
-                  <i
-                    className={
-                      "fas fa-table mr-2 text-sm " +
-                      (window.location.href.indexOf("/admin/tables") !== -1
-                        ? "opacity-75"
-                        : "text-blueGray-300")
-                    }
-                  ></i>{" "}
-                  Tables
-                </Link>
-              </li> */}
-
               <li className="items-center">
                 <Link
                   className={
@@ -172,6 +145,7 @@ export default function Sidebar() {
                   Data Pengunjung
                 </Link>
               </li>
+              
               <li className="items-center">
                 <Link
                   className={
@@ -184,10 +158,10 @@ export default function Sidebar() {
                 >
                   <i
                     className={ 
-                      "fa-solid fa-file mr-3 text-sm " +
+                      "fas fa-solid fa-file mr-3 text-sm " +
                       (window.location.href.indexOf("/admin/data-sanggahan") !== -1
-                        ? "opacity-50"
-                        : "text-blueGray-300")
+                        ? "opacity-75"
+                        : "text-blueGray-300 ")
                     }
                   ></i>{" "}
                   Data Sanggahan
@@ -198,7 +172,7 @@ export default function Sidebar() {
               <li className="items-center">
                 <Link
                   className={
-                    "fa-solid fa-file text-xs uppercase py-3 font-bold block " +
+                    "text-xs uppercase py-3 font-bold block " +
                     (window.location.href.indexOf("/admin/data-kehadiran") !== -1
                       ? "text-lightBlue-500 hover:text-lightBlue-600"
                       : "text-blueGray-700 hover:text-blueGray-500  hover:bg-gray-100 rounded-xl pl-4 duration-300 transition-all hover:pl-6")
@@ -207,10 +181,10 @@ export default function Sidebar() {
                 >
                   <i
                     className={ 
-                      "fa-solid fa-right-from-bracket mr-2 text-sm " +
+                      "fas fa-solid fa-file mr-3 text-sm " +
                       (window.location.href.indexOf("/admin/data-kehadiran") !== -1
-                        ? "opacity-50"
-                        : "text-blueGray-300")
+                        ? "opacity-75"
+                        : "text-blueGray-300 ")
                     }
                   ></i>{" "}
                     Data Kehadiran
@@ -231,7 +205,7 @@ export default function Sidebar() {
                 >
                   <i
                     className={ 
-                      "fa-solid fa-right-from-bracket mr-2 text-sm " +
+                      "fas fa-solid fa-right-from-bracket mr-2 text-sm " +
                       (window.location.href.indexOf("/admin/logout") !== -1
                         ? "opacity-50"
                         : "text-blueGray-300")
@@ -242,8 +216,6 @@ export default function Sidebar() {
               </li>
                   
             </ul>
-
-
             {/* Divider */}
           </div>
         </div>

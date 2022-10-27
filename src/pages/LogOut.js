@@ -14,7 +14,7 @@ function LogOut() {
   }
     
   return (
-    <div className="text-red-500 text-lg hover:bg-red-100 rounded-xl p-3 duration-300 transition-all hover:pl-5 " typeof='button' onClick={handleLogOut}>Log Out</div>
+    <div className="text-red-500 text-lg hover:bg-red-100 rounded-xl p-2 duration-300 transition-all hover:pl-5 " typeof='button' onClick={handleLogOut}>Log Out</div>
   )
 }
 

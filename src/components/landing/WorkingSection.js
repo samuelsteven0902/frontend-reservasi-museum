@@ -56,8 +56,9 @@ export default function WorkingSection({setRes}) {
             setDisabledCategory(false);
             museumClass.classList.add('font-bold','text-gray-800',)
             // console.log(museumClass);
-            // setCategory('Pilih Category')
-            setCalendar('Pilih Category Dulu')
+            // setCategory('Pilih Kategory')
+            setCalendar('Pilih Kategori Dulu')
+            setNamaInput({...namaInput, namaCategory:'Pilih Kategori'})
         }
     }
     
@@ -185,14 +186,13 @@ console.log(input);
                             const selectedMuseum = e.target.id;
                             setMuseumId(option)
                             setInput({...input,museum:option})
-                            setNamaInput({...input,namaMuseum:e.target.value})
-                            console.log(e.target);
-                            console.log(selectedMuseum);
+                            setNamaInput({...namaInput,namaMuseum:e.target.value})
+                            // console.log(selectedMuseum);
                             cekMuseum()
                             // console.log(e); 
                             // setMuseum(selectedMuseum);
                         }}>
-                        <option >{namaInput.namaMuseum}</option>
+                        <option disabled>{namaInput.namaMuseum}</option>
                         {museum && museum.map((item,index) =>{
                             // console.log(item.id);
                             return(
@@ -211,7 +211,7 @@ console.log(input);
                         }} 
                     disabled={disabledCategory} 
                     > 
-                        <option lassName='p-7 m-5 text-xl'>{namaInput.namaCategory}</option>
+                        <option className='p-7 m-5 text-xl'>{namaInput.namaCategory}</option>
 
                         {category && typeof category !== 'string'  && category.map((itemm,indexx)=>{
                         return(
