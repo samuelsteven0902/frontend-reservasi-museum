@@ -57,7 +57,8 @@ export default function WorkingSection({setRes}) {
             museumClass.classList.add('font-bold','text-gray-800',)
             // console.log(museumClass);
             // setCategory('Pilih Category')
-            setCalendar('Pilih Category Dulu')
+            setNamaInput({...namaInput,namaCategory:'Pilih Kategori'}) 
+            setCalendar('Pilih Kategori Dulu')
         }
     }
     
@@ -206,7 +207,7 @@ console.log(input);
                         const el = e.target.childNodes[index]
                         const option =  el.getAttribute('id');
                         setInput({...input,category:option})
-                        setNamaInput({...input,namaCategory:e.target.value})
+                        setNamaInput({...namaInput,namaCategory:e.target.value})
                         cekCategory()
                         }} 
                     disabled={disabledCategory} 

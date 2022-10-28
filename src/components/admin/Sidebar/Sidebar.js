@@ -1,5 +1,6 @@
 /*eslint-disable*/
 import LogOut from "pages/LogOut.js";
+import profile from '../../../assets/img/admin/profile.png'
 import React from "react";
 import { Link } from "react-router-dom";
 import profile from '../../../assets/img/admin/profile.png'
@@ -21,13 +22,23 @@ export default function Sidebar() {
           >
             <i className="fas fa-bars"></i>
           </button>
-          {/* Brand */}
-          <Link
-            className="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
-            to="/"
-          >
-            UPT MUSEUM
-          </Link>
+
+          {/* Profile and Brand*/}
+         <div className="flex"> 
+            <ul className="flex-col md:flex-row list-none items-center hidden md:flex">
+              <img src={profile} className="rounded-full w-12 h-12 mr-3"/>
+            </ul>
+            <div>
+              <Link
+              className="md:block text-left md:pb-1 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-1 px-1"
+              to="/"> UPT MUSEUM
+              </Link>
+              <p 
+              className="md:block text-left md:pb-1 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-1 px-1">Admin
+              </p>
+            </div>
+          </div>
+
           {/* User */}
           <ul className="md:hidden items-center flex flex-wrap list-none">
             <li className="inline-block relative">
@@ -67,6 +78,7 @@ export default function Sidebar() {
                 </div>
               </div>
             </div>
+            
             {/* Form */}
             {/* <form className="mt-6 mb-4 md:hidden">
               <div className="mb-3 pt-0">
@@ -186,7 +198,7 @@ export default function Sidebar() {
                 >
                   <i
                     className={ 
-                      "fa-solid fa-file mr-3 text-sm " +
+                      "fas fa-solid fa-file mr-3 text-sm " +
                       (window.location.href.indexOf("/admin/data-sanggahan") !== -1
                         ? "opacity-50"
                         : "text-blueGray-300")
@@ -200,7 +212,7 @@ export default function Sidebar() {
               <li className="items-center">
                 <Link
                   className={
-                    "fa-solid fa-file text-xs uppercase py-3 font-bold block " +
+                    "text-xs uppercase py-3 font-bold block " +
                     (window.location.href.indexOf("/admin/data-kehadiran") !== -1
                       ? "text-lightBlue-500 hover:text-lightBlue-600"
                       : "text-blueGray-700 hover:text-blueGray-500  hover:bg-gray-100 rounded-xl pl-4 duration-300 transition-all hover:pl-6")
@@ -209,34 +221,34 @@ export default function Sidebar() {
                 >
                   <i
                     className={ 
-                      "fa-solid fa-right-from-bracket mr-2 text-sm " +
+                      "fas fa-solid fa-clipboard-list mr-2 text-sm " +
                       (window.location.href.indexOf("/admin/data-kehadiran") !== -1
                         ? "opacity-50"
                         : "text-blueGray-300")
                     }
                   ></i>{" "}
-                    Data Kehadiran
+                  Data Kehadiran
                 </Link>
               </li>
-
-            <hr className="mt-5 md:min-w-full" />
-
+              <hr className="my-1 md:min-w-full" />
               <li className="items-center">
                 <Link
                   className={
-                    "text-xs uppercase py-3 font-bold block " +
+                    "text-xs uppercase py-1 font-bold block " +
                     (window.location.href.indexOf("/admin/logout") !== -1
-                      ? "text-lightBlue-500 hover:text-lightBlue-600"
-                      : "text-blueGray-700 hover:text-blueGray-500")
+                      ? "text-red-500 hover:text-red-600"
+                      : "text-red-700 hover:text-red-500")
                   }
                   to="/admin/logout"
                 >
                   <i
                     className={ 
-                      "fa-solid fa-right-from-bracket mr-2 text-sm " +
+                      "fas fa-solid fa-arrow-right-from-bracket mr-2 text-sm " +
+                      // <i name="log-out"></i> +
+                      // <i class=""></i>
                       (window.location.href.indexOf("/admin/logout") !== -1
                         ? "opacity-50"
-                        : "text-blueGray-300")
+                        : "text-red-300")
                     }
                   ></i>{" "}
                   <LogOut />
@@ -247,6 +259,7 @@ export default function Sidebar() {
 
 
             {/* Divider */}
+            {/* <hr className="my-4 md:min-w-full" /> */}
           </div>
         </div>
       </nav>
