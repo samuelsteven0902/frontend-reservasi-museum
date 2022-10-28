@@ -3,7 +3,6 @@ import LogOut from "pages/LogOut.js";
 import profile from '../../../assets/img/admin/profile.png'
 import React from "react";
 import { Link } from "react-router-dom";
-import profile from '../../../assets/img/admin/profile.png'
 
 import NotificationDropdown from "../Dropdowns/NotificationDropdown.js";
 import UserDropdown from "../Dropdowns/UserDropdown.js";

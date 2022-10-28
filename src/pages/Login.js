@@ -156,7 +156,7 @@ console.log(e.target);
                 </Card>
 
             </Container>
-                    {/* <Wave className="absolute Pbottom-0 z-0"/> */}
+                    <Wave className="absolute bottom-0 z-0"/>
         </Page>
     </>
     );
