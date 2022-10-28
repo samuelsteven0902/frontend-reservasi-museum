@@ -147,7 +147,7 @@ export default function Login() {
                 </Card>
 
             </Container>
-                    <Wave className="absolute bottom-0 z-0"/>
+                    {/* <Wave className="absolute Pbottom-0 z-0"/> */}
         </Page>
     </>
     );
