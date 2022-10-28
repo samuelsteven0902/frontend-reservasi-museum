@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import 'flowbite'
 import swal from "sweetalert";
+import $ from 'jquery';
 
 
 function CardMasterTiket() {
@@ -15,9 +16,16 @@ const [hargaUpdate,sethargaUpdate] = useState([])
 
 const [harga,setHarga] = useState()
 
+const [searchTerm, setSearchTerm] = useState("")
+
+// $(document).ready( function () {
+//     $('#table_id').DataTable();
+// } );
+
 
 
 console.log(semuaHarga);
+
 
 
 useEffect(() => {
@@ -37,6 +45,7 @@ const handleHarga = async(e) =>{
     console.log(idHarga);
 
 }
+
 
 
 const handleInput = (e) => {
@@ -126,7 +135,17 @@ else
 {
     var harga_HTMLTABLE = ''
 
-    harga_HTMLTABLE = semuaHarga.map((item,index)=>{
+    harga_HTMLTABLE = semuaHarga.filter(val=>{
+        if(searchTerm == "")
+        {
+            return val
+        }
+        else if(val.nama_museum.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                val.nama_kategori.toLowerCase().includes(searchTerm.toLowerCase()))
+        {
+            return val
+        }
+    }).map((item,index)=>{
         return(
             <tr className="bg-white border-b" key={index}>
                     <td className=" text-gray-900 px-6 py-4 whitespace-nowrap">
@@ -166,11 +185,13 @@ else
   return (
   <div className='container relative flex flex-col min-w-0 break-words w-full mb-6  rounded '>
     
+    <input type='text' onChange={e=>{setSearchTerm(e.target.value)}}  /> 
+
     <div className="flex flex-col " >
         <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
             <div className="overflow-hidden shadow-lg rounded-xl m-2">
-                <table className="min-w-full ">
+                <table  id="table_id" >
                 <thead className="border-b bg-white ">
                     <tr className=''>
                     <th scope="col" className="text-xl font-medium text-[#A70B0B] px-6 py-4 text-center ">
@@ -315,6 +336,65 @@ else
             </div>
         </div>
     </div>
+
+    <button type="button" class="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out" data-bs-toggle="modal" data-bs-target="#tambahFAQ"  >Tambahkan FAQ</button>
+
+                <div className="modal fade fixed bg-gray-300 z-50 p-32 px-52 items-center m-auto w-screen bg-opacity-60 top-0 left-0 hidden h-screen outline-none overflow-x-hidden overflow-y-auto " id="tambahFAQ" tabIndex="-1" aria-labelledby="tambahFAQ" aria-modal="true" role="dialog">
+                    <div className="modal-dialog w-full h-full my-auto modal-dialog-centered modal-dialog-scrollable relative items-center pointer-events-none px-40">
+                        <div className="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto my-auto bg-white bg-clip-padding rounded-md outline-none text-current">
+                        <div className="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
+                            <h5 className="text-xl font-medium leading-normal text-gray-800" id="TambahFAQlabel">
+                            Tambah 
+                            </h5>
+                            <button type="button"
+                            className="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"
+                            data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        
+                            <form  >
+                            <div className="modal-body relative p-4">
+                                <div className='justify-around md:mt-0 mt-8'>    
+                                    <div className="w-96 mb-4 mx-auto ">
+                                        <label className="block text-gray-700 text-sm font-bold mb-2" for="username">
+                                            Question
+                                        </label>
+                                        <textarea name='question'  className="shadow appearance-none border rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-gray-200" type="text"  
+                                        // onChange={handleInputTambahFAQ}
+                                        />
+                                        <span className="text-sm text-red-500"></span>
+                                    </div>
+                                    <div className="w-96 mb-4  mx-auto md:mt-0 mt-8">
+                                        <label className="block text-gray-700 text-sm font-bold mb-2" for="username">
+                                            Answer
+                                        </label>
+                                        <textarea name='answer'  className="shadow appearance-none bg-gray-200 border rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" 
+                                        // onChange={handleInputTambahFAQ} 
+                                        />
+                                        <span className="text-sm text-red-500" ></span>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+    
+                            <div
+                                className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
+                                <button type="button"
+                                className="inline-block px-6 py-2.5 bg-purple-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-purple-700 hover:shadow-lg focus:bg-purple-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-purple-800 active:shadow-lg transition duration-150 ease-in-out"
+                                data-bs-dismiss="modal">
+                                Tutup
+                                </button>
+                                <button type="submit"
+                                className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out ml-1">
+                                Tambah FAQ
+                                </button>
+                            </div>
+                            
+                        </form> 
+    
+                        </div>
+                    </div>
+                    </div>
+
   </div>
   )
 }

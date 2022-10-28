@@ -2,6 +2,7 @@
 import LogOut from "pages/LogOut.js";
 import React from "react";
 import { Link } from "react-router-dom";
+import profile from '../../../assets/img/admin/profile.png'
 
 import NotificationDropdown from "../Dropdowns/NotificationDropdown.js";
 import UserDropdown from "../Dropdowns/UserDropdown.js";
@@ -30,10 +31,11 @@ export default function Sidebar() {
           {/* User */}
           <ul className="md:hidden items-center flex flex-wrap list-none">
             <li className="inline-block relative">
-              <NotificationDropdown />
+              {/* <NotificationDropdown /> */}
             </li>
             <li className="inline-block relative">
-              <UserDropdown />
+              {/* <UserDropdown /> */}
+          <img src={profile} className="rounded-full w-12 h-12 mr-3"/>
             </li>
           </ul>
           {/* Collapse */}
@@ -66,7 +68,7 @@ export default function Sidebar() {
               </div>
             </div>
             {/* Form */}
-            <form className="mt-6 mb-4 md:hidden">
+            {/* <form className="mt-6 mb-4 md:hidden">
               <div className="mb-3 pt-0">
                 <input
                   type="text"
@@ -74,10 +76,10 @@ export default function Sidebar() {
                   className=" px-3 py-2 h-12 border border-solid  border-blueGray-500 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-base leading-snug shadow-none outline-none focus:outline-none w-full font-normal"
                 />
               </div>
-            </form>
+            </form> */}
 
             {/* Divider */}
-            <hr className="my-4 md:min-w-full" />
+            {/* <hr className="my-4 md:min-w-full" /> */}
             {/* Heading */}
             <h6 className="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
               Dashboard

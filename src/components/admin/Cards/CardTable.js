@@ -10,6 +10,24 @@ export default function CardTable({ color }) {
   
   const [loading,setLoading] = useState(true)
   const [pengunjung,setPengunjung] = useState([])
+  const [searchTerm, setSearchTerm] = useState("")
+
+  const handleDownload = () => {
+
+    axios({
+      url: 'http://localhost:8000/api/pengunjungExport',
+      method: 'GET',
+      responseType: 'blob', // important`
+    }).then((response) => {
+      console.log(response);
+   const url = window.URL.createObjectURL(new Blob([response.data]));
+   const link = document.createElement('a');
+   link.href = url;
+   link.setAttribute('download', 'file.xlsx'); //or any other extension
+   document.body.appendChild(link);
+   link.click();
+});
+  }
 
   useEffect(() => {
     axios.get(`http://localhost:8000/api/pengunjung`).then(res=>{
@@ -30,7 +48,19 @@ export default function CardTable({ color }) {
   {
     var pengunjung_HTMLTABLE = "";
 
-    pengunjung_HTMLTABLE = pengunjung.map((item,index)=>{
+    pengunjung_HTMLTABLE = pengunjung.filter(val=>{
+      if(searchTerm == "")
+      {
+        return val
+      }
+      else if(val.nama.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      val.kategori.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      val.phone.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      val.kota.toLowerCase().includes(searchTerm.toLowerCase()) )
+      {
+        return val
+      }
+    }).map((item,index)=>{
       return(
 <tr>
                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
@@ -76,7 +106,13 @@ export default function CardTable({ color }) {
 
   return (
     <>
-      <div
+      <div className="my-2  w-72">
+        <input type='text' className="w-full border-none ring-2 ring-red-300 focus:border-none focus:ring-red-500 focus:ring-2 active:border-none  rounded-lg"  placeholder="Cari nama, kategori, kota, ..." onChange={e=>{setSearchTerm(e.target.value)}} /> 
+      </div>
+      <div>
+        <button onClick={handleDownload}>download</button>
+      </div>
+    <div
         className={
           "relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded " +
           (color === "light" ? "bg-white" : "bg-lightBlue-900 text-white")
