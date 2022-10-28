@@ -104,8 +104,8 @@ export default function SidebarSuperadmin() {
                   className={
                     "text-xs uppercase py-3 font-bold block " +
                     (window.location.href.indexOf("/superadmin/grafik") !== -1
-                      ? "text-lightBlue-500 hover:text-lightBlue-600"
-                      : "text-blueGray-700 hover:text-blueGray-500")
+                      ? "text-lightBlue-500 hover:text-lightBlue-600 "
+                      : "text-blueGray-700 hover:text-blueGray-500 hover:bg-gray-100 rounded-xl pl-4 duration-300 transition-all hover:pl-6")
                   }
                   to="/superadmin/grafik"
                 >
@@ -127,7 +127,7 @@ export default function SidebarSuperadmin() {
                     "text-xs uppercase py-3 font-bold block " +
                     (window.location.href.indexOf("/superadmin/master-tiket") !== -1
                       ? "text-lightBlue-500 hover:text-lightBlue-600"
-                      : "text-blueGray-700 hover:text-blueGray-500")
+                      : "text-blueGray-700 hover:text-blueGray-500 hover:bg-gray-100 rounded-xl pl-4 duration-300 transition-all hover:pl-6")
                   }
                   to="/superadmin/master-tiket"
                 >
@@ -149,7 +149,7 @@ export default function SidebarSuperadmin() {
                     "text-xs uppercase py-3 font-bold block " +
                     (window.location.href.indexOf("/superadmin/admin") !== -1
                       ? "text-lightBlue-500 hover:text-lightBlue-600"
-                      : "text-blueGray-700 hover:text-blueGray-500")
+                      : "text-blueGray-700 hover:text-blueGray-500 hover:bg-gray-100 rounded-xl pl-4 duration-300 transition-all hover:pl-6")
                   }
                   to="/superadmin/admin"
                 >
@@ -171,7 +171,7 @@ export default function SidebarSuperadmin() {
                     "text-xs uppercase py-3 font-bold block " +
                     (window.location.href.indexOf("/superadmin/pemasukan") !== -1
                       ? "text-lightBlue-500 hover:text-lightBlue-600"
-                      : "text-blueGray-700 hover:text-blueGray-500")
+                      : "text-blueGray-700 hover:text-blueGray-500 hover:bg-gray-100 rounded-xl pl-4 duration-300 transition-all hover:pl-6")
                   }
                   to="/superadmin/pemasukan"
                 >
@@ -204,7 +204,7 @@ export default function SidebarSuperadmin() {
                     "text-xs uppercase py-3 font-bold block " +
                     (window.location.href.indexOf("/superadmin/panduan") !== -1
                       ? "text-lightBlue-500 hover:text-lightBlue-600"
-                      : "text-blueGray-700 hover:text-blueGray-500")
+                      : "text-blueGray-700 hover:text-blueGray-500 hover:bg-gray-100 rounded-xl pl-2 duration-300 transition-all")
                   }
                   to="/superadmin/panduan"
                 >
@@ -226,7 +226,7 @@ export default function SidebarSuperadmin() {
                     "text-xs uppercase py-3 font-bold block " +
                     (window.location.href.indexOf("/superadmin/faq") !== -1
                       ? "text-lightBlue-500 hover:text-lightBlue-600"
-                      : "text-blueGray-700 hover:text-blueGray-500")
+                      : "text-blueGray-700 hover:text-blueGray-500 hover:bg-gray-100 rounded-xl pl-2 duration-300 transition-all")
                   }
                   to="/superadmin/faq"
                 >
@@ -252,7 +252,7 @@ export default function SidebarSuperadmin() {
                     (window.location.href.indexOf("/superadmin/logout") !== -1
                       ? "text-red-500 hover:text-red-600"
                       : "text-red-700 hover:text-red-500")
-                  }
+
                   to="/superadmin/logout"
                 >
                   <i

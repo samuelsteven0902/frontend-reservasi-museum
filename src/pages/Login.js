@@ -1,10 +1,4 @@
 import Card from '@material-tailwind/react/Card';
-import CardHeader from '@material-tailwind/react/CardHeader';
-import CardBody from '@material-tailwind/react/CardBody';
-import CardFooter from '@material-tailwind/react/CardFooter';
-import H5 from '@material-tailwind/react/Heading5';
-import InputIcon from '@material-tailwind/react/InputIcon';
-import Button from '@material-tailwind/react/Button';
 import Header from 'components/login/Header';
 import Page from 'components/login/Page';
 import Container from 'components/login/Container';
@@ -13,7 +7,7 @@ import Wave from 'components/Wave';
 import DefaultNavbar from 'components/DefaultNavbar';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useHistory } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import SetCookie from 'hooks/setCookie';
 
@@ -27,6 +21,7 @@ export default function Login() {
     const [pwd,setPwd] = useState('')
     const [error, setEror] = useState(null);
     const [message,setMessage] = useState('')
+    const [idRole,setIdRole] = useState('')
 
 
 
@@ -48,6 +43,13 @@ export default function Login() {
     const handleSubmit = (e) =>{
         e.preventDefault();
 
+
+console.log(e.target);
+        const thisClicked = document.getElementById('button')
+        console.log(thisClicked);
+        thisClicked.innerText = "Silahkan Tunggu..."
+        
+
         const data = {
             email:email,
             password:pwd
@@ -56,10 +58,17 @@ export default function Login() {
     
         axios.post(`http://localhost:8000/api/login`, data).then(res=>{
             console.log(res);
-            console.log(res.data.user.access_token);
-            SetCookie("token",res.data.user.access_token )
             if(res.data.status === 200){
-                history.push('/');
+                // console.log(res.data.user.access_token);
+                SetCookie("token",res.data.user.access_token )
+                console.log(res.data.user.roles[0].id);
+                if(res.data.user.roles[0].id === 2 ){
+                    history.push('/superadmin');
+                }
+                else
+                {
+                    history.push('/admin');
+                }
             }
         })
 
@@ -68,7 +77,7 @@ export default function Login() {
 
     useEffect(() => {
       
-    }, [])
+    }, [idRole])
     
 
     return (
@@ -77,7 +86,7 @@ export default function Login() {
         <Page>
             <Container>
                 <Card >
-                <div className='bg-gray-100 bg-center h-16  rounded-t-xl  bg-inputdata-backgroung flex justify-center items-center absolute w-full -ml-4 -mt-4'>
+                <div className='bg-gray-100 bg-center h-16  rounded-t-xl  bg-inputdata-backgroung flex justify-center items-center absolute w-full  -mt-2'>
                             
                             <p className="text-center w-full text-white font-extrabold  text-xl">UPT MUSEUM SURAKARTA</p>
                                         </div>
@@ -118,7 +127,7 @@ export default function Login() {
 
                             <div class="text-center">
                                 <button
-                                type="submit"
+                                type="submit" id='button'
                                 class="inline-block w-3/4 px-7 py-3 mt-4 bg-red-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out"
                                 >
                                 Login

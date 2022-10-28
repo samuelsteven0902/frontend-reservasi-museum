@@ -103,7 +103,7 @@ export default function Sidebar() {
                     "text-xs uppercase py-3 font-bold block " +
                     (window.location.href.indexOf("/admin/grafik") !== -1
                       ? "text-lightBlue-500 hover:text-lightBlue-600"
-                      : "text-blueGray-700 hover:text-blueGray-500")
+                      : "text-blueGray-700 hover:text-blueGray-500  hover:bg-gray-100 rounded-xl pl-4 duration-300 transition-all hover:pl-6")
                   }
                   to="/admin/grafik"
                 >
@@ -169,7 +169,7 @@ export default function Sidebar() {
                     "text-xs uppercase py-3 font-bold block " +
                     (window.location.href.indexOf("/admin/data-pengunjung") !== -1
                       ? "text-lightBlue-500 hover:text-lightBlue-600"
-                      : "text-blueGray-700 hover:text-blueGray-500")
+                      : "text-blueGray-700 hover:text-blueGray-500  hover:bg-gray-100 rounded-xl pl-4 duration-300 transition-all hover:pl-6")
                   }
                   to="/admin/data-pengunjung"
                 >
@@ -178,7 +178,7 @@ export default function Sidebar() {
                       "fas fa-map-marked mr-2 text-sm " +
                       (window.location.href.indexOf("/admin/data-pengunjung") !== -1
                         ? "opacity-75"
-                        : "text-blueGray-300")
+                        : "text-blueGray-300 ")
                     }
                   ></i>{" "}
                   Data Pengunjung
@@ -190,7 +190,7 @@ export default function Sidebar() {
                     "text-xs uppercase py-3 font-bold block " +
                     (window.location.href.indexOf("/admin/data-sanggahan") !== -1
                       ? "text-lightBlue-500 hover:text-lightBlue-600"
-                      : "text-blueGray-700 hover:text-blueGray-500")
+                      : "text-blueGray-700 hover:text-blueGray-500  hover:bg-gray-100 rounded-xl pl-4 duration-300 transition-all hover:pl-6")
                   }
                   to="/admin/data-sanggahan"
                 >
@@ -205,13 +205,15 @@ export default function Sidebar() {
                   Data Sanggahan
                 </Link>
               </li>
+
+
               <li className="items-center">
                 <Link
                   className={
                     "text-xs uppercase py-3 font-bold block " +
                     (window.location.href.indexOf("/admin/data-kehadiran") !== -1
                       ? "text-lightBlue-500 hover:text-lightBlue-600"
-                      : "text-blueGray-700 hover:text-blueGray-500")
+                      : "text-blueGray-700 hover:text-blueGray-500  hover:bg-gray-100 rounded-xl pl-4 duration-300 transition-all hover:pl-6")
                   }
                   to="/admin/data-kehadiran"
                 >
