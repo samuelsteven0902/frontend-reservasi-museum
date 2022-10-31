@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import 'flowbite'
 import swal from "sweetalert";
-import $ from 'jquery';
+// import $ from 'jquery';
 
 
 function CardMasterTiket() {
