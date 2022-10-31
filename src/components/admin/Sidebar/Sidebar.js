@@ -23,7 +23,7 @@ export default function Sidebar() {
           </button>
 
           {/* Profile and Brand*/}
-         <div className="flex"> 
+          <div className="flex"> 
             <ul className="flex-col md:flex-row list-none items-center hidden md:flex">
               <img src={profile} className="rounded-full w-12 h-12 mr-3"/>
             </ul>
@@ -48,6 +48,7 @@ export default function Sidebar() {
           <img src={profile} className="rounded-full w-12 h-12 mr-3"/>
             </li>
           </ul>
+
           {/* Collapse */}
           <div
             className={
@@ -55,6 +56,7 @@ export default function Sidebar() {
               collapseShow
             }
           >
+
             {/* Collapse header */}
             <div className="md:min-w-full md:hidden block pb-4 mb-4 border-b border-solid border-blueGray-200">
               <div className="flex flex-wrap">
@@ -78,25 +80,15 @@ export default function Sidebar() {
               </div>
             </div>
             
-            {/* Form */}
-            {/* <form className="mt-6 mb-4 md:hidden">
-              <div className="mb-3 pt-0">
-                <input
-                  type="text"
-                  placeholder="Search"
-                  className=" px-3 py-2 h-12 border border-solid  border-blueGray-500 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-base leading-snug shadow-none outline-none focus:outline-none w-full font-normal"
-                />
-              </div>
-            </form> */}
-
             {/* Divider */}
-            {/* <hr className="my-4 md:min-w-full" /> */}
+            <hr className="my-4 md:min-w-full" />
+
             {/* Heading */}
             <h6 className="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
               Dashboard
             </h6>
-            {/* Navigation */}
 
+            {/* Navigation */}
             <ul className="md:flex-col md:min-w-full flex flex-col list-none">
               <li className="items-center">
                 <Link
@@ -104,7 +96,7 @@ export default function Sidebar() {
                     "text-xs uppercase py-3 font-bold block " +
                     (window.location.href.indexOf("/admin/grafik") !== -1
                       ? "text-lightBlue-500 hover:text-lightBlue-600"
-                      : "text-blueGray-700 hover:text-blueGray-500  hover:bg-gray-100 rounded-xl pl-4 duration-300 transition-all hover:pl-6")
+                      : "text-blueGray-700 hover:text-blueGray-500 hover:bg-gray-100 rounded-xl pl-4 duration-300 transition-all hover:pl-6")
                   }
                   to="/admin/grafik"
                 >
@@ -119,50 +111,6 @@ export default function Sidebar() {
                   Grafik
                 </Link>
               </li>
-
-              {/* <li className="items-center">
-                <Link
-                  className={
-                    "text-xs uppercase py-3 font-bold block " +
-                    (window.location.href.indexOf("/admin/settings") !== -1
-                      ? "text-lightBlue-500 hover:text-lightBlue-600"
-                      : "text-blueGray-700 hover:text-blueGray-500")
-                  }
-                  to="/admin/settings"
-                >
-                  <i
-                    className={
-                      "fas fa-tools mr-2 text-sm " +
-                      (window.location.href.indexOf("/admin/settings") !== -1
-                        ? "opacity-75"
-                        : "text-blueGray-300")
-                    }
-                  ></i>{" "}
-                  Settings
-                </Link>
-              </li> */}
-
-              {/* <li className="items-center">
-                <Link
-                  className={
-                    "text-xs uppercase py-3 font-bold block " +
-                    (window.location.href.indexOf("/admin/tables") !== -1
-                      ? "text-lightBlue-500 hover:text-lightBlue-600"
-                      : "text-blueGray-700 hover:text-blueGray-500")
-                  }
-                  to="/admin/tables"
-                >
-                  <i
-                    className={
-                      "fas fa-table mr-2 text-sm " +
-                      (window.location.href.indexOf("/admin/tables") !== -1
-                        ? "opacity-75"
-                        : "text-blueGray-300")
-                    }
-                  ></i>{" "}
-                  Tables
-                </Link>
-              </li> */}
 
               <li className="items-center">
                 <Link
@@ -185,6 +133,7 @@ export default function Sidebar() {
                   Data Pengunjung
                 </Link>
               </li>
+
               <li className="items-center">
                 <Link
                   className={
@@ -207,7 +156,6 @@ export default function Sidebar() {
                 </Link>
               </li>
 
-
               <li className="items-center">
                 <Link
                   className={
@@ -229,7 +177,9 @@ export default function Sidebar() {
                   Data Kehadiran
                 </Link>
               </li>
+
               <hr className="my-1 md:min-w-full" />
+
               <li className="items-center">
                 <Link
                   className={
@@ -253,12 +203,7 @@ export default function Sidebar() {
                   <LogOut />
                 </Link>
               </li>
-                  
             </ul>
-
-
-            {/* Divider */}
-            {/* <hr className="my-4 md:min-w-full" /> */}
           </div>
         </div>
       </nav>
