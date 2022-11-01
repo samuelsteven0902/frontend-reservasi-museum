@@ -38,7 +38,16 @@ export default function SidebarSuperadmin() {
             </div>
           </div>
 
-          
+          {/* User */}
+          <ul className="md:hidden items-center flex flex-wrap list-none">
+            <li className="inline-block relative">
+              {/* <NotificationDropdown /> */}
+            </li>
+            <li className="inline-block relative">
+              {/* <UserDropdown /> */}
+          <img src={profile} className="rounded-full w-12 h-12 mr-3"/>
+            </li>
+          </ul>
 
           {/* Collapse */}
           <div
@@ -70,14 +79,18 @@ export default function SidebarSuperadmin() {
                 </div>
               </div>
             </div>
+
+            
+            {/* Divider */}
+            <hr className="my-4 md:min-w-full" />
             
             {/* Heading */}
             <h6 className="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
               Dashboard
             </h6>
-            {/* Navigation */}
 
             <ul className="md:flex-col md:min-w-full flex flex-col list-none">
+
               <li className="items-center">
                 <Link
                   className={
@@ -165,11 +178,11 @@ export default function SidebarSuperadmin() {
                   Pemasukan
                 </Link>
               </li>
-
             </ul>
 
             {/* Divider */}
             <hr className="my-4 md:min-w-full" />
+
             {/* Heading */}
             <h6 className="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
               Informasi
@@ -223,6 +236,7 @@ export default function SidebarSuperadmin() {
             </ul>
 
             <hr className="my-1 md:min-w-full" />
+
             <ul className="md:flex-col md:min-w-full flex flex-col list-none">
               <li className="items-center">
                 <Link
@@ -246,9 +260,6 @@ export default function SidebarSuperadmin() {
                 </Link>
               </li>
             </ul>
-
-            {/* Divider
-            <hr className="my- 4 md:min-w-full" /> */}
           </div>
         </div>
       </nav>
