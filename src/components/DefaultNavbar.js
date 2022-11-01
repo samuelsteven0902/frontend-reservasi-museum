@@ -20,6 +20,8 @@ export default function DefaultNavbar() {
     const [user,setUser] = useState('');
     const [loading, setLoading] = useState(false);
 
+    
+
     useEffect(() => {
           const fetchData = async () => {
               const data = await fetch(`http://localhost:8000/api/me`, {
