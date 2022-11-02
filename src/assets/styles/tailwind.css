@@ -1216,9 +1216,6 @@ video {
 }.bg-orange-200{
 	--tw-bg-opacity: 1;
 	background-color: rgba(252, 217, 189, var(--tw-bg-opacity));
-}.bg-red-600{
-	--tw-bg-opacity: 1;
-	background-color: rgba(224, 36, 36, var(--tw-bg-opacity));
 }.bg-red-700{
 	--tw-bg-opacity: 1;
 	background-color: rgba(200, 30, 30, var(--tw-bg-opacity));

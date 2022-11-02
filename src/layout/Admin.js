@@ -16,6 +16,8 @@ import Maps from "components/admin/Maps.js";
 import DataPengunjung from "components/admin/DataPengunjung";
 import DataSanggahan from "components/admin/DataSanggahan";
 import DataKehadiran from "components/admin/DataKehadiran";
+import Jadwal from "components/admin/Jadwal";
+import CardDataSanggahan from "components/admin/Cards/CardDataSanggahan";
 
 
 
