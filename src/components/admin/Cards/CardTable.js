@@ -125,75 +125,75 @@ export default function CardTable({ color }) {
   //       return value > 20 ? true : false;
   //   } );
 
-  $(document).ready(function () {
-    // Setup - add a text input to each footer cell
-    $('#dataTable thead tr')
-        .clone(true)
-        .addClass('filters')
-        .appendTo('#dataTable thead');
+//   $(document).ready(function () {
+//     // Setup - add a text input to each footer cell
+//     $('#dataTable thead tr')
+//         .clone(true)
+//         .addClass('filters')
+//         .appendTo('#dataTable thead');
  
-    var table = $('#dataTable').DataTable({
-        orderCellsTop: true,
-        fixedHeader: true,
-        "bDestroy": true,
-        initComplete: function () {
-            var api = this.api();
+//     var table = $('#dataTable').DataTable({
+//         orderCellsTop: true,
+//         fixedHeader: true,
+//         "bDestroy": true,
+//         initComplete: function () {
+//             var api = this.api();
  
-            // For each column
-            api
-                .columns()
-                .eq(0)
-                .each(function (colIdx) {
-                    // Set the header cell to contain the input element
-                    var cell = $('.filters th').eq(
-                        $(api.column(colIdx).header()).index()
-                    );
-                    var title = $(cell).text();
-                    $(cell).html('<input type="text" placeholder="' + title + '" />');
+//             // For each column
+//             api
+//                 .columns()
+//                 .eq(0)
+//                 .each(function (colIdx) {
+//                     // Set the header cell to contain the input element
+//                     var cell = $('.filters th').eq(
+//                         $(api.column(colIdx).header()).index()
+//                     );
+//                     var title = $(cell).text();
+//                     $(cell).html('<input type="text" placeholder="' + title + '" />');
  
-                    // On every keypress in this input
-                    $(
-                        'input',
-                        $('.filters th').eq($(api.column(colIdx).header()).index())
-                    )
-                        .off('keyup change')
-                        .on('change', function (e) {
-                            // Get the search value
-                            $(this).attr('title', $(this).val());
-                            var regexr = '({search})'; //$(this).parents('th').find('select').val();
+//                     // On every keypress in this input
+//                     $(
+//                         'input',
+//                         $('.filters th').eq($(api.column(colIdx).header()).index())
+//                     )
+//                         .off('keyup change')
+//                         .on('change', function (e) {
+//                             // Get the search value
+//                             $(this).attr('title', $(this).val());
+//                             var regexr = '({search})'; //$(this).parents('th').find('select').val();
  
-                            var cursorPosition = this.selectionStart;
-                            // Search the column for that value
-                            api
-                                .column(colIdx)
-                                .search(
-                                    this.value != ''
-                                        ? regexr.replace('{search}', '(((' + this.value + ')))')
-                                        : '',
-                                    this.value != '',
-                                    this.value == ''
-                                )
-                                .draw();
-                        })
-                        .on('keyup', function (e) {
-                            e.stopPropagation();
+//                             var cursorPosition = this.selectionStart;
+//                             // Search the column for that value
+//                             api
+//                                 .column(colIdx)
+//                                 .search(
+//                                     this.value != ''
+//                                         ? regexr.replace('{search}', '(((' + this.value + ')))')
+//                                         : '',
+//                                     this.value != '',
+//                                     this.value == ''
+//                                 )
+//                                 .draw();
+//                         })
+//                         .on('keyup', function (e) {
+//                             e.stopPropagation();
  
-                            $(this).trigger('change');
-                            // $(this)
-                            //     .focus()[0]
-                            //     .setSelectionRange(cursorPosition, cursorPosition);
-                        });
-                });
-        },
-    });
-});
+//                             $(this).trigger('change');
+//                             // $(this)
+//                             //     .focus()[0]
+//                             //     .setSelectionRange(cursorPosition, cursorPosition);
+//                         });
+//                 });
+//         },
+//     });
+// });
 
   return (
     <>
     <div className="flex">
       
     <div className="my-2  w-72">
-        {/* <input type='text' className="w-full border-none ring-2 ring-red-300 focus:border-none focus:ring-red-500 focus:ring-2 active:border-none  rounded-lg"  placeholder="Cari nama, kategori, kota, ..." onChange={e=>{setSearchTerm(e.target.value)}} />  */}
+        <input type='text' className="w-full border-none ring-2 ring-red-300 focus:border-none focus:ring-red-500 focus:ring-2 active:border-none  rounded-lg"  placeholder="Cari nama, kategori, kota, ..." onChange={e=>{setSearchTerm(e.target.value)}} /> 
       </div>
       <div className=" flex justify-end items-center w-full">
         <button className="bg-green-400 rounded-xl h-7 px-5 mx- text-sm text-green-800" onClick={handleDownload}><p className="flex">Unduh Laporan <img src={excel} className='w-4 ml-2'/></p></button>
