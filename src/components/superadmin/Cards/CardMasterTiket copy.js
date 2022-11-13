@@ -2,11 +2,6 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import 'flowbite'
 import swal from "sweetalert";
-// import React from 'react'
-import TextField from '@material-ui/core/TextField';
-import Autocomplete,
-{ createFilterOptions } from '@material-ui/lab/Autocomplete';
-const filter = createFilterOptions();
 // import $ from 'jquery';
 
 
@@ -66,7 +61,6 @@ const [searchTerm, setSearchTerm] = useState("")
 // console.log(semuaHarga);
 
 
-const options = ['One', 'Two', 'Three', 'Four']
 
 useEffect(() => {
   
@@ -137,12 +131,6 @@ const handleInputTambahMuseum= (e) =>{
     setTambahMuseum({...tambahMuseum, [e.target.name]: e.target.value });
 
 }
-
-const handleNamaMuseum = (e) =>{
-    console.log(e.currentTarget.value)
-}
-
-
 
 //send to api
 const storeMuseum = (e) => {
@@ -488,31 +476,6 @@ else
                                             </label>
                                             <input name='hari_libur' className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="hari_libur" type="number" onChange={handleInputTambahMuseum}/>
                                             <span className="text-sm text-red-500"></span>
-                                            <div style={{ marginLeft: '40%', marginTop: '60px' }}>
-                                                <h3>Greetings from GeeksforGeeks!</h3>
-                                                <Autocomplete
-                                                    filterOptions={(options, params) => {
-                                                    const filtered = filter(options, params);
-                                                    // Suggest the creation of a new value
-                                                    if (params.inputValue !== '') {
-                                                        filtered.push(`Add "${params.inputValue}"`);
-                                                    }
-                                                    return filtered;
-                                                    }}
-                                                    selectOnFocus
-                                                    clearOnBlur
-                                                    handleHomeEndKeys
-                                                    options={options}
-                                                    renderOption={(option) => option}
-                                                    style={{ width: 300 }}
-                                                    freeSolo
-                                                    onChange={handleNamaMuseum}
-                                                    renderInput={(params) => (
-                                                    <TextField {...params} label="Enter Something"
-                                                        variant="outlined"  />
-                                                    )}
-                                                />
-                                                </div>
                                         </div>
                                     </div>
                                 </div>
