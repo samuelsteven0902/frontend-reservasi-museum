@@ -139,6 +139,28 @@ export default function SidebarSuperadmin() {
                 <Link
                   className={
                     "text-xs uppercase py-3 font-bold block " +
+                    (window.location.href.indexOf("/superadmin/master-museum") !== -1
+                      ? "text-lightBlue-500 hover:text-lightBlue-600"
+                      : "text-blueGray-700 hover:text-blueGray-500 hover:bg-gray-100 rounded-xl pl-4 duration-300 transition-all hover:pl-6")
+                  }
+                  to="/superadmin/tambah-museum"
+                >
+                  <i
+                    className={
+                      "fas fa-solid fa-file mr-2 text-sm " +
+                      (window.location.href.indexOf("/superadmin/tambah-museum") !== -1
+                        ? "opacity-75"
+                        : "text-blueGray-300")
+                    }
+                  ></i>{" "}
+                Tambah Museum
+                </Link>
+              </li>
+
+              <li className="items-center">
+                <Link
+                  className={
+                    "text-xs uppercase py-3 font-bold block " +
                     (window.location.href.indexOf("/superadmin/admin") !== -1
                       ? "text-lightBlue-500 hover:text-lightBlue-600"
                       : "text-blueGray-700 hover:text-blueGray-500 hover:bg-gray-100 rounded-xl pl-4 duration-300 transition-all hover:pl-6")

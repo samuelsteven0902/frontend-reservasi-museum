@@ -19,6 +19,7 @@ import Pemasukan from "components/superadmin/Pemasukan";
 import Panduan from "components/superadmin/Panduan.js";
 import FAQ from "components/superadmin/FAQ.js"
 import 'tw-elements';
+import CardTambahMuseum from "components/superadmin/Cards/CardTambahMuseum";
 
 export default function SuperAdmin() {
   return (
@@ -33,6 +34,7 @@ export default function SuperAdmin() {
             <Route path="/superadmin/dashboard" exact component={Dashboard} />
             <Route path="/superadmin/maps" exact component={Maps} />
             <Route path="/superadmin/master-tiket" exact component={MasterTiket} />
+            <Route path="/superadmin/tambah-museum" exact component={CardTambahMuseum} />
             <Route path="/superadmin/admin" exact component={Admin} />
             <Route path="/superadmin/pemasukan" exact component={Pemasukan} />
             <Route path="/superadmin/panduan" exact component={Panduan} />
