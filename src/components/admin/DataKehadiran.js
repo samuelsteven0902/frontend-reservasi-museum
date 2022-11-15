@@ -2,6 +2,7 @@ import { Card } from '@material-tailwind/react'
 import axios from 'axios'
 import Cookies from 'js-cookie'
 import React, { useEffect, useState } from 'react'
+import swal from 'sweetalert'
 
 function DataKehadiran() {
 
@@ -9,16 +10,43 @@ function DataKehadiran() {
     const [pengunjung,setPengunjung] = useState([])
   
     const handleKonfirmasi = (e,idData) =>{
-        e.preventDefault();
+        // e.preventDefault();
         const data = {
             idData : idData,
             idAdmin: user
         }
         console.log(data);
 
-        axios.put(`http://localhost:8000/api/kehadiran`,data).then(res=>{
-            console.log(res);
+        swal({
+          title: "Konfirmasi kedatangan Pengunjung?",
+          text: "Sekali Konfirmasi, anda tidak bisa mengubahnya lagi!",
+          icon: "warning",
+          buttons: true,
+          dangerMode: true,
         })
+        .then((update) => {
+          if (update) {
+            axios.put(`http://localhost:8000/api/kehadiran`,data).then(res=>{
+                  if(res.data.status === 200)
+                  {
+                      // console.log('berhasil delet');
+                      swal("Deleted!",res.data.message,"success")
+                      // .then(e=>window.location.reload(false));;
+                      // thisClicked.closest("tr").remove();
+                  }
+                  else if(res.data.status === 404)
+                  {
+                      // swal("Error",res.data.message,"error");
+                      // thisClicked.innerText = "Delete";
+                  }})
+          } else {
+            swal("Membatalkan Aksi!");
+          }
+  
+      
+     
+      })
+
         
 
     }
@@ -51,8 +79,8 @@ function DataKehadiran() {
             }
             fetchData ();
             
-          }, []);
-          console.log(user);
+          }, [pengunjung]);
+          console.log(pengunjung);
 
     useEffect(() => {
       axios.get(`http://localhost:8000/api/konfirmasi-pengunjung`).then(res=>{
@@ -71,7 +99,15 @@ function DataKehadiran() {
     }
     else
     {
-      var pengunjung_HTMLTABLE = "";
+      
+
+      if(pengunjung == [])
+      {
+        return <h4>Tidak ada</h4>
+      }
+      else
+      {
+        var pengunjung_HTMLTABLE = "";
   
       pengunjung_HTMLTABLE = pengunjung.map((item,index)=>{
         // console.log(item);
@@ -89,6 +125,7 @@ function DataKehadiran() {
             </div>
         )
       })
+      }
     }
 
   return (

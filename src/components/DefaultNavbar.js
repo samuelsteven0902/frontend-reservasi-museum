@@ -10,6 +10,7 @@ import Nav from '@material-tailwind/react/Nav';
 import 'flowbite';
 import 'tw-elements';
 import Cookies from 'js-cookie';
+import NavbarDropdown from './NavbarDropdown';
 
 export default function DefaultNavbar() {
     const [openNavbar, setOpenNavbar] = useState(false);
@@ -43,7 +44,7 @@ export default function DefaultNavbar() {
             }
             fetchData ();
             
-          }, []);
+          }, [user]);
           if (user == 'default') {
             setLoading(true)
           }
@@ -72,7 +73,7 @@ export default function DefaultNavbar() {
                             <Link to="/about" className='px-5 mx-3 text-black font-bold  rounded-sm'>
                                 About
                             </Link>
-                            <button id="dropdownDefault" data-dropdown-toggle="dropdown" className="text-black focus:ring-4 focus:outline-none font-bold rounded-lg text-sm px-5 mx-3 text-center inline-flex items-center" type="button">Informasi Tiket<svg className="ml-2 w-4 h-4" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg></button>
+                            {/* <button id="dropdownDefault" data-dropdown-toggle="dropdown" className="text-black focus:ring-4 focus:outline-none font-bold rounded-lg text-sm px-5 mx-3 text-center inline-flex items-center" type="button">Informasi Tiket<svg className="ml-2 w-4 h-4" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg></button>
 
                             <div id="dropdown" className="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="bottom">
                                 <ul className="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefault">
@@ -83,7 +84,9 @@ export default function DefaultNavbar() {
                                     <Link to='/faq' className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">FAQ</Link>
                                 </li>
                                 </ul>
-                            </div>
+                            </div> */}
+
+                            <NavbarDropdown />
                             
 
                             {user == ""? <Link to="/login" className='px-5 mx-3 text-black font-bold  rounded-sm'>

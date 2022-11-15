@@ -1,6 +1,7 @@
 import axios, { Axios } from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom';
+import { data } from 'autoprefixer';
 import swal from 'sweetalert';
 import qris from '../../assets/img/pembayaran/Qris.png'
 import tunai from '../../assets/img/pembayaran/Tunai.png'
@@ -16,6 +17,32 @@ function WorkingSection(input) {
     const [pembayaran,setPembayaran] = useState('')
     const [danger,setDanger] = useState('')
     const history = useHistory();
+
+    // tambahan dari form input
+   
+    // const [input,setInput] = useState({
+    //     museum : '',
+    //     category : '',
+    //     calender : '',
+    //     nama : '',
+    //     kota : '',
+    //     phone : '',
+    //     jumlah : '',
+    //     tanggal : '',
+    //     harga_awal : '',
+    //     pembayaran : '',
+    //     status : ''
+        
+    // })
+
+    // end tambahan dari form input
+    
+    const redirect = useHistory();
+
+    // const handleInput =(e) =>{
+    //     setInput({...input,[e.target.name]:e.target.value}) 
+    //     console.log(e);
+    // }
 
     console.log(input);
     const handleCash = () =>{
@@ -84,7 +111,10 @@ function WorkingSection(input) {
                     if(res.data.status === 200)
                     {
                         console.log('MANTAB BERHASIL');
-                        history.push('/tiket');
+                        // history.push('/tiket');
+                        history.push({ pathname:"/tiket",
+                        state : data
+                             });
                     }
                     else if(res.data.status === 422)
                     {

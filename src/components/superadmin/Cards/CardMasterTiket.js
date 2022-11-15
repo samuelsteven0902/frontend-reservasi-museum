@@ -51,7 +51,6 @@ const updateHarga = (e) => {
     
     // const student_id = props.match.params.id;
     // const data = studentInput;
-    
 
     const thisClicked = e.currentTarget[5];
     thisClicked.innerText = "Updating";

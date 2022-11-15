@@ -43,7 +43,7 @@ export default function WorkingSection({setRes}) {
     const redirect = useHistory();
 
     const refOne = useRef(null)
-
+    // kayaknya ditambhkan di ws pembayaran
     const handleInput =(e) =>{
         setInput({...input,[e.target.name]:e.target.value}) 
         console.log(e);
@@ -172,7 +172,7 @@ console.log(input);
         <section className="pb-20 bg-gradient-to-b from-white bg-gray-100 -mt-32">
             <div className="container max-w-7xl mx-auto px-4">
                 <form onSubmit={saveData}>
-                <div className="flex flex-wrap relative z-50">
+                <div className="flex flex-wrap relative z-10">
                     <StatusCard color="red" icon="stars" title="Pesan Tiket">
                     <div className="sm:flex block w-full ">
                     
