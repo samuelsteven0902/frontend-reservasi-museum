@@ -86,16 +86,16 @@ console.log(e.target);
         <Page>
             <Container>
                 <Card >
-                <div className='bg-gray-100 bg-center h-16  rounded-t-xl  bg-inputdata-backgroung flex justify-center items-center absolute w-full  -mt-2'>
+                <div className='bg-gray-100 bg-center h-16  rounded-t-xl  bg-inputdata-backgroung flex justify-center items-center absolute w-full  -mt-4 -ml-4'>
                             
                             <p className="text-center w-full text-white font-extrabold  text-xl">UPT MUSEUM SURAKARTA</p>
                                         </div>
                     <div className="flex flex-row-reverse pt-10">
                         
-                    <div className='w-3/4 mx-auto '>
+                    <div className='w-full md:w-3/4 mx-auto '>
                         <div className='w-full  mx-auto h-full my-auto p-6 flex justify-center items-center'>
                         <form className='w-full  ' onSubmit={handleSubmit}>
-                            <div className=' mb-6 flex items-center py-4'>
+                            <div className=' mb-6 flex items-center py-4 justify-center'>
                                 <hr className='w-1/3 mx-3 bg-red-400'/>
                                 <p className='text-center text-xl font-extrabold'>Log in </p>
                                 <hr className='w-1/3 mx-3 bg-red-400'/>
@@ -137,7 +137,7 @@ console.log(e.target);
                             </form>
                         </div>
                     </div>
-                    <div className='w-1/2 mx-auto h-full align-bottom'>
+                    <div className='w-3/4 mx-auto h-full align-bottom hidden lg :block'>
                         
                         <div className="w-full  px-3 ml-auto mr-auto text-center">
                         <div className="text-gray-800">

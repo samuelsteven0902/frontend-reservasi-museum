@@ -30,7 +30,7 @@ function DataKehadiran() {
                   if(res.data.status === 200)
                   {
                       // console.log('berhasil delet');
-                      swal("Deleted!",res.data.message,"success")
+                      swal("Berhasil!",res.data.message,"success")
                       // .then(e=>window.location.reload(false));;
                       // thisClicked.closest("tr").remove();
                   }
