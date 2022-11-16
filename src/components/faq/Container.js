@@ -45,7 +45,7 @@ export default function Container({  }) {
                     aria-controls="panel2a-content"
                     id="panel2a-header"
                     >
-                    <Typography>{item.question}<span className='text-blue-500'>test</span> </Typography>
+                    <Typography>{item.question}<span className='text-blue-500'></span> </Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                     <Typography>

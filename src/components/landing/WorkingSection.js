@@ -55,9 +55,9 @@ export default function WorkingSection({setRes}) {
             const museumClass = document.getElementById('museum');
             setDisabledCategory(false);
             museumClass.classList.add('font-bold','text-gray-800',)
-            // console.log(museumClass);
+            console.log(namaInput);
             // setCategory('Pilih Category')
-            setNamaInput({...namaInput,namaCategory:'Pilih Kategori'}) 
+            // setNamaInput({...namaInput,namaCategory:'Pilih Kategori'}) 
             setCalendar('Pilih Kategori Dulu')
         }
     }
@@ -108,7 +108,7 @@ export default function WorkingSection({setRes}) {
       //   setInput({...input,museum:museum}) 
         // setInput({...input,calendar:calendar}) 
       
-    }, [input,museum])
+    }, [input,museum,namaInput])
     // console.log(museumClass);
     
     const hidenOnEscape = (e) =>{
@@ -168,6 +168,8 @@ export default function WorkingSection({setRes}) {
     
 // console.log(museum);
 // console.log(category);
+
+console.log(namaInput);
 console.log(input);
     return (
         <section className="pb-20 bg-gradient-to-b from-white bg-gray-100 -mt-32">
@@ -177,7 +179,7 @@ console.log(input);
                     <StatusCard color="red" icon="stars" title="Pesan Tiket">
                     <div className="sm:flex block w-full ">
                     
-                    <select id='museum' value={input.museum} className="block appearance-none sm:w-1/3 w-full p-2.5 bg-white text-center border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline" 
+                    <select id='museum' value={{ label : input.museum }} className="block appearance-none sm:w-1/3 w-full p-2.5 bg-white text-center border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline" 
                         onChange={(e) => {
                             // handleInput(e);
                             const index = e.target.selectedIndex;
@@ -186,10 +188,9 @@ console.log(input);
                             const selectedMuseum = e.target.id;
                             setMuseumId(option)
                             setInput({...input,museum:option})
-                            setNamaInput({...input,namaMuseum:e.target.value})
-                            console.log(e.target);
-                            console.log(selectedMuseum);
+                            setNamaInput({...namaInput,namaMuseum:e.target.value})
                             cekMuseum()
+                            // console.log(e.target.value);
                             // console.log(e); 
                             // setMuseum(selectedMuseum);
                         }}>
@@ -212,7 +213,7 @@ console.log(input);
                         }} 
                     disabled={disabledCategory} 
                     > 
-                        <option lassName='p-7 m-5 text-xl'>{namaInput.namaCategory}</option>
+                        <option className='p-7 m-5 text-xl'>{namaInput.namaCategory}</option>
 
                         {category && typeof category !== 'string'  && category.map((itemm,indexx)=>{
                         return(
