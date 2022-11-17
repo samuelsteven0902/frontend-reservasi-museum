@@ -1,5 +1,6 @@
 /*eslint-disable*/
 import LogOut from "pages/LogOut.js";
+import profile from '../../../assets/img/admin/profile.png'
 import React from "react";
 import { Link } from "react-router-dom";
 import profile from '../../../assets/img/admin/profile.png'
@@ -22,36 +23,32 @@ export default function SidebarSuperadmin() {
             <i className="fas fa-bars"></i>
           </button>
 
-          {/* Brand */}
-
-          <div className="flex">
+          {/* Profile and Brand*/}
+          <div className="flex"> 
             <ul className="flex-col md:flex-row list-none items-center hidden md:flex">
-              <img src={profile} className="rounded-full w-12 h-12 mr-3"/>             
+              <img src={profile} className="rounded-full w-12 h-12 mr-3"/>
             </ul>
-            <div> 
-              <Link 
-                className="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold pt-3 px-0"
-                to="/"> 
-                UPT MUSEUM
+            <div>
+              <Link
+              className="md:block text-left md:pb-1 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-1 px-1"
+              to="/"> UPT MUSEUM
               </Link>
-              <p
-                className="md:block md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold pb-4 px-0"
-                to="/">
-                SUPER ADMIN
+              <p 
+              className="md:block text-left md:pb-1 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-1 px-1">Super Admin
               </p>
-              </div>
+            </div>
           </div>
 
-          {/* User
+          {/* User */}
           <ul className="md:hidden items-center flex flex-wrap list-none">
             <li className="inline-block relative">
-              <NotificationDropdown />
+              {/* <NotificationDropdown /> */}
             </li>
             <li className="inline-block relative">
-              <UserDropdown />
+              {/* <UserDropdown /> */}
+          <img src={profile} className="rounded-full w-12 h-12 mr-3"/>
             </li>
-          </ul> */}
-
+          </ul>
 
           {/* Collapse */}
           <div
@@ -83,27 +80,18 @@ export default function SidebarSuperadmin() {
                 </div>
               </div>
             </div>
-            
-            {/* Form */}
-            <form className="mt-6 mb-4 md:hidden">
-              <div className="mb-3 pt-0">
-                <input
-                  type="text"
-                  placeholder="Search"
-                  className=" px-3 py-2 h-12 border border-solid  border-blueGray-500 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-base leading-snug shadow-none outline-none focus:outline-none w-full font-normal"
-                />
-              </div>
-            </form>
 
+            
             {/* Divider */}
             <hr className="my-4 md:min-w-full" />
+            
             {/* Heading */}
             <h6 className="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
               Dashboard
             </h6>
-            {/* Navigation */}
 
             <ul className="md:flex-col md:min-w-full flex flex-col list-none">
+
               <li className="items-center">
                 <Link
                   className={
@@ -138,13 +126,35 @@ export default function SidebarSuperadmin() {
                 >
                   <i
                     className={
-                      "fas fa-tools mr-2 text-sm " +
+                      "fas fa-solid fa-file mr-2 text-sm " +
                       (window.location.href.indexOf("/superadmin/master-tiket") !== -1
                         ? "opacity-75"
                         : "text-blueGray-300")
                     }
                   ></i>{" "}
                 Master Tiket
+                </Link>
+              </li>
+
+              <li className="items-center">
+                <Link
+                  className={
+                    "text-xs uppercase py-3 font-bold block " +
+                    (window.location.href.indexOf("/superadmin/master-museum") !== -1
+                      ? "text-lightBlue-500 hover:text-lightBlue-600"
+                      : "text-blueGray-700 hover:text-blueGray-500 hover:bg-gray-100 rounded-xl pl-4 duration-300 transition-all hover:pl-6")
+                  }
+                  to="/superadmin/tambah-museum"
+                >
+                  <i
+                    className={
+                      "fas fa-solid fa-file mr-2 text-sm " +
+                      (window.location.href.indexOf("/superadmin/tambah-museum") !== -1
+                        ? "opacity-75"
+                        : "text-blueGray-300")
+                    }
+                  ></i>{" "}
+                Tambah Museum
                 </Link>
               </li>
 
@@ -182,7 +192,7 @@ export default function SidebarSuperadmin() {
                 >
                   <i
                     className={
-                      "fas fa-map-marked mr-2 text-sm " +
+                      "fas fa-solid fa-money-bill mr-2 text-sm " +
                       (window.location.href.indexOf("/superadmin/pemasukan") !== -1
                         ? "opacity-75"
                         : "text-blueGray-300")
@@ -191,11 +201,11 @@ export default function SidebarSuperadmin() {
                   Pemasukan
                 </Link>
               </li>
-
             </ul>
 
             {/* Divider */}
             <hr className="my-4 md:min-w-full" />
+
             {/* Heading */}
             <h6 className="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
               Informasi
@@ -249,15 +259,16 @@ export default function SidebarSuperadmin() {
             </ul>
 
             <hr className="my-1 md:min-w-full" />
+
             <ul className="md:flex-col md:min-w-full flex flex-col list-none">
               <li className="items-center">
                 <Link
                   className={
-                    "text-xs uppercase font-bold block " +
+                    "text-xs uppercase py-1 font-bold block " +
                     (window.location.href.indexOf("/superadmin/logout") !== -1
-                      ? "text-lightBlue-500 hover:text-lightBlue-600"
-                      : "text-blueGray-700 hover:text-blueGray-500 ")
-                  }
+                      ? "text-red-500 hover:text-red-600"
+                      : "text-red-700 hover:text-red-500")}
+
                   to="/superadmin/logout"
                 >
                   <i
@@ -265,16 +276,13 @@ export default function SidebarSuperadmin() {
                       "fas fa-solid fa-right-from-bracket mr-2 text-sm " +
                       (window.location.href.indexOf("/superadmin/logout") !== -1
                         ? "opacity-50"
-                        : "text-blueGray-300")
+                        : "text-red-300")
                     }
                   ></i>{" "}
                   <LogOut />
                 </Link>
               </li>
             </ul>
-
-            {/* Divider
-            <hr className="my- 4 md:min-w-full" /> */}
           </div>
         </div>
       </nav>

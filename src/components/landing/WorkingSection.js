@@ -56,9 +56,9 @@ export default function WorkingSection({setRes}) {
             setDisabledCategory(false);
             museumClass.classList.add('font-bold','text-gray-800',)
             // console.log(museumClass);
-            // setCategory('Pilih Kategory')
+            // setCategory('Pilih Category')
+            setNamaInput({...namaInput,namaCategory:'Pilih Kategori'}) 
             setCalendar('Pilih Kategori Dulu')
-            setNamaInput({...namaInput, namaCategory:'Pilih Kategori'})
         }
     }
     
@@ -206,7 +206,7 @@ console.log(input);
                         const el = e.target.childNodes[index]
                         const option =  el.getAttribute('id');
                         setInput({...input,category:option})
-                        setNamaInput({...input,namaCategory:e.target.value})
+                        setNamaInput({...namaInput,namaCategory:e.target.value})
                         cekCategory()
                         }} 
                     disabled={disabledCategory} 
@@ -249,38 +249,6 @@ console.log(input);
                 </div>
                 </form>
 
-                {/* <div className="flex flex-wrap items-center mt-32">
-                    <div className="w-full md:w-5/12 px-4 mx-auto">
-                        <div className="text-blue-gray-800 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-white">
-                            <Icon name="people" size="3xl" />
-                        </div>
-                        <H4 color="gray">About Us</H4>
-                        <LeadText color="blueGray">
-                            Museum Keris Nusantara merupakan sebuah museum yang dibangun oleh Direktorat Jenderal Kebudayaan, Kementerian Pendidikan dan Kebudayaan melalui Direktorat Pelestarian Cagar Budaya dan Permuseuman sejak 2013 lalu diresmikan oleh Presiden Republik Indonesia, Joko Widodo pada tanggal 9 Agustus.
-                        </LeadText>
-                        <LeadText color="blueGray">   
-                            Museum Radya Pustaka, Museum Tertua di Indonesia. Didirikan oleh Kanjeng Raden Adipati Sosrodiningrat IV pada 18 Oktober 1890 ini merupakan museum tertua yang ada di Indonesia.
-                        </LeadText>
-                        <a
-                            href="#pablo"
-                            className="font-medium text-light-blue-500 mt-2 inline-block"
-                        >
-                            Read More
-                        </a>
-                    </div>
-
-                    <div className="w-full md:w-4/12 px-4 mx-auto flex justify-center mt-24 lg:mt-0">
-                        <Card>
-                            <CardImage alt="Card Image" src={museumKeris} />
-                            <CardBody>
-                                <H6 color="gray">Museum Keris</H6>
-                                <Paragraph color="blueGray">
-                                Museum Keris Nusantara merupakan sebuah museum yang dibangun oleh Direktorat Jenderal Kebudayaan, Kementerian Pendidikan dan Kebudayaan melalui Direktorat Pelestarian Cagar Budaya dan Permuseuman
-                                </Paragraph>
-                            </CardBody>
-                        </Card>
-                    </div>
-                </div> */}
             </div>
         </section>
     );

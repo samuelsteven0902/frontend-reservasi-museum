@@ -2,6 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="icon" href="./favicon.ico" />
         <link
             href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -14,17 +15,39 @@
             content="Example pages using Material Tailwind"
         />
         <link rel="apple-touch-icon" href="./apple-icon.png" />
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
         <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.3/dist/flowbite.min.css" />
-        <title>Material Tailwind Kit React</title>
+        <link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+/>
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.4.0/css/select.dataTables.min.css">
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/fixedheader/3.2.3/css/fixedHeader.dataTables.min.css">
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+        <script src="https://cdn.datatables.net/fixedheader/3.2.3/js/dataTables.fixedHeader.min.js"></script>
+        <script src="https://cdn.datatables.net/select/1.4.0/js/dataTables.select.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <title>Reservasi Online</title>
     </head>
     <body>
-        <script src="../node_modules/flowbite/dist/flowbite.js"></script>
         
         <noscript>You need to enable JavaScript to run this app.</noscript>
         <div id="root"></div>
-        <script src="../node_modules/flowbite/dist/flowbite.js"></script>
+        
+        
+        <!-- <script src="../node_modules/flowbite/dist/flowbite.js"></script> -->
+        <!-- <script src="../node_modules/flowbite/dist/flowbite.js"></script>
         <script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"></script>
         <script src="./TW-ELEMENTS-PATH/dist/js/index.min.js"></script>
-        <script src="../node_modules/tw-elements/dist/js/index.min.js"></script>
+        <script src="../node_modules/tw-elements/dist/js/index.min.js"></script> -->
+        <script>
+            $(document).ready(function () {
+                $('#dataTable').DataTable();
+
+            });
+        </script>
+        
     </body>
 </html>
