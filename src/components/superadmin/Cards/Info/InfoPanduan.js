@@ -5,7 +5,7 @@ function InfoPanduan() {
   <div className='container px-24 relative flex flex-col min-w-0 break-words w-full'>
     
 
-    <h3 class="font-bold text-5xl text-white">Panduan</h3>
+    <h3 class="font-bold text-5xl text-gray-500">Panduan</h3>
     <div class="flex flex-col " >
         <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">

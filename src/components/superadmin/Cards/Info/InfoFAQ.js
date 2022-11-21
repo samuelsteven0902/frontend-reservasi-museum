@@ -175,7 +175,7 @@ const deleteFAQ = (e, id) => {
   return (
   <div className='container  relative flex flex-col min-w-0 break-words w-full'>
     
-    <h3 class="font-bold text-5xl text-white">Frequently Asked Questions</h3>
+    <h3 class="font-bold text-5xl text-gray-500">Frequently Asked Questions</h3>
     
     <div class="flex flex-col" >
         <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
