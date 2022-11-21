@@ -4,6 +4,7 @@ import Cookies from 'js-cookie'
 import React, { useEffect, useState } from 'react'
 import swal from 'sweetalert'
 import kosong from "../../assets/img/admin/nothing.svg"
+import DefaultFooterAdmin from "components/DefaultFooterAdmin.js";
 
 function DataKehadiran() {
 
@@ -155,7 +156,7 @@ function DataKehadiran() {
         {pengunjung_HTMLTABLE}
 
     </div>
-
+      <DefaultFooterAdmin/>
     </>
   )
 }

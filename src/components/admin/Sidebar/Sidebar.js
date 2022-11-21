@@ -102,7 +102,7 @@ export default function Sidebar() {
                 >
                   <i
                     className={
-                      "fas fa-tv mr-2 text-sm " +
+                      "fas fa-solid fa-chart-bar mr-2 text-sm " +
                       (window.location.href.indexOf("/admin/grafik") !== -1
                         ? "opacity-75"
                         : "text-blueGray-300")
@@ -124,7 +124,8 @@ export default function Sidebar() {
                 >
                   <i
                     className={
-                      "fas fa-map-marked mr-2 text-sm " +
+                      "fas fa-solid fa-users mr-2 text-sm " +
+                      // <i class="fa-solid fa-users"></i>
                       (window.location.href.indexOf("/admin/data-pengunjung") !== -1
                         ? "opacity-75"
                         : "text-blueGray-300 ")

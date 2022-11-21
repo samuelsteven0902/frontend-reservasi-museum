@@ -86,10 +86,10 @@ export default function WorkingSection({setRes}) {
         const fetchCategory = async ()=>
         {
             // const resCategory = await axios.get(`http://localhost:8000/api/show_category/${museumId}`)
-            //                                 .then((res)=>{  
-                //                                     setCategory(res.data.katergori); 
-                //                                     console.log(category);
-                //                                 } )
+            // .then((res)=>{  
+                // setCategory(res.data.katergori); 
+                // console.log(category);
+                // } )
                 const resCategory = await fetch(`http://localhost:8000/api/show_category/${museumId}`)
                 const resCategoryData = await resCategory.json()
             setCategory(await resCategoryData.kategori); 
@@ -102,12 +102,12 @@ export default function WorkingSection({setRes}) {
 
     useEffect(() => {
     //   setRes(input); 
-      document.addEventListener("keydown", hidenOnEscape , true);
-      document.addEventListener("click", hideOnClickOutside , true    );
-      
-      //   setInput({...input,museum:museum}) 
+    document.addEventListener("keydown", hidenOnEscape , true);
+    document.addEventListener("click", hideOnClickOutside , true    );
+
+      //  setInput({...input,museum:museum}) 
         // setInput({...input,calendar:calendar}) 
-      
+
     }, [input,museum])
     // console.log(museumClass);
     
@@ -186,14 +186,13 @@ console.log(input);
                             const selectedMuseum = e.target.id;
                             setMuseumId(option)
                             setInput({...input,museum:option})
-                            setNamaInput({...input,namaMuseum:e.target.value})
-                            console.log(e.target);
-                            console.log(selectedMuseum);
+                            setNamaInput({...namaInput,namaMuseum:e.target.value})
+                            // console.log(selectedMuseum);
                             cekMuseum()
                             // console.log(e); 
                             // setMuseum(selectedMuseum);
                         }}>
-                        <option >{namaInput.namaMuseum}</option>
+                        <option disabled>{namaInput.namaMuseum}</option>
                         {museum && museum.map((item,index) =>{
                             // console.log(item.id);
                             return(
@@ -212,7 +211,7 @@ console.log(input);
                         }} 
                     disabled={disabledCategory} 
                     > 
-                        <option lassName='p-7 m-5 text-xl'>{namaInput.namaCategory}</option>
+                        <option className='p-7 m-5 text-xl'>{namaInput.namaCategory}</option>
 
                         {category && typeof category !== 'string'  && category.map((itemm,indexx)=>{
                         return(

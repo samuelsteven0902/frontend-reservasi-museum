@@ -237,7 +237,7 @@ console.log(dataa);
             setChecked(!checked)
               }
            } id="checkbox-2" aria-describedby="checkbox-2"  className="bg-gray-50 border-gray-300 focus:ring-3 focus:ring-blue-300 h-4 w-4 rounded" />
-                    <label for="checkbox-2" className="text-sm ml-3 font-medium text-blue-700 hover:text-blue-300 ">Saya setuju dengan Syarat dan Ketentuan</label>
+                    <label for="checkbox-2" className="text-sm ml-3 font-medium text-black">Saya setuju dengan Syarat dan Ketentuan</label>
                 </div>
                 
                 <div className="flex flex-wrap justify-end">
