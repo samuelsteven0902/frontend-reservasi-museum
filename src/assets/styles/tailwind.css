@@ -1582,9 +1582,6 @@ video {
 }.text-blue-500{
 	--tw-text-opacity: 1;
 	color: rgba(63, 131, 248, var(--tw-text-opacity));
-}.text-blue-700{
-	--tw-text-opacity: 1;
-	color: rgba(26, 86, 219, var(--tw-text-opacity));
 }.text-red-400{
 	--tw-text-opacity: 1;
 	color: rgba(249, 128, 128, var(--tw-text-opacity));
