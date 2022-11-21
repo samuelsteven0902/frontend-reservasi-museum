@@ -10,6 +10,7 @@ import axios from 'axios';
 import { Redirect, useHistory } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import SetCookie from 'hooks/setCookie';
+import swal from 'sweetalert';
 
 
 export default function Login() {
@@ -70,6 +71,14 @@ console.log(e.target);
                     history.push('/admin');
                 }
             }
+            else if(res.data.status === 401)
+            {
+                swal("Ada Kesalahan!",res.data.message,"warning");
+                setPwd('');  
+                
+            thisClicked.innerText = "Login"
+            }
+            
         })
 
 
@@ -121,6 +130,7 @@ console.log(e.target);
                                 class="w-3/4 mx-auto form-control block px-4 py-2 text-lg font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-red-600 focus:outline-none focus:ring-0"
                                 id="exampleFormControlInput2"
                                 placeholder="Password"
+                                value={pwd}
                                 onChange={e=>setPwd(e.currentTarget.value)}
                                 />
                             </div>

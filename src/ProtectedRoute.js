@@ -3,6 +3,7 @@ import Admin from 'layout/Admin';
 import SuperAdmin from 'layout/superadmin';
 import React, { useEffect, useState } from 'react'
 import { Route , Redirect, NavLink } from 'react-router-dom'
+import ReactLoading from 'react-loading';
 
 
 
@@ -47,7 +48,9 @@ function ProtectedRoute({role, component: Component, ...rest}) {
     <Route 
     {...rest}
     render={(props) =>{
-          if(user == 'loading') return "Loading..."
+          if(user == 'loading') return  <div className='h-screen flex justify-center items-center '>
+                                            <ReactLoading type={"spinningBubbles"} color={"red"} height={'20%'} width={'20%'} className="m-auto" />
+                                        </div>
           // if(user == 'admin') return <Redirect to="/admin" />
           if(user == 'admin') return <Admin {...props}/>
           if(user == 'superadmin') return <SuperAdmin {...props}/>

@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import 'flowbite'
 import swal from "sweetalert";
 import { Link, useHistory } from "react-router-dom";
+
+import { BiTrash, BiPencil } from 'react-icons/bi';
 // import React from 'react'
 // import TextField from '@material-ui/core/TextField';
 // import Autocomplete,
@@ -38,13 +40,13 @@ const [namaInput, setNamaInput] = useState({
 })
 
 
+const fetchMuseum = async ()=>{
+    const resMuseum = await axios.get('http://localhost:8000/api/show_museum').then((res)=>{
+        setMuseum(res.data.museum);
+        console.log(res.data.museum);
+    }) 
+}
 useEffect(() => {
-    const fetchMuseum = async ()=>{
-        const resMuseum = await axios.get('http://localhost:8000/api/show_museum').then((res)=>{
-            setMuseum(res.data.museum);
-            console.log(res.data.museum);
-        }) 
-    }
     fetchMuseum();
 }, [])
 
@@ -67,10 +69,14 @@ const options = ['One', 'Two', 'Three', 'Four']
 const redirect = useHistory();
 
 
-useEffect(() => {
-  
+const fetchData = () =>{
     axios.get('http://localhost:8000/api/show_harga')
         .then(res=>{setSemuaHarga(res.data.harga);console.log(res); setLoading(false) })
+}
+
+useEffect(() => {
+  
+    fetchData();
     
 
     idHarga !== undefined &&  axios.get(`http://localhost:8000/api/edit-harga/${idHarga}`).then(res=>{
@@ -185,8 +191,8 @@ const storeData = (e) => {
         if(res.data.status === 200)
         {
             // console.log('berhasil');
-            // swal("Success",res.data.message,"success").then(e=>
-            //     window.location.reload(false));
+            swal("Success",res.data.message,"success");
+            fetchData();
             
         }
         else if(res.data.status === 422)
@@ -201,24 +207,43 @@ const storeData = (e) => {
 }
 //end
 
-const deleteStudent = (e, id) => {
+const deleteData = (e, id) => {
     e.preventDefault();
     
-    const thisClicked = e.currentTarget;
-    thisClicked.innerText = "Deleting";
+    // const thisClicked = e.currentTarget;
+    // thisClicked.innerText = "Deleting";
+    
+   console.log(e,id);
 
-    axios.delete(`http://localhost:8000/api/hapus-harga/${idHarga}`).then(res=>{
-        if(res.data.status === 200)
-        {
-            swal("Deleted!",res.data.message,"success");
-            thisClicked.closest("tr").remove();
+    swal({
+        title: "Anda Yakin menghapus Museum?",
+        text: "Sekali Hapus, anda tidak bisa mencadangkannya lagi!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+
+            axios.delete(`http://localhost:8000/api/delete-data/${id}`).then(res=>{
+                if(res.data.status === 200)
+                {
+                    // console.log('berhasil delet');
+                    swal("Deleted!",res.data.message,"success")
+                    fetchData();
+                    // thisClicked.closest("tr").remove();
+                }
+                else if(res.data.status === 404)
+                {
+                    swal("Error",res.data.message,"error");
+                }})
+        } else {
+          swal("Data anda aman!");
         }
-        else if(res.data.status === 404)
-        {
-            swal("Error",res.data.message,"error");
-            thisClicked.innerText = "Delete";
-        }
-    });
+
+    
+   
+    })
 }
 
 function getFirstLetters(str) {
@@ -242,7 +267,7 @@ function getFirstLetters(str) {
 
 if(loading)
 {
-    return <h4>Loading Student Data...</h4> 
+    var harga_HTMLTABLE =  <h4 className="text-xl flex text-center m-3">Loading Data...</h4> 
 }
 else
 {
@@ -279,9 +304,13 @@ else
                     <td className=" text-gray-900 px-6 py-4 whitespace-nowrap ">
                      
                     
-                    <button type="button" className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" data-bs-toggle="modal" id={item.id_kategori} data-bs-target="#exampleModalCenteredScrollable" onClick={handleHarga}>
-                        Edit
+                    <button type="button" className=" text-white ml-4 bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded text-sm px-4 py-1.5 flex text-center mr-2 w-3/4 mb-2 align-middle items-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 " data-bs-toggle="modal" id={item.id_kategori} data-bs-target="#exampleModalCenteredScrollable" onClick={handleHarga} >
+                       <BiPencil className="mr-1" /> Edit
                     </button>
+
+
+                    <button type="button" className="text-white ml-4 bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded text-sm px-3 py-1.5 flex text-center mr-2 mb-2 w-3/4 items-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900" onClick={(e) => deleteData(e, item.id)}>
+                    <BiTrash  className="mr-1" />Hapus</button>
 
 
                     {/* <button type="button" className="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900" onClick={(e) => deleteStudent(e, item.id)}>Hapus</button> */}
@@ -295,8 +324,12 @@ else
   return (
   <div className='container relative flex flex-col min-w-0 break-words w-full mb-6  rounded '>
     
-    <div className="my-2  w-72">
-        <input type='text' className="w-full border-none ring-2 ring-red-300 focus:border-none focus:ring-red-500 focus:ring-2 active:border-none  rounded-lg"  placeholder="Cari nama museum, kategori, harga, ..." onChange={e=>{setSearchTerm(e.target.value)}} /> 
+    <div className="flex justify-between">
+        <input type='text' className="w-72 border-none ring-2 ring-red-300 focus:border-none focus:ring-red-500 focus:ring-2 active:border-none  rounded-lg"  placeholder="Cari nama museum, kategori, harga, ..." onChange={e=>{setSearchTerm(e.target.value)}} /> 
+
+
+        <button type="button" class="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out" data-bs-toggle="modal" data-bs-target="#modalTambahData"  >Tambah Data</button>
+
       </div>
 
     <div className="flex flex-col " >
@@ -334,7 +367,7 @@ else
                         <div className="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto my-auto bg-white bg-clip-padding rounded-md outline-none text-current">
                         <div className="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
                             <h5 className="text-xl font-medium leading-normal text-gray-800" id="exampleModalCenteredScrollableLabel">
-                            Modal title
+                            Edit Data
                             </h5>
                             <button type="button"
                             className="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"
@@ -402,7 +435,7 @@ else
                                     </div>
                                     <div className="w-96 mb-4  mx-auto md:mt-0 mt-8">
                                         <label className="block text-gray-700 text-sm font-bold mb-2" for="username">
-                                            Harga Nama Kategori
+                                            Harga Nama Kategorii
                                         </label>
                                         <input name='jumlah'  className="shadow appearance-none bg-gray-200 cursor-not-allowed border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" value={harga.nama_kategori} disabled={true}/>
                                         <span className="text-sm text-red-500"></span>
@@ -449,7 +482,6 @@ else
         </div>
     </div>
 
-    <button type="button" class="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out" data-bs-toggle="modal" data-bs-target="#modalTambahData"  >Tambah Data</button>
 
                 <div className="modal fade fixed bg-gray-300 z-50 p-32 px-52 items-center m-auto w-screen bg-opacity-60 top-0 left-0 hidden h-screen outline-none overflow-x-hidden overflow-y-auto " id="modalTambahData" tabIndex="-1" aria-labelledby="modalTambahData" aria-modal="true" role="dialog">
                     <div className="modal-dialog w-full h-full my-auto modal-dialog-centered modal-dialog-scrollable relative items-center pointer-events-none px-40">

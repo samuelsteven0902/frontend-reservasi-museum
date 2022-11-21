@@ -76,11 +76,14 @@ export default function DefaultNavbar() {
                             <NavbarDropdown />
                             
 
-                            {user == ""? <Link to="/login" className='px-5 mx-3 text-black font-bold  rounded-sm'>
+                            <div className='w-60 flex justify-end'>
+                            {user == ""? <Link to="/login" className='px-5 mx-3 py-2 text-white font-bold  rounded-md bg-red-500 hover:bg-red-400 '>
                                 Login as Admin
-                            </Link>:<Link to={'/'+user} className='px-5 mx-3 text-red-500 font-bold  rounded-sm'>
+                            </Link>:<Link to={'/'+user} className='px-5 mx-3 py-2 text-red-500 font-bold  rounded-md bg-gray-300 hover:bg-gray-400 '>
                                 Dashboard {user}
                             </Link>}
+                            </div>
+
                                                
                         </div>
                     </Nav>
