@@ -49,13 +49,13 @@ function InputData() {
   return (
     <>
         <div className="absolute w-full z-20">
-              <DefaultNavbar />
+          <DefaultNavbar />
         </div >
         <main className='bg-gray-100 relative'>
           <Header state={stateParamVal} data={data} />
           <FormInput dataAwal={stateParamVal} dataa={data}/>
         </main>
-        <DefaultFooter />
+          <DefaultFooter />
     </>
   )
 }

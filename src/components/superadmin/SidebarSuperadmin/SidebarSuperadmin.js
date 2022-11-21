@@ -3,7 +3,6 @@ import LogOut from "pages/LogOut.js";
 import profile from '../../../assets/img/admin/profile.png'
 import React from "react";
 import { Link } from "react-router-dom";
-import profile from '../../../assets/img/admin/profile.png'
 
 import NotificationDropdown from "../Dropdowns/NotificationDropdown.js";
 import UserDropdown from "../Dropdowns/UserDropdown.js";
@@ -104,7 +103,8 @@ export default function SidebarSuperadmin() {
                 >
                   <i
                     className={
-                      "fas fa-tv mr-2 text-sm " +
+                      "fas fa-solid fa-chart-bar mr-2 text-sm " +
+                      // <i class="fa-solid fa-chart-simple"></i>
                       (window.location.href.indexOf("/superadmin/grafik") !== -1
                         ? "opacity-75"
                         : "text-blueGray-300")
@@ -126,7 +126,7 @@ export default function SidebarSuperadmin() {
                 >
                   <i
                     className={
-                      "fas fa-solid fa-file mr-2 text-sm " +
+                      "fas fa-solid fa-money-check mr-2 text-sm " +
                       (window.location.href.indexOf("/superadmin/master-tiket") !== -1
                         ? "opacity-75"
                         : "text-blueGray-300")
@@ -148,7 +148,7 @@ export default function SidebarSuperadmin() {
                 >
                   <i
                     className={
-                      "fas fa-solid fa-file mr-2 text-sm " +
+                      "fas fa-solid fa-landmark mr-2 text-sm " +
                       (window.location.href.indexOf("/superadmin/tambah-museum") !== -1
                         ? "opacity-75"
                         : "text-blueGray-300")
@@ -170,7 +170,7 @@ export default function SidebarSuperadmin() {
                 >
                   <i
                     className={
-                      "fas fa-table mr-2 text-sm " +
+                      "fas fa-solid fa-user mr-2 text-sm " +
                       (window.location.href.indexOf("/superadmin/admin") !== -1
                         ? "opacity-75"
                         : "text-blueGray-300")
@@ -192,7 +192,7 @@ export default function SidebarSuperadmin() {
                 >
                   <i
                     className={
-                      "fas fa-solid fa-money-bill mr-2 text-sm " +
+                      "fas fa-solid fa-wallet mr-2 text-sm " +
                       (window.location.href.indexOf("/superadmin/pemasukan") !== -1
                         ? "opacity-75"
                         : "text-blueGray-300")

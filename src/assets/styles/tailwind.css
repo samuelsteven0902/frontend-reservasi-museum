@@ -987,6 +987,8 @@ video {
 	width: 40%;
 }.w-6\/12{
 	width: 50%;
+}.w-36{
+	width: 9rem;
 }.w-screen{
 	width: 100vw;
 }.min-w-full{
@@ -2837,10 +2839,10 @@ video {
 		padding-left: 6rem;
 	}.md\:pt-10{
 		padding-top: 2.5rem;
-	}.md\:pb-2{
-		padding-bottom: 0.5rem;
 	}.md\:pb-1{
 		padding-bottom: 0.25rem;
+	}.md\:pb-2{
+		padding-bottom: 0.5rem;
 	}.md\:text-left{
 		text-align: left;
 	}.md\:opacity-100{

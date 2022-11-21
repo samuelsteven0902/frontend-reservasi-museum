@@ -86,10 +86,10 @@ export default function WorkingSection({setRes}) {
         const fetchCategory = async ()=>
         {
             // const resCategory = await axios.get(`http://localhost:8000/api/show_category/${museumId}`)
-            //                                 .then((res)=>{  
-                //                                     setCategory(res.data.katergori); 
-                //                                     console.log(category);
-                //                                 } )
+            // .then((res)=>{  
+                // setCategory(res.data.katergori); 
+                // console.log(category);
+                // } )
                 const resCategory = await fetch(`http://localhost:8000/api/show_category/${museumId}`)
                 const resCategoryData = await resCategory.json()
             setCategory(await resCategoryData.kategori); 
@@ -102,12 +102,12 @@ export default function WorkingSection({setRes}) {
 
     useEffect(() => {
     //   setRes(input); 
-      document.addEventListener("keydown", hidenOnEscape , true);
-      document.addEventListener("click", hideOnClickOutside , true    );
-      
-      //   setInput({...input,museum:museum}) 
+    document.addEventListener("keydown", hidenOnEscape , true);
+    document.addEventListener("click", hideOnClickOutside , true    );
+
+      //  setInput({...input,museum:museum}) 
         // setInput({...input,calendar:calendar}) 
-      
+
     }, [input,museum])
     // console.log(museumClass);
     

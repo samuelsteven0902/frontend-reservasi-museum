@@ -29,12 +29,12 @@ export default function Navbar() {
                 className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white  rounded text-sm shadow outline-none focus:outline-none focus:ring w-full pl-16"
               />
             </div>
-          </form> */}
-          {/* User */}
-          {/* <ul className="flex-col md:flex-row list-none items-center hidden md:flex">
+          </form>
+          User
+          <ul className="flex-col md:flex-row list-none items-center hidden md:flex">
             <UserDropdown />
             <img src={profile} className="rounded-full w-12 h-12 -  right-5"/>
-          </ul> */}
+          </ul>
         </div>
       </nav>
       End Navbar */}

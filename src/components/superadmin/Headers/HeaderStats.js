@@ -8,7 +8,7 @@ export default function HeaderStats() {
   return (
     <>
       {/* Header */}
-      <div className="relative md:pt-10 pb-32 pt-12">
+      <div className="relative md:pt-10 pb-10 pt-12">
         <div className="px-4 md:px-10 mx-auto w-full">
           <div>
             {/* Card stats */}
@@ -22,7 +22,7 @@ export default function HeaderStats() {
                   statPercentColor="text-emerald-500"
                   statDescripiron="Bulan Lusa"
                   statIconName="far fa-chart-bar"
-                  statIconColor="bg-red-500"
+                  statIconColor="bg-[#A70B0B]"
                 />
               </div>
               <div className="w-full lg:w-6/12 xl:w-3/12 px-2">
@@ -33,8 +33,8 @@ export default function HeaderStats() {
                   statPercent="3.48"
                   statPercentColor="text-red-500"
                   statDescripiron="Bulan Kemarin"
-                  statIconName="fas fa-chart-pie"
-                  statIconColor="bg-orange-500"
+                  statIconName="far fa-chart-bar"
+                  statIconColor="bg-[#A70B0B]"
                 />
               </div>
               <div className="w-full lg:w-6/12 xl:w-3/12 px-2">
@@ -43,10 +43,10 @@ export default function HeaderStats() {
                   statTitle="92.000"
                   statArrow="down"
                   statPercent="1.10"
-                  statPercentColor="text-orange-500"
+                  statPercentColor="text-red-500"
                   statDescripiron="Kemarin Lusa"
-                  statIconName="fas fa-users"
-                  statIconColor="bg-pink-500"
+                  statIconName="far fa-chart-bar"
+                  statIconColor="bg-[#A70B0B]"
                 />
               </div>
               <div className="w-full lg:w-6/12 xl:w-3/12 px-2">
@@ -57,8 +57,8 @@ export default function HeaderStats() {
                   statPercent="12"
                   statPercentColor="text-emerald-500"
                   statDescripiron="Kemarin"
-                  statIconName="fas fa-percent"
-                  statIconColor="bg-lightBlue-500"
+                  statIconName="far fa-chart-bar"
+                  statIconColor="bg-[#A70B0B]"
                 />
               </div>
             </div>
