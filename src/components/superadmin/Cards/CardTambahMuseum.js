@@ -244,7 +244,8 @@ else
                     </button>
 
 
-                    <button type="button" className="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out ml-1" onClick={(e) => deleteStudent(e, item.id)}>Hapus</button>
+                    <button type="button" className="text-white ml-4 bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded text-sm px-4 py-1.5 flex text-center mr-2 mb-2 items-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"  onClick={e=>deleteMuseum(e,item.id)}>
+                    <BiTrash  className="mr-1" />Hapus</button>
                     
                     </td>
                     </tr>
@@ -266,16 +267,16 @@ else
         <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
             <div className="overflow-hidden   m-2">
-                <table  id="table_id" className="rounded-xl shadow-xl w-2/3" >
+                <table  id="table_id" className="rounded-xl shadow-xl w-full" >
                 <thead className="border-b bg-white ">
                     <tr className=''>
-                    <th scope="col" className="text-xl font-medium text-[#A70B0B] px-6 py-4 text-center ">
-                        ID_museumm
+                    <th scope="col" className="text-xl w-12 font-medium text-[#A70B0B] px-6 py-4 text-center ">
+                        ID
                     </th>
-                    <th scope="col" className="text-xl font-medium text-[#A70B0B] px-6 py-4 text-center">
+                    <th scope="col" className="text-xl font-medium text-[#A70B0B] px-6 py-4 text-left">
                       Nama Museum
                     </th>
-                    <th scope="col" className="text-xl font-medium text-[#A70B0B] px-6 py-4 text-center">
+                    <th scope="col" className="text-xl w-72 font-medium text-[#A70B0B] px-6 py-4 text-">
                         Aksi
                     </th>
                     </tr>
@@ -372,7 +373,6 @@ else
     </div>
 
 
-
             
                     <div  className="modal fade fixed bg-gray-300 z-50 p-32 px-52 items-center m-auto w-screen bg-opacity-60 top-0 left-0 hidden h-screen outline-none overflow-x-hidden overflow-y-auto " id="modalTambahMuseum" tabIndex="-1" aria-labelledby="modalTambahMuseum" aria-modal="true" role="dialog">
                     <div className="modal-dialog w-full h-full my-auto modal-dialog-centered modal-dialog-scrollable relative items-center pointer-events-none px-40">
@@ -403,9 +403,11 @@ else
                                     className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
                                     <button type="button"
                                     className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
-                                    data-bs-dismiss="modal">
+                                    data-bs-dismiss="modal"
+                                    ref={CloseRef}
+                                    >
                                     Tutup
-                                    </button>
+                                    </button> 
                                     <button type="submit"
                                     className="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out ml-1">
                                     Tambah Museum
