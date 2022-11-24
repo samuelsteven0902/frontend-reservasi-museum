@@ -25,7 +25,7 @@ console.log(data);
   <div className='container px-24 relative flex flex-col min-w-0 break-words w-full'>
     
 
-    <h3 class="font-bold text-5xl text-white">Panduan</h3>
+    <h3 class="font-bold text-2xl text-gray-600">Panduan</h3>
     <div class="flex flex-col " >
         <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
@@ -33,7 +33,7 @@ console.log(data);
                 <table class="min-w-full ">
               <thead class="border-b bg-white ">
                 <tr className=''>
-                    <p scope="col" class="text-xl font-medium text-[#A70B0B] px-6 py-4 text-left ">
+                    <p scope="col" class="text-sm font-medium text-[#A70B0B] px-6 py-4 text-left ">
                         1. Lorem Ipsum is simply dummy text of the printing 
                     </p>
                     
