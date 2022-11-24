@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
+import ReactLoading from 'react-loading';
 
 function CardAdmin() {
 
@@ -29,7 +30,11 @@ function CardAdmin() {
 
   if(loading)
   {
-    return <h4>Loading pemasukan Data ....</h4>
+    var pemasukan_HTMLTABLE =   <tr className="bg-white border-b" >
+                                <td colspan={6} className="text-xl text-center justify-center font-semibold py-5">
+                                <ReactLoading type={"spin"} color={"red"} height={'5%'} width={'5%'} className="m-auto" />
+                                </td>
+                            </tr>
   }
   else
   {

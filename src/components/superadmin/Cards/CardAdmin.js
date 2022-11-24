@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import swal from 'sweetalert'
 import $ from 'jquery';
+import ReactLoading from 'react-loading';
 
 function CardAdmin() {
 
@@ -21,7 +22,9 @@ function CardAdmin() {
 
     const fetchData = () =>
     {
-      axios.get(`http://localhost:8000/api/show_admin`).then(res=>{console.log(res.data.admin); setAdmin(res.data.admin); setLoading(false)})
+      axios.get(`http://localhost:8000/api/show_admin`).then(res=>{console.log(res.data.admin); setAdmin(res.data.admin); 
+      setLoading(false)
+    })
     }
 
     const handleSubmit = (e) =>{
@@ -96,7 +99,11 @@ function CardAdmin() {
 
     if(loading)
     {
-        return <h4> Loading Data Admin...</h4>
+        var ADMIN_HTMLTABLE =   <tr className="bg-white border-b" >
+                                    <td colspan={5} className="text-xl text-center justify-center font-semibold py-5">
+                                    <ReactLoading type={"spin"} color={"red"} height={'5%'} width={'5%'} className="m-auto" />
+                                    </td>
+                                </tr>
     }
     else
     {

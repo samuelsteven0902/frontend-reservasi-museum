@@ -4,6 +4,7 @@ import 'flowbite'
 import swal from "sweetalert";
 import { BiTrash, BiPencil } from 'react-icons/bi';
 import $ from 'jquery'; 
+import ReactLoading from 'react-loading';
 // import React from 'react'
 // import TextField from '@material-ui/core/TextField';
 // import Autocomplete,
@@ -60,7 +61,9 @@ const CloseRef = useRef();
 useEffect(() => {
   
     axios.get('http://localhost:8000/api/show_museum')
-        .then(res=>{setSemuaHarga(res.data.harga);console.log(res); setLoading(false) })
+        .then(res=>{setSemuaHarga(res.data.harga);console.log(res); 
+            setLoading(false)
+         })
     
 
     idMuseum !== undefined &&  axios.get(`http://localhost:8000/api/edit-museum/${idMuseum}`).then(res=>{
@@ -213,7 +216,11 @@ function getFirstLetters(str) {
 
 if(loading)
 {
-    return <h4>Loading Data Museum ...</h4> 
+    var harga_HTMLTABLE = <tr className="bg-white border-b" >
+                            <td colspan={3} className="text-xl text-center justify-center font-semibold py-5">
+                            <ReactLoading type={"spin"} color={"red"} height={'5%'} width={'5%'} className="m-auto" />
+                            </td>
+                          </tr>
 }
 else
 {
@@ -231,7 +238,7 @@ else
     }).map((item,index)=>{
         return(
             <tr className="bg-white border-b" key={index}>
-                    <td className=" text-gray-900 px-6 py-4 whitespace-nowrap">
+                    <td  className=" text-gray-900 px-6 py-4 whitespace-nowrap">
                         {item.id}
                     </td>
                     <td className=" text-gray-900  px-6 py-4 whitespace-nowrap">
@@ -266,7 +273,7 @@ else
     <div className="flex flex-col " >
         <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
-            <div className="overflow-hidden   m-2">
+            <div className="overflow-hidden  shadow-lg rounded-xl m-2">
                 <table  id="table_id" className="rounded-xl shadow-xl w-full" >
                 <thead className="border-b bg-white ">
                     <tr className=''>
