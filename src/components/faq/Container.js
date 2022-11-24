@@ -30,8 +30,7 @@ export default function Container({  }) {
     if(loading)
     {
         return (
-                  <ReactLoading type={"bubbles"} color={"red"} height={'20%'} width={'20%'} className="m-auto" />
-          
+            <ReactLoading type={"bubbles"} color={"red"} height={'20%'} width={'20%'} className="m-auto" />
         )
     }
     else
@@ -45,7 +44,7 @@ export default function Container({  }) {
                     aria-controls="panel2a-content"
                     id="panel2a-header"
                     >
-                    <Typography>{item.question}<span className='text-blue-500'>test</span> </Typography>
+                    <Typography>{item.question}<span className='text-blue-500'></span> </Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                     <Typography>

@@ -78,10 +78,8 @@ const fetchData = () =>{
 }
 
 useEffect(() => {
-  
     fetchData();
     
-
     idHarga !== undefined &&  axios.get(`http://localhost:8000/api/edit-harga/${idHarga}`).then(res=>{
         setHarga(res.data.harga[0]);console.log(res.data.harga[0]);
         setLoadingHarga(false);
@@ -91,7 +89,6 @@ useEffect(() => {
 const handleHarga = async(e) =>{
     setIdHarga(...e.target.id)
     console.log(idHarga);
-
 }
 
 const handleInput = (e) => {
@@ -180,7 +177,7 @@ const storeData = (e) => {
     e.preventDefault();
 
     const thisClicked = e.currentTarget[5];
-    thisClicked.innerText = "Storing";
+    thisClicked.innerText = "Menambahkan";
     const data = {
         nama: tambahData.nama_museum,
         kategori: tambahData.nama_kategori,
@@ -215,7 +212,7 @@ const deleteData = (e, id) => {
     // const thisClicked = e.currentTarget;
     // thisClicked.innerText = "Deleting";
     
-   console.log(e,id);
+    console.log(e,id);
 
     swal({
         title: "Anda Yakin menghapus Museum?",
@@ -223,8 +220,8 @@ const deleteData = (e, id) => {
         icon: "warning",
         buttons: true,
         dangerMode: true,
-      })
-      .then((willDelete) => {
+    })
+        .then((willDelete) => {
         if (willDelete) {
 
             axios.delete(`http://localhost:8000/api/delete-data/${id}`).then(res=>{
@@ -240,33 +237,31 @@ const deleteData = (e, id) => {
                     swal("Error",res.data.message,"error");
                 }})
         } else {
-          swal("Data anda aman!");
+            swal("Data anda aman!");
         }
 
     
-   
+
     })
 }
 
 function getFirstLetters(str) {
     const firstLetters = str
-      .split(' ')
-      .map(word => word[0])
-      .join('');
-  
-    return firstLetters;
-  }
+        .split(' ')
+        .map(word => word[0])
+        .join('');
 
-  const rupiah = (number)=>{
+    return firstLetters;
+    }
+
+const rupiah = (number)=>{
     return new Intl.NumberFormat("id-ID", {
     //   style: "currency",
-      currency: "IDR"
+    currency: "IDR"
     }).format(number);
-  }
+}
 
-
-  console.log(tambahMuseum);
-
+console.log(tambahMuseum);
 if(loading)
 {
     var harga_HTMLTABLE =   <tr className="bg-white border-b" >
@@ -308,35 +303,26 @@ else
                         {rupiah(item.hari_libur)}
                     </td>
                     <td className=" text-gray-900 px-6 py-4 whitespace-nowrap ">
-                     
-                    
-                    <button type="button" className=" text-white ml-4 bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded text-sm px-4 py-1.5 flex text-center mr-2 w-3/4 mb-2 align-middle items-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 " data-bs-toggle="modal" id={item.id_kategori} data-bs-target="#exampleModalCenteredScrollable" onClick={handleHarga} >
-                       <BiPencil className="mr-1" /> Edit
-                    </button>
-
+                
+                    <button type="button" className=" text-white ml-4 bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded text-sm px-4 py-1.5 flex text-center mr-2 w-3/4 mb-2 align-middle items-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900" data-bs-toggle="modal" id={item.id_kategori} data-bs-target="#exampleModalCenteredScrollable" onClick={handleHarga} >
+                    <BiPencil className="mr-1" />Edit</button>
 
                     <button type="button" className="text-white ml-4 bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded text-sm px-3 py-1.5 flex text-center mr-2 mb-2 w-3/4 items-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900" onClick={(e) => deleteData(e, item.id)}>
                     <BiTrash  className="mr-1" />Hapus</button>
 
-
-                    {/* <button type="button" className="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900" onClick={(e) => deleteStudent(e, item.id)}>Hapus</button> */}
-                    
                     </td>
                     </tr>
         )
     })
 }
 
-  return (
-  <div className='container relative flex flex-col min-w-0 break-words w-full mb-6  rounded '>
-    
-    <div className="flex justify-between">
-        <input type='text' className="w-72 border-none ring-2 ring-red-300 focus:border-none focus:ring-red-500 focus:ring-2 active:border-none  rounded-lg"  placeholder="Cari nama museum, kategori, harga, ..." onChange={e=>{setSearchTerm(e.target.value)}} /> 
+return (
+    <div className='container relative flex flex-col min-w-0 break-words w-full mb-6 rounded '>
+        <div className="flex justify-between">
+            <input type='text' className="w-72 border-none ring-2 ring-red-300 focus:border-none focus:ring-red-500 focus:ring-2 active:border-none rounded-lg" placeholder="Cari nama museum, kategori, harga, ..." onChange={e=>{setSearchTerm(e.target.value)}} /> 
 
-
-        <button type="button" class="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out" data-bs-toggle="modal" data-bs-target="#modalTambahData"  >Tambah Data</button>
-
-      </div>
+            <button type="button" class="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out" data-bs-toggle="modal" data-bs-target="#modalTambahData">Tambah Data</button>
+        </div>
 
     <div className="flex flex-col " >
         <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -368,9 +354,10 @@ else
                 <tbody className=''>
                     {harga_HTMLTABLE}
                     
-                    <div className="modal fade fixed bg-gray-300 z-50 p-32 px-52 items-center m-auto w-screen bg-opacity-60 top-0 left-0 hidden h-screen outline-none overflow-x-hidden overflow-y-auto " id="exampleModalCenteredScrollable" tabIndex="-1" aria-labelledby="exampleModalCenteredScrollable" aria-modal="true" role="dialog">
-                    <div className="modal-dialog w-full h-full my-auto modal-dialog-centered modal-dialog-scrollable relative items-center pointer-events-none px-40">
-                        <div className="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto my-auto bg-white bg-clip-padding rounded-md outline-none text-current">
+                    <div className="modal fade fixed bg-gray-300 z-50  py-24   mx-auto items-center m-auto w-screen bg-opacity-60 top-0 left-0 hidden h-screen outline-none overflow-x-hidden overflow-y-auto" id="exampleModalCenteredScrollable" tabIndex="-1"
+                    aria-labelledby="exampleModalCenteredScrollable" aria-modal="true" role="dialog">
+                    <div className="modal-dialog w-full md:w-1/2  mx-auto  h-full  my-auto modal-dialog-centered modal-dialog-scrollable relative items-center pointer-events-none lg:w-1/3" >
+                        <div className="modal-content border-none -ml-24 shadow-lg relative flex flex-col w-full pointer-events-auto my-auto bg-white min-w-max bg-clip-padding rounded-md outline-none text-current">
                         <div className="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
                             <h5 className="text-xl font-medium leading-normal text-gray-800" id="exampleModalCenteredScrollableLabel">
                             Edit Data
@@ -380,55 +367,55 @@ else
                             data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         
-                      {loadingHarga?
-                             <form onSubmit={updateHarga} >
-                             <div className="modal-body relative p-4">
-                                 <div className='justify-around md:mt-0 mt-8'>    
-                                     <div className="w-96 mb-4 mx-auto ">
-                                         <label className="block text-gray-700 text-sm font-bold mb-2" for="username">
-                                             Nama Museum
-                                         </label>
-                                         <input name='phone'  className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-gray-200 cursor-not-allowed" id="username" type="text" value="Loading Harga Data..." disabled={true} />
-                                         <span className="text-sm text-red-500"></span>
-                                     </div>
-                                     <div className="w-96 mb-4  mx-auto md:mt-0 mt-8">
-                                         <label className="block text-gray-700 text-sm font-bold mb-2" for="username">
-                                             Harga Nama Kategori
-                                         </label>
-                                         <input name='jumlah'  className="shadow appearance-none bg-gray-200 cursor-not-allowed border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" value="Loading Harga Data..." disabled={true}/>
-                                         <span className="text-sm text-red-500"></span>
-                                     </div>
-                                     <div className="w-96 mb-4  mx-auto md:mt-0 mt-8">
-                                         <label className="block text-gray-700 text-sm font-bold mb-2" for="username">
-                                             Harga Hari Biasa
-                                         </label>
-                                         <input name='hari_biasa' onChange={handleInput}  className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="Loading Harga Data..." />
-                                         <span className="text-sm text-red-500"></span>
-                                     </div>
-                                     <div className="w-96 mb-4  mx-auto md:mt-0 mt-8">
-                                         <label className="block text-gray-700 text-sm font-bold mb-2" for="username">
-                                             Hari Libur
-                                         </label>
-                                         <input name='hari_libur' onChange={handleInput}  className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="Loading Harga Data..." />
-                                         <span className="text-sm text-red-500"></span>
-                                     </div>
-                                 </div>
-                             </div>
-     
-                             <div
-                                 className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
-                                 <button type="button"
-                                 className="inline-block px-6 py-2.5 bg-purple-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-purple-700 hover:shadow-lg focus:bg-purple-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-purple-800 active:shadow-lg transition duration-150 ease-in-out"
-                                 data-bs-dismiss="modal">
-                                 Close
-                                 </button>
-                                 <button type="submit"
-                                 className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out ml-1" id="idSave">
-                                 Save changes
-                                 </button>
-                             </div>
-                             
-                         </form>:
+                    {loadingHarga?
+                            <form onSubmit={updateHarga} >
+                            <div className="modal-body relative p-4">
+                                <div className='justify-around md:mt-0 mt-8'>    
+                                    <div className="w-96 mb-4 mx-auto ">
+                                        <label className="block text-gray-700 text-sm font-bold mb-2" for="username">
+                                            Nama Museum
+                                        </label>
+                                        <input name='phone' className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-gray-200 cursor-not-allowed" id="username" type="text" value="Loading Harga Data..." disabled={true} />
+                                        <span className="text-sm text-red-500"></span>
+                                    </div>
+                                    <div className="w-96 mb-4  mx-auto md:mt-0 mt-8">
+                                        <label className="block text-gray-700 text-sm font-bold mb-2" for="username">
+                                            Harga Nama Kategori
+                                        </label>
+                                        <input name='jumlah'  className="shadow appearance-none bg-gray-200 cursor-not-allowed border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" value="Loading Harga Data..." disabled={true}/>
+                                        <span className="text-sm text-red-500"></span>
+                                    </div>
+                                    <div className="w-96 mb-4  mx-auto md:mt-0 mt-8">
+                                        <label className="block text-gray-700 text-sm font-bold mb-2" for="username">
+                                            Harga Hari Biasa
+                                        </label>
+                                        <input name='hari_biasa' onChange={handleInput}  className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="Loading Harga Data..." />
+                                        <span className="text-sm text-red-500"></span>
+                                    </div>
+                                    <div className="w-96 mb-4  mx-auto md:mt-0 mt-8">
+                                        <label className="block text-gray-700 text-sm font-bold mb-2" for="username">
+                                            Hari Libur
+                                        </label>
+                                        <input name='hari_libur' onChange={handleInput}  className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="Loading Harga Data..." />
+                                        <span className="text-sm text-red-500"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div
+                                className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
+                                <button type="button"
+                                className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+                                data-bs-dismiss="modal">
+                                Tutup
+                                </button>
+                                <button type="submit"
+                                className="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out ml-1" id="idSave">
+                                Simpan Perubahan
+                                </button>
+                            </div>
+
+                        </form>:
                             <form onSubmit={updateHarga} >
                             <div className="modal-body relative p-4">
                                 <div className='justify-around md:mt-0 mt-8'>    
@@ -466,13 +453,13 @@ else
                             <div
                                 className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
                                 <button type="button"
-                                className="inline-block px-6 py-2.5 bg-purple-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-purple-700 hover:shadow-lg focus:bg-purple-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-purple-800 active:shadow-lg transition duration-150 ease-in-out"
+                                className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
                                 data-bs-dismiss="modal">
-                                Close
+                                Tutup
                                 </button>
                                 <button type="submit"
-                                className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out ml-1">
-                                Save changes
+                                className="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out ml-1">
+                                Simpan Perubahan
                                 </button>
                             </div>
                             
@@ -489,16 +476,16 @@ else
     </div>
 
 
-                <div className="modal fade fixed bg-gray-300 z-50 p-32 px-52 items-center m-auto w-screen bg-opacity-60 top-0 left-0 hidden h-screen outline-none overflow-x-hidden overflow-y-auto " id="modalTambahData" tabIndex="-1" aria-labelledby="modalTambahData" aria-modal="true" role="dialog">
-                    <div className="modal-dialog w-full h-full my-auto modal-dialog-centered modal-dialog-scrollable relative items-center pointer-events-none px-40">
-                        <div className="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto my-auto bg-white bg-clip-padding rounded-md outline-none text-current">
+                <div className="modal fade fixed bg-gray-300 z-50  py-24   mx-auto items-center m-auto w-screen bg-opacity-60 top-0 left-0 hidden h-screen outline-none overflow-x-hidden overflow-y-auto" id="modalTambahData" tabIndex="-1" aria-labelledby="modalTambahData" aria-modal="true" role="dialog">
+                    <div className="modal-dialog w-full md:w-1/2  mx-auto  h-full  my-auto modal-dialog-centered modal-dialog-scrollable relative items-center pointer-events-none lg:w-1/3" >
+                        <div className="modal-content border-none -ml-24 shadow-lg relative flex flex-col w-full pointer-events-auto my-auto bg-white min-w-max bg-clip-padding rounded-md outline-none text-current">
                         <div className="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
                             <h5 className="text-xl font-medium leading-normal text-gray-800" id="Tambahmuseumlabel">
-                            Tambah 
+                            Tambah Data
                             </h5>
                             <button type="button"
                             className="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"
-                            data-bs-dismiss="modal" aria-label="Close"></button>
+                            data-bs-dismiss="modal" aria-lab55el="Close"></button>
                         </div>
                         
                             <form onSubmit={storeData} >
@@ -508,9 +495,8 @@ else
                                             <label className="block text-gray-700 text-sm font-bold mb-2" for="nama_museum">
                                                 Nama Museum
                                             </label>
-
-                                            <div className="flex">
-                                            <select id='museum' value={input.namaMuseum} className="block appearance-none sm:w-1/3 w-full p-2.5 bg-white text-center border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline" 
+                                            <div className="flex justify-between">
+                                            <select id='museum' value={input.namaMuseum} className="block appearance-none sm:w-1/2 p-2.5 bg-white text-center border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
                                                 onChange={(e) => {
                                                     const index = e.target.selectedIndex;
                                                     const el = e.target.childNodes[index]
@@ -525,15 +511,10 @@ else
                                                 <option >{namaInput.namaMuseum}</option>
                                                 {museum && museum.map((item,index) =>{
                                                     return(
-                                                        <option className='py-6 my-6  h-32' key={index} id={item.id} value={item.id}>{item.nama_museum}</option>
+                                                        <option className='py-6 my-6 h-32' key={index} id={item.id} value={item.id}>{item.nama_museum}</option>
                                                     )})}
                                             </select>
-                                            
-
-                                            <Link to="/superadmin/tambah-museum"  className='inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out'>
-                                Tambah Museum
-                            </Link>
-                                            
+                                            <Link to="/superadmin/tambah-museum" className='inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out'>Tambah Museum</Link>
                                             </div>
 
                                             <span className="text-sm text-red-500"></span>
@@ -569,15 +550,11 @@ else
                             
     
                         </form> 
-                        </div>
                     </div>
-                    </div>
-
-
-                
-
-  </div>
-  )
+                </div>
+            </div>
+        </div>
+)
 }
 
 export default CardMasterTiket

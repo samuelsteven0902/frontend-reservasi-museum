@@ -29,7 +29,7 @@ function Header({state,data}) {
                     <div className="w-full  px-4 ml-auto mr-auto text-center">
                         <div className="text-gray-200">
                             <p className='sm:text-lg font-light leading-relaxed mt-6 mb-4 text-sm '>
-                            Museum Keris Nusantara menyuguhkan daya tarik wisata pada koleksi keris yang asalnya dari berbagai tempat. Pesona dari keindahan keris-keris yang disuguhkan di Museum Keris Nusantara memiliki keindahan tersendiri karena masing-masing dari keris itu memiliki latar belakangnya masing-masing. Keris-keris yang ditampilkan diberikan penjelasan untuk edukasi pengunjung yang hadir.
+                            UPT Museum mengelola Museum Keris Nusantara dan Museum Radya Pustaka sebagai destinasi wisata bagi masyarakat sekitar dan luar kota. Museum Keris Nusantara dan Museum Radya Pustaka memiliki daya tarik masing-masing. Pengunjung akan disuguhkan oleh keindahan  peninggalan budaya sekaligus belajar mengenai sejarah.
                            </p>
                         </div>
                         <div className='flex'>
