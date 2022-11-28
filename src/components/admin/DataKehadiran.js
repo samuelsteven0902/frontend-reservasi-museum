@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react'
 import swal from 'sweetalert'
 import kosong from "../../assets/img/admin/nothing.svg"
 import DefaultFooterAdmin from "components/DefaultFooterAdmin.js";
+import ReactLoading from 'react-loading';
 
 function DataKehadiran() {
 
@@ -100,19 +101,23 @@ function DataKehadiran() {
 
     if(loading)
     {
-      return <h4>Loading Pengunjung Data ....</h4>
+      return(  <div className='h-96 items-center flex'>
+        
+        <ReactLoading type={"spin"} color={"red"} height={'5%'} width={'5%'} className="m-auto top-1/2" />
+      </div>
+      )
     }
     else
     {
       
 
+      var pengunjung_HTMLTABLE = "";
       if(pengunjung === [])
       {
-        return <h4>Tidak ada</h4>
+        
       }
       else
       {
-        var pengunjung_HTMLTABLE = "";
   
       pengunjung_HTMLTABLE = pengunjung.filter(val=>{
         if(searchTerm == "")

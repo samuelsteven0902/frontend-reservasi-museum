@@ -338,7 +338,7 @@ return (
                         Museum
                     </th>
                     <th scope="col" className="text-xl font-medium text-[#A70B0B] px-6 py-4 text-center">
-                        Kategori
+                        Kategori    
                     </th>
                     <th scope="col" className="text-xl font-medium text-[#A70B0B] px-6 py-4 text-center">
                         Harga Hari Biasa

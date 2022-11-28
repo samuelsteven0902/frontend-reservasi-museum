@@ -138,13 +138,13 @@ export default function CardLineChart() {
             data: [2, dataPengunjungFeb, dataPengunjungMar , dataPengunjungApril, dataPengunjungMei, dataPengunjungJuni, dataPengunjungJuli, dataPengunjungAgus, dataPengunjungSept, dataPengunjungOkt, dataPengunjungNov,dataPengunjungDes],
             fill: false,
           },
-          {
-            label: new Date().getFullYear() - 1,
-            fill: false,
-            backgroundColor: "#fff",
-            borderColor: "#fff",
-            data: [4, 6, 8, 7, 6, 0, 8],
-          },
+          // {
+          //   label: new Date().getFullYear() - 1,
+          //   fill: false,
+          //   backgroundColor: "#fff",
+          //   borderColor: "#fff",
+          //   data: [4, 6, 8, 7, 6, 0, 8],
+          // },
         ],
       },
       options: {
@@ -220,18 +220,31 @@ export default function CardLineChart() {
     };
     
 
+     if(loading)
+     {
+      <ReactLoading type={"spin"} color={"red"} height={'5%'} width={'5%'} className="m-auto" />
+     }
+     else
+     {
       var ctx = document.getElementById("line-chart").getContext("2d");
       // console.log(dataPengunjungJan);
       window.myLine = new Chart(ctx, config);
+     }
       
-  }, 1000);
+  }, 1);
   return () => window.clearTimeout(timeoutID );
   }, [dataPengunjungDes]);
 
 // console.log(dataPengunjungNov);
   return (
     <>
-{loading?<h1>loading...</h1>:<div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-blueGray-700">
+{loading?
+<div className="z-50 absolute -mt-12    ">   
+  {/* <ReactLoading type={"spin"} color={"red"} height={'5%'} width={'5%'} className=""/> */}
+<p>Loading Data...</p>
+</div> 
+
+:<div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-blueGray-700">
     <div className="rounded-t mb-0 px-4 py-3 bg-transparent">
       <div className="flex flex-wrap items-center">
         <div className="relative w-full max-w-full flex-grow flex-1">

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
+import ReactLoading from 'react-loading';
 
 // components
 
@@ -47,7 +48,11 @@ export default function CardTable({ color }) {
 
   if(loading)
   {
-    return <h4>Loading Pengunjung Data ....</h4>
+    var pengunjung_HTMLTABLE =   <tr className="bg-white border-b" >
+                                    <td colspan={8} className="text-xl text-center justify-center font-semibold py-5">
+                                    <ReactLoading type={"spin"} color={"red"} height={'5%'} width={'5%'} className="m-auto" />
+                                    </td>
+                                </tr>
   }
   else
   {
