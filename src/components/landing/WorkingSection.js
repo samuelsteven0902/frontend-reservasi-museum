@@ -120,8 +120,8 @@ export default function WorkingSection({setRes}) {
 
     // Tnanggal
     const handleSelect = (date) =>{
-        setInput({...input,calendar:format(date, 'MM/dd/yyyy')}) 
-        setCalendar(format(date, 'MM/dd/yyyy'))
+        setInput({...input,calendar:format(date, 'dd-MM-yyyy')}) 
+        setCalendar(format(date, 'dd-MM-yyyy'))
         setCount(count + 1)
         setOpen(false)
     }

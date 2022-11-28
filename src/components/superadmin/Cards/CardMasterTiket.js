@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import 'flowbite'
 import swal from "sweetalert";
 import { Link, useHistory } from "react-router-dom";
+import ReactLoading from 'react-loading';
 
 import { BiTrash, BiPencil } from 'react-icons/bi';
 // import React from 'react'
@@ -71,14 +72,17 @@ const redirect = useHistory();
 
 const fetchData = () =>{
     axios.get('http://localhost:8000/api/show_harga')
-        .then(res=>{setSemuaHarga(res.data.harga);console.log(res);  setLoading(false)})
+        .then(res=>{setSemuaHarga(res.data.harga);console.log(res);  
+            setLoading(false)
+        })
 }
 
 useEffect(() => {
     fetchData();
     
     idHarga !== undefined &&  axios.get(`http://localhost:8000/api/edit-harga/${idHarga}`).then(res=>{
-        setHarga(res.data.harga[0]);console.log(res.data.harga[0]);setLoadingHarga(false);
+        setHarga(res.data.harga[0]);console.log(res.data.harga[0]);
+        setLoadingHarga(false);
     })
     }, [idHarga])
 
@@ -260,7 +264,11 @@ const rupiah = (number)=>{
 console.log(tambahMuseum);
 if(loading)
 {
-    var harga_HTMLTABLE =  <h4 className="absolute -top-1/2 left-1/2 text-xl flex text-center justify-center m-3">Loading Data...</h4> 
+    var harga_HTMLTABLE =   <tr className="bg-white border-b" >
+                                <td colspan={6} className="text-xl text-center justify-center font-semibold py-5">
+                                <ReactLoading type={"spin"} color={"red"} height={'5%'} width={'5%'} className="m-auto" />
+                                </td>
+                            </tr>
 }
 else
 {
@@ -319,7 +327,7 @@ return (
     <div className="flex flex-col " >
         <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
-            <div className="overflow-hidden m-2">
+            <div className="overflow-hidden shadow-lg rounded-xl m-2">
                 <table  id="table_id" className="shadow-lg rounded-xl w-full" >
                 <thead className="border-b bg-white ">
                     <tr className=''>

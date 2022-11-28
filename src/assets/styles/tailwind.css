@@ -678,6 +678,8 @@ video {
 	top: 1.5rem;
 }.bottom-auto{
 	bottom: auto;
+}.left-1\/4{
+	left: 25%;
 }.left-0{
 	left: 0px;
 }.-top-1\/2{

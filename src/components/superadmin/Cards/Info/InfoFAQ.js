@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { BiPencil, BiTrash } from 'react-icons/bi';
 import swal from 'sweetalert'
 import 'tw-elements';
+import ReactLoading from 'react-loading';
 
 function InfoFAQ() {
 
@@ -40,7 +41,11 @@ const handleInputTambahFAQ = (e) =>{
 }
 
 if(loading){
-    return <h4>Loading Data .. .  . .</h4>
+    var faq_HTMLTABLE =   <tr className="bg-white border-b" >
+                                <td colspan={6} className="text-xl text-center justify-center font-semibold py-5">
+                                <ReactLoading type={"spin"} color={"red"} height={'5%'} width={'5%'} className="m-auto" />
+                                </td>
+                            </tr>
 }
 
 else
