@@ -67,21 +67,21 @@ export default function HeaderStats() {
       return accumulator + value;
     }, 0);
 
-
-    var dataPengunjungBulanIni = data.filter(val=>{
+    var dataPengunjungBulanIni = ''
+    dataPengunjungBulanIni = data.filter(val=>{
       return val.tanggal.slice(val.tanggal.indexOf('-') + 1,val.tanggal.lastIndexOf('-')) == bulanIni
     }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
       return accumulator + value;
     }, 0);
 
-    console.log(hariIni);
-  
-}
+    
+  }
+  console.log(dataPengunjungBulanLalu);
 
   return (
     <>
       {/* Header */}
-      <div className="relative md:pt-10 pb-10 pt-12">
+      <div className="relative md:pt-10 pb-20 pt-12">
         <div className="px-4 md:px-10 mx-auto w-full">
           <div>
             {/* Card stats */}
@@ -89,7 +89,7 @@ export default function HeaderStats() {
               <div className="w-full lg:w-6/12 xl:w-3/12 px-2">
                 <CardStats
                   statSubtitle="Total Pemasukan Bulan Lalu"
-                  statTitle={rupiah(dataPengunjungBulanLalu)}
+                  statTitle={dataPengunjungBulanIni !== undefined ?  rupiah(dataPengunjungBulanLalu) : "Loading..." }
                   statArrow="up"
                   statPercent="2.48"
                   statPercentColor="text-emerald-500"
@@ -102,7 +102,7 @@ export default function HeaderStats() {
                 <CardStats
                   statSubtitle="Total Pemasukan Bulan Ini"
                   // statTitle={dataPengunjungNov || dataPengunjungJan ||dataPengunjungFeb ||dataPengunjungMar ||dataPengunjungApril ||dataPengunjungMei ||dataPengunjungJuni ||dataPengunjungJuli ||dataPengunjungAgus ||dataPengunjungSept ||dataPengunjungOkt ||dataPengunjungDes}
-                  statTitle={rupiah(dataPengunjungBulanIni)}
+                  statTitle={dataPengunjungBulanIni !== undefined ? rupiah(dataPengunjungBulanIni) : "Loading..."}
                   statArrow="down"
                   statPercent="3.48"
                   statPercentColor="text-red-500"
@@ -114,7 +114,7 @@ export default function HeaderStats() {
               <div className="w-full lg:w-6/12 xl:w-3/12 px-2">
                 <CardStats
                   statSubtitle="Total Pemasukan Kemarin"
-                  statTitle={rupiah(dataPengunjungkemarin)}
+                  statTitle={dataPengunjungBulanIni !== undefined ?  rupiah(dataPengunjungkemarin): "Loading..."}
                   statArrow="down"
                   statPercent="1.10"
                   statPercentColor="text-red-500"
@@ -126,7 +126,7 @@ export default function HeaderStats() {
               <div className="w-full lg:w-6/12 xl:w-3/12 px-2 -ml">
                 <CardStats
                   statSubtitle="Total Pemasukan Hari Ini"
-                  statTitle={rupiah(dataPengunjungHariIni)}
+                  statTitle={dataPengunjungBulanIni !== undefined ? rupiah(dataPengunjungHariIni):"Loading...  "}
                   statArrow="up"
                   statPercent="12"
                   statPercentColor="text-emerald-500"

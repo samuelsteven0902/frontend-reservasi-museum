@@ -165,7 +165,7 @@ function WorkingSection(input) {
                                     <p className='text-center text-2xl'>  Tunai </p>
                                 </div>
                                 <input  type="radio" value="tunai" checked={pembayaran === "Male"}  onChange={onValueChange}
-                                className ='ml-24 w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600'
+                                className ='ml-24 w-5 h-5 form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="radio" name="flexRadioDefault" id="flexRadioDefault1'
                                 />
                             </label>
                             <label  className='cursor-not-allowed flex max-w-full items-center hover:bg-gray-100 p-5 mx-5 rounded-3xl my-5 transition-all duration-500 ease-in-out'>

@@ -220,18 +220,30 @@ export default function CardLineChart() {
     };
     
 
-      var ctxPemasukan = document.getElementById("line-chart").getContext("2d");
+      if(loading)
+      {
+{/* <h1>Loading..</h1> */}
+      }
+      else
+      {
+        var ctxPemasukan = document.getElementById("line-chart").getContext("2d");
       // console.log(dataPengunjungJan);
       window.myLine = new Chart(ctxPemasukan, configPemasukan);
+      }
       
-  }, 1000);
+  }, 1);
   return () => window.clearTimeout(timeoutID );
   }, [dataPengunjungDes]);
 
 // console.log(dataPengunjungNov);
   return (
     <>
-{loading?<h1 className="absolute">loading...</h1>:
+{loading?<div className="z-50 absolute -mt-12    ">   
+  {/* <ReactLoading type={"spin"} color={"red"} height={'5%'} width={'5%'} className=""/> */}
+<p>Loading Data...</p>
+</div> 
+
+:
 <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-blueGray-700">
     <div className="rounded-t mb-0 px-4 py-3 bg-transparent">
       <div className="flex flex-wrap items-center">

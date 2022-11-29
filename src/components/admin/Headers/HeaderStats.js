@@ -28,7 +28,7 @@ export default function HeaderStats() {
 
   if(loading)
   {
-
+    <h1>Loading</h1>
   }
   else
   {
@@ -75,7 +75,7 @@ export default function HeaderStats() {
   return (
     <>
       {/* Header */}
-      <div className="relative md:pt-10 pb-10 pt-12">
+      <div className="relative md:pt-10 pb-20 pt-12">
         <div className="px-4 md:px-10 mx-auto w-full">
           <div>
             {/* Card stats */}
@@ -83,7 +83,7 @@ export default function HeaderStats() {
               <div className="w-full lg:w-6/12 xl:w-3/12 px-2">
                 <CardStats
                   statSubtitle="Total Pengunjung Bulan Lalu"
-                  statTitle={dataPengunjungBulanLalu}
+                  statTitle={dataPengunjungBulanIni !== undefined ? dataPengunjungBulanLalu : "Loading..."}
                   statArrow="up"
                   statPercent="2.48"
                   statPercentColor="text-emerald-500"
@@ -95,7 +95,7 @@ export default function HeaderStats() {
               <div className="w-full lg:w-6/12 xl:w-3/12 px-2">
                 <CardStats
                   statSubtitle="Total Pengunjung Bulan Ini"
-                  statTitle={dataPengunjungBulanIni}
+                  statTitle={dataPengunjungBulanIni !== undefined ? dataPengunjungBulanIni:"Loading..."}
                   statArrow="down"
                   statPercent="3.48"
                   statPercentColor="text-red-500"
@@ -107,7 +107,7 @@ export default function HeaderStats() {
               <div className="w-full lg:w-6/12 xl:w-3/12 px-2">
                 <CardStats
                   statSubtitle="Total Pengunjung Kemarin"
-                  statTitle={dataPengunjungkemarin}
+                  statTitle={dataPengunjungBulanIni !== undefined ? dataPengunjungkemarin : "Loading..."}
                   statArrow="down"
                   statPercent="1.10"
                   statPercentColor="text-red-500"
@@ -119,7 +119,7 @@ export default function HeaderStats() {
               <div className="w-full lg:w-6/12 xl:w-3/12 px-2">
                 <CardStats
                   statSubtitle="Total Pengunjung Hari Ini"
-                  statTitle={dataPengunjungHariIni}
+                  statTitle={dataPengunjungBulanIni !== undefined ? dataPengunjungHariIni:"Loading..."}
                   statArrow="up"
                   statPercent="12"
                   statPercentColor="text-emerald-500"
