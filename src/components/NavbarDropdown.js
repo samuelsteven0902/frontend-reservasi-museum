@@ -32,7 +32,7 @@ const NavbarDropdown = () => {
         }}
       >
         <div className="items-center flex">
-          <p className="px-5 mx-3 text-black font-bold  rounded-sm">Informasi Tiket</p>
+          <p className="px-2 mx-2 text-black font-nunito font-bold">Informasi Tiket</p>
         </div>
       </a>
       <div

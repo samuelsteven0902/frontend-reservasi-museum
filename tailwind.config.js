@@ -17,14 +17,15 @@ module.exports = {
             serif: ['"Roboto Slab"', 'serif'],
             body: ['Roboto', 'sans-serif'],
             poppins: ["Poppins", "sans-serif"],
-
+            nunito: ["Nunito", "sans-serif"],
+            merriweather: ["Merriweather", "sans-serif"],
         },
         extend: {
             backgroundImage: () => ({
                 'login-background':
                     "linear-gradient(rgba(0,0,0, 0.75), rgba(0,0,0, 0.75)), url('/src/assets/img/background-1920x1280.jpg')",
                 'landing-background':
-                    "linear-gradient(rgba(0,0,0, 0), rgba(0,0,0, 0)), url('/src/assets/img/MuseumKeris.png')",
+                    "linear-gradient(rgba(0,0,0, 0), rgba(0,0,0, 0)), url('/src/assets/img/Landing/museum.png')",
                 'profile-background':
                     "linear-gradient(rgba(0,0,0, 0.75), rgba(0,0,0, 0.75)), url('/src/assets/img/Landing/header_bawah.png')",
                 'landing-bawah':

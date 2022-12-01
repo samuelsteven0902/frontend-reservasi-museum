@@ -44,23 +44,17 @@ export default function DefaultNavbar() {
         console.log(user);
 
     return (
-        <Navbar className='bg-white fixed w-full bg-opacity-75 z-50' color='none'  navbar>
+        <Navbar className='fixed bg-white w-full bg-opacity-75 z-50' color='none'  navbar>
             <NavbarContainer>
-                <NavbarWrapper>
-                    <a href='/#' target="_blank" rel="noreferrer" >
-                        <NavbarBrand>Reservasi Museum</NavbarBrand>
-                    </a>
-                    <NavbarToggler onClick={() => setOpenNavbar(!openNavbar)} color="red"/>
-                </NavbarWrapper>
                 <NavbarCollapse open={openNavbar}>
                     <Nav>
-                        <div className="flex flex-col z-50 py-2 pr-10 lg:flex-row lg:items-center">
-                            <Link to="/" className='px-5 mx-3 text-black font-bold rounded-sm'>Home</Link>
-                            <Link to="/about" className='px-5 mx-3 text-black font-bold rounded-sm'>About</Link>
+                        <div className="flex flex-col z-50 py-4 pr-2 lg:flex-row lg:items-center">
+                            <Link to="/" className='px-2 mx-2 text-black font-nunito font-bold'>Home</Link>
+                            <Link to="/about" className='px-2 mx-2 text-black font-nunito font-bold '>About</Link>
                             <NavbarDropdown />
                             <div className='w-60'>
-                                {user == ""? <Link to="/login" className='px-5 mx-3 py-2 text-red-500 font-bold rounded-md'>Login as Admin
-                                </Link>:<Link to={'/'+user} className='px-5 mx-3 py-2 text-red-500 font-bold rounded-md'>Dashboard {user}</Link>}
+                                {user == ""? <Link to="/login" className='bg-[#A70B0B] hover:bg-red-700 px-2 mx-2 py-2 text-white font-nunito font-bold rounded-md'>Login as Admin
+                                </Link>:<Link to={'/'+user} className='bg-[#A70B0B] hover:bg-red-700 px-2 mx-2 py-2 text-white font-nunito font-bold'>Dashboard {user}</Link>}
                             </div>
                         </div>
                     </Nav>
