@@ -47,13 +47,14 @@ export default function WorkingSection({setRes}) {
         console.log(e);
     }
 
-    const cekMuseum = () =>{
+    const cekMuseum = (e) =>{
         if(input.museum === "museum_keris" || "museum_radya_pustaka") {
             const museumClass = document.getElementById('museum');
             setDisabledCategory(false);
-            museumClass.classList.add('font-bold','text-gray-800',)
+            museumClass.classList.add('font-bold','text-[#A70B0B]',)
             // console.log(museumClass);
             // setCategory('Pilih Category')
+            // setNamaInput({...namaInput,namaMuseum:e.currentTarget.value})
             setNamaInput({...namaInput,namaCategory:'Pilih Kategori'}) 
             setCalendar('Pilih Kategori Dulu')
         }
@@ -93,7 +94,7 @@ export default function WorkingSection({setRes}) {
         }
 
         fetchCategory()
-    }, [museumId])
+    }, [museumId,namaInput])
     
     useEffect(() => {
 
@@ -103,7 +104,7 @@ export default function WorkingSection({setRes}) {
 
       //  setInput({...input,museum:museum}) 
         // setInput({...input,calendar:calendar}) 
-    }, [input,museum])
+    }, [input,museum,namaInput])
 
     // console.log(museumClass);
     const hidenOnEscape = (e) =>{
@@ -160,25 +161,26 @@ export default function WorkingSection({setRes}) {
     }
     
 // console.log(museum);
-// console.log(category);
+console.log(namaInput);
 console.log(input);
     return (
-        <section className="pb-20 bg-gradient-to-b from-white bg-gray-100 -mt-32">
-            <div className="container max-w-7xl mx-auto px-4">
+        <section className="pb-20 bg-white -mt-48 left-1/2 mx-auto z-10 w-5/6">
+            <div className="container text-center max-w-5xl mx-auto px-10">
                 <form onSubmit={saveData}>
-                    <div className="flex flex-wrap relative z-10">
-                        <StatusCard color="red" icon="stars" title="Pesan Tiket">
-                            <div className="sm:flex block w-full ">
-                                <select id='museum' value={input.museum} className="block appearance-none sm:w-1/3 w-full p-2.5 bg-white text-center border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline" 
+                    <div className="flex flex-wrap relative z-20">
+                        <StatusCard color="none" icon="stars" title="Pesan Tiket">
+                            <div className="sm:flex justify-center block z-10">
+                                <select id='museum' value={namaInput.namaMuseum} className="block appearance-none sm:w-1/3 w-full p-2.5 bg-[#ECE3DE] text-[#A70B0B] font-nunito font-semibold text-center border-none px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline" 
                                     onChange={(e) => {
                                     // handleInput(e);
                                     const index = e.target.selectedIndex;
                                     const el = e.target.childNodes[index]
                                     const option =  el.getAttribute('id'); 
                                     const selectedMuseum = e.target.id;
+                                    setNamaInput({...namaInput,namaMuseum:e.target.value})
+                                    console.log(namaInput.namaMuseum);
                                     setMuseumId(option)
                                     setInput({...input,museum:option})
-                                    setNamaInput({...namaInput,namaMuseum:e.target.value})
                                     // console.log(selectedMuseum);
                                     cekMuseum()
                                     // console.log(e); 
@@ -191,7 +193,7 @@ console.log(input);
                                         <option className='py-6 my-6  h-32' key={index} id={item.id} value={item.nama_museum}>{item.nama_museum}</option>
                                     )})}
                                 </select>
-                                <select value={{label: input.category}} id="category" className="sm:w-1/3 w-full sm:mx-5 sm:my-0 my-5 p-2.5 text-gray-500 text-center bg-white border rounded-md shadow-sm outline-none appearance-none focus:border-red-800 focus:outline-none" onChange={(e) => {
+                                <select value={{label: input.category}} id="category" className="sm:w-1/3 w-full sm:mx-5 sm:my-0 my-5 p-2.5 text-[#A70B0B] font-nunito font-semibold text-center bg-[#ECE3DE] border-none rounded-md shadow-sm  appearance-none focus:border-red-800  focus:outline-none" onChange={(e) => {
                                     const index = e.target.selectedIndex;
                                     const el = e.target.childNodes[index]
                                     const option =  el.getAttribute('id');
@@ -208,7 +210,7 @@ console.log(input);
                                 </select>
 
                                 <input value={calendar} readOnly onClick={(e)=>{ setOpen(open => !open); 
-                                console.log(e)} } className={disabledDate?"relative text-center sm:w-1/3 w-full p-2.5 rounded-md border bg-gray-100 opacity-70":"relative text-center w-1/3 rounded-md border bg-white "} disabled={disabledDate} />
+                                console.log(e)} } className={disabledDate?"relative text-[#A70B0B] font-nunito font-semibold text-center sm:w-1/3 w-full p-2.5 rounded-md border bg-[#ECE3DE] opacity-70":"relative text-center w-1/3 rounded-md border bg-white "} disabled={disabledDate} />
                                     <div ref={refOne} className="absolute right-0 mr-20 mt-8">
         
                                 {open && 
@@ -229,8 +231,8 @@ console.log(input);
                             </div>
                         </StatusCard>
                     </div>
-                <div className='flex flex-wrap relative justify-center pt-14 '>
-                    <Link  ripple="light" disabled={true}  style={{pointerEvents: count >= 1 ? '' : 'none'}} className=" w-72 h-12 text-center align-middle px-6 bg-[#372B2B] hover:bg-[#645c5c] text-white font-medium text-xl pt-2.5 leading-tight uppercase rounded shadow-md hover:shadow-lg focus:bg-red-300 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-400 active:shadow-lg transition duration-150 ease-in-out" to={{
+                <div className='flex flex-wrap relative justify-center pt-6 '>
+                    <Link  ripple="light" disabled={true}  style={{pointerEvents: count >= 1 ? '' : 'none'}} className=" w-64 h-12 text-center align-middle px-6 bg-[#A70B0B] hover:bg-[#645c5c] text-white font-medium text-xl pt-2.5 font-merriweather leading-tight uppercase rounded shadow-md hover:shadow-lg focus:bg-red-300 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-400 active:shadow-lg transition duration-150 ease-in-out" to={{
                         pathname:"/input-data",
                         state : {input},
                     }}>Pesan Tiket</Link>

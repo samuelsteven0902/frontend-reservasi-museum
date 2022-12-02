@@ -11,7 +11,7 @@ import Informasi from 'info/Informasi';
 export default function Landing() {
     return (
         <>
-            <div className="absolute w-full z-20">
+            <div className="absolute w-full z-50">
                 <DefaultNavbar />
             </div>  
             <main className=''>
