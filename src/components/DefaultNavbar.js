@@ -54,7 +54,7 @@ export default function DefaultNavbar() {
                             <NavbarDropdown />
                             <div className='w-60'>
                                 {user == ""? <Link to="/login" className='bg-[#A70B0B] hover:bg-red-700 px-2 mx-2 py-2 text-white font-nunito font-bold rounded-md'>Login as Admin
-                                </Link>:<Link to={'/'+user} className='bg-[#A70B0B] hover:bg-red-700 px-2 mx-2 py-2 text-white font-nunito font-bold'>Dashboard {user}</Link>}
+                                </Link>:<Link to={'/'+user} className='bg-[#A70B0B] hover:bg-red-700 px-2 mx-2 py-2 text-white font-nunito font-bold rounded-md'>Dashboard {user}</Link>}
                             </div>
                         </div>
                     </Nav>

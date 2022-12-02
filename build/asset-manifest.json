@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/static/css/main.b4035d15.chunk.css",
-    "main.js": "/static/js/main.ae868326.chunk.js",
-    "main.js.map": "/static/js/main.ae868326.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.1b179a45.js",
-    "runtime-main.js.map": "/static/js/runtime-main.1b179a45.js.map",
+    "main.css": "/static/css/main.4d04ee9b.chunk.css",
+    "main.js": "/static/js/main.0c706500.chunk.js",
+    "main.js.map": "/static/js/main.0c706500.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.6f78be10.js",
+    "runtime-main.js.map": "/static/js/runtime-main.6f78be10.js.map",
     "static/css/2.8cf5182b.chunk.css": "/static/css/2.8cf5182b.chunk.css",
-    "static/js/2.c7451f22.chunk.js": "/static/js/2.c7451f22.chunk.js",
-    "static/js/2.c7451f22.chunk.js.map": "/static/js/2.c7451f22.chunk.js.map",
-    "static/js/3.2b46e8f8.chunk.js": "/static/js/3.2b46e8f8.chunk.js",
-    "static/js/3.2b46e8f8.chunk.js.map": "/static/js/3.2b46e8f8.chunk.js.map",
+    "static/js/2.b5370d64.chunk.js": "/static/js/2.b5370d64.chunk.js",
+    "static/js/2.b5370d64.chunk.js.map": "/static/js/2.b5370d64.chunk.js.map",
+    "static/js/3.2aff6dff.chunk.js": "/static/js/3.2aff6dff.chunk.js",
+    "static/js/3.2aff6dff.chunk.js.map": "/static/js/3.2aff6dff.chunk.js.map",
     "index.html": "/index.html",
     "static/css/2.8cf5182b.chunk.css.map": "/static/css/2.8cf5182b.chunk.css.map",
-    "static/css/main.b4035d15.chunk.css.map": "/static/css/main.b4035d15.chunk.css.map",
-    "static/js/2.c7451f22.chunk.js.LICENSE.txt": "/static/js/2.c7451f22.chunk.js.LICENSE.txt",
+    "static/css/main.4d04ee9b.chunk.css.map": "/static/css/main.4d04ee9b.chunk.css.map",
+    "static/js/2.b5370d64.chunk.js.LICENSE.txt": "/static/js/2.b5370d64.chunk.js.LICENSE.txt",
+    "static/media/tailwind.css": "/static/media/museum.f2c54550.png",
     "static/media/MuseumKeris.38de65fe.jpg": "/static/media/MuseumKeris.38de65fe.jpg",
     "static/media/MuseumKeris.8313d92f.png": "/static/media/MuseumKeris.8313d92f.png",
     "static/media/MuseumKeris1.53ab4788.jpg": "/static/media/MuseumKeris1.53ab4788.jpg",
     "static/media/MuseumKeris2.c283c209.jpg": "/static/media/MuseumKeris2.c283c209.jpg",
-    "static/media/tailwind.css": "/static/media/museum.f2c54550.png",
     "static/media/Tunai.4205dacd.png": "/static/media/Tunai.4205dacd.png",
     "static/media/about1.a8bd8b0b.jpeg": "/static/media/about1.a8bd8b0b.jpeg",
     "static/media/about2.1d33f2ce.jpg": "/static/media/about2.1d33f2ce.jpg",
@@ -32,10 +32,10 @@
     "static/media/team-4-470x470.4ef82ef4.png": "/static/media/team-4-470x470.4ef82ef4.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.1b179a45.js",
+    "static/js/runtime-main.6f78be10.js",
     "static/css/2.8cf5182b.chunk.css",
-    "static/js/2.c7451f22.chunk.js",
-    "static/css/main.b4035d15.chunk.css",
-    "static/js/main.ae868326.chunk.js"
+    "static/js/2.b5370d64.chunk.js",
+    "static/css/main.4d04ee9b.chunk.css",
+    "static/js/main.0c706500.chunk.js"
   ]
 }

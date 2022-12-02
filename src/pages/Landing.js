@@ -7,6 +7,7 @@ import ContactSection from 'components/landing/ContactSection';
 import HargaTiket from 'info/HargaTiket';
 import FooterPengunjung from 'components/FooterPengunjung';
 import Informasi from 'info/Informasi';
+import About from 'components/landing/About';
 
 export default function Landing() {
     return (
@@ -17,8 +18,9 @@ export default function Landing() {
             <main className=''>
                 <Header />
                 <WorkingSection />
-                <HargaTiket />
+                {/* <HargaTiket /> */}
                 <Informasi />
+                <About/>
                 {/* <TeamSection /> */}
                 {/* <ContactSection /> */}
             </main>

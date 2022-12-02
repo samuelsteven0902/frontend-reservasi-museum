@@ -9,15 +9,10 @@ export default function DefaultFooter() {
                 <div className="container max-w-7xl mx-auto px-4">
                     <hr className="my-6 border-gray-300" />
                     <div className="flex flex-wrap items-center md:justify-between justify-center">
-                        <div className="w-full md:w-3/12 px-4 mx-auto text-center">
-                            <div className="text-sm text-gray-700 font-medium py-1">
-                                Copyright © {new Date().getFullYear()} UPT Museum Surakarta by {' '}
-                                <a
-                                    href="https://uptmuseum.surakarta.go.id/"
-                                    className="text-gray-700 hover:text-gray-900 transition-all"
-                                >
-                                    KMI Team 22
-                                </a>
+                        <div className="w-full md:w-4/12 px-4 mx-auto text-center">
+                            <div class="text-center font-merriweather text-black p-6">
+                                <span>© {new Date().getFullYear()} Copyright </span>
+                                <a class="font-merriweather text-black font-bold" href="https://uptmuseum.surakarta.go.id/">UPT Museum Surakarta </a><span> by KMI Team 22 </span>
                             </div>
                         </div>
                     </div>
