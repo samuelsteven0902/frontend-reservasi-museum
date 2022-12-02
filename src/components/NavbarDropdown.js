@@ -44,6 +44,7 @@ const NavbarDropdown = () => {
       >
         <Link  to='/panduan' className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Panduan Pemesanan Tiket</Link>
         <Link to='/faq' className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" >FAQ</Link>
+        <Link to='/harga-tiket' className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" >Harga Tiket</Link>
       </div>
     </>
   );

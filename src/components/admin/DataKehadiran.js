@@ -154,8 +154,10 @@ function DataKehadiran() {
     <>
     
     <div className='w-full flex flex-wrap'>
-    <div className="w-full flex flex-wrap justify-center mb-6">
-        <input type='text' className="w-72 border-none ring-2 ring-red-300 focus:border-none focus:ring-red-500 focus:ring-2 active:border-none  rounded-lg"  placeholder="Cari nama, kategori, kota, ..." onChange={e=>{setSearchTerm(e.target.value)}} /> 
+    <div className="w-full flex flex-wrap flex-col justify-center mb-6">
+      <p className='text-center text-2xl font-merriweather mb-'>Data Kehadiran Pengunjung</p>
+      <hr className='h-1 w-1/3 bg-red-300 mx-auto mb-5'/>
+        <input type='text' className="w-72 mx-auto border-none ring-2 ring-red-300 focus:border-none focus:ring-red-500 focus:ring-2 active:border-none  rounded-lg"  placeholder="Cari nama, kategori, kota, ..." onChange={e=>{setSearchTerm(e.target.value)}} /> 
         {pengunjung.length === 0 ?  <div className='w-full flex flex-wrap mx-auto justify-center mt-5'>  <p className='text-center w-full text-xl font-poppins'>Tidak ada pengunjung...</p> <img src={kosong} className=' my-7 w-1/3'/></div> : ""}
     </div>
         {pengunjung_HTMLTABLE}

@@ -4,6 +4,7 @@ import { BiPencil, BiTrash } from 'react-icons/bi';
 import swal from 'sweetalert'
 import 'tw-elements';
 import ReactLoading from 'react-loading';
+import { useRef } from 'react';
 
 function InfoFAQ() {
 
@@ -18,8 +19,15 @@ const [tambahFAQ,setTambahFAQ] = useState({
 const [loading,setLoading] = useState(true)
 const [loadingFAQ,setLoadingFAQ] = useState(true)
 
+const CloseRef = useRef();
+
+
+    const fetchFaq = () =>{
+        axios.get('http://localhost:8000/api/show_faq').then(res=>{setDataFAQ(res.data.dataFAQ);console.log(res);setLoading(false)})
+    }
+
 useEffect(() => {
-    axios.get('http://localhost:8000/api/show_faq').then(res=>{setDataFAQ(res.data.dataFAQ);console.log(res);setLoading(false)})
+    fetchFaq();
     idFAQ !== undefined &&  axios.get(`http://localhost:8000/api/edit_faq/${idFAQ}`).then(res=>{
         setFAQ(res.data.faq);console.log(res);setLoadingFAQ(false);
     })
@@ -82,8 +90,10 @@ axios.put(`http://localhost:8000/api/update_faq/${idFAQ}`, data).then(res=>{
     if(res.data.status === 200)
     {
         console.log('berhasil');
-        swal("Success",res.data.message,"success").then(e=>
-            window.location.reload(false));
+        swal("Success",res.data.message,"success")
+        fetchFaq();
+        CloseRef.current.click();
+
         }
         else if(res.data.status === 422)
         {
@@ -107,8 +117,9 @@ const addFAQ = (e) =>{
     axios.post(`http://localhost:8000/api/add_faq`, data).then(res => {
         if(res.data.status === 200)
         {
-            swal("Success!",res.data.message,"success").then(e=>
-                window.location.reload(false));;
+            swal("Success!",res.data.message,"success")
+            fetchFaq();
+            CloseRef.current.click();
         }
         else if(res.data.status === 422)
         {
@@ -130,8 +141,9 @@ const deleteFAQ = (e, id) => {
             axios.delete(`http://localhost:8000/api/delete_faq/${id}`).then(res=>{
                 if(res.data.status === 200)
                 {
-                    swal("Deleted!",res.data.message,"success").then(e=>
-                    window.location.reload(false));;
+                    swal("Deleted!",res.data.message,"success")
+                    fetchFaq();
+                    CloseRef.current.click();
                 }
                 else if(res.data.status === 404)
                 {
@@ -185,7 +197,8 @@ return (
                                         </div>
                                         <div
                                             className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
-                                            <button type="button" className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"data-bs-dismiss="modal">Tutup</button>
+                                            <button type="button" className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"data-bs-dismiss="modal" 
+                                    ref={CloseRef} >Tutup</button>
                                             <button type="submit" className="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out ml-1" id="idSave">Simpan Perubahan</button>
                                         </div>
                                     </form>:
@@ -206,7 +219,8 @@ return (
                                         </div>
                                         <div
                                             className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
-                                            <button type="button" className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"data-bs-dismiss="modal">Tutup</button>
+                                            <button type="button" className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"data-bs-dismiss="modal"
+                                    ref={CloseRef} >Tutup</button>
                                             <button type="submit" className="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out ml-1" id="idSave">Simpan Perubahan</button>
                                         </div>
                                     </form> }
@@ -247,7 +261,8 @@ return (
                     </div>
                 </div>
                 <div className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
-                    <button type="button" className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" data-bs-dismiss="modal"> Tutup</button>
+                    <button type="button" className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" data-bs-dismiss="moda"
+                                    ref={CloseRef} > Tutup</button>
                     <button type="submit" className="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out ml-1">Tambah FAQ</button>
                 </div>
             </form>

@@ -22,6 +22,7 @@ import Faq from 'pages/Faq';
 import About from 'pages/About';
 import AuthUser from 'components/AuthUser';
 import ProtectedRoute from 'ProtectedRoute';
+import harga from 'components/harga/Harga';
 
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
             <Route path="/panduan" component={Panduan}/>
             <Route path="/faq" component={Faq}/>
             <Route path="/about" component={About}/>
+            <Route path="/harga-tiket" component={harga}/>
             <ProtectedRoute path="/admin" render={props=><Admin {...props} />}/>
 
             

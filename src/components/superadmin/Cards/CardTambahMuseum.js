@@ -3,7 +3,6 @@ import React, { useEffect, useRef, useState } from "react";
 import 'flowbite'
 import swal from "sweetalert";
 import { BiTrash, BiPencil } from 'react-icons/bi';
-import $ from 'jquery'; 
 import ReactLoading from 'react-loading';
 // import React from 'react'
 // import TextField from '@material-ui/core/TextField';
@@ -143,8 +142,7 @@ const storeMuseum = (e) =>{
     axios.post(`http://localhost:8000/api/add_museum`, data).then(res=>{
         if(res.data.status === 200)
         {
-            swal("Success",res.data.message,"success").then(e=>
-                $('modalTambahMuseum').modal('hide'))
+            swal("Success",res.data.message,"success")
             fetchMuseum();
             CloseRef.current.click();
             
@@ -282,7 +280,7 @@ else
                     <th scope="col" className="text-xl w-12 font-medium text-[#A70B0B] px-6 py-4 text-center ">
                         ID
                     </th>
-                    <th scope="col" className="text-xl font-medium text-[#A70B0B] px-6 py-4 text-left">
+                    <th scope="col" className="text-xl font-medium text-[#A70B0B]  px-6 py-4 text-left">
                       Nama Museum
                     </th>
                     <th scope="col" className="text-xl w-72 font-medium text-[#A70B0B] px-6 py-4 text-">
