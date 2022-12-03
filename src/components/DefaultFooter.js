@@ -11,13 +11,14 @@ export default function DefaultFooter() {
                     <div className="flex flex-wrap items-center md:justify-between justify-center">
                         <div className="w-full md:w-4/12 px-4 mx-auto text-center">
                             <div className="text-sm text-gray-700 font-medium py-1">
-                                Copyright © {new Date().getFullYear()} UPT Museum Surakarta by {' '}
+                                Copyright © {new Date().getFullYear()} {' '}
                                 <a
                                     href="https://uptmuseum.surakarta.go.id/"
                                     className="text-gray-700 hover:text-gray-900 transition-all"
                                 >
-                                    KMI Team 22
+                                    UPT Museum Surakarta by 
                                 </a>
+                                    KMI Team 2022
                             </div>
                         </div>
                     </div>
