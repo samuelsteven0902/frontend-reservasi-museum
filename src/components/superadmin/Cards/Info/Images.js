@@ -1,25 +1,6 @@
-//src/image.js
 import React, { Component } from "react";
 import axios from "axios";
-// import { Document, Page } from 'react-pdf';
-// Import the main component
-// import { Viewer } from '@react-pdf-viewer/core';
-
-// Import the styles
-// import '@react-pdf-viewer/core/lib/styles/index.css';
-
-// Your render function
-
-// Import the main component
-// import { Viewer } from '@react-pdf-viewer/core'; // install this library
-// // Plugins
-// import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout'; // install this library
-// // Import the styles
-// import '@react-pdf-viewer/core/lib/styles/index.css';
-// import '@react-pdf-viewer/default-layout/lib/styles/index.css';
-// // Worker
-// import { Worker } from '@react-pdf-viewer/core'; // install this library
-
+import swal from "sweetalert";
  
 export default class Images extends Component {
   constructor(props) {
@@ -34,6 +15,39 @@ export default class Images extends Component {
     this.getImages();
   }
  
+  deleteFile = (id,e) =>{
+
+    swal({
+      title: "Anda Yakin menghapus Gambar ini ?",
+      text: "Sekali Hapus, anda tidak bisa mencadangkannya lagi!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+  })
+      .then((willDelete) => {
+      if (willDelete) {
+
+          axios.delete(`http://localhost:8000/api/delete-image/${id}`).then(res=>{
+              if(res.data.status === 200)
+              {
+                  // console.log('berhasil delet');
+                  swal("Deleted!",res.data.message,"success")
+                  this.getImages();
+                  // thisClicked.closest("tr").remove();
+              }
+              else if(res.data.status === 404)
+              {
+                  swal("Error",res.data.message,"error");
+              }})
+      } else {
+          swal("Data anda aman!");
+      }
+
+  
+
+  })
+  }
+
   getImages = () => {
     axios
       .get("http://localhost:8000/api/show_files")
@@ -52,31 +66,21 @@ export default class Images extends Component {
  
   render() {
     return (
-      <div className="container pt-4">
-        <div className="row">
-          <div className="col-lg-12">
-            <div className="card shadow">
+      <div className="container">
+          <div className="col-lg-12 mt-10">
+            <div className="card shadow bg-white rounded-xl p-10">
               <div className="card-header">
-                <h4 className="card-title fw-bold"> Images List </h4>
+                <h4 className="text-4xl font-merriweather  font-bold pb- w-full  text-red-300"> Images List </h4>
               </div>
               <div className="card-body">
-                <div className="row">
+                <div className="flex">
  
                   {
                     this.state.images.length > 0 ? (
-                        this.state.images.map((image) =>
-                        (
-                        <div className="col-xl-6 col-lg-8 col-sm-12 col-12 mt-3" key={image.id}>
-                            {/* <img src={ "http://localhost:8000/uploads/" + image.panduan_name } className="img-fluid img-bordered " width="200px"
-                            /> */}
-                            <object data={ "http://localhost:8000/uploads/" + image.panduan_name } type="application/pdf" width="100%" height="100%" className="img-fluid img-bordered "
-                            >
-                              <p>Alternative text - include a link <a href={ "http://localhost:8000/uploads/" + image.panduan_name }>to the PDF!</a></p>
-                            </object>
-                            
-                            {/* <Document file={"http://localhost:8000/uploads/" + image.panduan_name}>
-                              <Page pageNumber={1} />
-                            </Document> */}
+                        this.state.images.map((image) => (
+                        <div className="w-1/3 flex items-start mt-3" key={image.id}>
+                            <img src={ "http://localhost:8000/uploads/" + image.panduan_name } className="img-fluid img-bordered" width="200px"/>
+                            <button className="bg-red-500 w-7 h-7 rounded-full text-white hover:bg-red-300" onClick={e=>this.deleteFile(image.id,e)}>X</button>
                         </div>
                         ))
                     ) : (
@@ -88,7 +92,7 @@ export default class Images extends Component {
               </div>
             </div>
           </div>
-        </div>
+      
       </div>
     );
   }

@@ -39,7 +39,7 @@ export default class ImageUpload extends Component {
       data.append("images[]", this.state.image[i]);
     }
  
-    axios.post("http://localhost:8000/api/filesweb", data)
+    axios.post("http://localhost:8000/api/files", data)
       .then((response) => {
         if (response.status === 200) {
           this.setState({
@@ -93,9 +93,9 @@ export default class ImageUpload extends Component {
     return (
       <div className="container py-5">
         <div className="row">
-          <div className="col-lg-12">
+          <div className="">
             <form onSubmit={this.submitHandler} encType="multipart/form-data" id="imageForm">
-              <div className="card shadow">
+              <div className="shadow bg-white rounded-xl p-10">
                 {this.state.responseMsg.status === "successs" ? (
                   <div className="alert alert-success">
                     {this.state.responseMsg.message}
@@ -107,21 +107,19 @@ export default class ImageUpload extends Component {
                 ) : (
                   ""
                 )}
-                <div className="card-header">
-                  <h4 className="card-title fw-bold">
-                    React JS and Laravel 9 RESTful API File Upload
-                  </h4>
-                </div>
  
                 <div className="card-body">
-                  <div className="form-group py-2">
-                    <label htmlFor="images">Images</label>
+                  <div className="form-group py-2 "> 
+                  <div className='flex justify-center flex-wrap flex-col  '>
+            <p className='text-5xl font-merriweather  font-bold pb- w-full  text-red-300'>Panduan Tiket</p>
+            <hr className='h-1 bg-red-300  flex ' />
+        </div>
                     <input
                       type="file"
                       name="image"
                       multiple
                       onChange={this.handleChange}
-                      className="form-control"
+                      className="rounded-xl bg-gray-200 mt-10"
                     />
                     <span className="text-danger">
                       {this.state.responseMsg.error}
@@ -130,8 +128,8 @@ export default class ImageUpload extends Component {
                 </div>
  
                 <div className="card-footer">
-                  <button type="submit" className="btn btn-success">
-                    Upload
+                  <button type="submit" className="bg-green-500 rounded-xl px-4 py-2 text-xl text-white">
+                    Upload File
                   </button>
                 </div>
               </div>

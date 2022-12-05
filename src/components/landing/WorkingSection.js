@@ -33,9 +33,11 @@ export default function WorkingSection({setRes}) {
         calendar : 'Pilih Museum Dulu'
     })
     const [namaInput, setNamaInput] = useState({
-        namaMuseum : 'Pilih Museum',
+        bebas : 'asdsa',
+        namaMuseumm : 'Pilih Museum',
         namaCategory : 'Pilih Museum Dulu',
-        namaCalendar : 'Pilih Museum Dulu'
+        namaCalendar : 'Pilih Museum Dulu',
+        namaMuseumBanget : "Pilih Museum"
     })
 
     const redirect = useHistory();
@@ -50,12 +52,17 @@ export default function WorkingSection({setRes}) {
     const cekMuseum = (e) =>{
         if(input.museum === "museum_keris" || "museum_radya_pustaka") {
             const museumClass = document.getElementById('museum');
+            const categoryClass = document.getElementById('button');
+            categoryClass.classList.remove('font-bold','text-[#ECE3DE]', 'bg-[#A70B0B]' )
+            categoryClass.classList.add('pointer-events-none', 'text-gray-600','bg-gray-300', )
+
             setDisabledCategory(false);
+            setDisabledDate(true);
             museumClass.classList.add('font-bold','text-[#A70B0B]',)
-            // console.log(museumClass);
+            console.log(e);
             // setCategory('Pilih Category')
-            // setNamaInput({...namaInput,namaMuseum:e.currentTarget.value})
-            setNamaInput({...namaInput,namaCategory:'Pilih Kategori'}) 
+            setNamaInput({...namaInput,namaMuseumBanget:e,namaCategory:'Pilih Kategori'})
+            // setNamaInput({...namaInput,namaCategory:'Pilih Kategori'}) 
             setCalendar('Pilih Kategori Dulu')
         }
     }
@@ -64,10 +71,23 @@ export default function WorkingSection({setRes}) {
         if(category !== ''){
             const categoryClass = document.getElementById('category');
             setDisabledDate(false);
-            categoryClass.classList.add('font-bold','text-gray-800')
-            setCalendar(format(new Date(), 'MM/dd/yyyy'))
+            categoryClass.classList.add('font-bold','text-[#ECE3DE]' )
+            setCalendar("Pilih Tanggal")
         }
     }
+
+// Tnanggal
+    const handleSelect = (date) =>{
+        const categoryClass = document.getElementById('button');
+        categoryClass.classList.remove('pointer-events-none', 'text-gray-600','bg-gray-300', )
+        categoryClass.classList.add('font-bold','text-[#ECE3DE]', 'bg-[#A70B0B]' )
+        setInput({...input,calendar:format(date, 'dd-MM-yyyy')}) 
+        setCalendar(format(date, 'dd-MM-yyyy'))
+        setCount(count + 1)
+        setOpen(false)
+
+        
+}
 
     useEffect(() => {
         const fetchMuseum = async ()=>{
@@ -78,7 +98,7 @@ export default function WorkingSection({setRes}) {
         }
         // setCalendar(format(new Date(), 'MM/dd/yyyy'));
         fetchMuseum();
-    }, [])
+    }, [namaInput])
 
     useEffect(() => {
         const fetchCategory = async ()=>
@@ -119,13 +139,7 @@ export default function WorkingSection({setRes}) {
         }
     }
 
-    // Tnanggal
-    const handleSelect = (date) =>{
-        setInput({...input,calendar:format(date, 'dd-MM-yyyy')}) 
-        setCalendar(format(date, 'dd-MM-yyyy'))
-        setCount(count + 1)
-        setOpen(false)
-    }
+    
 
     function customDayContent(day) {
         let extraDot = null;
@@ -170,30 +184,28 @@ console.log(input);
                     <div className="flex flex-wrap relative z-20">
                         <StatusCard color="none" icon="stars" title="Pesan Tiket">
                             <div className="sm:flex justify-center block z-10">
-                                <select id='museum' value={namaInput.namaMuseum} className="block appearance-none sm:w-1/3 w-full p-2.5 bg-[#ECE3DE] text-[#A70B0B] font-nunito font-semibold text-center border-none px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline" 
-                                    onChange={(e) => {
-                                    // handleInput(e);
+                                <select value={{ label : input.museum}} id='museum' className="block appearance-none sm:w-1/3 w-full p-2.5 bg-[#ECE3DE] text-[#A70B0B] font-nunito font-semibold text-center border-none px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline" onChange={(e) => {
                                     const index = e.target.selectedIndex;
                                     const el = e.target.childNodes[index]
                                     const option =  el.getAttribute('id'); 
                                     const selectedMuseum = e.target.id;
-                                    setNamaInput({...namaInput,namaMuseum:e.target.value})
-                                    console.log(namaInput.namaMuseum);
-                                    setMuseumId(option)
                                     setInput({...input,museum:option})
+                                    setNamaInput({...namaInput,namaCategory:e.target.value})
+                                    console.log(e.target.value);
+                                    setMuseumId(option)
+                                    cekMuseum(e.target.value)
                                     // console.log(selectedMuseum);
-                                    cekMuseum()
                                     // console.log(e); 
                                     // setMuseum(selectedMuseum);
                                     }}>
-                                    <option disabled>{namaInput.namaMuseum}</option>
+                                    <option  className='p-7 m-5 text-xl'>{namaInput.namaMuseumBanget}</option>
                                     {museum && museum.map((item,index) =>{
                                     // console.log(item.id);
                                     return(
                                         <option className='py-6 my-6  h-32' key={index} id={item.id} value={item.nama_museum}>{item.nama_museum}</option>
                                     )})}
                                 </select>
-                                <select value={{label: input.category}} id="category" className="sm:w-1/3 w-full sm:mx-5 sm:my-0 my-5 p-2.5 text-[#A70B0B] font-nunito font-semibold text-center bg-[#ECE3DE] border-none rounded-md shadow-sm  appearance-none focus:border-red-800  focus:outline-none" onChange={(e) => {
+                                <select value={{label: namaInput.namaCategory}} id="category" className="disabled:text-gray-600 disabled:cursor-not-allowed disabled:bg-gray-300 sm:w-1/3 w-full sm:mx-5 sm:my-0 my-5 p-2.5 text-[#A70B0B] font-nunito font-semibold text-center bg-[#ECE3DE] border-none rounded-md shadow-sm  appearance-none focus:border-red-800  focus:outline-none" onChange={(e) => {
                                     const index = e.target.selectedIndex;
                                     const el = e.target.childNodes[index]
                                     const option =  el.getAttribute('id');
@@ -205,12 +217,12 @@ console.log(input);
                                     <option className='p-7 m-5 text-xl'>{namaInput.namaCategory}</option>
                                     {category && typeof category !== 'string'  && category.map((itemm,indexx)=>{
                                     return(
-                                        <option  key={indexx} id={itemm.id} value={itemm.nama_kategori} c>{itemm.nama_kategori}</option>
+                                        <option  key={indexx} id={itemm.id} value={itemm.nama_kategori} >{itemm.nama_kategori}</option>
                                         )})}
                                 </select>
 
                                 <input value={calendar} readOnly onClick={(e)=>{ setOpen(open => !open); 
-                                console.log(e)} } className={disabledDate?"relative text-[#A70B0B] font-nunito font-semibold text-center sm:w-1/3 w-full p-2.5 rounded-md border bg-[#ECE3DE] opacity-70":"relative text-center w-1/3 rounded-md border bg-white "} disabled={disabledDate} />
+                                console.log(e)} } className={disabledDate?"disabled:text-gray-600 disabled:bg-gray-300 relative text-[#A70B0B] disabled:cursor-not-allowed font-nunito font-semibold text-center sm:w-1/3 w-full p-2.5 rounded-md border bg-[#ECE3DE]  opacity-70":"relative text-center w-1/3 rounded-md text-[#A70B0B] font-semibold border bg-[#ECE3DE]  "} disabled={disabledDate} />
                                     <div ref={refOne} className="absolute right-0 mr-20 mt-8">
         
                                 {open && 
@@ -232,7 +244,7 @@ console.log(input);
                         </StatusCard>
                     </div>
                 <div className='flex flex-wrap relative justify-center pt-6 '>
-                    <Link  ripple="light" disabled={true}  style={{pointerEvents: count >= 1 ? '' : 'none'}} className=" w-64 h-12 text-center align-middle px-6 bg-[#A70B0B] hover:bg-[#645c5c] text-white font-medium text-xl pt-2.5 font-merriweather leading-tight uppercase rounded shadow-md hover:shadow-lg focus:bg-red-300 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-400 active:shadow-lg transition duration-150 ease-in-out" to={{
+                    <Link  ripple="light" id='button'  className="pointer-events-none text-gray-600 bg-gray-300 disabled:cursor-not-allowed w-64 h-12 text-center align-middle px-6  hover:bg-red-600  font-medium text-xl pt-2.5 font-merriweather leading-tight uppercase rounded shadow-md hover:shadow-lg focus:bg-red-300 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-400 active:shadow-lg transition duration-150 ease-in-out" to={{
                         pathname:"/input-data",
                         state : {input},
                     }}>Pesan Tiket</Link>

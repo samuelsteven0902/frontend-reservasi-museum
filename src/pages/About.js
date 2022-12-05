@@ -1,4 +1,4 @@
-import Container from 'components/about/Container';
+    import Container from 'components/about/Container';
 import DefaultNavbar from 'components/DefaultNavbar';
 import FooterPengunjung from 'components/FooterPengunjung';
 import { useEffect } from 'react';
@@ -19,7 +19,7 @@ export default function About() {
             </div>  
             <div> 
                 <main 
-                className="w-full px-4 ml-auto mr-auto text-center">
+                className="w-full px-4 ml-auto mr-auto text-center bg-gray-50">
                 <Container/>
                 </main>
             </div>
