@@ -80,50 +80,35 @@ export default function HeaderStats() {
           <div>
             {/* Card stats */}
             <div className="flex flex-wrap">
-              <div className="w-full lg:w-6/12 xl:w-3/12 px-2">
+              <div className="w-full lg:w-6/12 xl:w-3/12 px-2 font-merriweather">
                 <CardStats
                   statSubtitle="Total Pengunjung Bulan Lalu"
                   statTitle={dataPengunjungBulanIni !== undefined ? dataPengunjungBulanLalu : "Loading..."}
-                  statArrow="up"
-                  statPercent="2.48"
-                  statPercentColor="text-emerald-500"
-                  statDescripiron="Bulan Lusa"
                   statIconName="fas fa-solid fa-user"
                   statIconColor="bg-[#A70B0B]"
                 />
               </div>
-              <div className="w-full lg:w-6/12 xl:w-3/12 px-2">
+              <div className="w-full lg:w-6/12 xl:w-3/12 px-2 font-merriweather">
                 <CardStats
                   statSubtitle="Total Pengunjung Bulan Ini"
                   statTitle={dataPengunjungBulanIni !== undefined ? dataPengunjungBulanIni:"Loading..."}
-                  statArrow="down"
-                  statPercent="3.48"
-                  statPercentColor="text-red-500"
                   statDescripiron="Bulan Kemarin"
                   statIconName="fas fa-solid fa-user"
                   statIconColor="bg-[#A70B0B]"
                 />
               </div>
-              <div className="w-full lg:w-6/12 xl:w-3/12 px-2">
+              <div className="w-full lg:w-6/12 xl:w-3/12 px-2 font-merriweather">
                 <CardStats
                   statSubtitle="Total Pengunjung Kemarin"
                   statTitle={dataPengunjungBulanIni !== undefined ? dataPengunjungkemarin : "Loading..."}
-                  statArrow="down"
-                  statPercent="1.10"
-                  statPercentColor="text-red-500"
-                  statDescripiron="Kemarin Lusa"
                   statIconName="fas fa-solid fa-user"
                   statIconColor="bg-[#A70B0B]"
                 />
               </div>
-              <div className="w-full lg:w-6/12 xl:w-3/12 px-2">
+              <div className="w-full lg:w-6/12 xl:w-3/12 px-2 font-merriweather">
                 <CardStats
                   statSubtitle="Total Pengunjung Hari Ini"
                   statTitle={dataPengunjungBulanIni !== undefined ? dataPengunjungHariIni:"Loading..."}
-                  statArrow="up"
-                  statPercent="12"
-                  statPercentColor="text-emerald-500"
-                  statDescripiron="Kemarin"
                   statIconName="fas fa-solid fa-user"
                   statIconColor="bg-[#A70B0B]"
                 />

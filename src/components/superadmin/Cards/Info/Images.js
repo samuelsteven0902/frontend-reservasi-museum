@@ -70,7 +70,7 @@ export default class Images extends Component {
           <div className="col-lg-12 mt-10">
             <div className="card shadow bg-white rounded-xl p-10">
               <div className="card-header">
-                <h4 className="text-4xl font-merriweather  font-bold pb- w-full  text-red-300"> Images List </h4>
+                <h4 className="text-4xl font-merriweather  font-bold pb- w-full  text-red-400"> Images List </h4>
               </div>
               <div className="card-body">
                 <div className="flex">

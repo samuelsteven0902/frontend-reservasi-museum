@@ -58,11 +58,11 @@ const CloseRef = useRef();
 
 
 useEffect(() => {
-  
+
     axios.get('http://localhost:8000/api/show_museum')
         .then(res=>{setSemuaHarga(res.data.harga);console.log(res); 
             setLoading(false)
-         })
+        })
     
 
     idMuseum !== undefined &&  axios.get(`http://localhost:8000/api/edit-museum/${idMuseum}`).then(res=>{
@@ -78,8 +78,6 @@ const handleMuseum = async(e) =>{
     console.log(e.target);
 
 }
-
-
 
 const handleEdit = (e) => {
     e.persist();
@@ -107,7 +105,6 @@ const updateMuseum = (e) => {
             swal("Success",res.data.message,"success")
             fetchMuseum();
             CloseRef.current.click();
-            
         }
         else if(res.data.status === 422)
         {
@@ -122,8 +119,6 @@ const updateMuseum = (e) => {
 }
 
 // store museum data
-
-
 const handleNamaMuseum = (e) =>{
     console.log(e.currentTarget.value)
 }
@@ -154,16 +149,13 @@ const storeMuseum = (e) =>{
     });
 }
 
-
-
-
 const deleteMuseum = (e, id) => {
     e.preventDefault();
     
     // const thisClicked = e.currentTarget;
     // thisClicked.innerText = "Deleting";
     
-   console.log(e,id);
+console.log(e,id);
 
     swal({
         title: "Anda Yakin menghapus Museum?",
@@ -171,8 +163,8 @@ const deleteMuseum = (e, id) => {
         icon: "warning",
         buttons: true,
         dangerMode: true,
-      })
-      .then((willDelete) => {
+    })
+    .then((willDelete) => {
         if (willDelete) {
             axios.delete(`http://localhost:8000/api/delete_museum/${id}`).then(res=>{
                 if(res.data.status === 200)
@@ -187,38 +179,34 @@ const deleteMuseum = (e, id) => {
                     swal("Error",res.data.message,"error");
                 }})
         } else {
-          swal("Data anda aman!");
+            swal("Data anda aman!");
         }
-
-    
-   
     })
 }
 
 function getFirstLetters(str) {
     const firstLetters = str
-      .split(' ')
-      .map(word => word[0])
-      .join('');
-  
+    .split(' ')
+    .map(word => word[0])
+    .join('');
     return firstLetters;
-  }
+}
 
-  const rupiah = (number)=>{
+const rupiah = (number)=>{
     return new Intl.NumberFormat("id-ID", {
     //   style: "currency",
-      currency: "IDR"
+    currency: "IDR"
     }).format(number);
-  }
-
+}
 
 if(loading)
 {
-    var harga_HTMLTABLE = <tr className="bg-white border-b" >
-                            <td colspan={3} className="text-xl text-center justify-center font-semibold py-5">
-                            <ReactLoading type={"spin"} color={"red"} height={'5%'} width={'5%'} className="m-auto" />
-                            </td>
-                          </tr>
+    var harga_HTMLTABLE = 
+        <tr className="bg-white border-b" >
+            <td colspan={3} className="text-xl text-center justify-center font-semibold py-5">
+                <ReactLoading type={"spin"} color={"red"} height={'5%'} width={'5%'} className="m-auto" />
+            </td>
+        </tr>
 }
 else
 {
@@ -236,39 +224,29 @@ else
     }).map((item,index)=>{
         return(
             <tr className="bg-white border-b" key={index}>
-                    <td  className=" text-gray-900 px-6 py-4 whitespace-nowrap">
-                        {item.id}
-                    </td>
-                    <td className=" text-gray-900  px-6 py-4 whitespace-nowrap">
-                        {item.nama_museum}
-                    </td>
-                    
-                    <td className=" text-gray-900 flex  px-6 py-4 whitespace-nowrap">
+                <td  className=" text-gray-900 px-6 py-4 whitespace-nowrap">
+                    {item.id}
+                </td>
+                <td className=" text-gray-900 px-6 py-4 whitespace-nowrap">
+                    {item.nama_museum}
+                </td>
+                <td className=" text-gray-900 flex px-6 py-4 whitespace-nowrap">
                     <button type="button" className=" text-white ml-4 bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded text-sm px-4 py-1.5 flex text-center mr-2 mb-2 align-middle items-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 " data-bs-toggle="modal" id={item.id} data-bs-target="#EditMuseum" onClick={handleMuseum}>
-                       <BiPencil className="mr-1" /> Edit
-                    </button>
-
-
+                    <BiPencil className="mr-1"/>Edit</button>
                     <button type="button" className="text-white ml-4 bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded text-sm px-4 py-1.5 flex text-center mr-2 mb-2 items-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"  onClick={e=>deleteMuseum(e,item.id)}>
-                    <BiTrash  className="mr-1" />Hapus</button>
-                    
-                    </td>
-                    </tr>
+                    <BiTrash  className="mr-1"/>Hapus</button>
+                </td>
+            </tr>
         )
     })
 }
 
-
-
-  return (
-  <div className='container relative flex flex-col min-w-0 break-words w-full mb-6  rounded '>
-
-    
-
-    <div className="flex justify-between ">
-        <input type='text' className="w-1/3 border-none ring-2 ring-red-300 focus:border-none focus:ring-red-500 focus:ring-2 active:border-none  rounded-lg"  placeholder="Cari nama museum, kategori, harga, ..." onChange={e=>{setSearchTerm(e.target.value)}} /> 
-        <button type="button" className="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out" data-bs-toggle="modal" data-bs-target="#modalTambahMuseum">Tambah Mfuseum</button>
-      </div>
+return (
+    <div className='container relative flex flex-col min-w-0 break-words w-full mb-6  rounded '>
+        <div className="flex justify-between ">
+        <input type='text' className="w-1/3 border-none ring-2 font-nunito ring-red-300 focus:border-none focus:ring-red-500 focus:ring-2 active:border-none  rounded-lg"  placeholder="Cari nama museum, kategori, harga, ..." onChange={e=>{setSearchTerm(e.target.value)}} /> 
+        <button type="button" className="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out" data-bs-toggle="modal" data-bs-target="#modalTambahMuseum">Tambah Museum</button>
+    </div>
 
     <div className="flex flex-col " >
         <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -277,13 +255,13 @@ else
                 <table  id="table_id" className="rounded-xl shadow-xl w-full" >
                 <thead className="border-b bg-white ">
                     <tr className=''>
-                    <th scope="col" className="text-xl w-12 font-medium text-[#A70B0B] px-6 py-4 text-center ">
+                    <th scope="col" className="text-xl w-12 font-nunito font-semibold text-[#A70B0B] px-6 py-4 text-center ">
                         ID
                     </th>
-                    <th scope="col" className="text-xl font-medium text-[#A70B0B]  px-6 py-4 text-left">
-                      Nama Museum
+                    <th scope="col" className="text-xl font-nunito font-semibold text-[#A70B0B]  px-6 py-4 text-left">
+                        Nama Museum
                     </th>
-                    <th scope="col" className="text-xl w-72 font-medium text-[#A70B0B] px-6 py-4 text-">
+                    <th scope="col" className="text-xl w-72 font-nunito font-semibold text-[#A70B0B] px-6 py-4 text-">
                         Aksi
                     </th>
                     </tr>
@@ -295,10 +273,9 @@ else
                     <div className="modal-dialog w-full md:w-1/2  mx-auto  h-full  my-auto modal-dialog-centered modal-dialog-scrollable relative items-center pointer-events-none lg:w-1/3" >
                     <div className="modal-content border-none -ml-24 shadow-lg relative flex flex-col w-full pointer-events-auto my-auto bg-white min-w-max bg-clip-padding rounded-md outline-none text-current">
                         <div className="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
-                            <h5 className="text-xl font-medium leading-normal text-gray-800" id="EditMuseumLabel">
+                            <h5 className="text-xl font-nunito font-semibold leading-normal text-gray-800" id="EditMuseumLabel">
                             Edit Museum
                             </h5>
-                            
                             <button type="button"
                             className="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"
                             data-bs-dismiss="modal" aria-label="Close"></button>
@@ -308,8 +285,8 @@ else
                         <form onSubmit={updateMuseum} >
                                 <div className="modal-body relative p-4">
                                     <div className='justify-around md:mt-0 mt-8'>    
-                                        <div className="w-96 mb-4  mx-auto md:mt-0 mt-8">
-                                            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="nama_kategori">
+                                        <div className="w-96 mb-4 mx-auto md:mt-0 mt-8">
+                                            <label className="block text-gray-700 text-sm font-nunito font-semibold mb-2" htmlFor="nama_kategori">
                                                 Nama Museum
                                             </label>
                                             <input 
@@ -332,8 +309,6 @@ else
                                     Edit Museum
                                     </button>
                                 </div>
-                            
-    
                         </form> 
                         :
                         
@@ -341,7 +316,7 @@ else
                                 <div className="modal-body relative p-4">
                                     <div className='justify-around md:mt-0 mt-8'>    
                                         <div className="w-96 mb-4  mx-auto md:mt-0 mt-8">
-                                            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="nama_kategori">
+                                            <label className="block text-gray-700 text-sm font-nunito font-semibold mb-2" htmlFor="nama_kategori">
                                                 Nama Museum
                                             </label>
                                             <input  onChange={handleEdit}
@@ -365,10 +340,7 @@ else
                                     Edit Museum
                                     </button>
                                 </div>
-                            
-    
                         </form> }
-    
                         </div>
                     </div>
                     </div>
@@ -379,13 +351,11 @@ else
         </div>
     </div>
 
-
-            
                 <div  className="modal fade fixed bg-gray-300 z-50  py-24   mx-auto items-center m-auto w-screen bg-opacity-60 top-0 left-0 hidden h-screen outline-none overflow-x-hidden overflow-y-auto" id="modalTambahMuseum" tabIndex="-1" aria-labelledby="modalTambahMuseum" aria-modal="true" role="dialog">
                     <div className="modal-dialog w-full md:w-1/2  mx-auto  h-full  my-auto modal-dialog-centered modal-dialog-scrollable relative items-center pointer-events-none lg:w-1/3" >
                         <div className="modal-content border-none -ml-24 shadow-lg relative flex flex-col w-full pointer-events-auto my-auto bg-white min-w-max bg-clip-padding rounded-md outline-none text-current">
                         <div className="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
-                            <h5 className="text-xl font-medium leading-normal text-gray-800" id="Tambahmuseumlabel">
+                            <h5 className="text-xl font-nunito font-semibold leading-normal text-gray-800" id="Tambahmuseumlabel">
                             Tambah Museum
                             </h5>
                             <button type="button"
@@ -397,7 +367,7 @@ else
                                 <div className="modal-body relative p-4">
                                     <div className='justify-around md:mt-0 mt-8'>    
                                         <div className="w-96 mb-4  mx-auto md:mt-0 mt-8">
-                                            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="nama_kategori">
+                                            <label className="block text-gray-700 text-sm font-nunito font-semibold mb-2" htmlFor="nama_kategori">
                                                 Nama Museum
                                             </label>
                                             <input name='nama_kategori'  className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="nama_kategori" type="text" onChange={e=>setTambahMuseum(e.target.value)}/>
@@ -419,18 +389,13 @@ else
                                     className="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out ml-1">
                                     Tambah Museum
                                     </button>
-                                </div>
-                            
-    
+                                </div>    
                         </form> 
                         </div>
                     </div>
                     </div>
-
-                
-
-  </div>
-  )
+        </div>
+    )
 }
 
 export default CardTambahMuseum

@@ -77,7 +77,6 @@ export default function HeaderStats() {
     
   }
   console.log(dataPengunjungBulanLalu);
-
   return (
     <>
       {/* Header */}
@@ -86,51 +85,34 @@ export default function HeaderStats() {
           <div>
             {/* Card stats */}
             <div className="flex flex-wrap">
-              <div className="w-full lg:w-6/12 xl:w-3/12 px-2">
+              <div className="w-full lg:w-6/12 xl:w-3/12 px-2 font-merriweather">
                 <CardStats
                   statSubtitle="Total Pemasukan Bulan Lalu"
                   statTitle={dataPengunjungBulanIni !== undefined ?  rupiah(dataPengunjungBulanLalu) : "Loading..." }
-                  statArrow="up"
-                  statPercent="2.48"
-                  statPercentColor="text-emerald-500"
-                  statDescripiron="Bulan Lusa"
                   statIconName="far fa-chart-bar"
                   statIconColor="bg-[#A70B0B]"
                 />
               </div>
-              <div className="w-full lg:w-6/12 xl:w-3/12 px-2">
+              <div className="w-full lg:w-6/12 xl:w-3/12 px-2 font-merriweather">
                 <CardStats
                   statSubtitle="Total Pemasukan Bulan Ini"
-                  // statTitle={dataPengunjungNov || dataPengunjungJan ||dataPengunjungFeb ||dataPengunjungMar ||dataPengunjungApril ||dataPengunjungMei ||dataPengunjungJuni ||dataPengunjungJuli ||dataPengunjungAgus ||dataPengunjungSept ||dataPengunjungOkt ||dataPengunjungDes}
                   statTitle={dataPengunjungBulanIni !== undefined ? rupiah(dataPengunjungBulanIni) : "Loading..."}
-                  statArrow="down"
-                  statPercent="3.48"
-                  statPercentColor="text-red-500"
-                  statDescripiron="Bulan Kemarin"
                   statIconName="far fa-chart-bar"
                   statIconColor="bg-[#A70B0B]"
                 />
               </div>
-              <div className="w-full lg:w-6/12 xl:w-3/12 px-2">
+              <div className="w-full lg:w-6/12 xl:w-3/12 px-2 font-merriweather">
                 <CardStats
                   statSubtitle="Total Pemasukan Kemarin"
                   statTitle={dataPengunjungBulanIni !== undefined ?  rupiah(dataPengunjungkemarin): "Loading..."}
-                  statArrow="down"
-                  statPercent="1.10"
-                  statPercentColor="text-red-500"
-                  statDescripiron="Kemarin Lusa"
                   statIconName="far fa-chart-bar"
                   statIconColor="bg-[#A70B0B]"
                 />
               </div>
-              <div className="w-full lg:w-6/12 xl:w-3/12 px-2 -ml">
+              <div className="w-full lg:w-6/12 xl:w-3/12 px-2 -ml font-merriweather">
                 <CardStats
                   statSubtitle="Total Pemasukan Hari Ini"
                   statTitle={dataPengunjungBulanIni !== undefined ? rupiah(dataPengunjungHariIni):"Loading...  "}
-                  statArrow="up"
-                  statPercent="12"
-                  statPercentColor="text-emerald-500"
-                  statDescripiron="Kemarin"
                   statIconName="far fa-chart-bar"
                   statIconColor="bg-[#A70B0B]"
                 />
