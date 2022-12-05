@@ -146,7 +146,7 @@ console.log(dataa);
                         <span className="text-sm text-red-500">{dataPengunjung.error_list.nama}</span>
                     </div>
                     <div className="w-96 mb-4 mx-auto md:mx-6 md:mt-0 mt-8">
-                        <label className="block text-gray-700 text-sm font-bold mb-2" for="username">
+                        <label className="block text-gray-700 text-sm font-bold mb-2" for="kota">
                             Kota Asal
                         </label>
                         <input name='kota' onChange={handleInput} value={dataPengunjung.kota} className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Contoh :  Surakarta" />
@@ -156,14 +156,14 @@ console.log(dataa);
                 </div>
                 <div className='md:flex justify-around md:mt-0 mt-8'>    
                     <div className="w-96 mb-4 mx-auto md:mx-0">
-                        <label className="block text-gray-700 text-sm font-bold mb-2" for="username">
+                        <label className="block text-gray-700 text-sm font-bold mb-2" for="hp">
                             No Hp
                         </label>
                         <input name='phone' onChange={handleInput} value={dataPengunjung.phone} className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Contoh : 081234567890" />
                         <span className="text-sm text-red-500">{dataPengunjung.error_list.phone}</span>
                     </div>
                     <div className="w-96 mb-4 md:mx-6 mx-auto md:mt-0 mt-8">
-                        <label className="block text-gray-700 text-sm font-bold mb-2" for="username">
+                        <label className="block text-gray-700 text-sm font-bold mb-2" for="jumlah">
                             Jumlah Orang
                         </label>
                         <input name='jumlah' onChange={(e)=>{ handleJummlah(e);  }} value={orang} maxLength={orang} className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="number" placeholder={dataa && "contoh : " + dataa.min + " orang"} />

@@ -6,6 +6,10 @@ const NavbarDropdown = () => {
   // dropdown props
   const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false);
   const btnDropdownRef = React.createRef();
+
+  function refreshPage() {
+    window.location.reload(false);
+  }
   const popoverDropdownRef = React.createRef();
   const openDropdownPopover = () => {
     createPopper(btnDropdownRef.current, popoverDropdownRef.current, {
@@ -39,7 +43,7 @@ const NavbarDropdown = () => {
         }
       >
         <Link  to='/panduan' className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Panduan Pemesanan Tiket</Link>
-        <Link to='/faq' className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">FAQ</Link>
+        <Link to='/faq' className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" >FAQ</Link>
       </div>
     </>
   );

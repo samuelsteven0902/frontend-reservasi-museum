@@ -2,12 +2,6 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import 'flowbite'
 import swal from "sweetalert";
-import { Link, useHistory } from "react-router-dom";
-// import React from 'react'
-// import TextField from '@material-ui/core/TextField';
-// import Autocomplete,
-// { createFilterOptions } from '@material-ui/lab/Autocomplete';
-// const filter = createFilterOptions();
 // import $ from 'jquery';
 
 
@@ -23,9 +17,7 @@ const [hargaUpdate,sethargaUpdate] = useState([])
 const [harga,setHarga] = useState()
 
 // select and add new museum
-
 const [museum, setMuseum] = useState("");
-const [tambahMuseum, setTambahMuseum] = useState("");
 const [museumId, setMuseumId] = useState("");
 
 const [input,setInput] = useState({
@@ -49,7 +41,7 @@ useEffect(() => {
 }, [])
 
 // set tambah museum
-const [tambahData,setTambahData] = useState({
+const [tambahMuseum,setTambahMuseum] = useState({
     nama_museum : '',
     nama_kategori : '',
     hari_biasa : '',
@@ -60,18 +52,22 @@ const [tambahData,setTambahData] = useState({
 
 const [searchTerm, setSearchTerm] = useState("")
 
+// $(document).ready( function () {
+//     $('#table_id').DataTable();
+// } );
 
-const options = ['One', 'Two', 'Three', 'Four']
 
 
-const redirect = useHistory();
+// console.log(semuaHarga);
+
 
 
 useEffect(() => {
   
     axios.get('http://localhost:8000/api/show_harga')
         .then(res=>{setSemuaHarga(res.data.harga);console.log(res); setLoading(false) })
-    
+      
+        console.log(idHarga);
 
     idHarga !== undefined &&  axios.get(`http://localhost:8000/api/edit-harga/${idHarga}`).then(res=>{
         setHarga(res.data.harga[0]);console.log(res.data.harga[0]);setLoadingHarga(false);
@@ -130,63 +126,32 @@ const updateHarga = (e) => {
 // store museum data
 
 // handle input museum
-const handleInputTambahData= (e) =>{
+const handleInputTambahMuseum= (e) =>{
     e.persist();
-    setTambahData({...tambahData, [e.target.name]: e.target.value });
+    setTambahMuseum({...tambahMuseum, [e.target.name]: e.target.value });
 
-}
-
-const handleNamaMuseum = (e) =>{
-    console.log(e.currentTarget.value)
-}
-
-
-const storeMuseum = (e) =>{
-    e.preventDefault();
-
-    const thisClicked = e.currentTarget[5];
-    thisClicked.innerText = "Tambah Museum";
-    console.log(tambahMuseum)
-
-    axios.post(`http://localhost:8000/api/add_museum`, tambahMuseum).then(res=>{
-        if(res.data.status === 200)
-        {
-            console.log('berhasil');
-            swal("Success",res.data.message,"success").then(e=>
-                window.location.reload(false));
-            
-        }
-        else if(res.data.status === 422)
-        {
-            swal("All fields are mandetory","","error");
-        }
-        else if(res.data.status === 404)
-        {
-            swal("Error",res.data.message,"error");
-        }
-    });
 }
 
 //send to api
-const storeData = (e) => {
+const storeMuseum = (e) => {
     e.preventDefault();
 
     const thisClicked = e.currentTarget[5];
     thisClicked.innerText = "Storing";
     const data = {
-        nama: tambahData.nama_museum,
-        kategori: tambahData.nama_kategori,
-        biasa: tambahData.hari_biasa,
-        libur: tambahData.hari_libur,
+        nama: tambahMuseum.nama_museum,
+        kategori: tambahMuseum.nama_kategori,
+        biasa: tambahMuseum.hari_biasa,
+        libur: tambahMuseum.hari_libur,
     }
     console.log(data)
 
-    axios.post(`http://localhost:8000/api/add_data`, data).then(res=>{
+    axios.post(`http://localhost:8000/api/add-museum`, data).then(res=>{
         if(res.data.status === 200)
         {
-            // console.log('berhasil');
-            // swal("Success",res.data.message,"success").then(e=>
-            //     window.location.reload(false));
+            console.log('berhasil');
+            swal("Success",res.data.message,"success").then(e=>
+                window.location.reload(false));
             
         }
         else if(res.data.status === 422)
@@ -238,7 +203,6 @@ function getFirstLetters(str) {
   }
 
 
-  console.log(tambahMuseum);
 
 if(loading)
 {
@@ -291,6 +255,9 @@ else
         )
     })
 }
+
+
+
 
   return (
   <div className='container relative flex flex-col min-w-0 break-words w-full mb-6  rounded '>
@@ -449,9 +416,9 @@ else
         </div>
     </div>
 
-    <button type="button" class="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out" data-bs-toggle="modal" data-bs-target="#modalTambahData"  >Tambah Data</button>
+    <button type="button" class="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out" data-bs-toggle="modal" data-bs-target="#modalTambahMuseum"  >Tambahkan Museum</button>
 
-                <div className="modal fade fixed bg-gray-300 z-50 p-32 px-52 items-center m-auto w-screen bg-opacity-60 top-0 left-0 hidden h-screen outline-none overflow-x-hidden overflow-y-auto " id="modalTambahData" tabIndex="-1" aria-labelledby="modalTambahData" aria-modal="true" role="dialog">
+                <div className="modal fade fixed bg-gray-300 z-50 p-32 px-52 items-center m-auto w-screen bg-opacity-60 top-0 left-0 hidden h-screen outline-none overflow-x-hidden overflow-y-auto " id="modalTambahMuseum" tabIndex="-1" aria-labelledby="modaltambahMuseum" aria-modal="true" role="dialog">
                     <div className="modal-dialog w-full h-full my-auto modal-dialog-centered modal-dialog-scrollable relative items-center pointer-events-none px-40">
                         <div className="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto my-auto bg-white bg-clip-padding rounded-md outline-none text-current">
                         <div className="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
@@ -463,7 +430,7 @@ else
                             data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         
-                            <form onSubmit={storeData} >
+                            <form onSubmit={storeMuseum} >
                                 <div className="modal-body relative p-4">
                                     <div className='justify-around md:mt-0 mt-8'>    
                                         <div className="w-96 mb-4 mx-auto ">
@@ -471,15 +438,12 @@ else
                                                 Nama Museum
                                             </label>
 
-                                            <div className="flex">
                                             <select id='museum' value={input.namaMuseum} className="block appearance-none sm:w-1/3 w-full p-2.5 bg-white text-center border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline" 
                                                 onChange={(e) => {
                                                     const index = e.target.selectedIndex;
                                                     const el = e.target.childNodes[index]
                                                     const option =  el.getAttribute('id'); 
                                                     const selectedMuseum = e.target.value;
-                
-                                                    setTambahData({...tambahData, nama_museum: e.target.value });
                                                     setMuseumId(option)
                                                     setInput({...input,namaMuseum:option})
                                                     console.log(selectedMuseum);
@@ -490,35 +454,28 @@ else
                                                         <option className='py-6 my-6  h-32' key={index} id={item.id} value={item.id}>{item.nama_museum}</option>
                                                     )})}
                                             </select>
-                                            
-
-                                            <Link to="/superadmin/tambah-museum"  className='inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out'>
-                                Tambah Museum
-                            </Link>
-                                            
-                                            </div>
-
                                             <span className="text-sm text-red-500"></span>
                                         </div>
                                         <div className="w-96 mb-4  mx-auto md:mt-0 mt-8">
                                             <label className="block text-gray-700 text-sm font-bold mb-2" for="nama_kategori">
                                                 Nama Kategori
                                             </label>
-                                            <input name='nama_kategori'  className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="nama_kategori" type="text" onChange={handleInputTambahData}/>
+                                            <input name='nama_kategori'  className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="nama_kategori" type="text" onChange={handleInputTambahMuseum}/>
                                             <span className="text-sm text-red-500"></span>
                                         </div>
                                         <div className="w-96 mb-4  mx-auto md:mt-0 mt-8">
                                             <label className="block text-gray-700 text-sm font-bold mb-2" for="hari_biasa">
                                                 Harga Hari Biasa
                                             </label>
-                                            <input name='hari_biasa' className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="hari_biasa" type="number" onChange={handleInputTambahData}/>
+                                            <input name='hari_biasa' className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="hari_biasa" type="number" onChange={handleInputTambahMuseum}/>
                                             <span className="text-sm text-red-500"></span>
                                         </div>
                                         <div className="w-96 mb-4  mx-auto md:mt-0 mt-8">
                                             <label className="block text-gray-700 text-sm font-bold mb-2" for="hari_libur">
                                                 Hari Libur
                                             </label>
-                                            <input name='hari_libur' className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="hari_libur" type="number" onChange={handleInputTambahData}/>
+                                            <input name='hari_libur' className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="hari_libur" type="number" onChange={handleInputTambahMuseum}/>
+                                            <span className="text-sm text-red-500"></span>
                                         </div>
                                     </div>
                                 </div>
@@ -532,7 +489,7 @@ else
                                     </button>
                                     <button type="submit"
                                     className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out ml-1">
-                                    Tambah Data
+                                    Save changess
                                     </button>
                                 </div>
                             
@@ -541,9 +498,6 @@ else
                         </div>
                     </div>
                     </div>
-
-
-                
 
   </div>
   )
