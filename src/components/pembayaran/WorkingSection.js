@@ -62,6 +62,7 @@ function WorkingSection(input) {
             foto:input.data.foto,
             harga_awal:input.input,  
             pembayaran: 'cash',
+            // tiket: input.data.kode_tiket,
             status: 'belum lunas',
         }
 

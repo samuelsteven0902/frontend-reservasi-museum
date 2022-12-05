@@ -40,7 +40,7 @@ function Content(input) {
 
       const dataId= {
         id_category:id_category,
-        id_museum:id_museum
+        id_museum:id_museum,
       }
 
       // const resHarga = await fetch(`http://localhost:8000/api/show_harga/${id_category}`, dataId);
@@ -184,7 +184,7 @@ axios.post(`http://localhost:8000/api/add-pengunjung`, data).then(res => {
           <div className="w-auto px-4 ml-auto mr-auto text-center">
             <div className="text-gray-200">
               <p className='my-3 text-lg'>
-                XXXX.XXXXX-XXXXXX.XXXXXXXX-XXXXXXX
+              ET 0987689
               </p>
             </div>
           </div>
