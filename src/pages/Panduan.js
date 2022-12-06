@@ -4,12 +4,12 @@ import Container from 'components/panduan/Container';
 export default function Panduan() {
     return (
         <>
-            <div className="absolute w-full z-20">
-                <DefaultNavbar />
-            </div>  
-            <main className='bg-gray-50'>
-                <Container/>
-            </main>
+        <div className="absolute w-full z-20">
+            <DefaultNavbar />
+        </div>  
+        <main className='bg-gray-50'>
+            <Container/>
+        </main>
         </>
     );
 }

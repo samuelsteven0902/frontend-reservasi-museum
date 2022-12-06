@@ -11,59 +11,52 @@ import Container from 'components/login/Container';
 
 
 export default function Login() {
-
     return (
     <>
-        <div className=''>
-                <Header/>
-        </div>
-        <div className='mt-44 '>
-            
-        <Page>
-            <Container>
-                <Card>
-                    <CardHeader color='red'>
+    <div className=''>
+        <Header/>
+    </div>
+        <div className='mt-44'>
+            <Page>
+                <Container>
+                    <Card>
+                        <CardHeader color='red'>
                             <H5 color="black" style={{ marginBottom: 0 }}>
                                 Login
                             </H5>
-                    </CardHeader>
-
-                    <CardBody>
-                        <br>
-                        </br>
-                        <div className="mb-12 px-4 bg-bb">
-                            <InputIcon
-                                type="email"
-                                color="lightBlue"
-                                placeholder="Email"
-                                iconName="email"
-                            />
-                        </div>
-                        <div className="mb-8 px-4">
-                            <InputIcon
-                                type="password"
-                                color="lightBlue"
-                                placeholder="Password"
-                                iconName="lock"
-                            />
-                        </div>
-                    </CardBody>
-                    <CardFooter>
-                        <div className="flex justify-center yb">
-                            <Button
-                                color="red"
-                                buttonType="link"
-                                size="lg"
-                                ripple="dark"
-                            >
-                                Login
-                            </Button>
-                        </div>
-                    </CardFooter>
-                </Card>
-            </Container>
-        </Page>
+                        </CardHeader>
+                        <CardBody>
+                            <br></br>
+                            <div className="mb-12 px-4 bg-bb">
+                                <InputIcon
+                                    type="email"
+                                    color="lightBlue"
+                                    placeholder="Email"
+                                    iconName="email"/>
+                                </div>
+                            <div className="mb-8 px-4">
+                                <InputIcon
+                                    type="password"
+                                    color="lightBlue"
+                                    placeholder="Password"
+                                    iconName="lock"/>
+                            </div>
+                        </CardBody>
+                        <CardFooter>
+                            <div className="flex justify-center yb">
+                                <Button
+                                    color="red"
+                                    buttonType="link"
+                                    size="lg"
+                                    ripple="dark">
+                                    Login
+                                </Button>
+                            </div>
+                        </CardFooter>
+                    </Card>
+                </Container>
+            </Page>
         </div>
-        </>
-    );
+    </>
+);
 }

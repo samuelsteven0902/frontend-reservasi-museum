@@ -1,7 +1,7 @@
 import React from 'react'
 
 function TabelHargaUl() {
-  return (
+return (
     <div>
         <div className='flex w-full justify-center'>
             <div className=' bg-[#F6F6F6] m-3 rounded-lg w-52 '>
@@ -44,7 +44,7 @@ function TabelHargaUl() {
             </div>
         </div>
     </div>
-  )
+)
 }
 
 export default TabelHargaUl

@@ -42,9 +42,9 @@ const NavbarDropdown = () => {
           "bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg min-w-48"
         }
       >
-        <Link  to='/panduan' className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Panduan Pemesanan Tiket</Link>
-        <Link to='/faq' className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" >FAQ</Link>
-        <Link to='/harga-tiket' className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" >Harga Tiket</Link>
+        <Link  to='/panduan' className="block font-nunito py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Panduan Pemesanan Tiket</Link>
+        <Link to='/faq' className="block font-nunito py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" >FAQ</Link>
+        <Link to='/harga-tiket' className="block font-nunito py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" >Harga Tiket</Link>
       </div>
     </>
   );

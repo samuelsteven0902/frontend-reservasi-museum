@@ -7,7 +7,7 @@ function Header() {
     <div className="bg-[#A70B0B] bg-center absolute top-0 w-full h-full" />
     <div className="container max-w-8xl relative mx-auto">
         <div className="items-center flex flex-wrap">
-            <div className="w-full lg:w-6/12 px-4 ml-auto mr-auto text-center">
+            <div className="w-full lg:w-6/12 px-4 ml-auto mr-auto font-merritext text-center">
                 <Heading2 color="white">Pembayaran</Heading2>
                 <div className="text-gray-200">
                 </div>

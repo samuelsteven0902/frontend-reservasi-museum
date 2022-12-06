@@ -6,12 +6,12 @@ import React from 'react'
 function Tiket() {
   return (
     <>
-      <div>
-        <main>
-          <Content />
-        </main>
-      </div>
-        </>
+    <div>
+      <main>
+        <Content />
+      </main>
+    </div>
+    </>
   )
 }
 
