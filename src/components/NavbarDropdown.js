@@ -1,6 +1,7 @@
 import React from "react";
 import { createPopper } from "@popperjs/core";
 import { Link } from "react-router-dom";
+import {BiDownArrow} from 'react-icons/bi'
 
 const NavbarDropdown = () => {
   // dropdown props
@@ -32,7 +33,7 @@ const NavbarDropdown = () => {
         }}
       >
         <div className="items-center flex">
-          <p className="px-2 mx-2 text-black font-nunito font-bold">Informasi Tiket</p>
+          <p className="px-4 py-2  text-black font-nunito font-bold flex items-center hover:bg-red-200 rounded-xl transition-all duration-300 ease-in-out active:bg-red-400"><p className="pr-1">Informasi Reservasi </p><BiDownArrow/></p>
         </div>
       </a>
       <div

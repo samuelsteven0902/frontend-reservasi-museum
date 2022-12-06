@@ -11,19 +11,14 @@ export default function About() {
         window.scrollTo(0,0)
     },[pathname])
     return (
-        <>
-        <div className="absolute w-full z-20">
-            <DefaultNavbar/>
-        </div>  
-        <div> 
-        <main 
-            className="w-full px-4 ml-auto mr-auto text-center bg-gray-50">
-            <Container/>
-        </main>
-        </div>
-        <div>
+        <div className='bg-gray-50'>
+            <div className="absolute w-full z-20">
+                <DefaultNavbar/>
+            </div>  
+                <main className="w-full px-4 ml-auto pt-10 mr-auto text-center ">
+                    <Container/>
+                </main>
             <FooterPengunjung/>
         </div>
-        </>
     );
 }

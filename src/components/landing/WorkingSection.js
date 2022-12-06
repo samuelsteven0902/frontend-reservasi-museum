@@ -14,30 +14,32 @@ import { addDays, format, isMonday, isSunday } from 'date-fns';
 import { Link,  useHistory } from 'react-router-dom';
 import pesan from '../../assets/img/icon/pesan.png'
 import axios from 'axios';
+import { useTranslation } from 'react-i18next';
 
 
 export default function WorkingSection({setRes}) {
+    const { t } = useTranslation()
     const [museum, setMuseum] = useState("");
     const [museumId, setMuseumId] = useState("");
     const [category, setCategory] = useState("Pilih Museum dulu");
     const [disabledCategory , setDisabledCategory] = useState(true);
     const [disabledDate , setDisabledDate] = useState(true);
     const [disableInput , setDisableInput] = useState(true);
-    const [calendar, setCalendar] = useState('Pilih Museum Dulu');
+    const [calendar, setCalendar] = useState(t('landing.working.museum.part2'));
     const [count, setCount] = useState(0);
     const [open,setOpen] = useState(false);
     // const [libur, setLibur] = useState('')
     const [input,setInput] = useState({
-        museum : 'Pilih Museum',
+        museum : t('landing.working'),
         category : 'Pilih Museum Dulu',
         calendar : 'Pilih Museum Dulu'
     })
     const [namaInput, setNamaInput] = useState({
         bebas : 'asdsa',
-        namaMuseumm : 'Pilih Museum',
-        namaCategory : 'Pilih Museum Dulu',
-        namaCalendar : 'Pilih Museum Dulu',
-        namaMuseumBanget : "Pilih Museum"
+        namaMuseumm : t('landing.working'),
+        namaCategory : t('landing.working.museum.part2'),
+        namaCalendar : t('landing.working.museum.part2'),
+        namaMuseumBanget : t('landing.working.museum.part1')
     })
 
     const redirect = useHistory();
@@ -61,9 +63,9 @@ export default function WorkingSection({setRes}) {
             museumClass.classList.add('font-bold','text-[#A70B0B]',)
             console.log(e);
             // setCategory('Pilih Category')
-            setNamaInput({...namaInput,namaMuseumBanget:e,namaCategory:'Pilih Kategori'})
+            setNamaInput({...namaInput,namaMuseumBanget:e,namaCategory:t('landing.working.kategori.part1')})
             // setNamaInput({...namaInput,namaCategory:'Pilih Kategori'}) 
-            setCalendar('Pilih Kategori Dulu')
+            setCalendar(t('landing.working.kategori.part2'))
         }
     }
     
@@ -71,8 +73,8 @@ export default function WorkingSection({setRes}) {
         if(category !== ''){
             const categoryClass = document.getElementById('category');
             setDisabledDate(false);
-            categoryClass.classList.add('font-bold','text-[#ECE3DE]' )
-            setCalendar("Pilih Tanggal")
+            categoryClass.classList.add('font-bold','text-[#]' )
+            setCalendar(t('landing.working.tanggal'))
         }
     }
 
@@ -175,10 +177,10 @@ export default function WorkingSection({setRes}) {
     }
     
 // console.log(museum);
-console.log(namaInput);
+console.log(namaInput.namaCategory);
 console.log(input);
     return (
-        <section className="pb-20 bg-white -mt-48 left-1/2 mx-auto z-10 w-5/6">
+        <section className="pb-20  -mt-56 left-1/2 mx-auto z-10 w-5/6">
             <div className="container text-center max-w-5xl mx-auto px-10">
                 <form onSubmit={saveData}>
                     <div className="flex flex-wrap relative z-20">
@@ -214,7 +216,7 @@ console.log(input);
                                     cekCategory()
                                     }} 
                                     disabled={disabledCategory} > 
-                                    <option className='p-7 m-5 text-xl'>{namaInput.namaCategory}</option>
+                                    <option className='p-7 m-5 text-xl '>{namaInput.namaCategory}</option>
                                     {category && typeof category !== 'string'  && category.map((itemm,indexx)=>{
                                     return(
                                         <option  key={indexx} id={itemm.id} value={itemm.nama_kategori} >{itemm.nama_kategori}</option>
@@ -247,7 +249,7 @@ console.log(input);
                     <Link  ripple="light" id='button'  className="pointer-events-none text-gray-600 bg-gray-300 disabled:cursor-not-allowed w-64 h-12 text-center align-middle px-6  hover:bg-red-600  font-medium text-xl pt-2.5 font-merriweather leading-tight uppercase rounded shadow-md hover:shadow-lg focus:bg-red-300 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-400 active:shadow-lg transition duration-150 ease-in-out" to={{
                         pathname:"/input-data",
                         state : {input},
-                    }}>Pesan Tiket</Link>
+                    }}>{t('landing.working.pesan')}</Link>
                 </div>
                 </form>
             </div>

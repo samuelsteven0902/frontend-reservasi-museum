@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/static/css/main.4d04ee9b.chunk.css",
-    "main.js": "/static/js/main.0c706500.chunk.js",
-    "main.js.map": "/static/js/main.0c706500.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.6f78be10.js",
-    "runtime-main.js.map": "/static/js/runtime-main.6f78be10.js.map",
+    "main.css": "/static/css/main.2b09e1c8.chunk.css",
+    "main.js": "/static/js/main.40ad8c8c.chunk.js",
+    "main.js.map": "/static/js/main.40ad8c8c.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.ac6d467c.js",
+    "runtime-main.js.map": "/static/js/runtime-main.ac6d467c.js.map",
     "static/css/2.8cf5182b.chunk.css": "/static/css/2.8cf5182b.chunk.css",
-    "static/js/2.b5370d64.chunk.js": "/static/js/2.b5370d64.chunk.js",
-    "static/js/2.b5370d64.chunk.js.map": "/static/js/2.b5370d64.chunk.js.map",
-    "static/js/3.2aff6dff.chunk.js": "/static/js/3.2aff6dff.chunk.js",
-    "static/js/3.2aff6dff.chunk.js.map": "/static/js/3.2aff6dff.chunk.js.map",
+    "static/js/2.27e4ebfc.chunk.js": "/static/js/2.27e4ebfc.chunk.js",
+    "static/js/2.27e4ebfc.chunk.js.map": "/static/js/2.27e4ebfc.chunk.js.map",
+    "static/js/3.6771e1b6.chunk.js": "/static/js/3.6771e1b6.chunk.js",
+    "static/js/3.6771e1b6.chunk.js.map": "/static/js/3.6771e1b6.chunk.js.map",
     "index.html": "/index.html",
     "static/css/2.8cf5182b.chunk.css.map": "/static/css/2.8cf5182b.chunk.css.map",
-    "static/css/main.4d04ee9b.chunk.css.map": "/static/css/main.4d04ee9b.chunk.css.map",
-    "static/js/2.b5370d64.chunk.js.LICENSE.txt": "/static/js/2.b5370d64.chunk.js.LICENSE.txt",
+    "static/css/main.2b09e1c8.chunk.css.map": "/static/css/main.2b09e1c8.chunk.css.map",
+    "static/js/2.27e4ebfc.chunk.js.LICENSE.txt": "/static/js/2.27e4ebfc.chunk.js.LICENSE.txt",
     "static/media/tailwind.css": "/static/media/museum.f2c54550.png",
     "static/media/MuseumKeris.38de65fe.jpg": "/static/media/MuseumKeris.38de65fe.jpg",
     "static/media/MuseumKeris.8313d92f.png": "/static/media/MuseumKeris.8313d92f.png",
@@ -24,6 +24,7 @@
     "static/media/about2.1d33f2ce.jpg": "/static/media/about2.1d33f2ce.jpg",
     "static/media/excel.f7ad5380.png": "/static/media/excel.f7ad5380.png",
     "static/media/all.min.css": "/static/media/fa-solid-900.eeccf4f6.woff",
+    "static/media/getFetch.cjs": "/static/media/getFetch.5fde86e3.cjs",
     "static/media/login.79872296.svg": "/static/media/login.79872296.svg",
     "static/media/nothing.c788c571.svg": "/static/media/nothing.c788c571.svg",
     "static/media/team-1-800x800.jpg": "/static/media/team-1-800x800.fa5a7ac2.jpg",
@@ -32,10 +33,10 @@
     "static/media/team-4-470x470.4ef82ef4.png": "/static/media/team-4-470x470.4ef82ef4.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.6f78be10.js",
+    "static/js/runtime-main.ac6d467c.js",
     "static/css/2.8cf5182b.chunk.css",
-    "static/js/2.b5370d64.chunk.js",
-    "static/css/main.4d04ee9b.chunk.css",
-    "static/js/main.0c706500.chunk.js"
+    "static/js/2.27e4ebfc.chunk.js",
+    "static/css/main.2b09e1c8.chunk.css",
+    "static/js/main.40ad8c8c.chunk.js"
   ]
 }

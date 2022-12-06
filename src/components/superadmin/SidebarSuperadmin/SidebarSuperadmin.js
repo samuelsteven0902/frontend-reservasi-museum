@@ -94,18 +94,18 @@ export default function SidebarSuperadmin() {
               <li className="items-center">
                 <Link
                   className={
-                    "text-xs uppercase py-3 font-merriweather font-bold block " +
-                    (window.location.href.indexOf("/superadmin/grafik") !== -1
+                    "text-xs uppercase font-merriweather py-3 font-bold block " +
+                    (window.location.href.indexOf("/superadmin/dashboard") !== -1
                       ? "text-lightBlue-500 hover:text-lightBlue-600 "
                       : "text-blueGray-700 hover:text-blueGray-500 hover:bg-gray-100 rounded-xl pl-4 duration-300 transition-all hover:pl-6")
                   }
-                  to="/superadmin/grafik"
+                  to="/superadmin/dashboard"
                 >
                   <i
                     className={
                       "fas fa-solid fa-chart-bar mr-2 text-sm " +
                       // <i class="fa-solid fa-chart-simple"></i>
-                      (window.location.href.indexOf("/superadmin/grafik") !== -1
+                      (window.location.href.indexOf("/superadmin/dashboard") !== -1
                         ? "opacity-75"
                         : "text-blueGray-500")
                     }
@@ -140,7 +140,7 @@ export default function SidebarSuperadmin() {
                 <Link
                   className={
                     "text-xs uppercase py-3 font-merriweather font-bold block " +
-                    (window.location.href.indexOf("/superadmin/master-museum") !== -1
+                    (window.location.href.indexOf("/superadmin/tambah-museum") !== -1
                       ? "text-lightBlue-500 hover:text-lightBlue-600"
                       : "text-blueGray-700 hover:text-blueGray-500 hover:bg-gray-100 rounded-xl pl-4 duration-300 transition-all hover:pl-6")
                   }

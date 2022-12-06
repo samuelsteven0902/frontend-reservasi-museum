@@ -12,19 +12,19 @@ import About from 'components/landing/About';
 export default function Landing() {
     return (
         <>
-        <div className="absolute w-full z-50">
-            <DefaultNavbar />
-        </div>  
-        <main className=''>
-            <Header/>
-            <WorkingSection/>
-            {/* <HargaTiket /> */}
-            <Informasi/>
-            <About/>
-            {/* <TeamSection /> */}
-            {/* <ContactSection /> */}
-        </main>
-            <FooterPengunjung/>
+            <div className="absolute w-full z-50">
+                <DefaultNavbar />
+            </div>  
+            <main className='bg-gray-50'>
+                <Header />
+                <WorkingSection />
+                {/* <HargaTiket /> */}
+                <Informasi />
+                <About/>
+                {/* <TeamSection /> */}
+                {/* <ContactSection /> */}
+            </main>
+            <FooterPengunjung />
             {/* <DefaultFooter /> */}
         </>
     );

@@ -21,10 +21,12 @@ import About from 'pages/About';
 import AuthUser from 'components/AuthUser';
 import ProtectedRoute from 'ProtectedRoute';
 import harga from 'components/harga/Harga';
+import { Suspense } from 'react';
 
 
 function App() {
     return (
+		<Suspense fallback={null}>
         <Switch>
             <Route exact path="/" component={Landing}/>
             <Route exact path="/profile" component={Profile} />
@@ -43,6 +45,7 @@ function App() {
             <ProtectedRoute path="/superadmin" render={props=><SuperAdmin {...props} />}/>
             <Redirect to="/" />
         </Switch>
+        </Suspense>
     );
 }
 
