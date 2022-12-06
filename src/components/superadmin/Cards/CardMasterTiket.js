@@ -59,16 +59,11 @@ const [tambahData,setTambahData] = useState({
     hari_libur : '',
 })
 
-
-
 const [searchTerm, setSearchTerm] = useState("")
-
 
 const options = ['One', 'Two', 'Three', 'Four']
 
-
 const redirect = useHistory();
-
 
 const fetchData = () =>{
     axios.get('http://localhost:8000/api/show_harga')
@@ -145,7 +140,6 @@ const handleNamaMuseum = (e) =>{
     console.log(e.currentTarget.value)
 }
 
-
 const storeMuseum = (e) =>{
     e.preventDefault();
 
@@ -159,7 +153,6 @@ const storeMuseum = (e) =>{
             console.log('berhasil');
             swal("Success",res.data.message,"success").then(e=>
                 window.location.reload(false));
-            
         }
         else if(res.data.status === 422)
         {
@@ -239,9 +232,6 @@ const deleteData = (e, id) => {
         } else {
             swal("Data anda aman!");
         }
-
-    
-
     })
 }
 
@@ -264,16 +254,16 @@ const rupiah = (number)=>{
 console.log(tambahMuseum);
 if(loading)
 {
-    var harga_HTMLTABLE =   <tr className="bg-white border-b" >
-                                <td colspan={6} className="text-xl text-center justify-center font-semibold py-5">
-                                <ReactLoading type={"spin"} color={"red"} height={'5%'} width={'5%'} className="m-auto" />
-                                </td>
-                            </tr>
+    var harga_HTMLTABLE =   
+        <tr className="bg-white border-b" >
+            <td colspan={6} className="text-xl text-center justify-center font-semibold py-5">
+                <ReactLoading type={"spin"} color={"red"} height={'5%'} width={'5%'} className="m-auto" />
+            </td>
+        </tr>
 }
 else
 {
     var harga_HTMLTABLE = ''
-
     harga_HTMLTABLE = semuaHarga.filter(val=>{
         if(searchTerm == "")
         {
@@ -303,13 +293,10 @@ else
                         {rupiah(item.hari_libur)}
                     </td>
                     <td className=" text-gray-900 px-6 py-4 whitespace-nowrap ">
-                
-                    <button type="button" className=" text-white ml-4 bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded text-sm px-4 py-1.5 flex text-center mr-2 w-3/4 mb-2 align-middle items-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900" data-bs-toggle="modal" id={item.id_kategori} data-bs-target="#exampleModalCenteredScrollable" onClick={handleHarga} >
-                    <BiPencil className="mr-1" />Edit</button>
-
-                    <button type="button" className="text-white ml-4 bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded text-sm px-3 py-1.5 flex text-center mr-2 mb-2 w-3/4 items-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900" onClick={(e) => deleteData(e, item.id)}>
-                    <BiTrash  className="mr-1" />Hapus</button>
-
+                        <button type="button" className=" text-white ml-4 bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded text-sm px-4 py-1.5 flex text-center mr-2 w-3/4 mb-2 align-middle items-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900" data-bs-toggle="modal" id={item.id_kategori} data-bs-target="#exampleModalCenteredScrollable" onClick={handleHarga} >
+                        <BiPencil className="mr-1" />Edit</button>
+                        <button type="button" className="text-white ml-4 bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded text-sm px-3 py-1.5 flex text-center mr-2 mb-2 w-3/4 items-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900" onClick={(e) => deleteData(e, item.id)}>
+                        <BiTrash  className="mr-1" />Hapus</button>
                     </td>
                     </tr>
         )
@@ -319,7 +306,7 @@ else
 return (
     <div className='container relative flex flex-col min-w-0 break-words w-full mb-6 rounded '>
         <div className="flex justify-between">
-            <input type='text' className="w-72 border-none ring-2 ring-red-300 focus:border-none focus:ring-red-500 focus:ring-2 active:border-none rounded-lg" placeholder="Cari nama museum, kategori, harga, ..." onChange={e=>{setSearchTerm(e.target.value)}} /> 
+            <input type='text' className="w-80 font-nunito border-none ring-2 ring-red-300 focus:border-none focus:ring-red-500 focus:ring-2 active:border-none rounded-lg" placeholder="Cari nama museum, kategori, harga,..." onChange={e=>{setSearchTerm(e.target.value)}} /> 
 
             <button type="button" class="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out" data-bs-toggle="modal" data-bs-target="#modalTambahData">Tambah Data</button>
         </div>
@@ -331,22 +318,22 @@ return (
                 <table  id="table_id" className="shadow-lg rounded-xl w-full" >
                 <thead className="border-b bg-white ">
                     <tr className=''>
-                    <th scope="col" className="text-xl font-medium text-[#A70B0B] px-6 py-4 text-center ">
+                    <th scope="col" className="text-xl font-nunito font-semibold text-[#A70B0B] px-6 py-4 text-center ">
                         No
                     </th>
-                    <th scope="col" className="text-xl font-medium text-[#A70B0B] px-6 py-4 text-center">
+                    <th scope="col" className="text-xl font-nunito font-semibold text-[#A70B0B] px-6 py-4 text-center">
                         Museum
                     </th>
-                    <th scope="col" className="text-xl font-medium text-[#A70B0B] px-6 py-4 text-center">
+                    <th scope="col" className="text-xl font-nunito font-semibold text-[#A70B0B] px-6 py-4 text-center">
                         Kategori    
                     </th>
-                    <th scope="col" className="text-xl font-medium text-[#A70B0B] px-6 py-4 text-center">
+                    <th scope="col" className="text-xl font-nunito font-semibold text-[#A70B0B] px-6 py-4 text-center">
                         Harga Hari Biasa
                     </th>
-                    <th scope="col" className="text-xl font-medium text-[#A70B0B] px-6 py-4 text-center">
+                    <th scope="col" className="text-xl font-nunito font-semibold text-[#A70B0B] px-6 py-4 text-center">
                         Harga Hari Libur
                     </th>
-                    <th scope="col" className="text-xl font-medium text-[#A70B0B] px-6 py-4 text-center">
+                    <th scope="col" className="text-xl font-nunito font-semibold text-[#A70B0B] px-6 py-4 text-center">
                         Aksi
                     </th>
                     </tr>
@@ -359,7 +346,7 @@ return (
                     <div className="modal-dialog w-full md:w-1/2  mx-auto  h-full  my-auto modal-dialog-centered modal-dialog-scrollable relative items-center pointer-events-none lg:w-1/3" >
                         <div className="modal-content border-none -ml-24 shadow-lg relative flex flex-col w-full pointer-events-auto my-auto bg-white min-w-max bg-clip-padding rounded-md outline-none text-current">
                         <div className="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
-                            <h5 className="text-xl font-medium leading-normal text-gray-800" id="exampleModalCenteredScrollableLabel">
+                            <h5 className="text-xl font-nunito font-semibold leading-normal text-gray-800" id="exampleModalCenteredScrollableLabel">
                             Edit Data
                             </h5>
                             <button type="button"
@@ -372,28 +359,28 @@ return (
                             <div className="modal-body relative p-4">
                                 <div className='justify-around md:mt-0 mt-8'>    
                                     <div className="w-96 mb-4 mx-auto ">
-                                        <label className="block text-gray-700 text-sm font-bold mb-2" for="username">
+                                        <label className="block text-gray-700 text-sm font-nunito font-semibold mb-2" for="username">
                                             Nama Museum
                                         </label>
                                         <input name='phone' className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-gray-200 cursor-not-allowed" id="username" type="text" value="Loading Harga Data..." disabled={true} />
                                         <span className="text-sm text-red-500"></span>
                                     </div>
                                     <div className="w-96 mb-4  mx-auto md:mt-0 mt-8">
-                                        <label className="block text-gray-700 text-sm font-bold mb-2" for="username">
+                                        <label className="block text-gray-700 text-sm font-nunito font-semibold mb-2" for="username">
                                             Harga Nama Kategori
                                         </label>
                                         <input name='jumlah'  className="shadow appearance-none bg-gray-200 cursor-not-allowed border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" value="Loading Harga Data..." disabled={true}/>
                                         <span className="text-sm text-red-500"></span>
                                     </div>
                                     <div className="w-96 mb-4  mx-auto md:mt-0 mt-8">
-                                        <label className="block text-gray-700 text-sm font-bold mb-2" for="username">
+                                        <label className="block text-gray-700 text-sm font-nunito font-semibold mb-2" for="username">
                                             Harga Hari Biasa
                                         </label>
                                         <input name='hari_biasa' onChange={handleInput}  className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="Loading Harga Data..." />
                                         <span className="text-sm text-red-500"></span>
                                     </div>
                                     <div className="w-96 mb-4  mx-auto md:mt-0 mt-8">
-                                        <label className="block text-gray-700 text-sm font-bold mb-2" for="username">
+                                        <label className="block text-gray-700 text-sm font-nunito font-semibold mb-2" for="username">
                                             Hari Libur
                                         </label>
                                         <input name='hari_libur' onChange={handleInput}  className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="Loading Harga Data..." />
@@ -405,12 +392,12 @@ return (
                             <div
                                 className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
                                 <button type="button"
-                                className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+                                className="inline-block px-6 py-2.5 bg-blue-600 text-white font-bold text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
                                 data-bs-dismiss="modal">
                                 Tutup
                                 </button>
                                 <button type="submit"
-                                className="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out ml-1" id="idSave">
+                                className="inline-block px-6 py-2.5 bg-red-600 text-white font-bold text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out ml-1" id="idSave">
                                 Simpan Perubahan
                                 </button>
                             </div>
@@ -420,28 +407,28 @@ return (
                             <div className="modal-body relative p-4">
                                 <div className='justify-around md:mt-0 mt-8'>    
                                     <div className="w-96 mb-4 mx-auto ">
-                                        <label className="block text-gray-700 text-sm font-bold mb-2" for="username">
+                                        <label className="block text-gray-700 text-sm font-nunito font-semibold mb-2" for="username">
                                             Nama Museum
                                         </label>
                                         <input name='phone'  className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-gray-200 cursor-not-allowed" id="username" type="text" value={harga.nama_museum} disabled={true} />
                                         <span className="text-sm text-red-500"></span>
                                     </div>
                                     <div className="w-96 mb-4  mx-auto md:mt-0 mt-8">
-                                        <label className="block text-gray-700 text-sm font-bold mb-2" for="username">
-                                            Harga Nama Kategorii
+                                        <label className="block text-gray-700 text-sm font-nunito font-semibold mb-2" for="username">
+                                            Harga Nama Kategori
                                         </label>
                                         <input name='jumlah'  className="shadow appearance-none bg-gray-200 cursor-not-allowed border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" value={harga.nama_kategori} disabled={true}/>
                                         <span className="text-sm text-red-500"></span>
                                     </div>
                                     <div className="w-96 mb-4  mx-auto md:mt-0 mt-8">
-                                        <label className="block text-gray-700 text-sm font-bold mb-2" for="username">
+                                        <label className="block text-gray-700 text-sm font-nunito font-semibold mb-2" for="username">
                                             Harga Hari Biasa
                                         </label>
                                         <input name='hari_biasa' onChange={handleInput}  className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="number" value={harga.hari_biasa} />
                                         <span className="text-sm text-red-500"></span>
                                     </div>
                                     <div className="w-96 mb-4  mx-auto md:mt-0 mt-8">
-                                        <label className="block text-gray-700 text-sm font-bold mb-2" for="username">
+                                        <label className="block text-gray-700 text-sm font-nunito font-semibold mb-2" for="username">
                                             Hari Libur
                                         </label>
                                         <input name='hari_libur' onChange={handleInput}  className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"   value={harga.hari_libur} />
@@ -453,18 +440,16 @@ return (
                             <div
                                 className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
                                 <button type="button"
-                                className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+                                className="inline-block px-6 py-2.5 bg-blue-600 text-white font-bold text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
                                 data-bs-dismiss="modal">
                                 Tutup
                                 </button>
                                 <button type="submit"
-                                className="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out ml-1">
+                                className="inline-block px-6 py-2.5 bg-red-600 text-white font-bold text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out ml-1">
                                 Simpan Perubahan
                                 </button>
                             </div>
-                            
                         </form> }
-    
                         </div>
                     </div>
                     </div>
@@ -480,7 +465,7 @@ return (
                     <div className="modal-dialog w-full md:w-1/2  mx-auto  h-full  my-auto modal-dialog-centered modal-dialog-scrollable relative items-center pointer-events-none lg:w-1/3" >
                         <div className="modal-content border-none -ml-24 shadow-lg relative flex flex-col w-full pointer-events-auto my-auto bg-white min-w-max bg-clip-padding rounded-md outline-none text-current">
                         <div className="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
-                            <h5 className="text-xl font-medium leading-normal text-gray-800" id="Tambahmuseumlabel">
+                            <h5 className="text-xl font-nunito font-semibold leading-normal text-gray-800" id="Tambahmuseumlabel">
                             Tambah Data
                             </h5>
                             <button type="button"
@@ -492,7 +477,7 @@ return (
                                 <div className="modal-body relative p-4">
                                     <div className='justify-around md:mt-0 mt-8'>    
                                         <div className="w-96 mb-4 mx-auto ">
-                                            <label className="block text-gray-700 text-sm font-bold mb-2" for="nama_museum">
+                                            <label className="block text-gray-700 text-sm font-nunito font-semibold mb-2" for="nama_museum">
                                                 Nama Museum
                                             </label>
                                             <div className="flex justify-between">
@@ -514,27 +499,27 @@ return (
                                                         <option className='py-6 my-6 h-32' key={index} id={item.id} value={item.id}>{item.nama_museum}</option>
                                                     )})}
                                             </select>
-                                            <Link to="/superadmin/tambah-museum" className='inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out'>Tambah Museum</Link>
+                                            <Link to="/superadmin/tambah-museum" className='inline-block px-6 py-2.5 bg-red-600 text-white font-bold text-xs leading-tight uppercase rounded-full shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out'>Tambah Museum</Link>
                                             </div>
 
                                             <span className="text-sm text-red-500"></span>
                                         </div>
                                         <div className="w-96 mb-4  mx-auto md:mt-0 mt-8">
-                                            <label className="block text-gray-700 text-sm font-bold mb-2" for="nama_kategori">
+                                            <label className="block text-gray-700 text-sm font-nunito font-semibold mb-2" for="nama_kategori">
                                                 Nama Kategori
                                             </label>
                                             <input name='nama_kategori'  className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="nama_kategori" type="text" onChange={handleInputTambahData}/>
                                             <span className="text-sm text-red-500"></span>
                                         </div>
                                         <div className="w-96 mb-4  mx-auto md:mt-0 mt-8">
-                                            <label className="block text-gray-700 text-sm font-bold mb-2" for="hari_biasa">
+                                            <label className="block text-gray-700 text-sm font-nunito font-semibold mb-2" for="hari_biasa">
                                                 Harga Hari Biasa
                                             </label>
                                             <input name='hari_biasa' className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="hari_biasa" type="number" onChange={handleInputTambahData}/>
                                             <span className="text-sm text-red-500"></span>
                                         </div>
                                         <div className="w-96 mb-4  mx-auto md:mt-0 mt-8">
-                                            <label className="block text-gray-700 text-sm font-bold mb-2" for="hari_libur">
+                                            <label className="block text-gray-700 text-sm font-nunito font-semibold mb-2" for="hari_libur">
                                                 Hari Libur
                                             </label>
                                             <input name='hari_libur' className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="hari_libur" type="number" onChange={handleInputTambahData}/>
@@ -544,11 +529,10 @@ return (
         
                                 <div
                                     className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
-                                    <button type="button" className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"data-bs-dismiss="modal">Tutup</button>
-                                    <button type="submit" className="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out ml-1">Tambah Data</button>
+                                    <button type="button" className="inline-block px-6 py-2.5 bg-blue-600 text-white font-bold text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"data-bs-dismiss="modal">Tutup</button>
+                                    <button type="submit" className="inline-block px-6 py-2.5 bg-red-600 text-white font-bold text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out ml-1">Tambah Data</button>
                                 </div>
-                            
-    
+
                         </form> 
                     </div>
                 </div>

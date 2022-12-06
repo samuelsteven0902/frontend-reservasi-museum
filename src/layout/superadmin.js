@@ -3,14 +3,12 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import '../assets/styles/admin/tailwind.css'
 
 // components
-
 import AdminNavbar from "components/superadmin/Navbars/AdminNavbar.js";
 import SidebarSuperadmin from "components/superadmin/SidebarSuperadmin/SidebarSuperadmin.js";
 import HeaderStats from "components/superadmin/Headers/HeaderStats.js";
 import FooterAdmin from "components/superadmin/Footers/FooterAdmin.js";
 
 // views
-
 import Dashboard from "components/superadmin/Dashboard.js";
 import Maps from "components/superadmin/Maps.js";
 import MasterTiket from "components/superadmin/MasterTiket";

@@ -892,6 +892,9 @@ input[type="range"]::-ms-fill-lower{
 .z-40{
 	z-index: 40;
 } 
+.order-none{
+	order: 0;
+} 
 .col-span-2{
 	grid-column: span 2 / span 2;
 } 
@@ -1199,6 +1202,9 @@ input[type="range"]::-ms-fill-lower{
 .h-56{
 	height: 14rem;
 } 
+.h-full{
+	height: 100%;
+} 
 .h-0\.5{
 	height: 0.125rem;
 } 
@@ -1213,9 +1219,6 @@ input[type="range"]::-ms-fill-lower{
 } 
 .h-16{
 	height: 4rem;
-} 
-.h-full{
-	height: 100%;
 } 
 .h-1{
 	height: 0.25rem;
@@ -1372,6 +1375,9 @@ input[type="range"]::-ms-fill-lower{
 } 
 .w-6\/12{
 	width: 50%;
+} 
+.w-80{
+	width: 20rem;
 } 
 .min-w-full{
 	min-width: 100%;
@@ -1585,11 +1591,11 @@ input[type="range"]::-ms-fill-lower{
 .border-2{
 	border-width: 2px;
 } 
-.border-4{
-	border-width: 4px;
-} 
 .border-0{
 	border-width: 0px;
+} 
+.border-4{
+	border-width: 4px;
 } 
 .border{
 	border-width: 1px;
@@ -1770,7 +1776,7 @@ input[type="range"]::-ms-fill-lower{
 	background-image: linear-gradient(to bottom right, var(--tw-gradient-stops));
 } 
 .bg-landing-background{
-	background-image: linear-gradient(rgba(0,0,0, 0), rgba(0,0,0, 0)), url('/src/assets/img/Landing/museum.png');
+	background-image: linear-gradient(rgba(0,0,0, 0), rgba(0,0,0, 0)), url('/src/assets/img/Landing/Museumlandingpage.png');
 } 
 .bg-profile-background{
 	background-image: linear-gradient(rgba(0,0,0, 0.75), rgba(0,0,0, 0.75)), url('/src/assets/img/Landing/header_bawah.png');
@@ -1989,6 +1995,12 @@ input[type="range"]::-ms-fill-lower{
 .pb-5{
 	padding-bottom: 1.25rem;
 } 
+.pt-5{
+	padding-top: 1.25rem;
+} 
+.pb-10{
+	padding-bottom: 2.5rem;
+} 
 .pt-36{
 	padding-top: 9rem;
 } 
@@ -2107,10 +2119,6 @@ input[type="range"]::-ms-fill-lower{
 	font-size: 1rem;
 	line-height: 1.5rem;
 } 
-.text-3xl{
-	font-size: 1.875rem;
-	line-height: 2.25rem;
-} 
 .text-2xl{
 	font-size: 1.5rem;
 	line-height: 2rem;
@@ -2126,6 +2134,10 @@ input[type="range"]::-ms-fill-lower{
 .text-5xl{
 	font-size: 3rem;
 	line-height: 1;
+} 
+.text-3xl{
+	font-size: 1.875rem;
+	line-height: 2.25rem;
 } 
 .font-normal{
 	font-weight: 400;
@@ -2224,10 +2236,6 @@ input[type="range"]::-ms-fill-lower{
 	--tw-text-opacity: 1;
 	color: rgba(75, 85, 99, var(--tw-text-opacity));
 } 
-.text-gray-200{
-	--tw-text-opacity: 1;
-	color: rgba(229, 231, 235, var(--tw-text-opacity));
-} 
 .text-gray-800{
 	--tw-text-opacity: 1;
 	color: rgba(31, 41, 55, var(--tw-text-opacity));
@@ -2247,6 +2255,10 @@ input[type="range"]::-ms-fill-lower{
 .text-red-400{
 	--tw-text-opacity: 1;
 	color: rgba(249, 128, 128, var(--tw-text-opacity));
+} 
+.text-gray-200{
+	--tw-text-opacity: 1;
+	color: rgba(229, 231, 235, var(--tw-text-opacity));
 } 
 .text-gray-100{
 	--tw-text-opacity: 1;
@@ -4437,6 +4449,10 @@ video {
 	--tw-bg-opacity: 1;
 	background-color: rgba(248, 180, 180, var(--tw-bg-opacity));
 } 
+.hover\:bg-gray-100:hover{
+	--tw-bg-opacity: 1;
+	background-color: rgba(243, 244, 246, var(--tw-bg-opacity));
+} 
 .hover\:bg-\[\#ECE3DE\]:hover{
 	--tw-bg-opacity: 1;
 	background-color: rgba(236, 227, 222, var(--tw-bg-opacity));
@@ -4456,10 +4472,6 @@ video {
 .hover\:bg-red-600:hover{
 	--tw-bg-opacity: 1;
 	background-color: rgba(224, 36, 36, var(--tw-bg-opacity));
-} 
-.hover\:bg-gray-100:hover{
-	--tw-bg-opacity: 1;
-	background-color: rgba(243, 244, 246, var(--tw-bg-opacity));
 } 
 .hover\:bg-\[\#A70B0B\]:hover{
 	--tw-bg-opacity: 1;

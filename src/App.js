@@ -11,10 +11,8 @@ import SuperAdmin from 'layout/superadmin';
 import 'react-dates/initialize';
 import 'tw-elements';
 
-
 // Font Awesome Style Sheet
 import '@fortawesome/fontawesome-free/css/all.min.css';
-
 // Tailwind CSS Style Sheet
 import 'assets/styles/tailwind.css';
 import Panduan from 'pages/Panduan';
@@ -27,7 +25,6 @@ import { Suspense } from 'react';
 
 
 function App() {
-
     return (
 		<Suspense fallback={null}>
         <Switch>
@@ -45,9 +42,6 @@ function App() {
             <Route path="/about" component={About}/>
             <Route path="/harga-tiket" component={harga}/>
             <ProtectedRoute path="/admin" render={props=><Admin {...props} />}/>
-
-            
-
             <ProtectedRoute path="/superadmin" render={props=><SuperAdmin {...props} />}/>
             <Redirect to="/" />
         </Switch>

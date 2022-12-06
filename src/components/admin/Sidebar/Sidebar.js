@@ -29,11 +29,11 @@ export default function Sidebar() {
             </ul>
             <div>
               <Link
-              className="md:block text-left md:pb-1 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-1 px-1"
+              className="md:block text-left md:pb-1 font-merriweather text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-1 px-1"
               to="/"> UPT MUSEUM
               </Link>
               <p 
-              className="md:block text-left md:pb-1 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-1 px-1">Admin
+              className="md:block text-left md:pb-1 font-merriweather text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-1 px-1">Admin
               </p>
             </div>
           </div>
@@ -84,7 +84,7 @@ export default function Sidebar() {
             <hr className="my-4 md:min-w-full" />
 
             {/* Heading */}
-            <h6 className="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
+            <h6 className="md:min-w-full font-merriweather text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
               Dashboard
             </h6>
 
@@ -93,7 +93,7 @@ export default function Sidebar() {
               <li className="items-center">
                 <Link
                   className={
-                    "text-xs uppercase py-3 font-bold block " +
+                    "text-xs uppercase py-3 font-merriweather font-bold block " +
                     (window.location.href.indexOf("/admin/grafik") !== -1
                       ? "text-lightBlue-500 hover:text-lightBlue-600"
                       : "text-blueGray-700 hover:text-blueGray-500 hover:bg-gray-100 rounded-xl pl-4 duration-300 transition-all hover:pl-6")
@@ -105,9 +105,9 @@ export default function Sidebar() {
                       "fas fa-solid fa-chart-bar mr-2 text-sm " +
                       (window.location.href.indexOf("/admin/grafik") !== -1
                         ? "opacity-75"
-                        : "text-blueGray-300")
+                        : "text-blueGray-500")
                     }
-                  ></i>{" "}
+                  ></i>{""}
                   Grafik
                 </Link>
               </li>
@@ -115,7 +115,7 @@ export default function Sidebar() {
               <li className="items-center">
                 <Link
                   className={
-                    "text-xs uppercase py-3 font-bold block " +
+                    "text-xs uppercase py-3 font-merriweather font-bold block " +
                     (window.location.href.indexOf("/admin/data-pengunjung") !== -1
                       ? "text-lightBlue-500 hover:text-lightBlue-600"
                       : "text-blueGray-700 hover:text-blueGray-500  hover:bg-gray-100 rounded-xl pl-4 duration-300 transition-all hover:pl-6")
@@ -128,39 +128,17 @@ export default function Sidebar() {
                       // <i class="fa-solid fa-users"></i>
                       (window.location.href.indexOf("/admin/data-pengunjung") !== -1
                         ? "opacity-75"
-                        : "text-blueGray-300 ")
+                        : "text-blueGray-500 ")
                     }
                   ></i>{" "}
                   Data Pengunjung
                 </Link>
               </li>
 
-              {/* <li className="items-center">
-                <Link
-                  className={
-                    "text-xs uppercase py-3 font-bold block " +
-                    (window.location.href.indexOf("/admin/data-sanggahan") !== -1
-                      ? "text-lightBlue-500 hover:text-lightBlue-600"
-                      : "text-blueGray-700 hover:text-blueGray-500  hover:bg-gray-100 rounded-xl pl-4 duration-300 transition-all hover:pl-6")
-                  }
-                  to="/admin/data-sanggahan"
-                >
-                  <i
-                    className={ 
-                      "fas fa-solid fa-file mr-3 text-sm " +
-                      (window.location.href.indexOf("/admin/data-sanggahan") !== -1
-                        ? "opacity-50"
-                        : "text-blueGray-300")
-                    }
-                  ></i>{" "}
-                  Data Sanggahan
-                </Link>
-              </li> */}
-
               <li className="items-center">
                 <Link
                   className={
-                    "text-xs uppercase py-3 font-bold block " +
+                    "text-xs uppercase py-3 font-merriweather font-bold block " +
                     (window.location.href.indexOf("/admin/data-kehadiran") !== -1
                       ? "text-lightBlue-500 hover:text-lightBlue-600"
                       : "text-blueGray-700 hover:text-blueGray-500  hover:bg-gray-100 rounded-xl pl-4 duration-300 transition-all hover:pl-6")
@@ -172,7 +150,7 @@ export default function Sidebar() {
                       "fas fa-solid fa-clipboard-list mr-2 text-sm " +
                       (window.location.href.indexOf("/admin/data-kehadiran") !== -1
                         ? "opacity-50"
-                        : "text-blueGray-300")
+                        : "text-blueGray-500")
                     }
                   ></i>{" "}
                   Data Kehadiran
@@ -184,7 +162,7 @@ export default function Sidebar() {
               <li className="items-center">
                 <Link
                   className={
-                    "text-xs uppercase py-1 font-bold block " +
+                    "text-xs uppercase py-1 font-merriweather font-bold block " +
                     (window.location.href.indexOf("/admin/logout") !== -1
                       ? "text-red-500 hover:text-red-600"
                       : "text-red-700 hover:text-red-500")

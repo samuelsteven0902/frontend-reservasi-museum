@@ -111,7 +111,7 @@ export default class ImageUpload extends Component {
                 <div className="card-body">
                   <div className="form-group py-2 "> 
                   <div className='flex justify-center flex-wrap flex-col  '>
-            <p className='text-5xl font-merriweather  font-bold pb- w-full  text-red-300'>Panduan Tiket</p>
+            <p className='text-5xl font-merriweather  font-bold pb- w-full  text-red-400'>Panduan Tiket</p>
             <hr className='h-1 bg-red-300  flex ' />
         </div>
                     <input

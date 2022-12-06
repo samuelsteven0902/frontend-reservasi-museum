@@ -36,7 +36,7 @@ function Informasi() {
                   <p className='tracking-wide text-sm font-medium font-nunito pt-auto text-black'>{t('landing.harga.desc')}</p>
                 </Link>
             </div>
-        </div>
+      </div>
     </div>
   )
 }
