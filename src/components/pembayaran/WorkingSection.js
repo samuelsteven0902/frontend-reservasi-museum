@@ -38,47 +38,14 @@ function WorkingSection(input) {
             pembayaran: 'cash',
             // status: 1,
         }
-
-        console.log(data);
-        // swal({
-        //     title: "Anda yakin Pembayaran cash ?",
-        //     text: "Pembayaran akan dilakukan secara Cash!",
-        //     icon: "warning",
-        //     buttons: true,
-        //     dangerMode: true,
-        //   })
-        //   .then((e) => {
-        //     if (e) {
-        //         console.log(data);
-        //         axios.post(`http://localhost:8000/api/add-pengunjung`, data).then(res => {
-
-        //             console.log(res.data);
-        //             if(res.data.status === 200)
-        //             {
-        //                 console.log('MANTAB BERHASIL');
-        //                 history.push('/tiket');
-        //             }
-        //             else if(res.data.status === 422)
-        //             {
-        //                 console.log('ada yang salah di BE');
-        //             }
-        //         });
-
-        //       swal("Poof! Pembayaran anda Berhasil !", {
-        //         icon: "success",
-        //       });
-
-        //     } else {
-        //       swal("Your imaginary file is safe!");
-        //     }
-        //   });
-
         axios.post(`http://localhost:8000/api/add-pengunjung`, data).then(res => {
                     console.log(res.data);
                     if(res.data.status === 200)
                     {
                         console.log('MANTAB BERHASIL');
-                        history.push('/tiket');
+                        history.push({ pathname:"/tiket",
+                        state : data
+                             });
                     }
                     else if(res.data.status === 422)
                     {

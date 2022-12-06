@@ -1,12 +1,170 @@
-import React from 'react'
+import axios, { Axios } from 'axios';
+import React, { useEffect, useState } from 'react'
+import { useHistory } from 'react-router-dom';
+import swal from 'sweetalert';
 import qr from '../../assets/img/tiket/qr.png'
+import 'flowbite';
+import { useLocation } from 'react-router-dom'
+import FormInput from 'components/inputdata/FormInput';
 
-function Content() {
+function Content(input) {
+
+  // const data = data;
+  const [pembayaran,setPembayaran] = useState('')
+  const [danger,setDanger] = useState('')
+  const history = useHistory();
+
+  // dari input data
+  const stateParamVal = useLocation().state
+  console.log(stateParamVal,"ini di tiket");
+  const id_category = stateParamVal.category
+  const id_museum = stateParamVal.museum
+  // const id_nama = stateParamVal.nama
+  // const id_kota = stateParamVal.kota
+  // const id_phone = stateParamVal.phone
+  // const id_jumlah = stateParamVal.jumlah
+  // const id_tanggal = stateParamVal.tanggal
+  // const id_foto = stateParamVal.foto
+  // const id_harga_awal = stateParamVal.input
+ 
+
+  const [data,setData] = useState();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [])
+
+  // useEffect(() => {
+  //   const fetchData = async () =>
+  //   {
+
+      const dataId= {
+        id_category:id_category,
+        id_museum:id_museum,
+      }
+
+      // const resHarga = await fetch(`http://localhost:8000/api/show_harga/${id_category}`, dataId);
+      // const res = await resHarga.json()
+      
+      // const resData = await axios.post(`http://localhost:8000/api/show_data/${id_category}`, dataId)
+      //                         .then(res=>{ console.log(res); setData(res.data.data[0]); })
+      // // console.log(await harga)
+
+  //   }
+
+  //   fetchData();
+  // }, [])
+
+  // end
+  // const [loading, setLoading] = useState(true);
+  // const [pengunjung, setPengunjung] = useState([]);
+//   const [input,setInput] = useState({
+//     nama: '',
+//     kota: '',
+//     phone: '',
+//     jumlah: '',
+//     museum: '',
+//     kategori: '',
+//     tanggal: '',
+//     foto: '',
+// })
+
+  console.log(input);
+  const handleCash = () =>{
+    // console.log(input.data);
+    if(pembayaran !== '' || input.input == 0){
+        setPembayaran('Tunai')
+    console.log(pembayaran);
+
+//   const data = {
+//     nama:input.data.nama,
+//     kota:input.data.kota,
+//     phone:input.data.phone,
+//     jumlah:input.data.jumlah,
+//     museum:input.data.museum,
+//     kategori:input.data.kategori,
+//     tanggal:input.data.tanggal,
+//     foto:input.data.foto, 
+//     pembayaran: 'cash',
+//     status: 'belum lunas',
+// }
+
+// console.log(data);
+
+
+
+  
+
+axios.post(`http://localhost:8000/api/add-pengunjung`, data).then(res => {
+          console.log(res.data);
+          if(res.data.status === 200)
+          {
+              console.log('MANTAB BERHASIL');
+              history.push('/tiket');
+          }
+          else if(res.data.status === 422)
+          {
+              console.log('ada yang salah di BE');
+          }
+      });
+      }else{
+      setDanger("Silahkan pilih pembayaran terlebih dahulu")
+      }
+
+    }
+
+    useEffect(() => {
+
+
+    }, [pembayaran])
+
+        const rupiah = (number)=>{
+          return new Intl.NumberFormat("id-ID", {
+          style: "currency",
+          currency: "IDR"
+          }).format(number);
+        }
+
+        const onValueChange = (e) => {
+          // setPembayaran(e)
+          setPembayaran(e.target.value)
+        }
+
+
+    //   useEffect(() => {
+
+    //     axios.get(`/api/pengunjung`).then(res=>{
+    //         if(res.status === 200)
+    //         {
+    //             setPengunjung(res.data.pengunjung)
+    //             setLoading(false);
+    //         }
+    //     });
+
+    // }, []);
+    
+    // const rupiah = (number)=>{
+    //   return new Intl.NumberFormat("id-ID", {
+    //     style: "currency",
+    //     currency: "IDR"
+    //   }).format(number);
+    // }
+
+    // if(loading)
+    // {
+    //     return <h4>Loading Tiket...</h4>
+    // }
+    // else
+    // {
+    //     var pengunjung_HTMLTABLE = "";
+       
+    //     pengunjung_HTMLTABLE = pengunjung.map( (item, index) => {
+    
   return (
   
     // className="items-center flex flex-wrap bg-[#A70B0B]">
 
-      <div classNamec='container mx-auto justify-center'>
+      <div className='container mx-auto justify-center'>
         <div className='flex justify-center'>
           <button class=" mt-10 bg-[#A70B0B] hover:bg-[#A70B0B]  text-white font-bold py-4 px-8 rounded-full focus:outline-none focus:shadow-outline">
             Download
@@ -26,7 +184,7 @@ function Content() {
           <div className="w-auto px-4 ml-auto mr-auto text-center">
             <div className="text-gray-200">
               <p className='my-3 text-lg'>
-                XXXX.XXXXX-XXXXXX.XXXXXXXX-XXXXXXX
+              ET 0987689
               </p>
             </div>
           </div>
@@ -37,17 +195,17 @@ function Content() {
 
               <div className='my-3'>
                 <p className=' text-lg'>Tujuan Wisata</p>
-                <p className='text-xl font-bold'>Museum Kris Nusantara</p>
+                <p className='text-xl font-bold'>{stateParamVal.museum}</p>
               </div>
 
               <div className='my-3' >
                 <p className=' text-lg'>Tanggal Pemesanan</p>
-                <p  className='text-xl font-bold'>08 September 2022</p>
+                <p  className='text-xl font-bold'>{stateParamVal.tanggal}</p>
               </div>
 
               <div className='my-3'>
                 <p className=' text-lg'>Atas Nama</p>
-                <p  className='text-xl font-bold'>Maba Nurul</p>
+                <p  className='text-xl font-bold'>{stateParamVal.nama}</p>
               </div>
 
             </div>
@@ -56,12 +214,12 @@ function Content() {
 
               <div className='my-3'>
                 <p className=' text-lg'>Jumlah Pengunjung</p>
-                <p  className='text-xl font-bold'>12</p>
+                <p  className='text-xl font-bold'>{stateParamVal.jumlah}</p>
               </div>
 
               <div  className='my-3'>
                 <p className=' text-lg'>Status Pembayaran</p>
-                <p  className='text-xl font-bold'>SUDAH / BELUM</p>
+                <p  className='text-xl font-bold'>{stateParamVal.status}</p>
               </div>
 
             </div>  
@@ -69,7 +227,7 @@ function Content() {
             <div className='w-1/3 items-center justify-center mx-auto'>
               <p className='text-center text-xl font-semibold my-1'>Scan QR code</p>
               <img src={qr} className="mx-auto w-[40%] "/>
-              <p className='text-center text-3xl font-semibold py-4'>Rp.xxx.000.00</p>
+              <p className='text-center text-3xl font-semibold py-4'>{rupiah(stateParamVal.harga_awal)} -</p>
             </div>
             
           </div>
@@ -83,18 +241,8 @@ function Content() {
 
       </div>
     )
-  }
+  
+}
 
 export default Content
 
-
-{/* <div>
-<div className=" pt-24 pb-16 flex content-center items-center justify-center w-full  h-1/3">
-    <div className="bg-gray-100 bg-center absolute top-6 w-[80%] h-1/6  bg-inputdata-backgroung  " />       
-    <div className=" mx-auto z-20 w-[80%] -mt-5">
-        <div className="items-center flex flex-wrap bg-[#A70B0B] mt-2 rounded-b-xl pb-1">
-            <div className="w-full  px-3 ml-auto mr-auto text-center">
-                <div className="text-gray-100">
-                    <p className='text-sm mt-5' color="gray-200">
-                    Solo merupakan salah satu kota yang sering dikunjungi oleh para wisatawan. Tempat wisata yang ada di Solo juga sangat beragam. Salah satu tempat wisata yang ada di Solo yaitu Museum. Banyak museum yang terdapat di Solo karena Solo juga merupakan daerah yang memiliki sejarah yang melimpah.
-                    </p> */}
