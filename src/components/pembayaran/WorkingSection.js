@@ -9,9 +9,10 @@ import identitas from '../../assets/img/pembayaran/identitas.png'
 import pilih from '../../assets/img/pembayaran/pilih.png'
 import total from '../../assets/img/pembayaran/total.png'
 import 'flowbite';
+import { useTranslation } from 'react-i18next';
 
 function WorkingSection(input) {
-    
+    const { t } = useTranslation();
     // const data = data;
     const [pembayaran,setPembayaran] = useState('')
     const [danger,setDanger] = useState('')
@@ -126,11 +127,11 @@ function WorkingSection(input) {
                     <img src={identitas}  className='w-16 h-16'/>
                     </div>
                     <div className='w-5/6 justify-around '>
-                        <p className='my-5 font-bold text-3xl'>Identitas diri</p>
+                        <p className='my-5 font-bold text-3xl'>{t('pembayaran.judul')}</p>
                         <div className='flex'>
                             <div className='font-bold'>
-                                <p className='my-3'>Nama: </p>
-                                <p className='mb-3'>Nomor Hp: </p>
+                                <p className='my-3'>{t('pembayaran.identitas.nama')}: </p>
+                                <p className='mb-3'>{t('pembayaran.identitas.no')}: </p>
                             </div>
                             <div className='pl-2'>
                                 <p className='my-3'>{input.data.nama}</p>
@@ -138,7 +139,7 @@ function WorkingSection(input) {
                             </div>
                             <div className='md:pl-24 font-bold'>
                                 {/* <p>NIK</p> */}
-                                <p className='my-3 '>Asal Kota : </p>
+                                <p className='my-3 '>{t('pembayaran.identitas.kota')} : </p>
                             </div>
                             <div className='pl-3 '>
                                 {/* <p>NIK</p> */}
@@ -157,12 +158,12 @@ function WorkingSection(input) {
                         
                     </div>
                     <div className='w-5/6 ' >
-                        <p className='font-bold text-3xl py-4'>Pilih Metode Pembayaran</p>
+                        <p className='font-bold text-3xl py-4'>{t('pembayaran.metode.judul')}</p>
                         <div className='w-full mx-auto justify-center'>
                             <label className='flex max-w-full items-center hover:bg-gray-100 p-5 mx-5 rounded-3xl my-5 transition-all duration-500 ease-in-out'>
                                 <div className='flex w-2/3 justify-around items-center'>
                                     <img src={tunai}  className='w-1/5 '/>
-                                    <p className='text-center text-2xl'>  Tunai </p>
+                                    <p className='text-center text-2xl'>  {t('pembayaran.metode.cash')} </p>
                                 </div>
                                 <input  type="radio" value="tunai" checked={pembayaran === "Male"}  onChange={onValueChange}
                                 className ='form-check-input form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2'
@@ -180,7 +181,7 @@ function WorkingSection(input) {
                         </div>
                         <div className='flex flex-col justify-end content-end items-end '>
                             <div className='lg:w- pr-6 flex'>
-                                <p className='p-3  font-bold text-xl'>Pembayaran : </p>
+                                <p className='p-3  font-bold text-xl'>{t('pembayaran.metode.pilih')} : </p>
                                 <p className='p-3  font-bold text-xl'>{pembayaran}</p>
                             </div>    
                             <p className='pr-6 text-red-500 text-sm'>{"* " + danger}</p>
@@ -198,27 +199,27 @@ function WorkingSection(input) {
                             <img src={detail}  className='w-16 h-16'/>
                         </div>
                         <div className='lg:block  bg-white w-5/6 mx-4'>
-                            <p className='my-5 font-bold text-3xl w-full'>Detail Pesanan</p>
+                            <p className='my-5 font-bold text-3xl w-full'>{t('pembayaran.detail.judul')}</p>
                             <div className='flex flex-wrap'>
                                 <div className='lg:w-full w-1/2'>
-                                    <p className='font-bold'>Pesanan Tiket pada</p>
+                                    <p className='font-bold'>{t('pembayaran.detail.museum')}</p>
                                     <p  >{input.data.museum}</p>
                                 </div>
                                 <div className='w-1/2 lg:w-full lg:pt-4'>
                                     <div>
-                                        <p className='font-bold'>Tanggal Pemesanan</p>
+                                        <p className='font-bold'>{t('pembayaran.detail.tgl')}</p>
                                         <p>{input.data.tanggal}</p>
                                     </div>
                                 </div>
                                 <div className='w-1/2 mt-4 lg:w-full ' >
                                     <div>
-                                        <p className='font-bold'>Kategori</p>
+                                        <p className='font-bold'>{t('pembayaran.detail.kategori')}</p>
                                         <p>{input.data.kategori}</p>
                                     </div>
                                 </div>
                                 <div className='w-1/2 mt-4 lg:w-full '>
                                     <div>
-                                        <p className='font-bold'>Jumlah Tiket</p>
+                                        <p className='font-bold'>{t('pembayaran.detail.jumlah')}</p>
                                         <p>{input.data.jumlah}</p>
                                     </div>
                                 </div>
@@ -237,7 +238,7 @@ function WorkingSection(input) {
                             <img src={total}  className='w-16 h-16'/>            
                         </div>
                         <div className='w-5/6'>
-                            <p className='my-5 font-bold mx-4 text-2xl'>Total Pembayaran</p>
+                            <p className='my-5 font-bold mx-4 text-2xl'>{t('pembayaran.total.judul')}</p>
                             <div className='w-full text-right pr-12'>
                                 <p className='my-5 font-semibold text-2xl'>{rupiah(input.input)} -</p>
                             </div>
@@ -250,7 +251,7 @@ function WorkingSection(input) {
         </div>
                 <div className='bg-gray-100 flex justify-center items-end '>
                     
-                    <button className='bg-[#A70B0B] rounded-full w-full py-4 lg:mx-72 mx-24 text-white tracking-wider font-semibold' onClick={handleCash}>Selanjutnya</button>
+                    <button className='bg-[#A70B0B] rounded-full w-full py-4 lg:mx-72 mx-24 text-white tracking-wider font-semibold' onClick={handleCash}>{t('pembayaran.tombol')}</button>
                 </div>
     </div>
   )

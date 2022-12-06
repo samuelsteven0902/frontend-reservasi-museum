@@ -4,8 +4,18 @@ import DefaultNavbar from 'components/DefaultNavbar'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import ReactLoading from 'react-loading';
+import FooterPengunjung from 'components/FooterPengunjung'
+import { useLocation } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 function Harga() {
+    const {t} = useTranslation()
+
+    const {pathname } = useLocation();
+
+    useEffect(()=>{
+        window.scrollTo(0,0)
+    },[pathname])
   
     const [dataHarga,setDataHarga] = useState()
     const [loading,setLoading] = useState(true);
@@ -108,15 +118,15 @@ else
   
     return (
     
-    <div className='bg-gray-50 w-screen mx-auto'>
+    <div className='bg-gray-50 w-screen mx-auto min-h-screen'>
     <div className="absolute w-full z-20">
         <DefaultNavbar />
     </div>
     <div className='container mx-auto py-24'>
         <div className='flex justify-center flex-wrap flex-col my-12 '>
-            <p className='text-5xl font-merriweather  font-bold p-4 pb- w-full text-center'>Harga Tiket Museum</p>
+            <p className='text-5xl font-merriweather  font-bold p-4 pb- w-full text-center'>{t('harga.judul')}</p>
             <hr className='h-1 bg-red-300 w-1/3 flex mx-auto' />
-            <p className='font-nunito tracking-wider w-3/5 mx-auto py-6 text-center'>Daftar harga tiket dari setiap Musum yang tersedia. Harga dapat berubah sewaktu-waktu  .
+            <p className='font-nunito tracking-wider w-3/5 mx-auto py-6 text-center'>{t('harga.desc')}
 
 </p>
         </div>
@@ -140,15 +150,15 @@ else
                                     Kategori    
                                 </th>
                                 <th scope="col" className="text-xl font-medium text-[#A70B0B] w-72 mx-6 py-4 text-center">
-                                    Hari Biasa
+                                {t('harga.biasa')}
                                 </th>
                                 <th scope="col" className="text-xl font-medium text-[#A70B0B] mx-6 py-4 text-center">
-                                     Hari Libur
+                                {t('harga.libur')}
                                 </th>
                                 </tr>
                             </thead>
                             <tbody className=''>
-                                {dataHarga
+                                {dataHarga && dataHarga
     .filter(val=>{
         // console.log(val)
         if(val.nama_museum == item.nama_museum)
@@ -197,6 +207,7 @@ else
         </div>
 
     </div>  
+    <FooterPengunjung />
     </div> 
 
   )

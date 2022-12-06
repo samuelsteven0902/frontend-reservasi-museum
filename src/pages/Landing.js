@@ -15,7 +15,7 @@ export default function Landing() {
             <div className="absolute w-full z-50">
                 <DefaultNavbar />
             </div>  
-            <main className=''>
+            <main className='bg-gray-50'>
                 <Header />
                 <WorkingSection />
                 {/* <HargaTiket /> */}

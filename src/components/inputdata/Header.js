@@ -1,8 +1,10 @@
 import { LeadText } from '@material-tailwind/react'
 import H2 from '@material-tailwind/react/Heading2';
 import React, { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next';
 
 function Header({state,data}) {
+    const { t } = useTranslation()
     const id_museum = state.museum
     const id_category = state.category
     console.log(state);
@@ -29,21 +31,21 @@ function Header({state,data}) {
                     <div className="w-full  px-4 ml-auto mr-auto text-center">
                         <div className="text-gray-200">
                             <p className='sm:text-lg font-light leading-relaxed mt-6 mb-4 text-sm '>
-                            UPT Museum mengelola Museum Keris Nusantara dan Museum Radya Pustaka sebagai destinasi wisata bagi masyarakat sekitar dan luar kota. Museum Keris Nusantara dan Museum Radya Pustaka memiliki daya tarik masing-masing. Pengunjung akan disuguhkan oleh keindahan  peninggalan budaya sekaligus belajar mengenai sejarah.
+                            {t('formInput.desc.isi')}
                            </p>
                         </div>
                         <div className='flex'>
                             <div className='w-1/3 text-center text-white'>
-                                <p className='font-serif text-lg font-semibold'>Tanggal Kunjugan</p>
+                                <p className='font-serif text-lg font-semibold'>{t('formInput.desc.tggl')}</p>
                                 <p>{state.calendar}</p>
                             </div>
                             <div className='w-1/3 text-center text-white'>
-                                <p className='font-serif text-lg font-semibold'>Tiket Hari Biasa</p>
+                                <p className='font-serif text-lg font-semibold'>{t('formInput.desc.biasa')}</p>
                                 <p>{data && rupiah(data.hari_biasa) }</p>
                                 
                             </div>
                             <div className='w-1/3 text-center text-white'>
-                                <p className='font-serif text-lg font-semibold'>Tiket Hari Libur</p>
+                                <p className='font-serif text-lg font-semibold'>{t('formInput.desc.libur')}</p>
                                 <p>{data && rupiah(data.hari_libur) }</p>
                             </div>
 

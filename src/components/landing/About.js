@@ -1,8 +1,12 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom'
+import about1 from '../../assets/img/about1.jpeg'
+import about2 from '../../assets/img/about2.jpg'
 
 
 export default function About() {
+	const { t } = useTranslation();
     return (
             <div className='  '>
                 <div className='relative container mx-auto py-10'>
@@ -11,9 +15,12 @@ export default function About() {
                         <p className='tracking-[0.3rem] font-bold font-nunito pt-auto text-[#A70B0B] border-t-4 absolute border-[#A70B0B] pt-2'>UPT Museum Surakarta</p>
                     </div>
                     <div className='w-full px-24 text-left mt-14 pb-20'>
-                        <p className='text-base font-medium font-nunito pt-auto text-black'>Solo merupakan salah satu kota yang sering dikunjungi oleh para wisatawan. Tempat wisata yang ada di Solo juga sangat beragam. Salah satu tempat wisata yang ada di Solo yaitu Museum. Banyak museum yang terdapat di Solo karena Solo juga merupakan daerah yang memiliki sejarah yang melimpah 
+                        <div className='pb-5'>
+                        <img class="float-right w-36  mx-5 my-2 rounded-xl " src={about1}/>
+                        <p className='text-base font-medium font-nunito pt-auto text-black '>{t('landing.about.part1')}
                         </p>
-                        <p className='text-base font-medium font-nunito pt-auto text-black'>Solo merupakan salah satu kota yang sering dikunjungi oleh para wisatawan. Tempat wisata yang ada di Solo juga sangat beragam. Salah satu tempat wisata yang ada di Solo yaitu Museum. Banyak museum yang terdapat di Solo karena Solo juga merupakan daerah yang memiliki sejarah yang melimpah  
+                        </div>
+                        <p className='text-base font-medium font-nunito pt-auto text-black'>{t('landing.about.part2')}
                         
                         <Link to='/About' className='text-base font-medium font-nunito pt-auto text-blue-600'>   Baca Selengkapnya...</Link></p>
                     </div>

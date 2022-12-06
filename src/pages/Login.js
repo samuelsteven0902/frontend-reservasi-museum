@@ -52,7 +52,7 @@ console.log(e.target);
         
 
         const data = {
-            email:email,
+            x   :email,
             password:pwd
         }
         console.log(data);

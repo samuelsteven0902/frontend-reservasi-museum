@@ -9,8 +9,11 @@ import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import axios from 'axios';
 import ReactLoading from 'react-loading';
+import { useTranslation } from 'react-i18next';
 
 export default function Container({  }) {
+
+    const { t } = useTranslation()
 
     const [loading,setLoading] = React.useState(true)
     const [dataFaq,setDataFaq] = React.useState([])
@@ -77,7 +80,8 @@ export default function Container({  }) {
             <div className='flex justify-center flex-wrap flex-col my-24 '>
                 <p className='text-5xl font-merriweather  font-bold p-4 pb- w-full text-center'>Frequently Asked Questions</p>
                 <hr className='h-1 bg-red-300 w-1/3 flex mx-auto' />
-                <p className='font-nunito tracking-wider w-3/5 mx-auto pt-6 pb-3 text-center'>Cari pertanyaan Anda 
+                <p className='font-nunito tracking-wider w-3/5 mx-auto pt-6 pb-3 text-center'>
+                    {t('faq.desc')}
                 </p>
                 <input type='text' className="w-1/2  mx-auto border-none ring-2 ring-red-300 focus:border-none focus:ring-red-500 focus:ring-2 active:border-none  rounded-lg"  placeholder="Cari pertanyaan atau jawaban disini..." onChange={e=>{setSearchTerm(e.target.value)}} /> 
             </div>
