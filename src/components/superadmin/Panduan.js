@@ -1,4 +1,5 @@
 import React from "react";
+import DefaultFooterAdmin from "components/DefaultFooterAdmin.js";
 
 // components
 
@@ -12,6 +13,7 @@ export default function Panduan() {
           <InfoPanduan />
         </div>
       </div>
+          <DefaultFooterAdmin/>
     </>
   );
 }

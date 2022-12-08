@@ -3,14 +3,12 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import '../assets/styles/admin/tailwind.css'
 
 // components
-
 import AdminNavbar from "components/admin/Navbars/AdminNavbar.js";
 import Sidebar from "components/admin/Sidebar/Sidebar.js";
 import HeaderStats from "components/admin/Headers/HeaderStats.js";
 import FooterAdmin from "components/admin/Footers/FooterAdmin.js";
 
 // views
-
 import Dashboard from "components/admin/Dashboard.js";
 import Maps from "components/admin/Maps.js";
 import DataPengunjung from "components/admin/DataPengunjung";
@@ -18,8 +16,6 @@ import DataSanggahan from "components/admin/DataSanggahan";
 import DataKehadiran from "components/admin/DataKehadiran";
 import Jadwal from "components/admin/Jadwal";
 import CardDataSanggahan from "components/admin/Cards/CardDataSanggahan";
-
-
 
 export default function Admin() {
   return (

@@ -1,5 +1,4 @@
 import Cookies from "js-cookie";
-
 import React from 'react'
 
 function SetCookie(cookiename,data_user) {
@@ -9,7 +8,6 @@ function SetCookie(cookiename,data_user) {
         sameSite:'strict',
         path:'/'
         });
-
 }
 
 export default SetCookie

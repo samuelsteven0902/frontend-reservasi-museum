@@ -12,19 +12,18 @@ function Pembayaran() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [])
-  
 
   console.log(stateParamVal,input);
   return (
     <div>
-        <div className="absolute w-full z-20">
-                <DefaultNavbar />
-            </div>
-            <main>
-                <Header />
-                <WorkingSection data={stateParamVal} input={input}  />
-            </main>
-            <DefaultFooter />
+      <div className="absolute w-full z-20">
+        <DefaultNavbar />
+      </div>
+      <main>
+        <Header />
+        <WorkingSection data={stateParamVal} input={input}  />
+      </main>
+        <DefaultFooter />
     </div>
   )
 }

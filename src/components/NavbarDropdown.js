@@ -1,8 +1,12 @@
 import React from "react";
 import { createPopper } from "@popperjs/core";
 import { Link } from "react-router-dom";
+import {BiDownArrow} from 'react-icons/bi'
+import { useTranslation } from "react-i18next";
 
 const NavbarDropdown = () => {
+  const { t } = useTranslation();
+  
   // dropdown props
   const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false);
   const btnDropdownRef = React.createRef();
@@ -32,7 +36,7 @@ const NavbarDropdown = () => {
         }}
       >
         <div className="items-center flex">
-          <p className="px-5 mx-3 text-black font-bold  rounded-sm">Informasi Tiket</p>
+          <div className="px-4 py-2  text-black font-nunito font-bold flex items-center hover:bg-red-200 rounded-xl transition-all duration-300 ease-in-out active:bg-red-400"><p className="pr-1">{t('navbar')}</p><BiDownArrow/></div>
         </div>
       </a>
       <div
@@ -42,8 +46,9 @@ const NavbarDropdown = () => {
           "bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg min-w-48"
         }
       >
-        <Link  to='/panduan' className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Panduan Pemesanan Tiket</Link>
-        <Link to='/faq' className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" >FAQ</Link>
+        <Link  to='/panduan' className="block font-nunito py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{t('landing.panduan.judul')}</Link>
+        <Link to='/faq' className="block font-nunito py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" >FAQ</Link>
+        <Link to='/harga-tiket' className="block font-nunito py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" >{t('landing.harga.judul')}</Link>
       </div>
     </>
   );

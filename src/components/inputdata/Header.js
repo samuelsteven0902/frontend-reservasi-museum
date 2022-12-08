@@ -1,8 +1,10 @@
 import { LeadText } from '@material-tailwind/react'
 import H2 from '@material-tailwind/react/Heading2';
 import React, { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next';
 
 function Header({state,data}) {
+    const { t } = useTranslation()
     const id_museum = state.museum
     const id_category = state.category
     console.log(state);
@@ -28,22 +30,22 @@ function Header({state,data}) {
                 <div className="items-center flex flex-wrap bg-[#A70B0B] mt-9 rounded-b-xl pb-7">
                     <div className="w-full  px-4 ml-auto mr-auto text-center">
                         <div className="text-gray-200">
-                            <p className='sm:text-lg font-light leading-relaxed mt-6 mb-4 text-sm '>
-                            Museum Keris Nusantara menyuguhkan daya tarik wisata pada koleksi keris yang asalnya dari berbagai tempat. Pesona dari keindahan keris-keris yang disuguhkan di Museum Keris Nusantara memiliki keindahan tersendiri karena masing-masing dari keris itu memiliki latar belakangnya masing-masing. Keris-keris yang ditampilkan diberikan penjelasan untuk edukasi pengunjung yang hadir.
+                            <p className='sm:text-lg font-light leading-relaxed mt-6 mb-4 text-sm font-nunito'>
+                            {t('formInput.desc.isi')}
                            </p>
                         </div>
                         <div className='flex'>
                             <div className='w-1/3 text-center text-white'>
-                                <p className='font-serif text-lg font-semibold'>Tanggal Kunjugan</p>
+                                <p className='font-nunito text-lg font-semibold'>{t('formInput.desc.tggl')}</p>
                                 <p>{state.calendar}</p>
                             </div>
                             <div className='w-1/3 text-center text-white'>
-                                <p className='font-serif text-lg font-semibold'>Tiket Hari Biasa</p>
+                                <p className='font-nunito text-lg font-semibold'>{t('formInput.desc.biasa')}</p>
                                 <p>{data && rupiah(data.hari_biasa) }</p>
                                 
                             </div>
                             <div className='w-1/3 text-center text-white'>
-                                <p className='font-serif text-lg font-semibold'>Tiket Hari Libur</p>
+                                <p className='font-nunito text-lg font-semibold'>{t('formInput.desc.libur')}</p>
                                 <p>{data && rupiah(data.hari_libur) }</p>
                             </div>
 
@@ -52,9 +54,8 @@ function Header({state,data}) {
                 </div>
             </div>
         </div>
-
-    </div>
-  )
+        </div>
+    )
 }
 
 export default Header

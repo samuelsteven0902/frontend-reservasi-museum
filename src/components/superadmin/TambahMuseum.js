@@ -1,23 +1,20 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-
-// components
-
 import CardTambahMuseum from "./Cards/CardTambahMuseum.js";
+import DefaultFooterAdmin from "components/DefaultFooterAdmin.js";
 
-export default function MasterTiket() {
-
-
-
-
+function MasterTiket() {
 
   return (
     <>
       <div className="flex flex-wrap">
-        <div className="w-full  px-4">
-          <CardTambahMuseum  />  
+        <div className="w-full px-4">
+          <CardTambahMuseum />  
         </div>
       </div>
+          <DefaultFooterAdmin/>
     </>
   );
 }
+
+export default MasterTiket
