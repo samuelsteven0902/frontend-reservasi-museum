@@ -51,7 +51,11 @@ i18n
     resources: {
       en: {
         translation: {
+          logo:"en",
+          navbar:'Reservation Information ',
+          navbar_lg:'Language',
           landing: {
+            judul:'TICKET RESERVATION',
             working:{
               museum:{
                 part1:"Select Museum",
@@ -155,7 +159,11 @@ i18n
       },
       id: {
         translation: {
+          logo:"id",
+          navbar:'Informasi Reservasi',
+          navbar_lg:'Bahasa',
           landing: {
+            judul:'RESERVASI TIKET',
             working:{
               museum:{
                 part1:"Pilih Museum",

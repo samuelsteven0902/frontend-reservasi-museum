@@ -7,7 +7,7 @@ import TableDropdown from "../Dropdowns/TableDropdown.js";
 import axios from "axios";
 import excel from "../../../assets/img/admin/excel.png"
 import $ from 'jquery'; 
-import DataTable from 'datatables.net';
+// import DataTable from 'datatables.net';
 export default function CardTable({ color }) {
   const [loading,setLoading] = useState(true)
   const [pengunjung,setPengunjung] = useState([])
@@ -66,9 +66,10 @@ export default function CardTable({ color }) {
         return val
       }
     }).map((item,index)=>{
+      console.log(typeof item.harga_awal  );
       return(
         <tr>
-          <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.nama}</td>
+          <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.nama }</td>
           <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.museum}</td>
           <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.kategori}</td>
           <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.phone}</td>
@@ -82,6 +83,7 @@ export default function CardTable({ color }) {
       )
     })
   }
+
 
   return (
     <>
@@ -113,7 +115,7 @@ export default function CardTable({ color }) {
 
         <div className="block w-full overflow-x-auto">
           {/* Projects table */}
-          <table id="dataTable" className="display items-center w-full bg-transparent border-collapse">
+          <table  className="display items-center w-full bg-transparent border-collapse">
             <thead>
               <tr>
                 <th

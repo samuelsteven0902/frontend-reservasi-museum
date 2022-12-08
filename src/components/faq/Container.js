@@ -60,13 +60,13 @@ export default function Container({  }) {
                     >
                     <Typography>
                         <p className='text-2xl p-3 text-black'>
-                        {item.question}
+                       <span className='pr-3'>Q:</span>  {item.question}
                         </p>
                          </Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                     <Typography>
-                   <p className='text-red-600'> {item.answer}</p>
+                   <p className='text-red-600'><span className='text-2xl px-3'>A:</span> {item.answer}</p>
                     </Typography>
                     </AccordionDetails>
                 </Accordion>

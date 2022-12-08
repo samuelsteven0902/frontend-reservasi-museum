@@ -180,7 +180,7 @@ export default function WorkingSection({setRes}) {
 console.log(namaInput.namaCategory);
 console.log(input);
     return (
-        <section className="pb-20  -mt-56 left-1/2 mx-auto z-10 w-5/6">
+        <section className="pb-20 -mt-80 sm:-mt-56 left-1/2 mx-auto z-10 w-5/6">
             <div className="container text-center max-w-5xl mx-auto px-10">
                 <form onSubmit={saveData}>
                     <div className="flex flex-wrap relative z-20">

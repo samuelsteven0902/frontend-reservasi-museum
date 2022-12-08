@@ -118,7 +118,7 @@ else
   
     return (
     
-    <div className='bg-gray-50 w-screen mx-auto min-h-screen'>
+    <div className='bg-gray-50 w-screen  mx-auto min-h-screen'>
     <div className="absolute w-full z-20">
         <DefaultNavbar />
     </div>

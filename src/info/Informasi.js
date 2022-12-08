@@ -17,7 +17,7 @@ function Informasi() {
                 <p className='tracking-[0.3rem] font-bold font-nunito pt-auto text-[#A70B0B] border-t-4 w-72 mx-auto border-[#A70B0B] right-1/2'>UPT Museum Surakarta</p>
 
             </div>
-            <div className='flex justify-center pt-16 w-full'>
+            <div className='sm:flex block justify-center pt-16 w-full'>
                 {/* <Link to='/panduan'><button className='bg-[#A70B0B] w-56 h-28 py-7 px-4 text-xl text-white border-white border-4 shadow-2xl font-semibold hover:bg-red-700 transition-all duration-500 '>PANDUAN<br></br> PEMESANAN TIKET</button> </Link>  */}
                 {/* <Link to='/Faq'><button className='bg-[#A70B0B] w-56 h-28 py-7 px-4 text-xl text-white border-white border-4 shadow-2xl rounded-lg font-semibold hover:bg-red-700 transition-all duration-500 '>FAQ</button></Link> */}
                 <Link to='/panduan' className='text-center w-72 border-0 transition-all duration-200 ease-in-out  rounded-2xl hover:bg-[#ECE3DE] p-7'> 

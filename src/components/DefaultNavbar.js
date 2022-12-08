@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import Navbar from '@material-tailwind/react/Navbar';
 import NavbarContainer from '@material-tailwind/react/NavbarContainer';
 import NavbarWrapper from '@material-tailwind/react/NavbarWrapper';
 import NavbarBrand from '@material-tailwind/react/NavbarBrand';
@@ -14,6 +13,7 @@ import NavbarDropdown from './NavbarDropdown';
 import i18next from 'i18next';
 import { useTranslation } from 'react-i18next';
 import LanguageDropdownn from './LanguageDropdown';
+import { Navbar } from '@material-tailwind/react';
 
 export default function DefaultNavbar() {
     const [openNavbar, setOpenNavbar] = useState(false);
@@ -63,7 +63,7 @@ export default function DefaultNavbar() {
             }
           }
 
-    const { i18n, t } = useTranslation(["common"])
+    const { i18n, t } = useTranslation()
 
         useEffect(() => {
           if(localStorage.getItem("i18nextLng")?.length > 2)
@@ -130,6 +130,7 @@ export default function DefaultNavbar() {
             <NavbarContainer>
             <NavbarWrapper>
                     <NavbarToggler onClick={() => setOpenNavbar(!openNavbar)} color="red" className=""/>
+                <LanguageDropdownn />
                 </NavbarWrapper>
                 <NavbarCollapse open={openNavbar}>
                     <Nav>

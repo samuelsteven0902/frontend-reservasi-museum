@@ -42,67 +42,67 @@ export default function CardLineChart() {
 
       var dataPengunjungFeb = data.filter(val=>{
         return val.tanggal.slice(val.tanggal.indexOf('-') + 1,val.tanggal.lastIndexOf('-')) === '02'
-      }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
+       }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
         return accumulator + value;
       }, 0);
 
-      var dataPengunjungMar = data.filter(val=>{
+       var dataPengunjungMar = data.filter(val=>{
         return val.tanggal.slice(val.tanggal.indexOf('-') + 1,val.tanggal.lastIndexOf('-')) === '03'
-      }).map((item,index)=>Math.floor(item.harga_awal).reduce((accumulator, value) => {
+       }).map((item,index)=>Math.floor(item.harga_awal).reduce((accumulator, value) => {
   return accumulator + value;
 }, 0));
 
-      var dataPengunjungApril = data.filter(val=>{
+       var dataPengunjungApril = data.filter(val=>{
         return val.tanggal.slice(val.tanggal.indexOf('-') + 1,val.tanggal.lastIndexOf('-')) === '04'
-      }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
+       }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
   return accumulator + value;
 }, 0);
 
-      var dataPengunjungMei = data.filter(val=>{
+       var dataPengunjungMei = data.filter(val=>{
         return val.tanggal.slice(val.tanggal.indexOf('-') + 1,val.tanggal.lastIndexOf('-')) === '05'
-      }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
+       }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
   return accumulator + value;
 }, 0);
 
-      var dataPengunjungJuni = data.filter(val=>{
+       var dataPengunjungJuni = data.filter(val=>{
         return val.tanggal.slice(val.tanggal.indexOf('-') + 1,val.tanggal.lastIndexOf('-')) === '06'
-      }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
+       }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
   return accumulator + value;
 }, 0);
 
-      var dataPengunjungJuli = data.filter(val=>{
+       var dataPengunjungJuli = data.filter(val=>{
         return val.tanggal.slice(val.tanggal.indexOf('-') + 1,val.tanggal.lastIndexOf('-')) === '07'
-      }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
+       }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
   return accumulator + value;
 }, 0);
 
-      var dataPengunjungAgus = data.filter(val=>{
+       var dataPengunjungAgus = data.filter(val=>{
         return val.tanggal.slice(val.tanggal.indexOf('-') + 1,val.tanggal.lastIndexOf('-')) === '08'
-      }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
+       }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
   return accumulator + value;
 }, 0);
 
-      var dataPengunjungSept = data.filter(val=>{
+       var dataPengunjungSept = data.filter(val=>{
         return val.tanggal.slice(val.tanggal.indexOf('-') + 1,val.tanggal.lastIndexOf('-')) === '09'
-      }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
+       }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
   return accumulator + value;
 }, 0);
 
-      var dataPengunjungOkt = data.filter(val=>{
+       var dataPengunjungOkt = data.filter(val=>{
         return val.tanggal.slice(val.tanggal.indexOf('-') + 1,val.tanggal.lastIndexOf('-')) === '10'
-      }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
+       }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
   return accumulator + value;
 }, 0);
 
-      var dataPengunjungNov = data.filter(val=>{
+       var dataPengunjungNov = data.filter(val=>{
         return val.tanggal.slice(val.tanggal.indexOf('-') + 1,val.tanggal.lastIndexOf('-')) === '11'
-      }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
+       }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
   return accumulator + value;
 }, 0);
 
-      var dataPengunjungDes = data.filter(val=>{
+       var dataPengunjungDes = data.filter(val=>{
         return val.tanggal.slice(val.tanggal.indexOf('-') + 1,val.tanggal.lastIndexOf('-')) === '12'
-      }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
+       }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
   return accumulator + value;
 }, 0);
   }
@@ -110,7 +110,9 @@ export default function CardLineChart() {
   
 
   React.useEffect(() => {
+    
     const timeoutID = window.setTimeout(() => {
+    
     let configPemasukan = {
       type: "line",
       data: {
@@ -220,45 +222,54 @@ export default function CardLineChart() {
 
       if(loading)
       {
-      {/* <h1>Loading..</h1> */}
+{/* <h1>Loading..</h1> */}
       }
       else
       {
         var ctxPemasukan = document.getElementById("line-chart").getContext("2d");
       // console.log(dataPengunjungJan);
       window.myLine = new Chart(ctxPemasukan, configPemasukan);
-      } 
-    }, 1);
-  
-    return () => window.clearTimeout(timeoutID );
+      }
+      
+  }, 1);
+  return () => window.clearTimeout(timeoutID );
   }, [dataPengunjungDes]);
 
-  // console.log(dataPengunjungNov);
-    return (
-      <>
-      {loading?
-      <div className="z-50 absolute -mt-12 ">   
-        {/* <ReactLoading type={"spin"} color={"red"} height={'5%'} width={'5%'} className=""/> */}
-        <p>Loading Data...</p>
-      </div> 
+// console.log(dataPengunjungNov);
+  return (
+    <>
+{loading?<div className="z-50 absolute -mt-12    ">   
+  {/* <ReactLoading type={"spin"} color={"red"} height={'5%'} width={'5%'} className=""/> */}
+<p>Loading Data...</p>
+</div> 
 
 :
-<div className="relative flex flex-col min-w-0 break-words w-full mb-10 shadow-lg rounded bg-blueGray-700">
-  <div className="rounded-t mb-0 px-4 py-3 bg-transparent">
-    <div className="flex flex-wrap items-center">
-      <div className="relative w-full max-w-full flex-grow flex-1">
-        <h6 className="uppercase text-blueGray-100 mb-1 text-xs font-merriweather">Overview</h6>
-        <h2 className="text-white text-xl font-merriweather font-semibold">Grafik Pemasukan</h2>
+<div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-blueGray-700">
+    <div className="rounded-t mb-0 px-4 py-3 bg-transparent">
+      <div className="flex flex-wrap items-center">
+        <div className="relative w-full max-w-full flex-grow flex-1">
+          <h6 className="uppercase text-blueGray-100 mb-1 text-xs font-semibold">
+            Overview
+          </h6>
+          <h2 className="text-white text-xl font-semibold">Grafik Pemasukan</h2>
+        </div>
       </div>
     </div>
-  </div>
-  <div className="p-4 flex-auto">
-    {/* Chart */}
-    <div className="relative h-350-px"> 
+    <div className="p-4 flex-auto">
+      {/* Chart */}
+      <div className="relative h-350-px"> 
       <canvas id="line-chart" width="500" height="500"></canvas>
+      </div>
     </div>
-  </div>
-</div> }
+    
+  </div> }
+  
+  {/* <div className="text-3xl z-40">
+    asd
+      </div> */}
+    
+
+
     </>
   );
 }
