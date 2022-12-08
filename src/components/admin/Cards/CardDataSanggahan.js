@@ -6,15 +6,11 @@ import PropTypes from "prop-types";
 import TableDropdown from "../Dropdowns/TableDropdown.js";
 import axios from "axios";
 
-<<<<<<< HEAD:src/components/admin/Cards/CardDataSanggahan.js
-export default function CardDataSanggahan({ color }) {
-=======
 import excel from "../../../assets/img/admin/excel.png"
 import $ from 'jquery'; 
 import DataTable from 'datatables.net';
 
 export default function CardTable({ color }) {
->>>>>>> 8ca4df733c57c28bb15f7b20c2bd1fcdeeecf46e:src/components/admin/Cards/CardTable.js
   
   const [loading,setLoading] = useState(true)
   const [pengunjung,setPengunjung] = useState([])
@@ -370,10 +366,10 @@ export default function CardTable({ color }) {
   );
 }
 
-CardDataSanggahan.defaultProps = {
-  color: "light",
-};
+// CardDataSanggahan.defaultProps = {
+//   color: "light",
+// };
 
-CardDataSanggahan.propTypes = {
-  color: PropTypes.oneOf(["light", "dark"]),
-};
+// CardDataSanggahan.propTypes = {
+//   color: PropTypes.oneOf(["light", "dark"]),
+// };

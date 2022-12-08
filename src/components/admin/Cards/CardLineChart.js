@@ -1,14 +1,16 @@
+import axios from "axios";
 import React from "react";
 import Chart from "chart.js";
 
 export default function CardLineChart() {
+
   React.useEffect(() => {
     var config = {
       type: "line",
       data: {
         labels: [
-          "January",
-          "February",
+          "Januari",
+          "February ",
           "March",
           "April",
           "May",
