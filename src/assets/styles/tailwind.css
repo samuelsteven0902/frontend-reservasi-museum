@@ -1986,6 +1986,9 @@ input[type="range"]::-ms-fill-lower{
 .pb-3{
 	padding-bottom: 0.75rem;
 } 
+.pt-5{
+	padding-top: 1.25rem;
+} 
 .pr-5{
 	padding-right: 1.25rem;
 } 
@@ -1994,9 +1997,6 @@ input[type="range"]::-ms-fill-lower{
 } 
 .pb-5{
 	padding-bottom: 1.25rem;
-} 
-.pt-5{
-	padding-top: 1.25rem;
 } 
 .pb-10{
 	padding-bottom: 2.5rem;
@@ -4852,10 +4852,6 @@ video {
 	} 
 	.md\:text-left{
 		text-align: left;
-	} 
-	.md\:text-lg{
-		font-size: 1.125rem;
-		line-height: 1.75rem;
 	} 
 	.md\:opacity-100{
 		opacity: 1;
