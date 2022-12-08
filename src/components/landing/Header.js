@@ -11,8 +11,8 @@ export default function Header() {
     const { t } = useTranslation()
     return (
     <> 
-        <div className="relative sm:pt-24 pb-32 flex content-center items-center m justify-center h-screen">
-            <div className="bg-landing-background bg-cover bg-[#ECE3DE] bg-center absolute w-11/12 sm:h-96 h-72 rounded-[2rem] m-20" />
+        <div className="relative pt-24 pb-32 flex content-center items-center m justify-center h-screen">
+            <div className="bg-landing-background bg-cover bg-[#ECE3DE] bg-center absolute w-11/12 h-96 rounded-[2rem] m-20 " />
             <div className="container max-w-8xl relative mx-auto">
                 <div className="items-start flex flex-wrap">
                     <div className="w-full lg:w-6/12 px-0 ml-24 mr-auto text-left">

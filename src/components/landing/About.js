@@ -8,7 +8,7 @@ import about2 from '../../assets/img/about2.jpg'
 export default function About() {
 	const { t } = useTranslation();
     return (
-            <div className='  '>
+            <div className='' data-aos="fade-up">
                 <div className='relative container mx-auto py-10'>
                     <div className='w-full lg:w-6/12 px-0 lg:ml-24 md:ml-12 ml-3 mr-auto pb-5 text-left'>
                         <p className='tracking-wide text-4xl font-bold font-merriweather pt-auto text-[#A70B0B] pb-2'>ABOUT US</p>

@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import header_bawah from '../assets/img/Landing/header_bawah.png'
 import {AiFillInstagram, AiFillYoutube} from 'react-icons/ai'
 import {BsGlobe} from 'react-icons/bs'
-import Map from 'pages/Map';
 import WaveFooter from './WaveFooter';
 import { useTranslation } from 'react-i18next';
 
@@ -17,7 +16,7 @@ function FooterPengunjung() {
         width: "100%",
         height: "400px",
         backgroundImage: "url(" + { header_bawah } + ")"
-      };
+    };
 
 return (
     <>
