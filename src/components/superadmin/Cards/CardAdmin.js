@@ -142,8 +142,8 @@ return (
                     </div>
             <div>
                 <div className="modal fade fixed bg-gray-300 z-50  py-24   mx-auto items-center m-auto w-screen bg-opacity-60 top-0 left-0 hidden h-screen outline-none overflow-x-hidden overflow-y-auto" id="tambahFAQ" tabIndex="-1" aria-labelledby="tambahFAQ" aria-modal="true" role="dialog">
-                    <div className="modal-dialog w-full md:w-1/2  mx-auto  h-full  my-auto modal-dialog-centered modal-dialog-scrollable relative items-center pointer-events-none lg:w-1/3" >
-                        <div className="modal-content border-none -ml-24 shadow-lg relative flex flex-col w-full pointer-events-auto my-auto bg-white min-w-max bg-clip-padding rounded-md outline-none text-current">
+                <div className="modal-dialog w-11/12 justify-center md:w-1/2  px-0 sm:px-12 mx-auto  h-full  my-auto modal-dialog-centered modal-dialog-scrollable relative items-center pointer-events-none lg:w-1/3" >
+                        <div className="modal-content border-none shadow-lg relative flex flex-col sm:w-full sm:min-w-max pointer-events-auto my-auto bg-white  bg-clip-padding rounded-md outline-none text-current">
                             <div className="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
                                 <h5 className="text-xl font-nunito font-semibold leading-normal text-gray-800" id="TambahFAQlabel"> Tambah Admin Baru</h5>
                                 <button type="button" className="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"
@@ -154,19 +154,19 @@ return (
                                 <div className='justify-around md:mt-0 mt-8'>    
                                     <div className="w-96 mb-4 mx-auto ">
                                         <label className="block text-gray-700 text-sm font-nunito font-semibold mb-2" for="username">Nama</label>
-                                        <input name='nama'  className="shadow appearance-none border rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-gray-200" type="text" 
+                                        <input name='nama'  className="shadow appearance-none border rounded-full w-72 sm:w-full mx-auto text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-gray-200" type="text" 
                                         onChange={handleInput}/>
                                         <span className="text-sm text-red-500"></span>
                                     </div>
                                     <div className="w-96 mb-4 mx-auto ">
                                         <label className="block text-gray-700 text-sm font-nunito font-semibold mb-2" for="username">Email</label>
-                                        <input name='email'  className="shadow appearance-none border rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-gray-200" type="text" 
+                                        <input name='email'  className="shadow appearance-none border rounded-full w-72 sm:w-full mx-auto text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-gray-200" type="text" 
                                         onChange={handleInput}/>
                                         <span className="text-sm text-red-500"></span>
                                     </div>
                                     <div className="w-96 mb-4 mx-auto ">
                                         <label className="block text-gray-700 text-sm font-nunito font-semibold mb-2" for="username">Password</label>
-                                        <input name='password'  className="shadow appearance-none border rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-gray-200" type="password" 
+                                        <input name='password'  className="shadow appearance-none border rounded-full w-72 sm:w-full mx-auto text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-gray-200" type="password" 
                                         onChange={handleInput}/>
                                         <span className="text-sm text-red-500"></span>
                                     </div>

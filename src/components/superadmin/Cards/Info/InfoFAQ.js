@@ -160,7 +160,7 @@ return (
     <div className='justify-between'>
         <div class="flex space-x-2 justify-between">
             <h3 class="font-merriweather font-bold text-2xl text-gray-600">Frequently Asked Questions</h3>
-            <button type="button" class="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out" data-bs-toggle="modal" data-bs-target="#tambahFAQ">Tambahkan FAQ
+            <button type="button" class="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg h-12 focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out" data-bs-toggle="modal" data-bs-target="#tambahFAQ">Tambahkan FAQ
             </button>
         </div>
     </div>
@@ -173,8 +173,8 @@ return (
                     <tbody class="border-b bg-white ">
                     {faq_HTMLTABLE}
                         <div className="modal fade fixed bg-gray-300 z-50  py-24   mx-auto items-center m-auto w-screen bg-opacity-60 top-0 left-0 hidden h-screen outline-none overflow-x-hidden overflow-y-auto" id="exampleModalCenteredScrollable" tabIndex="-1" aria-labelledby="exampleModalCenteredScrollable" aria-modal="true" role="dialog">
-                            <div className="modal-dialog w-full md:w-1/2  mx-auto  h-full  my-auto modal-dialog-centered modal-dialog-scrollable relative items-center pointer-events-none lg:w-1/3" >
-                                <div className="modal-content border-none -ml-24 shadow-lg relative flex flex-col w-full pointer-events-auto my-auto bg-white min-w-max bg-clip-padding rounded-md outline-none text-current">
+                        <div className="modal-dialog w-11/12 justify-center md:w-1/2  px-0 sm:px-12 mx-auto  h-full  my-auto modal-dialog-centered modal-dialog-scrollable relative items-center pointer-events-none lg:w-1/3" >
+                        <div className="modal-content border-none shadow-lg relative flex flex-col sm:w-full sm:min-w-max pointer-events-auto my-auto bg-white  bg-clip-padding rounded-md outline-none text-current">
                                     <div className="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
                                         <h5 className="text-xl font-nunito font-semibold leading-normal text-gray-800" id="exampleModalCenteredScrollableLabel">Mengubah FAQ</h5>
                                         <button type="button" className="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -185,12 +185,12 @@ return (
                                             <div className='justify-around md:mt-0 mt-8'>    
                                                 <div className="w-96 mb-4 mx-auto ">
                                                     <label className="block text-gray-700 text-sm font-nunito font-semibold mb-2" for="username">Questions</label>
-                                                    <textarea name='question' onChange={handleInput}   className="shadow appearance-none border rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-gray-100"  type="text" value="Loading Data..."   />
+                                                    <textarea name='question' onChange={handleInput}   className="shadow appearance-none border rounded-full w-72 sm:w-full mx-auto text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-gray-100"  type="text" value="Loading Data..."   />
                                                     <span className="text-sm text-red-500"></span>
                                                 </div>
                                                 <div className="w-96 mb-4  mx-auto md:mt-0 mt-8">
                                                     <label className="block text-gray-700 text-sm font-nunito font-semibold mb-2" for="username">Answer</label>
-                                                    <textarea name='answer' onChange={handleInput} className="shadow appearance-none bg-gray-100 border rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" value="Loading Data ..." />
+                                                    <textarea name='answer' onChange={handleInput} className="shadow appearance-none bg-gray-100 border rounded-full w-72 sm:w-full mx-auto text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" value="Loading Data ..." />
                                                     <span className="text-sm text-red-500"></span>
                                                 </div>
                                             </div>
@@ -207,12 +207,12 @@ return (
                                             <div className='justify-around md:mt-0 mt-8'>    
                                                 <div className="w-96 mb-4 mx-auto ">
                                                     <label className="block text-gray-700 text-sm font-nunito font-semibold mb-2" for="username">Questions</label>
-                                                    <textarea name='question' onChange={handleInput}   className="shadow appearance-none border rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-gray-100" type="text" value={faq.question}  />
+                                                    <textarea name='question' onChange={handleInput}   className="shadow appearance-none border rounded-full w-72 sm:w-full mx-auto text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-gray-100" type="text" value={faq.question}  />
                                                     <span className="text-sm text-red-500"></span>
                                                 </div>
                                                 <div className="w-96 mb-4  mx-auto md:mt-0 mt-8">
                                                     <label className="block text-gray-700 text-sm font-nunito font-semibold mb-2" for="username">Answer</label>
-                                                    <textarea name='answer' onChange={handleInput} className="shadow appearance-none bg-gray-100 border rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" value={faq.answer} />
+                                                    <textarea name='answer' onChange={handleInput} className="shadow appearance-none bg-gray-100 border rounded-full w-72 sm:w-full mx-auto text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" value={faq.answer} />
                                                     <span className="text-sm text-red-500"></span>
                                                 </div>
                                             </div>
@@ -237,8 +237,8 @@ return (
     <div class="flex space-x-2 justify-left">
     <div>
         <div className="modal fade fixed bg-gray-300 z-50  py-24   mx-auto items-center m-auto w-screen bg-opacity-60 top-0 left-0 hidden h-screen outline-none overflow-x-hidden overflow-y-auto" id="tambahFAQ" tabIndex="-1" aria-labelledby="tambahFAQ" aria-modal="true" role="dialog">
-        <div className="modal-dialog w-full md:w-1/2  mx-auto  h-full  my-auto modal-dialog-centered modal-dialog-scrollable relative items-center pointer-events-none lg:w-1/3" >
-        <div className="modal-content border-none -ml-24 shadow-lg relative flex flex-col w-full pointer-events-auto my-auto bg-white min-w-max bg-clip-padding rounded-md outline-none text-current">
+        <div className="modal-dialog w-11/12 justify-center md:w-1/2  px-0 sm:px-12 mx-auto  h-full  my-auto modal-dialog-centered modal-dialog-scrollable relative items-center pointer-events-none lg:w-1/3" >
+                        <div className="modal-content border-none shadow-lg relative flex flex-col sm:w-full sm:min-w-max pointer-events-auto my-auto bg-white  bg-clip-padding rounded-md outline-none text-current">
         <div className="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
             <h5 className="text-xl font-medium leading-normal text-gray-800" id="TambahFAQlabel">
             Tambah FAQ
@@ -250,12 +250,12 @@ return (
                     <div className='justify-around md:mt-0 mt-8'>
                         <div className="w-96 mb-4 mx-auto ">
                             <label className="block text-gray-700 text-sm font-nunito font-semibold mb-2" for="username">Question</label>
-                            <textarea name='question' className="shadow appearance-none border rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-gray-200" type="text"  onChange={handleInputTambahFAQ}/>
+                            <textarea name='question' className="shadow appearance-none border rounded-full w-72 sm:w-full mx-auto text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-gray-200" type="text"  onChange={handleInputTambahFAQ}/>
                             <span className="text-sm text-red-500"></span>
                         </div>
                             <div className="w-96 mb-4  mx-auto md:mt-0 mt-8">
                             <label className="block text-gray-700 text-sm font-nunito font-semibold mb-2" for="username">Answer</label>
-                            <textarea name='answer'className="shadow appearance-none bg-gray-200 border rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" onChange={handleInputTambahFAQ} />
+                            <textarea name='answer'className="shadow appearance-none bg-gray-200 border rounded-full w-72 sm:w-full mx-auto text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" onChange={handleInputTambahFAQ} />
                             <span className="text-sm text-red-500" ></span>
                         </div>        
                     </div>

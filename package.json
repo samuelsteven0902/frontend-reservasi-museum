@@ -50,7 +50,8 @@
     "react-scripts": "4.0.3",
     "sweetalert": "^2.1.2",
     "tw-elements": "^1.0.0-alpha12",
-    "web-vitals": "^1.1.2"
+    "web-vitals": "^1.1.2",
+    "windups": "^1.2.1"
   },
   "resolutions": {
     "react-error-overlay": "6.0.9"
@@ -70,7 +71,11 @@
     "extends": [
       "react-app",
       "react-app/jest"
-    ]
+    ],
+    "env": {
+      "browser": true,
+      "node": true
+    }
   },
   "browserslist": {
     "production": [

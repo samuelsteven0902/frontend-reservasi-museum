@@ -58,7 +58,7 @@ function CardAdmin() {
     })
   }
   return (
-  <div className='container px-24 relative flex flex-col min-w-0 break-words w-full mb-6'>
+  <div className='container  relative flex flex-col min-w-0 break-words w-full mb-6'>
     <div class="flex flex-col " >
         <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">

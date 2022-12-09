@@ -343,8 +343,8 @@ return (
                     
                     <div className="modal fade fixed bg-gray-300 z-50  py-24   mx-auto items-center m-auto w-screen bg-opacity-60 top-0 left-0 hidden h-screen outline-none overflow-x-hidden overflow-y-auto" id="exampleModalCenteredScrollable" tabIndex="-1"
                     aria-labelledby="exampleModalCenteredScrollable" aria-modal="true" role="dialog">
-                    <div className="modal-dialog w-full md:w-1/2  mx-auto  h-full  my-auto modal-dialog-centered modal-dialog-scrollable relative items-center pointer-events-none lg:w-1/3" >
-                        <div className="modal-content border-none -ml-24 shadow-lg relative flex flex-col w-full pointer-events-auto my-auto bg-white min-w-max bg-clip-padding rounded-md outline-none text-current">
+                   <div className="modal-dialog w-11/12 justify-center md:w-1/2  px-0 sm:px-12 mx-auto  h-full  my-auto modal-dialog-centered modal-dialog-scrollable relative items-center pointer-events-none lg:w-1/3" >
+                        <div className="modal-content border-none shadow-lg relative flex flex-col sm:w-full sm:min-w-max pointer-events-auto my-auto bg-white  bg-clip-padding rounded-md outline-none text-current">
                         <div className="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
                             <h5 className="text-xl font-nunito font-semibold leading-normal text-gray-800" id="exampleModalCenteredScrollableLabel">
                             Edit Data
@@ -362,28 +362,28 @@ return (
                                         <label className="block text-gray-700 text-sm font-nunito font-semibold mb-2" for="username">
                                             Nama Museum
                                         </label>
-                                        <input name='phone' className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-gray-200 cursor-not-allowed" id="username" type="text" value="Loading Harga Data..." disabled={true} />
+                                        <input name='phone' className="shadow appearance-none border rounded-full w-72 sm:w-full mx-auto text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-gray-200 cursor-not-allowed" id="username" type="text" value="Loading Harga Data..." disabled={true} />
                                         <span className="text-sm text-red-500"></span>
                                     </div>
                                     <div className="w-96 mb-4  mx-auto md:mt-0 mt-8">
                                         <label className="block text-gray-700 text-sm font-nunito font-semibold mb-2" for="username">
                                             Harga Nama Kategori
                                         </label>
-                                        <input name='jumlah'  className="shadow appearance-none bg-gray-200 cursor-not-allowed border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" value="Loading Harga Data..." disabled={true}/>
+                                        <input name='jumlah'  className="shadow appearance-none bg-gray-200 cursor-not-allowed border rounded-full w-72 sm:w-full mx-auto text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" value="Loading Harga Data..." disabled={true}/>
                                         <span className="text-sm text-red-500"></span>
                                     </div>
                                     <div className="w-96 mb-4  mx-auto md:mt-0 mt-8">
                                         <label className="block text-gray-700 text-sm font-nunito font-semibold mb-2" for="username">
                                             Harga Hari Biasa
                                         </label>
-                                        <input name='hari_biasa' onChange={handleInput}  className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="Loading Harga Data..." />
+                                        <input name='hari_biasa' onChange={handleInput}  className="shadow appearance-none border rounded-full w-72 sm:w-full mx-auto text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="Loading Harga Data..." />
                                         <span className="text-sm text-red-500"></span>
                                     </div>
                                     <div className="w-96 mb-4  mx-auto md:mt-0 mt-8">
                                         <label className="block text-gray-700 text-sm font-nunito font-semibold mb-2" for="username">
                                             Hari Libur
                                         </label>
-                                        <input name='hari_libur' onChange={handleInput}  className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="Loading Harga Data..." />
+                                        <input name='hari_libur' onChange={handleInput}  className="shadow appearance-none border rounded-full w-72 sm:w-full mx-auto text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="Loading Harga Data..." />
                                         <span className="text-sm text-red-500"></span>
                                     </div>
                                 </div>
@@ -410,28 +410,28 @@ return (
                                         <label className="block text-gray-700 text-sm font-nunito font-semibold mb-2" for="username">
                                             Nama Museum
                                         </label>
-                                        <input name='phone'  className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-gray-200 cursor-not-allowed" id="username" type="text" value={harga.nama_museum} disabled={true} />
+                                        <input name='phone'  className="shadow appearance-none border rounded-full w-72 sm:w-full mx-auto text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-gray-200 cursor-not-allowed" id="username" type="text" value={harga.nama_museum} disabled={true} />
                                         <span className="text-sm text-red-500"></span>
                                     </div>
                                     <div className="w-96 mb-4  mx-auto md:mt-0 mt-8">
                                         <label className="block text-gray-700 text-sm font-nunito font-semibold mb-2" for="username">
                                             Harga Nama Kategori
                                         </label>
-                                        <input name='jumlah'  className="shadow appearance-none bg-gray-200 cursor-not-allowed border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" value={harga.nama_kategori} disabled={true}/>
+                                        <input name='jumlah'  className="shadow appearance-none bg-gray-200 cursor-not-allowed border rounded-full w-72 sm:w-full mx-auto text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" value={harga.nama_kategori} disabled={true}/>
                                         <span className="text-sm text-red-500"></span>
                                     </div>
                                     <div className="w-96 mb-4  mx-auto md:mt-0 mt-8">
                                         <label className="block text-gray-700 text-sm font-nunito font-semibold mb-2" for="username">
                                             Harga Hari Biasa
                                         </label>
-                                        <input name='hari_biasa' onChange={handleInput}  className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="number" value={harga.hari_biasa} />
+                                        <input name='hari_biasa' onChange={handleInput}  className="shadow appearance-none border rounded-full w-72 sm:w-full mx-auto text-gray-700  leading-tight focus:outline-none focus:shadow-outline" id="username" type="number" value={harga.hari_biasa} />
                                         <span className="text-sm text-red-500"></span>
                                     </div>
                                     <div className="w-96 mb-4  mx-auto md:mt-0 mt-8">
                                         <label className="block text-gray-700 text-sm font-nunito font-semibold mb-2" for="username">
                                             Hari Libur
                                         </label>
-                                        <input name='hari_libur' onChange={handleInput}  className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"   value={harga.hari_libur} />
+                                        <input name='hari_libur' onChange={handleInput}  className="shadow appearance-none border rounded-full w-72 sm:w-full mx-auto text-gray-700 leading-tight focus:outline-none focus:shadow-outline"   value={harga.hari_libur} />
                                         <span className="text-sm text-red-500"></span>
                                     </div>
                                 </div>
@@ -461,9 +461,9 @@ return (
     </div>
 
 
-                <div className="modal fade fixed bg-gray-300 z-50  py-24   mx-auto items-center m-auto w-screen bg-opacity-60 top-0 left-0 hidden h-screen outline-none overflow-x-hidden overflow-y-auto" id="modalTambahData" tabIndex="-1" aria-labelledby="modalTambahData" aria-modal="true" role="dialog">
-                    <div className="modal-dialog w-full md:w-1/2  mx-auto  h-full  my-auto modal-dialog-centered modal-dialog-scrollable relative items-center pointer-events-none lg:w-1/3" >
-                        <div className="modal-content border-none -ml-24 shadow-lg relative flex flex-col w-full pointer-events-auto my-auto bg-white min-w-max bg-clip-padding rounded-md outline-none text-current">
+                <div className="modal fade fixed bg-gray-300 z-50  py-24 mx-auto items-center m-auto w-screen bg-opacity-60 top-0 left-0 hidden h-screen outline-none overflow-x-hidden overflow-y-auto" id="modalTambahData" tabIndex="-1" aria-labelledby="modalTambahData" aria-modal="true" role="dialog">
+                <div className="modal-dialog w-11/12 justify-center md:w-1/2  px-0 sm:px-12 mx-auto  h-full  my-auto modal-dialog-centered modal-dialog-scrollable relative items-center pointer-events-none lg:w-1/3" >
+                        <div className="modal-content border-none shadow-lg relative flex flex-col sm:w-full sm:min-w-max pointer-events-auto my-auto bg-white  bg-clip-padding rounded-md outline-none text-current">
                         <div className="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
                             <h5 className="text-xl font-nunito font-semibold leading-normal text-gray-800" id="Tambahmuseumlabel">
                             Tambah Data
@@ -476,12 +476,12 @@ return (
                             <form onSubmit={storeData} >
                                 <div className="modal-body relative p-4">
                                     <div className='justify-around md:mt-0 mt-8'>    
-                                        <div className="w-96 mb-4 mx-auto ">
+                                        <div className="sm:w-96 mb-4 mx-auto ">
                                             <label className="block text-gray-700 text-sm font-nunito font-semibold mb-2" for="nama_museum">
                                                 Nama Museum
                                             </label>
                                             <div className="flex justify-between">
-                                            <select id='museum' value={input.namaMuseum} className="block appearance-none sm:w-1/2 p-2.5 bg-white text-center border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+                                            <select id='museum' value={input.namaMuseum} className="block appearance-none w-36 sm:w-1/2 p-2.5 bg-white text-center border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
                                                 onChange={(e) => {
                                                     const index = e.target.selectedIndex;
                                                     const el = e.target.childNodes[index]
@@ -508,21 +508,21 @@ return (
                                             <label className="block text-gray-700 text-sm font-nunito font-semibold mb-2" for="nama_kategori">
                                                 Nama Kategori
                                             </label>
-                                            <input name='nama_kategori'  className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="nama_kategori" type="text" onChange={handleInputTambahData}/>
+                                            <input name='nama_kategori'  className="shadow appearance-none border rounded-full w-72 sm:w-full mx-auto text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="nama_kategori" type="text" onChange={handleInputTambahData}/>
                                             <span className="text-sm text-red-500"></span>
                                         </div>
                                         <div className="w-96 mb-4  mx-auto md:mt-0 mt-8">
                                             <label className="block text-gray-700 text-sm font-nunito font-semibold mb-2" for="hari_biasa">
                                                 Harga Hari Biasa
                                             </label>
-                                            <input name='hari_biasa' className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="hari_biasa" type="number" onChange={handleInputTambahData}/>
+                                            <input name='hari_biasa' className="shadow appearance-none border rounded-full w-72 sm:w-full mx-auto text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="hari_biasa" type="number" onChange={handleInputTambahData}/>
                                             <span className="text-sm text-red-500"></span>
                                         </div>
                                         <div className="w-96 mb-4  mx-auto md:mt-0 mt-8">
                                             <label className="block text-gray-700 text-sm font-nunito font-semibold mb-2" for="hari_libur">
                                                 Hari Libur
                                             </label>
-                                            <input name='hari_libur' className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="hari_libur" type="number" onChange={handleInputTambahData}/>
+                                            <input name='hari_libur' className="shadow appearance-none border rounded-full w-72 sm:w-full mx-auto text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="hari_libur" type="number" onChange={handleInputTambahData}/>
                                         </div>
                                     </div>
                                 </div>

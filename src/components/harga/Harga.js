@@ -118,11 +118,11 @@ else
   
     return (
     
-    <div className='bg-gray-50 w-screen  mx-auto min-h-screen'>
+    <div className='bg-gray-50 w-screen  mx-auto min-h-screen max'>
     <div className="absolute w-full z-20">
         <DefaultNavbar />
     </div>
-    <div className='container mx-auto py-24'>
+    <div className='container  mx-auto py-24'>
         <div className='flex justify-center flex-wrap flex-col my-12 '>
             <p className='text-5xl font-merriweather  font-bold p-4 pb- w-full text-center'>{t('harga.judul')}</p>
             <hr className='h-1 bg-red-300 w-1/3 flex mx-auto' />
@@ -136,10 +136,11 @@ else
                             :
                              museum.map((item,index)=>{
                 return(
-                    <div className='w-5/12'>
-                        <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+                    <div className='w-full xl:w-5/12'>
                             <p className=' bg-white text-center mx-auto mt-12 font-nunito p-5 px-8 w-max rounded-tr-full hover:rounded-tr-none rounded-bl-full  hover:rounded-tl-full  hover:rounded-br-full hover:rounded-bl-none transition-all duration-300 shadow-md font-bold text-2xl bg-gradient-to-br from-red-500 to-red-400 text-[#ECE3DE] select-none'>{item.nama_museum}</p>
-                        <div className="overflow-hidden shadow-lg rounded-xl m-2">
+                            <div className='overflow-x-auto sm:-mx-6 lg:-mx-8'>
+                        <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+                        <div className="overflow-hidden shadow-lg rounded-xl m-2 mx-6">
                             <table  id="table_id" className="shadow-lg rounded-xl w-full" >
                             <thead className="border-b bg-white ">
                                 <tr className=''>
@@ -199,6 +200,7 @@ else
                             </tbody>
                             </table>
                         </div>
+                            </div>
                         </div>
                     </div>
                 )

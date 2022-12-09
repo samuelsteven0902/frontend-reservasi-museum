@@ -21,44 +21,44 @@ function FooterPengunjung() {
 return (
     <>
     
-    <footer className="relative text-center lg:text-left bg-[#ECE3DE] text-black">
+    <footer className="relative text-center lg:text-left bg-[#ECE3DE] text-black z-10">
     <WaveFooter />
         
-        <div className="mx-6 py-12 text-center md:text-left">
-            <div className="grid grid-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div className="w-5/6 h-56 z-20  col-span-2 mx-auto">
+        <div className="mx-6 py-12 text-center sm:text-left">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div className="w-full sm:w-5/6 h-56 z-20  sm:col-span-2 mx-auto">
                     {/* <Map /> */}
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3955.0545587044476!2d110.80861911425045!3d-7.569031194541577!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a167e29505d91%3A0x9129ae0450226c4f!2sMuseum%20Keris%20Nusantara!5e0!3m2!1sen!2sid!4v1670306257940!5m2!1sen!2sid"  className='border-0 w-full h-full ' allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
                 </div>
-                <div className="">
-                    <h6 className="uppercase font-merriweather font-bold text-[#A70B0B] mb-4 flex justify-center md:justify-start">RESERVASI TIKET</h6>
-                    <p className="font-nunito text-black mb-4 text-sm">
+                <div className="w-full">
+                    <h6 className="uppercase font-merriweather font-bold text-[#A70B0B] mb-4 flex justify-center sm:justify-start mx-0 sm:mx-20 lg:mx-0 text-3xl sm:text-base">RESERVASI TIKET</h6>
+                    <p className="font-nunito text-black mb-4 text-sm mr-20  ml-20 lg:ml-0 sm:mr-0 ">
                     {t('landing.footer')}
                     </p>
-                    <div className="flex flex-col">
-                <a href="https://uptmuseum.surakarta.go.id/" className="flex mr-6 text-black text-xl">
+                    <div className="flex flex-col justify-center">
+                <a href="https://uptmuseum.surakarta.go.id/" className="flex justify-center mr-6 text-black text-xl">
                     <BsGlobe/>
                     <p className='text-sm ml-2 text-blue-600 underline'>uptmuseum.surakarta.go.id</p>
                 </a>
-                <a href="https://www.youtube.com/@uptmuseumkotasurakarta1625 " className="my-3 flex mr-6 text-black text-xl">
+                <a href="https://www.youtube.com/@uptmuseumkotasurakarta1625 " className="my-3 flex justify-center mr-6 text-black text-xl">
                     <AiFillYoutube/>
                     <p className='text-sm ml-2 text-blue-600 underline'>uptmuseumkotasurakarta1625</p>
                 </a>
-                <a href="https://www.instagram.com/uptmuseum_surakarta/ " className="flex mr-6 text-black text-xl">
+                <a href="https://www.instagram.com/uptmuseum_surakarta/ " className="flex justify-center mr-6 text-black text-xl">
                     <AiFillInstagram />
                     <p className='text-sm ml-2 text-blue-600 underline'>@uptmuseum_surakarta</p>
                 </a>
             </div>
                 </div>
-                <div className="text-sm">
-                    <h6 className="uppercase font-merriweather font-bold text-[#A70B0B] mb-4 flex justify-center md:justify-start">Contact</h6>
-                    <div className="flex items-center justify-center font-nunito text-black md:justify-start mb-4">
+                <div className="text-sm flex flex-wrap">
+                    <h6 className="uppercase font-merriweather w-full mx-auto  font-bold text-[#A70B0B] mb-4 flex justify-center md:justify-start text-3xl sm:text-base">Contact</h6>
+                    <div className="flex items-center justify-center font-nunito text-black sm:justify-start mb-4 sm:mx-0 mx-16">
                         <div className="fas fa-solid fa-home mr-4 text-black"></div>Jl. Bhayangkara No.2, Sriwedari, Kec. Laweyan, Kota Surakarta, Jawa Tengah 57141
                     </div>
-                    <div className="flex items-center justify-center font-nunito text-black md:justify-start my-8  ">
+                    <div className="flex items-center w-1/2 sm:w-full justify-center font-nunito text-black sm:justify-start my-4  ">
                         <div className="fas fa-solid fa-envelope mr-4 text-base text-black"></div>info@example.com
                     </div>
-                    <div className="flex items-center justify-center font-nunito text-black md:justify-start mb-4">
+                    <div className="flex items-center w-1/2 sm:w-full justify-center font-nunito text-black sm:justify-start mb-2">
                         <div className="fas fa-solid fa-phone mr-4 text-base text-black"></div>+ 01 234 567 88
                     </div>
                 </div>

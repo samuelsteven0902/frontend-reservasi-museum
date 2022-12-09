@@ -4,7 +4,6 @@ import { BrowserRouter } from 'react-router-dom';
 import App from 'App';
 import reportWebVitals from 'reportWebVitals';
 import "./i18n";
-import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { Suspense } from 'react';
 

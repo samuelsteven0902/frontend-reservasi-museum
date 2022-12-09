@@ -1,4 +1,5 @@
-    import Container from 'components/about/Container';
+
+import Container from 'components/about/Container';
 import DefaultNavbar from 'components/DefaultNavbar';
 import FooterPengunjung from 'components/FooterPengunjung';
 import { useEffect } from 'react';

@@ -13,18 +13,18 @@ export default function Container({  }) {
                 <p className='font-nunito tracking-wider w-3/5 mx-auto pt-6 pb-3 text-center'>{t('about.desc')}
                 </p>
             </div>
-            <div className="w-11/12 mx-auto">
+            <div className="w-11/12 mx-auto min-h-full">
                 <div className="flex text-black">
-                    <div className='mx-8 pt-5 mb-12'>
+                    <div className='sm:mx-8 mx-2 pt-5 mb-12'>
                         <p className='font-nunito text-lg text-justify'>
                         {t('about.isi.part1')}</p>
                         <p className='font-nunito text-lg text-justify'>
                         {t('about.isi.part2')}.</p>
-                            <img class="float-right w-1/6 mx-5 ..." src={about1}/>
-                        <p className='font-nunito text-lg pr-5 w-4/5 text-justify'>
+                            <img class="sm:float-right py-6 sm:py-0 w-60  mx-auto sm:mx-5  ... " src={about1}/>
+                        <p className='font-nunito  text-lg pr-5 w- text-justify'>
                         {t('about.isi.part3')}</p>
-                            <img class="float-left w-1/6 mx-5 pt-3 pb-5 ..." src={about2}/>
-                        <p className='font-nunito text-lg w-4/5 pt-3 text-justify pb-10'>
+                            <img class="sm:float-left py-6 sm:py-0 w-60 mx-auto sm:mx-5 pt-3 pb-5 ..." src={about2}/>
+                        <p className='font-nunito text-lg pt-3 text-justify pb-10'>
                         {t('about.isi.part4')}</p>
                     </div>
                 </div>

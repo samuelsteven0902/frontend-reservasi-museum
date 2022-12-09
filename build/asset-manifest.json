@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/static/css/main.2bd3a330.chunk.css",
-    "main.js": "/static/js/main.6a4e04bb.chunk.js",
-    "main.js.map": "/static/js/main.6a4e04bb.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.780c1f23.js",
-    "runtime-main.js.map": "/static/js/runtime-main.780c1f23.js.map",
-    "static/css/2.8cf5182b.chunk.css": "/static/css/2.8cf5182b.chunk.css",
-    "static/js/2.10138efa.chunk.js": "/static/js/2.10138efa.chunk.js",
-    "static/js/2.10138efa.chunk.js.map": "/static/js/2.10138efa.chunk.js.map",
-    "static/js/3.fea9184b.chunk.js": "/static/js/3.fea9184b.chunk.js",
-    "static/js/3.fea9184b.chunk.js.map": "/static/js/3.fea9184b.chunk.js.map",
+    "main.css": "/static/css/main.773e0ebb.chunk.css",
+    "main.js": "/static/js/main.a28d210d.chunk.js",
+    "main.js.map": "/static/js/main.a28d210d.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.79b73592.js",
+    "runtime-main.js.map": "/static/js/runtime-main.79b73592.js.map",
+    "static/css/2.cdbc957a.chunk.css": "/static/css/2.cdbc957a.chunk.css",
+    "static/js/2.4d74ee1f.chunk.js": "/static/js/2.4d74ee1f.chunk.js",
+    "static/js/2.4d74ee1f.chunk.js.map": "/static/js/2.4d74ee1f.chunk.js.map",
+    "static/js/3.7ccb3dab.chunk.js": "/static/js/3.7ccb3dab.chunk.js",
+    "static/js/3.7ccb3dab.chunk.js.map": "/static/js/3.7ccb3dab.chunk.js.map",
     "index.html": "/index.html",
-    "static/css/2.8cf5182b.chunk.css.map": "/static/css/2.8cf5182b.chunk.css.map",
-    "static/css/main.2bd3a330.chunk.css.map": "/static/css/main.2bd3a330.chunk.css.map",
-    "static/js/2.10138efa.chunk.js.LICENSE.txt": "/static/js/2.10138efa.chunk.js.LICENSE.txt",
+    "static/css/2.cdbc957a.chunk.css.map": "/static/css/2.cdbc957a.chunk.css.map",
+    "static/css/main.773e0ebb.chunk.css.map": "/static/css/main.773e0ebb.chunk.css.map",
+    "static/js/2.4d74ee1f.chunk.js.LICENSE.txt": "/static/js/2.4d74ee1f.chunk.js.LICENSE.txt",
     "static/media/tailwind.css": "/static/media/header_bawah.4f928467.png",
     "static/media/MuseumKeris.38de65fe.jpg": "/static/media/MuseumKeris.38de65fe.jpg",
     "static/media/MuseumKeris.8313d92f.png": "/static/media/MuseumKeris.8313d92f.png",
@@ -33,10 +33,10 @@
     "static/media/team-4-470x470.4ef82ef4.png": "/static/media/team-4-470x470.4ef82ef4.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.780c1f23.js",
-    "static/css/2.8cf5182b.chunk.css",
-    "static/js/2.10138efa.chunk.js",
-    "static/css/main.2bd3a330.chunk.css",
-    "static/js/main.6a4e04bb.chunk.js"
+    "static/js/runtime-main.79b73592.js",
+    "static/css/2.cdbc957a.chunk.css",
+    "static/js/2.4d74ee1f.chunk.js",
+    "static/css/main.773e0ebb.chunk.css",
+    "static/js/main.a28d210d.chunk.js"
   ]
 }
