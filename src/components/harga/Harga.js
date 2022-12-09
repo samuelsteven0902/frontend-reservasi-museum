@@ -126,9 +126,10 @@ else
         <div className='flex justify-center flex-wrap flex-col my-12 '>
             <p className='text-5xl font-merriweather  font-bold p-4 pb- w-full text-center'>{t('harga.judul')}</p>
             <hr className='h-1 bg-red-300 w-1/3 flex mx-auto' />
-            <p className='font-nunito tracking-wider w-3/5 mx-auto py-6 text-center'>{t('harga.desc')}
+            <p className='font-nunito tracking-wider w-3/5 mx-auto py-6 text-center'>{t('harga.desc1')}</p>
+            <p className='font-nunito font-bold tracking-wider mx-auto text-center'>{t('harga.desc2')}</p>
 
-</p>
+
         </div>
         <div className='w-full flex mx-auto justify-center flex-wrap'>
             {loading?

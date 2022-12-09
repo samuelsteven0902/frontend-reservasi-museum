@@ -79,8 +79,8 @@ i18n
               desc:'Information on museum ticket reservation prices can be read here'
             },
             about:{
-              part1:'Solo is one of the cities frequently visited by tourists. Tourist attractions in Solo are also very diverse. One of the tourist attractions in Solo is the Museum. There are many museums in Solo because Solo is also an area that has a rich history',
-              part2:'Solo is one of the cities frequently visited by tourists. Tourist attractions in Solo are also very diverse. One of the tourist attractions in Solo is the Museum. There are many museums in Solo because Solo is also an area that has a rich history',
+              part1:'UPT Museum is an agency under the supervision of the Surakarta City Culture and Tourism Office. The UPT Museum was established to protect cultural heritage, especially in the city of Solo where there are abundant relics',
+              part2:'VISION OF UPT MUSEUM SURAKARTA Realization of a global historical and cultural tourist destination. MISSION OF UPT MUSEUM SURAKARTA To make the museum a competitive place of education, source of knowledge and recreation. Maintain Cultural Heritage Objects and Buildings. Preserving and publicizing the rich collection of cultural heritage to the domestic and foreign communities.',
             },
             footer:'Museum Ticket Reservation aims to make it easier for visitors to order tickets online',
             // :'',
@@ -88,10 +88,13 @@ i18n
           about:{
             desc:'Describe the UPT Museum Surakarta',
             isi:{
-              part1:'Solo is one of the cities frequently visited by tourists. Tourist attractions in Solo are also very diverse. One of the tourist attractions in Solo is the Museum. There are many museums in Solo because Solo is also an area that has a rich history.',
-              part2:'The Keris Nusantara Museum and Radya Pustaka are museums managed by the Solo government. Both have their own charm.',
-              part3:'The Keris Nusantara Museum is a museum built by the Directorate General of Culture, Ministry of Education and Culture through the Directorate of Preservation of Cultural Heritage and Museums since 2013 and was inaugurated by the President of the Republic of Indonesia, Joko Widodo on August 9.',
-              part4:'Radya Pustaka Museum, the Oldest Museum in Indonesia. Founded by Kanjeng Raden Adipati Sosrodiningrat IV on October 18, 1890, this is the oldest museum in Indonesia.',
+              part1:'UPT Museum is an agency under the supervision of the Surakarta City Culture and Tourism Office. The UPT Museum was established to protect cultural heritage, especially in the city of Solo where there are abundant relics',
+              part2:'VISION OF UPT MUSEUM SURAKARTA Realization of a global historical and cultural tourist destination. MISSION OF UPT MUSEUM SURAKARTA To make the museum a competitive place of education, source of knowledge and recreation. Maintain Cultural Heritage Objects and Buildings. Preserving and publicizing the rich collection of cultural heritage to the domestic and foreign communities.',
+              part3:'The Keris Nusantara Museum and Radya Pustaka are museums managed by the Solo government. Both have their own charm.',
+              part4:'The Keris Nusantara Museum is a museum built by the Directorate General of Culture, Ministry of Education and Culture through the Directorate of Preservation of Cultural Heritage and Museums since 2013. It was inaugurated on Tuesday Wage, 15 Maulud Dal 1890, 9 August 2017 at the initiative of the 16th Mayor of Solo, Mr. H. Ir. Joko Widodo. The Keris Museum stands above the Sriwedari Cultural Park area. At the inauguration, the Keris Museum was officially under UPT Museum Surakarta.',
+              part5:'The keris as a world cultural heritage was recognized by UNESCO on November 25, 2005 in Paris, France. Through this recognition, the keris gains recognition in the eyes of the world as a masterpiece that has high philosophical value and shows cultural excellence.',
+              part6:'Museum Radya Pustaka, Museum Tertua di Indonesia. Didirikan oleh Kanjeng Raden Adipati Sosrodiningrat IV pada 18 Oktober 1890 ini merupakan museum tertua yang ada di Indonesia.',
+              part7:'The Radya Pustaka Museum stands on the Main Street area of ​​Surakarta City, precisely on Jalan Slamet Riyadi, which is the first and oldest museum in Indonesia. The museum is the pride of the people of Surakarta which has its own uniqueness compared to other old museums, namely with a collection of various ancient objects, ranging from stone statues, bronze statues, daily necessities from ancient kings, gifts from emperors or kings. from other nations and ancient fiber books by poets of the ancient Kingdom which were stored neatly in the royal library and are also still much sought after by students, students, humanists and intellectuals today to look for data and for the sake of Literature, especially related to Literature Java.',
             },
           },
           panduan: {
@@ -103,7 +106,8 @@ i18n
           },
           harga:{
             judul:'Price List Ticket Museum',
-            desc:'List of ticket prices of each available Museum. The price could changes every time  .',
+            desc1:'List of ticket prices of each available Museum. The price could changes every time  .',
+            desc2:'Perda Number 5 of 2016 about RETRIBUSI DAERAH TIKET MASUK MUSEUM KERIS NUSANTARA KOTA SURAKARTA.',
             biasa:"Weekday",
             libur:"Weekend"
           },
@@ -187,8 +191,8 @@ i18n
               desc:'Kumpulan Info harga reservasi tiket museum dapat dibaca disini'
             },
             about:{
-              part1:'Solo merupakan salah satu kota yang sering dikunjungi oleh para wisatawan. Tempat wisata yang ada di Solo juga sangat beragam. Salah satu tempat wisata yang ada di Solo yaitu Museum. Banyak museum yang terdapat di Solo karena Solo juga merupakan daerah yang memiliki sejarah yang melimpah ',
-              part2:'Solo merupakan salah satu kota yang sering dikunjungi oleh para wisatawan. Tempat wisata yang ada di Solo juga sangat beragam. Salah satu tempat wisata yang ada di Solo yaitu Museum. Banyak museum yang terdapat di Solo karena Solo juga merupakan daerah yang memiliki sejarah yang melimpah ',
+              part1:'UPT Museum adalah Dinas yang berada dalam pengawasan Dinas Kebudayaan dan Pariwisata Kota Surakarta. UPT Museum berdiri untuk menjaga cagar budaya yang terlebih di dalam kota solo terdapat peninggalan yang sangat melimpah.',
+              part2:'VISI UPT MUSEUM SURAKARTA Terwujudnya destinasi wisata sejarah dan budaya yang mendunia. MISI UPT MUSEUM SURAKARTA Mewujudkan museum menjadi tempat edukasi, sumber pengetahuan dan rekreasi yang kompetitif. Memelihara Benda dan Bangunan Cagar Budaya. Melestarikan dan mempublikasikan kekayaan koleksi warisan budaya kepada masyarakat domestik maupun mancanegara.',
             },
             footer:'Reservasi Tiket Museum bertujuan untuk memudahkan para pengunjung dalam memesan tiket secara online',
             // :'',
@@ -197,10 +201,13 @@ i18n
           about:{
             desc:'Mendeskripsikan mengenai UPT Museum Surakarta',
             isi:{
-              part1:'Solo merupakan salah satu kota yang sering dikunjungi oleh para wisatawan. Tempat wisata yang ada di Solo juga sangat beragam. Salah satu tempat wisata yang ada di Solo yaitu Museum. Banyak museum yang terdapat di Solo karena Solo juga merupakan daerah yang memiliki sejarah yang melimpah.',
-              part2:'Museum Keris Nusantara dan Radya Pustaka merupakan museum yang dikelola oleh pemerintah Solo. Keduanya memiliki daya tarik sendiri.',
-              part3:'Museum Keris Nusantara merupakan sebuah museum yang dibangun oleh Di rektorat Jenderal Kebudayaan, Kementerian Pendidikan dan Kebudayaan melalui Direktorat Pelestarian Cagar Budaya dan Permuseuman sejak 2013 lalu diresmikan oleh Presiden Republik Indonesia, Joko Widodo pada tanggal 9 Agustus.',
-              part4:'Museum Radya Pustaka, Museum Tertua di Indonesia. Didirikan oleh Kanjeng Raden Adipati Sosrodiningrat IV pada 18 Oktober 1890 ini merupakan museum tertua yang ada di Indonesia.',
+              part1:'UPT Museum adalah Dinas yang berada dalam pengawasan Dinas Kebudayaan dan Pariwisata Kota Surakarta. UPT Museum berdiri untuk menjaga cagar budaya yang terlebih di dalam kota solo terdapat peninggalan yang sangat melimpah.',
+              part2:'VISI UPT MUSEUM SURAKARTA Terwujudnya destinasi wisata sejarah dan budaya yang mendunia. MISI UPT MUSEUM SURAKARTA Mewujudkan museum menjadi tempat edukasi, sumber pengetahuan dan rekreasi yang kompetitif. Memelihara Benda dan Bangunan Cagar Budaya. Melestarikan dan mempublikasikan kekayaan koleksi warisan budaya kepada masyarakat domestik maupun mancanegara.',
+              part3:'Museum Keris Nusantara dan Radya Pustaka merupakan museum yang dikelola oleh pemerintah Solo. Keduanya memiliki daya tarik sendiri.',
+              part4:'Museum Keris Nusantara merupakan sebuah museum yang dibangun oleh Direktorat Jenderal Kebudayaan, Kementerian Pendidikan dan Kebudayaan melalui Direktorat Pelestarian Cagar Budaya dan Permuseuman sejak 2013 lalu. Diresmikan pada hari Selasa Wage, 15 Maulud Dal 1890, 9 Agustus 2017 atas prakarsa Walikota Solo yang Ke – 16 Bapak H. Ir. Joko Widodo. Museum Keris ini berdiri di atas kawasan Taman Budaya Sriwedari. Pada peresmian itu pula secara resmi Museum Keris berada di bawah UPT Museum Surakarta.',
+              part5:'Keris sebagai warisan budaya dunia mulai diakui oleh UNESCO pada tanggal 25 November 2005 di Paris, Perancis. Melalui pengakuan ini, keris mendapatkan pengakuan di mata dunia sebagai karya agung yang memiliki nilai filosofis tinggi, dan menunjukkan keunggulan budaya.',
+              part6:'Museum Radya Pustaka, Museum Tertua di Indonesia. Didirikan oleh Kanjeng Raden Adipati Sosrodiningrat IV pada 18 Oktober 1890 ini merupakan museum tertua yang ada di Indonesia.',
+              part7:'Museum Radya Pustaka berdiri di daerah Jalan Utama Kota Surakarta tepatnya adalah Jalan Slamet Riyadi, yang mana merupakan Museum pertama dan tertua di Indonesia. Museum tersebut merupakan Museum kebanggaan masyarakat kota Surakarta yang mana memiliki keunikan tersendiri dibanding Museum-Museum Tua lainnya yakni dengan Koleksi benda Kunonya yang beragam dari mulai Arca Batu, Arca Perunggu, benda keperluan sehari hari dari Raja zaman dahulu, hadiah-hadiah dari Kaisar atau Raja dari bangsa lain dan Buku-Buku serat kuno karya Pujangga Kerajaan zaman dahulu yang tersimpan rapi di perpustakaan kerajaan dan juga masih banyak dicari oleh para mahasiswa, pelajar, budayawan serta para Intelektual saat ini untuk mencari data-data dan untuk kepentingan Sastra terutama berkaitan dengan Sastra Jawa.',
             },
           },
           panduan: {
@@ -212,7 +219,8 @@ i18n
           },
           harga:{
             judul:'Harga Tiket Museum',
-            desc:'Daftar harga tiket dari setiap Museum yang tersedia. Harga dapat berubah sewaktu-waktu.',
+            desc1:'Daftar harga tiket dari setiap Museum yang tersedia. Harga dapat berubah sewaktu-waktu.',
+            desc2:'Perda No.5 Tahun 2016 Tentang RETRIBUSI DAERAH TIKET MASUK MUSEUM KERIS NUSANTARA KOTA SURAKARTA',
             biasa:"Hari Biasa",
             libur:"Hari Libur"
           },
