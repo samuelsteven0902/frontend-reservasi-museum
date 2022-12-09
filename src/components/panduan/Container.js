@@ -33,8 +33,8 @@ useEffect(() => {
         </div>
                 <div className="w-5/6 mx-auto bg-gray-100 mt-12 flex justify-center flex-wrap">
                     {loading?<ReactLoading type={"spin"} color={"red"} height={'5%'} width={'5%'} className="m-auto" />:panduan.map((image) => (
-                        <div className="w-2/5 flex items-start m-5" key={image.id}>
-                            <img src={ "http://localhost:8000/uploads/" + image.panduan_name } className="img-fluid img-bordered" width="500px"/>
+                        <div className="w-full flex items-start m-5" key={image.id}>
+                            <img src={ "http://localhost:8000/uploads/" + image.panduan_name } className="img-fluid img-bordered w-screen"/>
                             {/* <button className="bg-red-500 w-7 h-7 rounded-full text-white hover:bg-red-300" onClick={e=>this.deleteFile(image.id,e)}>X</button> */}
                         </div>
                         ))}

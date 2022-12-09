@@ -59,7 +59,7 @@ return (
                         <div className="fas fa-solid fa-envelope mr-4 text-base text-black"></div>info@example.com
                     </div>
                     <div className="flex items-center w-1/2 sm:w-full justify-center font-nunito text-black sm:justify-start mb-2">
-                        <div className="fas fa-solid fa-phone mr-4 text-base text-black"></div>+ 01 234 567 88
+                        <div className="fas fa-solid fa-phone mr-4 text-base text-black"></div>+ 62 822-2654-0845
                     </div>
                 </div>
             </div>
