@@ -1,8 +1,6 @@
 import React from "react";
-
-// components
-
 import InfoFAQ from "./Cards/Info/InfoFAQ.js";
+import DefaultFooterAdmin from "components/DefaultFooterAdmin.js";
 
 export default function FAQ() {
   return (
@@ -12,6 +10,7 @@ export default function FAQ() {
           <InfoFAQ />
         </div>
       </div>
+          <DefaultFooterAdmin/>
     </>
   );
 }

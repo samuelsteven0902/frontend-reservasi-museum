@@ -34,40 +34,11 @@ function Content(input) {
     window.scrollTo(0, 0);
   }, [])
 
-  // useEffect(() => {
-  //   const fetchData = async () =>
-  //   {
 
       const dataId= {
         id_category:id_category,
         id_museum:id_museum,
       }
-
-      // const resHarga = await fetch(`http://localhost:8000/api/show_harga/${id_category}`, dataId);
-      // const res = await resHarga.json()
-      
-      // const resData = await axios.post(`http://localhost:8000/api/show_data/${id_category}`, dataId)
-      //                         .then(res=>{ console.log(res); setData(res.data.data[0]); })
-      // // console.log(await harga)
-
-  //   }
-
-  //   fetchData();
-  // }, [])
-
-  // end
-  // const [loading, setLoading] = useState(true);
-  // const [pengunjung, setPengunjung] = useState([]);
-//   const [input,setInput] = useState({
-//     nama: '',
-//     kota: '',
-//     phone: '',
-//     jumlah: '',
-//     museum: '',
-//     kategori: '',
-//     tanggal: '',
-//     foto: '',
-// })
 
   console.log(input);
   const handleCash = () =>{
@@ -75,21 +46,6 @@ function Content(input) {
     if(pembayaran !== '' || input.input == 0){
         setPembayaran('Tunai')
     console.log(pembayaran);
-
-//   const data = {
-//     nama:input.data.nama,
-//     kota:input.data.kota,
-//     phone:input.data.phone,
-//     jumlah:input.data.jumlah,
-//     museum:input.data.museum,
-//     kategori:input.data.kategori,
-//     tanggal:input.data.tanggal,
-//     foto:input.data.foto, 
-//     pembayaran: 'cash',
-//     status: 'belum lunas',
-// }
-
-// console.log(data);
 
 
 
@@ -130,39 +86,8 @@ axios.post(`http://localhost:8000/api/add-pengunjung`, data).then(res => {
           setPembayaran(e.target.value)
         }
 
-
-    //   useEffect(() => {
-
-    //     axios.get(`/api/pengunjung`).then(res=>{
-    //         if(res.status === 200)
-    //         {
-    //             setPengunjung(res.data.pengunjung)
-    //             setLoading(false);
-    //         }
-    //     });
-
-    // }, []);
-    
-    // const rupiah = (number)=>{
-    //   return new Intl.NumberFormat("id-ID", {
-    //     style: "currency",
-    //     currency: "IDR"
-    //   }).format(number);
-    // }
-
-    // if(loading)
-    // {
-    //     return <h4>Loading Tiket...</h4>
-    // }
-    // else
-    // {
-    //     var pengunjung_HTMLTABLE = "";
-       
-    //     pengunjung_HTMLTABLE = pengunjung.map( (item, index) => {
     
   return (
-  
-    // className="items-center flex flex-wrap bg-[#A70B0B]">
 
       <div className='container mx-auto justify-center'>
         <div className='flex justify-center'>
@@ -171,7 +96,7 @@ axios.post(`http://localhost:8000/api/add-pengunjung`, data).then(res => {
           </button>
         </div>
 
-        <div className="  bg-[#A70B0B] mt-14 pt-12 pb-1 mx-32">
+        <div className="  bg-[#A70B0B] mt-14 pt-12 pb-1 mx-3 lg:mx-32">
 
           <div className="w-auto px-10 ml-auto mr-auto text-center">
             <div className="text-gray-200">
@@ -245,5 +170,4 @@ axios.post(`http://localhost:8000/api/add-pengunjung`, data).then(res => {
 }
 
 export default Content
-
 

@@ -29,11 +29,11 @@ export default function SidebarSuperadmin() {
             </ul>
             <div>
               <Link
-              className="md:block text-left md:pb-1 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-1 px-1"
+              className="md:block text-left md:pb-1 text-blueGray-600 mr-0 inline-block whitespace-nowrap font-merriweather text-sm uppercase font-bold p-1 px-1"
               to="/"> UPT MUSEUM
               </Link>
               <p 
-              className="md:block text-left md:pb-1 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-1 px-1">Super Admin
+              className="md:block text-left md:pb-1 text-blueGray-600 mr-0 inline-block whitespace-nowrap font-merriweather text-sm uppercase font-bold p-1 px-1">Super Admin
               </p>
             </div>
           </div>
@@ -62,7 +62,7 @@ export default function SidebarSuperadmin() {
               <div className="flex flex-wrap">
                 <div className="w-6/12">
                   <Link
-                    className="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
+                    className="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap font-merriweather text-sm uppercase font-bold p-4 px-0"
                     to="/"
                   >
                     UPT MUSEUM
@@ -85,7 +85,7 @@ export default function SidebarSuperadmin() {
             <hr className="my-4 md:min-w-full" />
             
             {/* Heading */}
-            <h6 className="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
+            <h6 className="md:min-w-full text-blueGray-500 text-xs uppercase font-merriweather font-bold block pt-1 pb-4 no-underline">
               Dashboard
             </h6>
 
@@ -94,19 +94,20 @@ export default function SidebarSuperadmin() {
               <li className="items-center">
                 <Link
                   className={
-                    "text-xs uppercase py-3 font-bold block " +
-                    (window.location.href.indexOf("/superadmin/grafik") !== -1
+                    "text-xs uppercase font-merriweather py-3 font-bold block " +
+                    (window.location.href.indexOf("/superadmin/dashboard") !== -1
                       ? "text-lightBlue-500 hover:text-lightBlue-600 "
                       : "text-blueGray-700 hover:text-blueGray-500 hover:bg-gray-100 rounded-xl pl-4 duration-300 transition-all hover:pl-6")
                   }
-                  to="/superadmin/grafik"
+                  to="/superadmin/dashboard"
                 >
                   <i
                     className={
-                      "fas fa-tv mr-2 text-sm " +
-                      (window.location.href.indexOf("/superadmin/grafik") !== -1
+                      "fas fa-solid fa-chart-bar mr-2 text-sm " +
+                      // <i class="fa-solid fa-chart-simple"></i>
+                      (window.location.href.indexOf("/superadmin/dashboard") !== -1
                         ? "opacity-75"
-                        : "text-blueGray-300")
+                        : "text-blueGray-500")
                     }
                   ></i>{" "}
                   Grafik
@@ -116,7 +117,7 @@ export default function SidebarSuperadmin() {
               <li className="items-center">
                 <Link
                   className={
-                    "text-xs uppercase py-3 font-bold block " +
+                    "text-xs uppercase py-3 font-merriweather font-bold block " +
                     (window.location.href.indexOf("/superadmin/master-tiket") !== -1
                       ? "text-lightBlue-500 hover:text-lightBlue-600"
                       : "text-blueGray-700 hover:text-blueGray-500 hover:bg-gray-100 rounded-xl pl-4 duration-300 transition-all hover:pl-6")
@@ -125,10 +126,10 @@ export default function SidebarSuperadmin() {
                 >
                   <i
                     className={
-                      "fas fa-solid fa-file mr-2 text-sm " +
+                      "fas fa-solid fa-money-check mr-2 text-sm " +
                       (window.location.href.indexOf("/superadmin/master-tiket") !== -1
                         ? "opacity-75"
-                        : "text-blueGray-300")
+                        : "text-blueGray-500")
                     }
                   ></i>{" "}
                 Master Tiket
@@ -138,8 +139,8 @@ export default function SidebarSuperadmin() {
               <li className="items-center">
                 <Link
                   className={
-                    "text-xs uppercase py-3 font-bold block " +
-                    (window.location.href.indexOf("/superadmin/master-museum") !== -1
+                    "text-xs uppercase py-3 font-merriweather font-bold block " +
+                    (window.location.href.indexOf("/superadmin/tambah-museum") !== -1
                       ? "text-lightBlue-500 hover:text-lightBlue-600"
                       : "text-blueGray-700 hover:text-blueGray-500 hover:bg-gray-100 rounded-xl pl-4 duration-300 transition-all hover:pl-6")
                   }
@@ -147,10 +148,10 @@ export default function SidebarSuperadmin() {
                 >
                   <i
                     className={
-                      "fas fa-solid fa-file mr-2 text-sm " +
+                      "fas fa-solid fa-landmark mr-2 text-sm " +
                       (window.location.href.indexOf("/superadmin/tambah-museum") !== -1
                         ? "opacity-75"
-                        : "text-blueGray-300")
+                        : "text-blueGray-500")
                     }
                   ></i>{" "}
                 Tambah Museum
@@ -160,7 +161,7 @@ export default function SidebarSuperadmin() {
               <li className="items-center">
                 <Link
                   className={
-                    "text-xs uppercase py-3 font-bold block " +
+                    "text-xs uppercase py-3 font-merriweather font-bold block " +
                     (window.location.href.indexOf("/superadmin/admin") !== -1
                       ? "text-lightBlue-500 hover:text-lightBlue-600"
                       : "text-blueGray-700 hover:text-blueGray-500 hover:bg-gray-100 rounded-xl pl-4 duration-300 transition-all hover:pl-6")
@@ -169,10 +170,10 @@ export default function SidebarSuperadmin() {
                 >
                   <i
                     className={
-                      "fas fa-table mr-2 text-sm " +
+                      "fas fa-solid fa-user mr-2 text-sm " +
                       (window.location.href.indexOf("/superadmin/admin") !== -1
                         ? "opacity-75"
-                        : "text-blueGray-300")
+                        : "text-blueGray-500")
                     }
                   ></i>{" "}
                   Admin
@@ -182,7 +183,7 @@ export default function SidebarSuperadmin() {
               <li className="items-center">
                 <Link
                   className={
-                    "text-xs uppercase py-3 font-bold block " +
+                    "text-xs uppercase py-3 font-merriweather font-bold block " +
                     (window.location.href.indexOf("/superadmin/pemasukan") !== -1
                       ? "text-lightBlue-500 hover:text-lightBlue-600"
                       : "text-blueGray-700 hover:text-blueGray-500 hover:bg-gray-100 rounded-xl pl-4 duration-300 transition-all hover:pl-6")
@@ -191,10 +192,10 @@ export default function SidebarSuperadmin() {
                 >
                   <i
                     className={
-                      "fas fa-solid fa-money-bill mr-2 text-sm " +
+                      "fas fa-solid fa-wallet mr-2 text-sm " +
                       (window.location.href.indexOf("/superadmin/pemasukan") !== -1
                         ? "opacity-75"
-                        : "text-blueGray-300")
+                        : "text-blueGray-500")
                     }
                   ></i>{" "}
                   Pemasukan
@@ -206,7 +207,7 @@ export default function SidebarSuperadmin() {
             <hr className="my-4 md:min-w-full" />
 
             {/* Heading */}
-            <h6 className="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
+            <h6 className="md:min-w-full text-blueGray-500 text-xs uppercase font-merriweather font-bold block pt-1 pb-4 no-underline">
               Informasi
             </h6>
             {/* Navigation */}
@@ -215,7 +216,7 @@ export default function SidebarSuperadmin() {
               <li className="items-center">
                 <Link
                   className={
-                    "text-xs uppercase py-3 font-bold block " +
+                    "text-xs uppercase py-3 font-merriweather font-bold block " +
                     (window.location.href.indexOf("/superadmin/panduan") !== -1
                       ? "text-lightBlue-500 hover:text-lightBlue-600"
                       : "text-blueGray-700 hover:text-blueGray-500 hover:bg-gray-100 rounded-xl pl-2 duration-300 transition-all")
@@ -227,7 +228,7 @@ export default function SidebarSuperadmin() {
                       "fas fa-solid fa-book-open mr-2 text-sm " +
                       (window.location.href.indexOf("/superadmin/panduan") !== -1
                         ? "opacity-75"
-                        : "text-blueGray-300")
+                        : "text-blueGray-500")
                     }
                   ></i>{" "}
                   Panduan Pemesanan Tiket
@@ -237,7 +238,7 @@ export default function SidebarSuperadmin() {
               <li className="items-center">
                 <Link
                   className={
-                    "text-xs uppercase py-3 font-bold block " +
+                    "text-xs uppercase py-3 font-merriweather font-bold block " +
                     (window.location.href.indexOf("/superadmin/faq") !== -1
                       ? "text-lightBlue-500 hover:text-lightBlue-600"
                       : "text-blueGray-700 hover:text-blueGray-500 hover:bg-gray-100 rounded-xl pl-2 duration-300 transition-all")
@@ -249,7 +250,7 @@ export default function SidebarSuperadmin() {
                       "fas fa-solid fa-comments mr-2 text-sm " +
                       (window.location.href.indexOf("/superadmin/faq") !== -1
                         ? "opacity-75"
-                        : "text-blueGray-300")
+                        : "text-blueGray-500")
                     }
                   ></i>{" "}
                   FAQ
@@ -263,7 +264,7 @@ export default function SidebarSuperadmin() {
               <li className="items-center">
                 <Link
                   className={
-                    "text-xs uppercase py-1 font-bold block " +
+                    "text-xs uppercase py-1 font-merriweather font-bold block " +
                     (window.location.href.indexOf("/superadmin/logout") !== -1
                       ? "text-red-500 hover:text-red-600"
                       : "text-red-700 hover:text-red-500")}
