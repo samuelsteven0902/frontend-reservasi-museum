@@ -791,6 +791,12 @@ input[type="range"]::-ms-fill-lower{
 .absolute{
 	position: absolute;
 } 
+.inset-44{
+	top: 11rem;
+	right: 11rem;
+	bottom: 11rem;
+	left: 11rem;
+} 
 .top-0{
 	top: 0px;
 } 
