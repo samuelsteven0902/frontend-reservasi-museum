@@ -847,20 +847,20 @@ input[type="range"]::-ms-fill-lower{
 .top-1\/2{
 	top: 50%;
 } 
-.left-1\/2{
-	left: 50%;
-} 
 .right-0{
 	right: 0px;
+} 
+.left-0{
+	left: 0px;
+} 
+.left-1\/2{
+	left: 50%;
 } 
 .top-6{
 	top: 1.5rem;
 } 
 .bottom-auto{
 	bottom: auto;
-} 
-.left-0{
-	left: 0px;
 } 
 .right-5{
 	right: 1.25rem;
@@ -1124,6 +1124,12 @@ input[type="range"]::-ms-fill-lower{
 .ml-10{
 	margin-left: 2.5rem;
 } 
+.mb-40{
+	margin-bottom: 10rem;
+} 
+.mt-36{
+	margin-top: 9rem;
+} 
 .mb-24{
 	margin-bottom: 6rem;
 } 
@@ -1243,6 +1249,9 @@ input[type="range"]::-ms-fill-lower{
 } 
 .h-64{
 	height: 16rem;
+} 
+.h-\[22rem\]{
+	height: 22rem;
 } 
 .h-32{
 	height: 8rem;
@@ -1784,6 +1793,12 @@ input[type="range"]::-ms-fill-lower{
 .bg-landing-background{
 	background-image: linear-gradient(rgba(0,0,0, 0), rgba(0,0,0, 0)), url('/src/assets/img/Landing/Museumlandingpage.png');
 } 
+.bg-landing-background2{
+	background-image: linear-gradient(rgba(0,0,0, 0), rgba(0,0,0, 0)), url('/src/assets/img/Landing/MuseumRadyaLanding2.JPG');
+} 
+.bg-landing-background3{
+	background-image: linear-gradient(rgba(0,0,0, 0), rgba(0,0,0, 0)), url('/src/assets/img/Landing/MuseumRadyaLanding.JPG');
+} 
 .bg-profile-background{
 	background-image: linear-gradient(rgba(0,0,0, 0.75), rgba(0,0,0, 0.75)), url('/src/assets/img/Landing/header_bawah.png');
 } 
@@ -1832,6 +1847,9 @@ input[type="range"]::-ms-fill-lower{
 } 
 .p-3{
 	padding: 0.75rem;
+} 
+.p-0{
+	padding: 0px;
 } 
 .p-2\.5{
 	padding: 0.625rem;
@@ -2006,9 +2024,6 @@ input[type="range"]::-ms-fill-lower{
 } 
 .pb-5{
 	padding-bottom: 1.25rem;
-} 
-.pb-10{
-	padding-bottom: 2.5rem;
 } 
 .pr-3{
 	padding-right: 0.75rem;
@@ -4540,6 +4555,10 @@ video {
 	--tw-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 	box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 } 
+.hover\:outline-none:hover{
+	outline: 2px solid transparent;
+	outline-offset: 2px;
+} 
 .focus\:border-none:focus{
 	border-style: none;
 } 
@@ -4582,6 +4601,9 @@ video {
 .focus\:text-gray-700:focus{
 	--tw-text-opacity: 1;
 	color: rgba(55, 65, 81, var(--tw-text-opacity));
+} 
+.focus\:no-underline:focus{
+	text-decoration: none;
 } 
 .focus\:opacity-100:focus{
 	opacity: 1;
