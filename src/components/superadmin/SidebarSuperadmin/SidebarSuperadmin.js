@@ -256,6 +256,28 @@ export default function SidebarSuperadmin() {
                   FAQ
                 </Link>
               </li>
+
+              <li className="items-center">
+                <Link
+                  className={
+                    "text-xs uppercase py-3 font-merriweather font-bold block " +
+                    (window.location.href.indexOf("/superadmin/about") !== -1
+                      ? "text-lightBlue-500 hover:text-lightBlue-600"
+                      : "text-blueGray-700 hover:text-blueGray-500 hover:bg-gray-100 rounded-xl pl-2 duration-300 transition-all")
+                  }
+                  to="/superadmin/about"
+                >
+                  <i
+                    className={
+                      "fas fa-solid fa-info mr-2 text-sm " +
+                      (window.location.href.indexOf("/superadmin/about") !== -1
+                        ? "opacity-75"
+                        : "text-blueGray-500")
+                    }
+                  ></i>{" "}
+                  About
+                </Link>
+              </li>
             </ul>
 
             <hr className="my-1 md:min-w-full" />

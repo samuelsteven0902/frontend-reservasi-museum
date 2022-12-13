@@ -23,6 +23,7 @@ import ProtectedRoute from 'ProtectedRoute';
 import harga from 'components/harga/Harga';
 import { Suspense } from 'react';
 import CariTiket from 'pages/CariTiket';
+import Kepalauptmuseum from 'layout/kepalauptmuseum';
 
 
 function App() {
@@ -43,6 +44,7 @@ function App() {
             <Route path="/faq" component={Faq}/>
             <Route path="/about" component={About}/>
             <Route path="/harga-tiket" component={harga}/>
+            <ProtectedRoute path="/kepalauptmuseum" render={props=><Kepalauptmuseum {...props} />}/>
             <ProtectedRoute path="/admin" render={props=><Admin {...props} />}/>
             <ProtectedRoute path="/superadmin" render={props=><SuperAdmin {...props} />}/>
             <Redirect to="/" />

@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap'); 
 @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap'); 
-/*! tailwindcss v2.2.19 | MIT License | https://tailwindcss.com */ 
+/*! tailwindcss v2.1.4 | MIT License | https://tailwindcss.com */ 
 /*! modern-normalize v1.1.0 | MIT License | https://github.com/sindresorhus/modern-normalize */ 
 /*
 Document
@@ -18,6 +18,7 @@ Use a better box model (opinionated).
 Use a more readable tab size (opinionated).
 */ 
 html {
+	-moz-tab-size: 4;
 	tab-size: 4;
 } 
 /**
@@ -73,8 +74,7 @@ Text-level semantics
 Add the correct text decoration in Chrome, Edge, and Safari.
 */ 
 abbr[title] {
-	-webkit-text-decoration: underline dotted;
-	        text-decoration: underline dotted;
+	text-decoration: underline dotted;
 } 
 /**
 Add the correct font weight in Edge and Safari.
@@ -267,6 +267,14 @@ button {
   background-color: transparent;
   background-image: none;
 } 
+/**
+ * Work around a Firefox/IE bug where the transparent `button` background
+ * results in a loss of the default `button` focus styles.
+ */ 
+button:focus {
+  outline: 1px dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+} 
 fieldset {
   margin: 0;
   padding: 0;
@@ -329,7 +337,7 @@ body {
   box-sizing: border-box; /* 1 */
   border-width: 0; /* 2 */
   border-style: solid; /* 2 */
-  border-color: currentColor; /* 2 */
+  border-color: #E5E7EB; /* 2 */
 } 
 /*
  * Ensure horizontal rules are visible by default
@@ -360,16 +368,6 @@ textarea::placeholder {
 button,
 [role="button"] {
   cursor: pointer;
-} 
-/**
- * Override legacy focus reset from Normalize with modern Firefox focus styles.
- *
- * This is actually an improvement over the new defaults in Firefox in our testing,
- * as it triggers the better focus styles even for links, which still use a dotted
- * outline in Firefox by default.
- */ 
-:-moz-focusring {
-	outline: auto;
 } 
 table {
   border-collapse: collapse;
@@ -420,20 +418,11 @@ samp {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 } 
 /**
- * 1. Make replaced elements `display: block` by default as that's
- *    the behavior you want almost all of the time. Inspired by
- *    CSS Remedy, with `svg` added as well.
+ * Make replaced elements `display: block` by default as that's
+ * the behavior you want almost all of the time. Inspired by
+ * CSS Remedy, with `svg` added as well.
  *
- *    https://github.com/mozdevs/cssremedy/issues/14
- * 
- * 2. Add `vertical-align: middle` to align replaced elements more
- *    sensibly by default when overriding `display` by adding a
- *    utility like `inline`.
- *
- *    This can trigger a poorly considered linting error in some
- *    tools but is included by design.
- * 
- *    https://github.com/jensimmons/cssremedy/issues/14#issuecomment-634934210
+ * https://github.com/mozdevs/cssremedy/issues/14
  */ 
 img,
 svg,
@@ -443,8 +432,8 @@ audio,
 iframe,
 embed,
 object {
-  display: block; /* 1 */
-  vertical-align: middle; /* 2 */
+  display: block;
+  vertical-align: middle;
 } 
 /**
  * Constrain images and videos to the parent width and preserve
@@ -457,25 +446,7 @@ video {
   max-width: 100%;
   height: auto;
 } 
-/**
- * Ensure the default browser behavior of the `hidden` attribute.
- */ 
-[hidden] {
-  display: none;
-} 
-*, ::before, ::after{
-	--tw-translate-x: 0;
-	--tw-translate-y: 0;
-	--tw-rotate: 0;
-	--tw-skew-x: 0;
-	--tw-skew-y: 0;
-	--tw-scale-x: 1;
-	--tw-scale-y: 1;
-	--tw-transform: translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-	--tw-border-opacity: 1;
-	border-color: rgba(229, 231, 235, var(--tw-border-opacity));
-	--tw-ring-offset-shadow: 0 0 #0000;
-	--tw-ring-shadow: 0 0 #0000;
+*{
 	--tw-shadow: 0 0 #0000;
 	--tw-ring-inset: var(--tw-empty,/*!*/ /*!*/);
 	--tw-ring-offset-width: 0px;
@@ -483,20 +454,10 @@ video {
 	--tw-ring-color: rgba(63, 131, 248, 0.5);
 	--tw-ring-offset-shadow: 0 0 #0000;
 	--tw-ring-shadow: 0 0 #0000;
-	--tw-shadow: 0 0 #0000;
-	--tw-blur: var(--tw-empty,/*!*/ /*!*/);
-	--tw-brightness: var(--tw-empty,/*!*/ /*!*/);
-	--tw-contrast: var(--tw-empty,/*!*/ /*!*/);
-	--tw-grayscale: var(--tw-empty,/*!*/ /*!*/);
-	--tw-hue-rotate: var(--tw-empty,/*!*/ /*!*/);
-	--tw-invert: var(--tw-empty,/*!*/ /*!*/);
-	--tw-saturate: var(--tw-empty,/*!*/ /*!*/);
-	--tw-sepia: var(--tw-empty,/*!*/ /*!*/);
-	--tw-drop-shadow: var(--tw-empty,/*!*/ /*!*/);
-	--tw-filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 } 
 [type='text'],[type='email'],[type='url'],[type='password'],[type='number'],[type='date'],[type='datetime-local'],[type='month'],[type='search'],[type='tel'],[type='time'],[type='week'],[multiple],textarea,select{
-	appearance: none;
+	-webkit-appearance: none;
+	        appearance: none;
 	background-color: #fff;
 	border-color: #6B7280;
 	border-width: 1px;
@@ -537,8 +498,7 @@ select{
 	background-repeat: no-repeat;
 	background-size: 1.5em 1.5em;
 	padding-right: 2.5rem;
-	-webkit-print-color-adjust: exact;
-	        print-color-adjust: exact;
+	print-color-adjust: exact;
 } 
 [multiple]{
 	background-image: initial;
@@ -546,14 +506,13 @@ select{
 	background-repeat: unset;
 	background-size: initial;
 	padding-right: 0.75rem;
-	-webkit-print-color-adjust: unset;
-	        print-color-adjust: unset;
+	print-color-adjust: unset;
 } 
 [type='checkbox'],[type='radio']{
-	appearance: none;
+	-webkit-appearance: none;
+	        appearance: none;
 	padding: 0;
-	-webkit-print-color-adjust: exact;
-	        print-color-adjust: exact;
+	print-color-adjust: exact;
 	display: inline-block;
 	vertical-align: middle;
 	background-origin: border-box;
@@ -823,14 +782,20 @@ input[type="range"]::-ms-fill-lower{
 .pointer-events-auto{
 	pointer-events: auto;
 } 
+.relative{
+	position: relative;
+} 
 .fixed{
 	position: fixed;
 } 
 .absolute{
 	position: absolute;
 } 
-.relative{
-	position: relative;
+.inset-44{
+	top: 11rem;
+	right: 11rem;
+	bottom: 11rem;
+	left: 11rem;
 } 
 .sticky{
 	position: sticky;
@@ -898,11 +863,19 @@ input[type="range"]::-ms-fill-lower{
 .order-none{
 	order: 0;
 } 
+<<<<<<< HEAD
 .float-right{
 	float: right;
+=======
+.col-span-2{
+	grid-column: span 2 / span 2;
+>>>>>>> origin/rozy
 } 
 .float-left{
 	float: left;
+} 
+.float-right{
+	float: right;
 } 
 .m-auto{
 	margin: auto;
@@ -1166,14 +1139,14 @@ input[type="range"]::-ms-fill-lower{
 .mb-1{
 	margin-bottom: 0.25rem;
 } 
+.mt-3{
+	margin-top: 0.75rem;
+} 
 .-ml-20{
 	margin-left: -5rem;
 } 
 .mt-20{
 	margin-top: 5rem;
-} 
-.mt-3{
-	margin-top: 0.75rem;
 } 
 .mr-3{
 	margin-right: 0.75rem;
@@ -1250,12 +1223,15 @@ input[type="range"]::-ms-fill-lower{
 .h-12{
 	height: 3rem;
 } 
+<<<<<<< HEAD
 .h-64{
 	height: 16rem;
 } 
 .h-\[22rem\]{
 	height: 22rem;
 } 
+=======
+>>>>>>> origin/rozy
 .h-32{
 	height: 8rem;
 } 
@@ -1430,16 +1406,21 @@ input[type="range"]::-ms-fill-lower{
 .border-collapse{
 	border-collapse: collapse;
 } 
+.transform{
+	--tw-translate-x: 0;
+	--tw-translate-y: 0;
+	--tw-rotate: 0;
+	--tw-skew-x: 0;
+	--tw-skew-y: 0;
+	--tw-scale-x: 1;
+	--tw-scale-y: 1;
+	transform: translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+} 
 .-translate-x-1\/2{
 	--tw-translate-x: -50%;
-	transform: var(--tw-transform);
 } 
 .-translate-y-1\/2{
 	--tw-translate-y: -50%;
-	transform: var(--tw-transform);
-} 
-.transform{
-	transform: var(--tw-transform);
 } 
 .cursor-pointer{
 	cursor: pointer;
@@ -1455,19 +1436,25 @@ input[type="range"]::-ms-fill-lower{
 	list-style-type: none;
 } 
 .appearance-none{
-	appearance: none;
+	-webkit-appearance: none;
+	        appearance: none;
 } 
+<<<<<<< HEAD
 .grid-cols-1{
 	grid-template-columns: repeat(1, minmax(0, 1fr));
 } 
 .flex-row{
 	flex-direction: row;
+=======
+.flex-col{
+	flex-direction: column;
+>>>>>>> origin/rozy
 } 
 .flex-row-reverse{
 	flex-direction: row-reverse;
 } 
-.flex-col{
-	flex-direction: column;
+.flex-row{
+	flex-direction: row;
 } 
 .flex-wrap{
 	flex-wrap: wrap;
@@ -1481,29 +1468,29 @@ input[type="range"]::-ms-fill-lower{
 .content-end{
 	align-content: flex-end;
 } 
+.items-center{
+	align-items: center;
+} 
 .items-start{
 	align-items: flex-start;
 } 
 .items-end{
 	align-items: flex-end;
 } 
-.items-center{
-	align-items: center;
-} 
 .items-stretch{
 	align-items: stretch;
-} 
-.justify-end{
-	justify-content: flex-end;
 } 
 .justify-center{
 	justify-content: center;
 } 
-.justify-between{
-	justify-content: space-between;
-} 
 .justify-around{
 	justify-content: space-around;
+} 
+.justify-end{
+	justify-content: flex-end;
+} 
+.justify-between{
+	justify-content: space-between;
 } 
 .gap-2{
 	gap: 0.5rem;
@@ -1524,11 +1511,11 @@ input[type="range"]::-ms-fill-lower{
 	margin-top: calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));
 	margin-bottom: calc(1.5rem * var(--tw-space-y-reverse));
 } 
-.overflow-hidden{
-	overflow: hidden;
-} 
 .overflow-x-auto{
 	overflow-x: auto;
+} 
+.overflow-hidden{
+	overflow: hidden;
 } 
 .overflow-y-auto{
 	overflow-y: auto;
@@ -1627,15 +1614,21 @@ input[type="range"]::-ms-fill-lower{
 .border-t-0{
 	border-top-width: 0px;
 } 
+.border-t-0{
+	border-top-width: 0px;
+} 
 .border-l-0{
 	border-left-width: 0px;
 } 
 .border-r-0{
 	border-right-width: 0px;
 } 
+<<<<<<< HEAD
 .border-t{
 	border-top-width: 1px;
 } 
+=======
+>>>>>>> origin/rozy
 .border-solid{
 	border-style: solid;
 } 
@@ -2108,26 +2101,26 @@ input[type="range"]::-ms-fill-lower{
 .pt-1{
 	padding-top: 0.25rem;
 } 
-.text-left{
-	text-align: left;
-} 
 .text-center{
 	text-align: center;
 } 
-.text-right{
-	text-align: right;
+.text-left{
+	text-align: left;
 } 
 .text-justify{
 	text-align: justify;
 } 
-.align-top{
-	vertical-align: top;
+.text-right{
+	text-align: right;
+} 
+.align-bottom{
+	vertical-align: bottom;
 } 
 .align-middle{
 	vertical-align: middle;
 } 
-.align-bottom{
-	vertical-align: bottom;
+.align-top{
+	vertical-align: top;
 } 
 .font-serif{
 	font-family: "Roboto Slab", serif;
@@ -2306,13 +2299,13 @@ input[type="range"]::-ms-fill-lower{
 	--tw-text-opacity: 1;
 	color: rgba(209, 213, 219, var(--tw-text-opacity));
 } 
-.text-orange-500{
-	--tw-text-opacity: 1;
-	color: rgba(255, 90, 31, var(--tw-text-opacity));
-} 
 .text-green-800{
 	--tw-text-opacity: 1;
 	color: rgba(3, 84, 63, var(--tw-text-opacity));
+} 
+.text-orange-500{
+	--tw-text-opacity: 1;
+	color: rgba(255, 90, 31, var(--tw-text-opacity));
 } 
 .text-red-300{
 	--tw-text-opacity: 1;
@@ -2396,7 +2389,16 @@ input[type="range"]::-ms-fill-lower{
 	filter: var(--tw-filter);
 } 
 .filter{
-	filter: var(--tw-filter);
+	--tw-blur: var(--tw-empty,/*!*/ /*!*/);
+	--tw-brightness: var(--tw-empty,/*!*/ /*!*/);
+	--tw-contrast: var(--tw-empty,/*!*/ /*!*/);
+	--tw-grayscale: var(--tw-empty,/*!*/ /*!*/);
+	--tw-hue-rotate: var(--tw-empty,/*!*/ /*!*/);
+	--tw-invert: var(--tw-empty,/*!*/ /*!*/);
+	--tw-saturate: var(--tw-empty,/*!*/ /*!*/);
+	--tw-sepia: var(--tw-empty,/*!*/ /*!*/);
+	--tw-drop-shadow: var(--tw-empty,/*!*/ /*!*/);
+	filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 } 
 .transition-all{
 	transition-property: all;
@@ -2472,7 +2474,8 @@ Use a better box model (opinionated).
 Use a more readable tab size (opinionated).
 */ 
 html {
-	tab-size: 4;
+	-moz-tab-size: 4;
+	   tab-size: 4;
 } 
 /**
 1. Correct the line height in all browsers.
@@ -2527,8 +2530,7 @@ Text-level semantics
 Add the correct text decoration in Chrome, Edge, and Safari.
 */ 
 abbr[title] {
-	-webkit-text-decoration: underline dotted;
-	        text-decoration: underline dotted;
+	text-decoration: underline dotted;
 } 
 /**
 Add the correct font weight in Edge and Safari.
@@ -3543,8 +3545,9 @@ video {
 .mt-input-outline:focus + label, .mt-input-outline:not(:placeholder-shown) + label{font-size:0.75rem !important;line-height:1rem !important;line-height:1.25 !important} 
 .mt-input-outline + label:before,
     .mt-input-outline + label:after {
-        content: '';pointer-events:none;margin-top:0.375rem;box-sizing:border-box;display:block;height:0.5rem;width:0.625rem;border-width:1px;border-top-width:2px;border-bottom-width:0px;border-left-width:0px;border-right-width:0px;border-color:transparent;
+        content: '';
     } 
+.mt-input-outline + label:before, .mt-input-outline + label:after{pointer-events:none;margin-top:0.375rem;box-sizing:border-box;display:block;height:0.5rem;width:0.625rem;border-width:1px;border-top-width:2px;border-bottom-width:0px;border-left-width:0px;border-right-width:0px;border-color:transparent} 
 .mt-input-outline:not(:placeholder-shown) + label:before, .mt-input-outline:not(:placeholder-shown) + label:after{border-top-width:1px;--tw-border-opacity:1;border-color:rgba(224, 224, 224, var(--tw-border-opacity))} 
 .mt-input-outline:focus + label::before, .mt-input-outline:focus + label::after{border-top-width:2px} 
 .mt-input-outline + label:before{margin-right:0.25rem;border-top-left-radius:0.5rem} 
@@ -4773,6 +4776,7 @@ video {
 	.sm\:flex{
 		display: flex;
 	} 
+<<<<<<< HEAD
 	.sm\:h-96{
 		height: 24rem;
 	} 
@@ -4782,6 +4786,8 @@ video {
 	.sm\:w-full{
 		width: 100%;
 	} 
+=======
+>>>>>>> origin/rozy
 	.sm\:w-1\/3{
 		width: 33.333333%;
 	} 
@@ -4814,6 +4820,7 @@ video {
 		padding-left: 1.5rem;
 		padding-right: 1.5rem;
 	} 
+<<<<<<< HEAD
 	.sm\:py-0{
 		padding-top: 0px;
 		padding-bottom: 0px;
@@ -4833,6 +4840,8 @@ video {
 		font-size: 1rem;
 		line-height: 1.5rem;
 	} 
+=======
+>>>>>>> origin/rozy
 	.sm\:text-4xl{
 		font-size: 2.25rem;
 		line-height: 2.5rem;
@@ -4951,17 +4960,17 @@ video {
 	.md\:justify-start{
 		justify-content: flex-start;
 	} 
-	.md\:justify-end{
-		justify-content: flex-end;
-	} 
 	.md\:justify-between{
 		justify-content: space-between;
 	} 
-	.md\:overflow-hidden{
-		overflow: hidden;
+	.md\:justify-end{
+		justify-content: flex-end;
 	} 
 	.md\:overflow-y-auto{
 		overflow-y: auto;
+	} 
+	.md\:overflow-hidden{
+		overflow: hidden;
 	} 
 	.md\:px-10{
 		padding-left: 2.5rem;
@@ -5102,11 +5111,11 @@ video {
 	.lg\:items-center{
 		align-items: center;
 	} 
-	.lg\:justify-start{
-		justify-content: flex-start;
-	} 
 	.lg\:justify-end{
 		justify-content: flex-end;
+	} 
+	.lg\:justify-start{
+		justify-content: flex-start;
 	} 
 	.lg\:self-center{
 		align-self: center;
