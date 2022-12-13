@@ -49,6 +49,10 @@ const NavbarDropdown = () => {
         <Link  to='/panduan' className="block font-nunito py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{t('landing.panduan.judul')}</Link>
         <Link to='/faq' className="block font-nunito py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" >FAQ</Link>
         <Link to='/harga-tiket' className="block font-nunito py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" >{t('landing.harga.judul')}</Link>
+        <Link to='/tikets' className="block font-nunito py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" >
+        {/* {t('landing.caritiket.judul')} */}
+        Cari Tiket
+        </Link>
       </div>
     </>
   );

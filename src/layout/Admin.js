@@ -16,6 +16,7 @@ import Tables from "components/admin/Tables.js";
 import DataPengunjung from "components/admin/DataPengunjung";
 import DataSanggahan from "components/admin/DataSanggahan";
 import DataKehadiran from "components/admin/DataKehadiran";
+import StatusPembayaran from "components/admin/StatusPembayaran";
 
 export default function Admin() {
   return (
@@ -34,6 +35,7 @@ export default function Admin() {
             <Route path="/admin/data-pengunjung" exact component={DataPengunjung} />
             <Route path="/admin/data-sanggahan" exact component={DataSanggahan} />
             <Route path="/admin/data-kehadiran" exact component={DataKehadiran} />
+            <Route path="/admin/status-pembayaran" exact component={StatusPembayaran} />
             <Redirect from="/admin" to="/admin/dashboard" />
             <Redirect from="/superadmin" to="/admin/dashboard" />
           </Switch>

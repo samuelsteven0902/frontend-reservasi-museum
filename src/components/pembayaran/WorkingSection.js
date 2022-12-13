@@ -39,13 +39,12 @@ function WorkingSection(input) {
             // status: 1,
         }
         axios.post(`http://localhost:8000/api/add-pengunjung`, data).then(res => {
-                    console.log(res.data);
+                    console.log(res);
                     if(res.data.status === 200)
                     {
-                        console.log('MANTAB BERHASIL');
-                        history.push({ pathname:"/tiket",
-                        state : data
-                             });
+                        
+                        history.push({ pathname:"/tiket/" + res.data.kode_tiket });
+                        
                     }
                     else if(res.data.status === 422)
                     {

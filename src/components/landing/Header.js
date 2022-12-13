@@ -21,7 +21,7 @@ export default function Header() {
                 <div className="items-start flex flex-wrap">
                     <div className="w-full lg:w-6/12 px-0 sm:ml-24 ml-10 mr-auto text-left mb-12 sm:mb-0">
                         <p className='tracking-wide text-4xl font-bold font-merriweather pt-auto text-[#A70B0B]'>{textEffect}</p>
-                        <p className='tracking-[0.3rem] font-bold font-nunito pt-auto text-[#A70B0B]'>- UPT Museum Surakarta</p>
+                        <p className='tracking-[0.3rem] font-bold font-nunito pt-auto text-[#A70B0B]' data-aos="fade-right">- UPT Museum Surakarta</p>
                         <div className="text-gray-200">
                         </div>
                     </div>

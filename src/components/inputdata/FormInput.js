@@ -191,6 +191,10 @@ console.log(dataa);
                         {t('formInput.input.jumlah')}
                         </label>
                         <input name='jumlah' onChange={(e)=>{ handleJummlah(e);  }} value={orang} maxLength={dataa && dataa.max} className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="number" placeholder={dataa && "contoh : " + dataa.min + " orang"} />
+                        <div className='flex justify-end pr-2'>
+                            <span className="text-sm pr-6">min : {dataa && dataa.min}</span>
+                            <span className="text-sm ">max : {dataa && dataa.max}</span>
+                        </div>
                         <span className="text-sm text-red-500">{dataPengunjung.error_list.jumlah}</span>
                     </div>
                 </div>

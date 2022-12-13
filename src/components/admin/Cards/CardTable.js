@@ -1,17 +1,21 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import ReactLoading from 'react-loading';
+import { GrFormView } from 'react-icons/gr';
 
 // components
 import TableDropdown from "../Dropdowns/TableDropdown.js";
 import axios from "axios";
 import excel from "../../../assets/img/admin/excel.png"
 import $ from 'jquery'; 
+import { useHistory } from 'react-router-dom';
 // import DataTable from 'datatables.net';
 export default function CardTable({ color }) {
   const [loading,setLoading] = useState(true)
   const [pengunjung,setPengunjung] = useState([])
   const [searchTerm, setSearchTerm] = useState("")
+
+  const history = useHistory()
 
   const handleDownload = () => {
     axios({
@@ -27,6 +31,10 @@ export default function CardTable({ color }) {
   document.body.appendChild(link);
   link.click();
 });
+}
+
+const handleTiket = (e) =>{
+  history.push("/tiket/" + e );
 }
 
   useEffect(() => {
@@ -68,7 +76,7 @@ export default function CardTable({ color }) {
     }).map((item,index)=>{
       console.log(typeof item.harga_awal  );
       return(
-        <tr>
+        <tr key={index}>
           <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.nama }</td>
           <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.museum}</td>
           <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.kategori}</td>
@@ -78,7 +86,13 @@ export default function CardTable({ color }) {
           <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.jumlah}</td>
           <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.harga_awal}</td>
           <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.pembayaran}</td>
-          <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.status == 1 ? "Lunas" : "Belum Lunas"}</td>
+          <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.status == "Lunas" ? "Lunas" : "Belum Lunas"}</td>
+          <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.kehadiran == "Hadir" ? "Hadir" : "Tidak Hadir"}</td>
+          <td className="sticky right-0 bg-white  w-full m-auto border-b flex py-3 justify-center">
+            <button className="bg-gray-500 hover:bg-gray-600 rounded shadow-inner drop-shadow-2xl  py-0.5 px-1" onClick={e=>handleTiket(item.kode_tiket,e)}>
+            <GrFormView className=""/>
+            </button>
+          </td>
         </tr>
       )
     })
@@ -196,6 +210,18 @@ export default function CardTable({ color }) {
                       : "bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700")
                   }>
                   Status
+                </th>
+                <th
+                  className={"px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-nunitofont-semibold text-left " +
+                    (color === "light"
+                      ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
+                      : "bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700")
+                  }>
+                  Kehadiran
+                </th>
+                <th
+                  className="sticky right-0 bg-white px-2">
+                  Tiket
                 </th>
               </tr>
             </thead>

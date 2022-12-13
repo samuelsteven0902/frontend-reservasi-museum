@@ -22,6 +22,7 @@ import AuthUser from 'components/AuthUser';
 import ProtectedRoute from 'ProtectedRoute';
 import harga from 'components/harga/Harga';
 import { Suspense } from 'react';
+import CariTiket from 'pages/CariTiket';
 
 
 function App() {
@@ -34,7 +35,8 @@ function App() {
             <Route exact path="/register" component={Register}  />
             <Route path="/input-data" component={InputData}/>
             <Route path="/pembayaran" component={Pembayaran}/>
-            <Route path="/tiket" component={Tiket}/>
+            <Route path="/tikets" component={CariTiket}/>
+            <Route path="/tiket/:id" component={Tiket}/>
             <Route path="/authuser" component={AuthUser}/>
             {/* <Route path="/admin" component={Admin}/> */}
             <Route path="/panduan" component={Panduan}/>
