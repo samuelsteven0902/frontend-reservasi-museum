@@ -129,6 +129,8 @@ i18n
               part1:'1. It is forbidden to bring food and drink while inside the Keris Museum,',
               part2:'2. It is forbidden to hold property in the Keris Museum,',
               part3:'3. Do not litter',
+              part4:'4. If the day of payment exceeds the day of attendance, the ticket is considered invalid',
+              part5:'5. If you have paid and are not present, the payment cannot be returned',
               checkbox:'I agree with the Terms and Conditions',
             },
             tombol:'Next to Payment'
@@ -242,6 +244,8 @@ i18n
               part1:'1. Dilarang membawa makan dan minuman selama didalam Museum Keris',
               part2:'2. Dilarang memegang  Properti didalam Museum Keris',
               part3:'3. Dilarang membuang sampah sembarangan',
+              part4:'4. Apabila hari pembayaran melebihi hari kehadiran maka tiket dianggap tidak berlaku',
+              part5:'5. Apabila sudah membayar dan tidak hadir maka uang pembayaran tidak bisa dikembalikan',
               checkbox:'Saya setuju dengan Syarat dan Ketentuan',
             },
             tombol:'Lanjut Pembayaran'

@@ -226,6 +226,8 @@ console.log(dataa);
                     <p>{t('formInput.syarat.part1')}</p>
                     <p>{t('formInput.syarat.part2')}</p>
                     <p>{t('formInput.syarat.part3')}</p>
+                    <p>{t('formInput.syarat.part4')}</p>
+                    <p>{t('formInput.syarat.part5')}</p>
                 </div>
                 
                 <div className="flex items-start my-4   w-11/12 mx-auto">
