@@ -32,6 +32,11 @@ module.exports = {
                     "linear-gradient(rgba(243, 244, 246, 1), rgba(243, 244, 246, 0)), url('/src/assets/img/Landing/header_bawah.png')",
                 'inputdata-backgroung':
                     "linear-gradient(rgba(243, 244, 246, 0), rgba(243, 244, 246, 0)), url('/src/assets/img/InputData/headerInput.png')",
+                'landing-background2':
+                    "linear-gradient(rgba(0,0,0, 0), rgba(0,0,0, 0)), url('/src/assets/img/Landing/MuseumRadyaLanding2.JPG')",
+                'landing-background3':
+                    "linear-gradient(rgba(0,0,0, 0), rgba(0,0,0, 0)), url('/src/assets/img/Landing/MuseumRadyaLanding.JPG')",
+
             }),
         },
     },
