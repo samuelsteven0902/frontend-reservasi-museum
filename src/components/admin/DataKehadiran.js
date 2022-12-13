@@ -50,62 +50,6 @@ function DataKehadiran({ color }) {
           }
       });
       }
-
-      setUser(result);
-    }
-
-    const fetchPengunjung = () => 
-    {
-      
-    axios.get(`http://localhost:8000/api/konfirmasi-pengunjung`).then(res=>{
-      if(res.status === 200)
-        {
-            setPengunjung(res.data.pengunjung)
-            setLoading(false);
-        }
-    });
-    }
-  
-    useEffect(() => {
-            fetchData ();
-            fetchPengunjung();
-            
-          }, []);
-          console.log(pengunjung);
-  
-    const handleKonfirmasi = (e,idData) =>{
-      // e.preventDefault();
-      const data = {
-          idData : idData,
-          idAdmin: user
-      }
-      console.log(data);
-
-      swal({
-        title: "Konfirmasi kedatangan Pengunjung?",
-        text: "Sekali Konfirmasi, anda tidak bisa mengubahnya lagi!",
-        icon: "warning",
-        buttons: true,
-        dangerMode: true,
-      })
-      .then((update) => {
-        if (update) {
-          axios.put(`http://localhost:8000/api/kehadiran`,data).then(res=>{
-                if(res.data.status === 200)
-                {
-                    // console.log('berhasil delet');
-                    swal("Berhasil!",res.data.message,"success")
-                    fetchPengunjung();
-                } 
-                else if(res.data.status === 404)
-                {
-                    // swal("Error",res.data.message,"error");
-                    // thisClicked.innerText = "Delete";
-                }})
-        } else {
-          swal("Membatalkan Aksi!");
-        }
-
     
       useEffect(() => {
               fetchData ();
