@@ -80,7 +80,7 @@ function DataKehadiran() {
                     // console.log('berhasil delet');
                     swal("Berhasil!",res.data.message,"success")
                     fetchPengunjung();
-                }
+                } 
                 else if(res.data.status === 404)
                 {
                     // swal("Error",res.data.message,"error");
