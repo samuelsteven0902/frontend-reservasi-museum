@@ -1,6 +1,7 @@
 import axios, { Axios } from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom';
+import { data } from 'autoprefixer';
 import swal from 'sweetalert';
 import qris from '../../assets/img/pembayaran/Qris.png'
 import tunai from '../../assets/img/pembayaran/Tunai.png'
@@ -17,6 +18,32 @@ function WorkingSection(input) {
     const [pembayaran,setPembayaran] = useState('')
     const [danger,setDanger] = useState('')
     const history = useHistory();
+
+    // tambahan dari form input
+   
+    // const [input,setInput] = useState({
+    //     museum : '',
+    //     category : '',
+    //     calender : '',
+    //     nama : '',
+    //     kota : '',
+    //     phone : '',
+    //     jumlah : '',
+    //     tanggal : '',
+    //     harga_awal : '',
+    //     pembayaran : '',
+    //     status : ''
+        
+    // })
+
+    // end tambahan dari form input
+    
+    const redirect = useHistory();
+
+    // const handleInput =(e) =>{
+    //     setInput({...input,[e.target.name]:e.target.value}) 
+    //     console.log(e);
+    // }
 
     console.log(input);
     const handleCash = () =>{
@@ -36,7 +63,8 @@ function WorkingSection(input) {
             foto:input.data.foto,
             harga_awal:input.input,  
             pembayaran: 'cash',
-            // status: 1,
+            // tiket: input.data.kode_tiket,
+            status: 'belum lunas',
         }
         axios.post(`http://localhost:8000/api/add-pengunjung`, data).then(res => {
                     console.log(res);

@@ -2,8 +2,10 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import ReactLoading from 'react-loading';
 
+
 function CardAdmin() {
 
+  const [searchTerm, setSearchTerm] = useState("")
     const [loading,setLoading] = useState(true)
   const [pemasukan,setPemasukan] = useState([])
 
@@ -27,6 +29,18 @@ function CardAdmin() {
     }).format(number);
   }
 
+  //menjumlah tabel pemasukan
+  
+  // var table = document.getElementById("pemasukann"), sumVal = 0;
+  
+  // for(var i = 1; i < table.rows.length; i++)
+  // {
+  //     sumVal = sumVal + parseInt(table.rows[i].cells[3].innerHTML);
+  // }
+  
+  // document.getElementById("totall").innerHTML = "Total = " + sumVal;
+  // console.log(sumVal);
+ 
 
   if(loading)
   {
@@ -50,7 +64,11 @@ function CardAdmin() {
                   {item.name}
                 </td>
                 <td className=" text-gray-900  px-6 py-4 whitespace-nowrap">
+                  {item.nama}
+                </td>
+                <td className=" text-gray-900  px-6 py-4 whitespace-nowrap">
                   {rupiah(item.harga_awal)}
+                  
                 </td>
                 
               </tr>
@@ -59,11 +77,17 @@ function CardAdmin() {
   }
   return (
   <div className='container  relative flex flex-col min-w-0 break-words w-full mb-6'>
+    <div className="my-2  w-72">
+        <input type='text' className="w-full font-nunito border-none ring-2 ring-red-300 focus:border-none focus:ring-red-500 focus:ring-2 active:border-none rounded-lg"  placeholder="Cari tanggal..." onChange={e=>{setSearchTerm(e.target.value)}} /> 
+      </div>
     <div class="flex flex-col " >
         <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
             <div class="overflow-hidden shadow-lg rounded-xl m-2">
-                <table class="min-w-full ">
+            <th scope="col" class="text-xl font-nunito font-semibold text-[#A70B0B] px-6 py-4 text-center">
+              Total = 0
+                    </th>
+                <table id="pemasukann" class="min-w-full ">
                 <thead class="border-b bg-white ">
                     <tr className=''>
                     <th scope="col" class="text-xl font-nunito font-semibold text-[#A70B0B] px-6 py-4 text-center ">
@@ -73,7 +97,10 @@ function CardAdmin() {
                         Nama Admin
                     </th>
                     <th scope="col" class="text-xl font-nunito font-semibold text-[#A70B0B] px-6 py-4 text-center">
-                        Total Pemasukan Cash
+                        Nama Pengunjung
+                    </th>
+                    <th scope="col" class="text-xl font-nunito font-semibold text-[#A70B0B] px-6 py-4 text-center">
+                        Pemasukan
                     </th>
                     </tr>
                 </thead>
@@ -97,6 +124,7 @@ function CardAdmin() {
         </div>
     </div>
   </div>
+    
   )
 }
 

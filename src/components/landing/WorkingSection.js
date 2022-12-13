@@ -45,7 +45,7 @@ export default function WorkingSection({setRes}) {
     const redirect = useHistory();
 
     const refOne = useRef(null)
-
+    // kayaknya ditambhkan di ws pembayaran
     const handleInput =(e) =>{
         setInput({...input,[e.target.name]:e.target.value}) 
         console.log(e);
