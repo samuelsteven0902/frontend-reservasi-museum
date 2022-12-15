@@ -52,24 +52,24 @@ export default function DefaultNavbar() {
         useEffect(() => {
             changeBackground()
             window.addEventListener("scroll", changeBackground)
-          })
+        })
     
-          const changeBackground = () => {
+        const changeBackground = () => {
             // console.log(window.scrollY);
             if (window.scrollY >= 50) {
             setNavbarBg(true)
         } else {
                 setNavbarBg(false)
             }
-          }
+        }
 
-    const { i18n, t } = useTranslation()
+        const { i18n, t } = useTranslation()
 
         useEffect(() => {
-          if(localStorage.getItem("i18nextLng")?.length > 2)
-          {
+        if(localStorage.getItem("i18nextLng")?.length > 2)
+        {
             i18next.changeLanguage("id")
-          }
+        }
             
         }, [])
 
