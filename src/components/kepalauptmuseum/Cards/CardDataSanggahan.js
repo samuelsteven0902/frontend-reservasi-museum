@@ -23,7 +23,11 @@ export default function CardTable({ color }) {
   const url = window.URL.createObjectURL(new Blob([response.data]));
   const link = document.createElement('a');
   link.href = url;
-  link.setAttribute('download', 'file.xlsx'); //or any other extension
+  
+  const tanggal = new Date(Date.now()).toLocaleString().split(',')[0];
+
+  let filename = 'file-' + tanggal + '.xlsx';
+  link.setAttribute('download', filename); //or any other extension
   document.body.appendChild(link);
   link.click();
 });
@@ -68,7 +72,7 @@ export default function CardTable({ color }) {
     }).map((item,index)=>{
       console.log(typeof item.harga_awal  );
       return(
-        <tr>
+        <tr className="text-black">
           <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.nama }</td>
           <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.museum}</td>
           <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.kategori}</td>
@@ -105,9 +109,7 @@ export default function CardTable({ color }) {
           <div className="flex flex-wrap items-center">
             <div className="relative w-full px-4 max-w-full flex-grow flex-1">
               <h3
-                className={"font-semibold text-lg font-merriweather" +
-                  (color === "light" ? "text-blueGray-700" : "text-white")
-                }>Data Pengunjung
+                className="font-semibold text-lg font-merriweather text-black" >Data Pengunjung
               </h3>
             </div>
           </div>

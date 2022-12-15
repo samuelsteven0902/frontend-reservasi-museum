@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import 'flowbite'
 import swal from "sweetalert";
 import { Link, useHistory } from "react-router-dom";
@@ -35,6 +35,7 @@ const [input,setInput] = useState({
     museum : museumId,
     
 })
+const CloseRef = useRef();
 
 const [namaInput, setNamaInput] = useState({
     namaMuseum : 'Pilih Museum',
@@ -110,8 +111,8 @@ const updateHarga = (e) => {
         if(res.data.status === 200)
         {
             console.log('berhasil');
-            swal("Success",res.data.message,"success").then(e=>
-                window.location.reload(false));
+            swal("Success",res.data.message,"success")
+            CloseRef.current.click();
             // history.push('/students');
             
         }
@@ -151,8 +152,8 @@ const storeMuseum = (e) =>{
         if(res.data.status === 200)
         {
             console.log('berhasil');
-            swal("Success",res.data.message,"success").then(e=>
-                window.location.reload(false));
+            swal("Success",res.data.message,"success")
+            CloseRef.current.click();
         }
         else if(res.data.status === 422)
         {
@@ -180,12 +181,18 @@ const storeData = (e) => {
     console.log(data)
 
     axios.post(`http://localhost:8000/api/add_data`, data).then(res=>{
+        console.log(res);
         if(res.data.status === 200)
         {
             // console.log('berhasil');
             swal("Success",res.data.message,"success");
             fetchData();
+            CloseRef.current.click();
             
+        }
+        else if(res.data.status === 205)
+        {
+            swal("Gagal Menambahkan",res.data.message,"error");
         }
         else if(res.data.status === 422)
         {
@@ -341,7 +348,7 @@ return (
                 <tbody className=''>
                     {harga_HTMLTABLE}
                     
-                    <div className="modal fade fixed bg-gray-300 z-50  py-24   mx-auto items-center m-auto w-screen bg-opacity-60 top-0 left-0 hidden h-screen outline-none overflow-x-hidden overflow-y-auto" id="exampleModalCenteredScrollable" tabIndex="-1"
+                    <div className="modal fade fixed bg-gray-300  py-24   mx-auto items-center m-auto w-screen bg-opacity-60 top-0 left-0 hidden h-screen outline-none overflow-x-hidden overflow-y-auto" id="exampleModalCenteredScrollable" tabIndex="-1"
                     aria-labelledby="exampleModalCenteredScrollable" aria-modal="true" role="dialog">
                    <div className="modal-dialog w-11/12 justify-center md:w-1/2  px-0 sm:px-12 mx-auto  h-full  my-auto modal-dialog-centered modal-dialog-scrollable relative items-center pointer-events-none lg:w-1/3" >
                         <div className="modal-content border-none shadow-lg relative flex flex-col sm:w-full sm:min-w-max pointer-events-auto my-auto bg-white  bg-clip-padding rounded-md outline-none text-current">
@@ -393,7 +400,8 @@ return (
                                 className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
                                 <button type="button"
                                 className="inline-block px-6 py-2.5 bg-blue-600 text-white font-bold text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
-                                data-bs-dismiss="modal">
+                                data-bs-dismiss="modal"
+                                ref={CloseRef}>
                                 Tutup
                                 </button>
                                 <button type="submit"
@@ -424,14 +432,14 @@ return (
                                         <label className="block text-gray-700 text-sm font-nunito font-semibold mb-2" for="username">
                                             Harga Hari Biasa
                                         </label>
-                                        <input name='hari_biasa' onChange={handleInput}  className="shadow appearance-none border rounded-full w-72 sm:w-full mx-auto text-gray-700  leading-tight focus:outline-none focus:shadow-outline" id="username" type="number" value={harga.hari_biasa} />
+                                        <input name='hari_biasa' onChange={handleInput}  className="shadow appearance-none border border-black rounded-full w-72 sm:w-full mx-auto text-gray-700  leading-tight focus:outline-none focus:shadow-outline" id="username" type="number" value={harga.hari_biasa} />
                                         <span className="text-sm text-red-500"></span>
                                     </div>
                                     <div className="w-96 mb-4  mx-auto md:mt-0 mt-8">
                                         <label className="block text-gray-700 text-sm font-nunito font-semibold mb-2" for="username">
-                                            Hari Libur
+                                            Hari Liburr
                                         </label>
-                                        <input name='hari_libur' onChange={handleInput}  className="shadow appearance-none border rounded-full w-72 sm:w-full mx-auto text-gray-700 leading-tight focus:outline-none focus:shadow-outline"   value={harga.hari_libur} />
+                                        <input name='hari_libur' onChange={handleInput}  className="shadow p-2  appearance-none border border-black rounded-full w-72 sm:w-full mx-auto text-gray-700  leading-tight focus:outline-none focus:shadow-outline"   value={harga.hari_libur} />
                                         <span className="text-sm text-red-500"></span>
                                     </div>
                                 </div>
@@ -441,7 +449,8 @@ return (
                                 className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
                                 <button type="button"
                                 className="inline-block px-6 py-2.5 bg-blue-600 text-white font-bold text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
-                                data-bs-dismiss="modal">
+                                data-bs-dismiss="modal"
+                                ref={CloseRef}>
                                 Tutup
                                 </button>
                                 <button type="submit"
@@ -461,7 +470,7 @@ return (
     </div>
 
 
-                <div className="modal fade fixed bg-gray-300 z-50  py-24 mx-auto items-center m-auto w-screen bg-opacity-60 top-0 left-0 hidden h-screen outline-none overflow-x-hidden overflow-y-auto" id="modalTambahData" tabIndex="-1" aria-labelledby="modalTambahData" aria-modal="true" role="dialog">
+                <div className="modal fade fixed bg-gray-300  py-24 mx-auto items-center m-auto w-screen bg-opacity-60 top-0 left-0 hidden h-screen outline-none overflow-x-hidden overflow-y-auto" id="modalTambahData" tabIndex="-1" aria-labelledby="modalTambahData" aria-modal="true" role="dialog">
                 <div className="modal-dialog w-11/12 justify-center md:w-1/2  px-0 sm:px-12 mx-auto  h-full  my-auto modal-dialog-centered modal-dialog-scrollable relative items-center pointer-events-none lg:w-1/3" >
                         <div className="modal-content border-none shadow-lg relative flex flex-col sm:w-full sm:min-w-max pointer-events-auto my-auto bg-white  bg-clip-padding rounded-md outline-none text-current">
                         <div className="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
@@ -499,7 +508,7 @@ return (
                                                         <option className='py-6 my-6 h-32' key={index} id={item.id} value={item.id}>{item.nama_museum}</option>
                                                     )})}
                                             </select>
-                                            <Link to="/superadmin/tambah-museum" className='inline-block px-6 py-2.5 bg-red-600 text-white font-bold text-xs leading-tight uppercase rounded-full shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out'>Tambah Museum</Link>
+                                            {/* <Link to="/superadmin/tambah-museum" className='inline-block px-6 py-2.5 bg-red-600 text-white font-bold text-xs leading-tight uppercase rounded-full shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out'>Tambah Museum</Link> */}
                                             </div>
 
                                             <span className="text-sm text-red-500"></span>
@@ -529,7 +538,7 @@ return (
         
                                 <div
                                     className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
-                                    <button type="button" className="inline-block px-6 py-2.5 bg-blue-600 text-white font-bold text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"data-bs-dismiss="modal">Tutup</button>
+                                    <button type="button" className="inline-block px-6 py-2.5 bg-blue-600 text-white font-bold text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"data-bs-dismiss="modal" ref={CloseRef}>Tutup</button>
                                     <button type="submit" className="inline-block px-6 py-2.5 bg-red-600 text-white font-bold text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out ml-1">Tambah Data</button>
                                 </div>
 

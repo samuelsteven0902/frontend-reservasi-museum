@@ -134,7 +134,7 @@ function StatusPembayaran({ color }) {
       }).map((item,index)=>{
         console.log(typeof item.harga_awal  );
         return(
-          <tr>
+          <tr className='bg-white'>
             <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.kode_tiket }</td>
             <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.nama }</td>
             <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.museum}</td>
@@ -167,9 +167,7 @@ function StatusPembayaran({ color }) {
             <div className="flex flex-wrap items-center">
               <div className="relative w-full px-4 max-w-full flex-grow flex-1">
                 <h3
-                  className={"font-semibold text-lg font-merriweather" +
-                    (color === "light" ? "text-blueGray-700" : "text-white")
-                  }>Data Pengunjung
+                  className="font-semibold text-lg font-merriweather text-red-600" >Status Pembayaran Pengunjung
                 </h3>
               </div>
             </div>
@@ -179,7 +177,7 @@ function StatusPembayaran({ color }) {
             {/* Projects table */}
             <table  className="display items-center w-full bg-transparent border-collapse">
               <thead>
-                <tr>
+                <tr className='bg-red-600 text-red-200'>
                   <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-nunito font-semibold text-left ">
                       Kode Tiket
                   </th>
@@ -204,7 +202,7 @@ function StatusPembayaran({ color }) {
                   <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-nunitofont-semibold text-left " >
                     Status
                   </th>
-                  <th className='sticky right-0 bg-gray-50'>
+                  <th className='sticky right-0 bg-gray-50 text-red-600'>
                   Konfirmasi Pembayaran
                   </th>
   

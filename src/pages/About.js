@@ -1,7 +1,6 @@
 
 import Container from 'components/about/Container';
-import DefaultNavbar from 'components/DefaultNavbar';
-import Container from 'components/about/Container';
+import DefaultNavbar from 'components/DefaultNavbar';   
 import FooterPengunjung from 'components/FooterPengunjung';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';

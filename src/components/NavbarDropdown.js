@@ -46,10 +46,10 @@ const NavbarDropdown = () => {
           "bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg min-w-48"
         }
       >
-        <Link  to='/panduan' className="block font-nunito py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{t('landing.panduan.judul')}</Link>
-        <Link to='/faq' className="block font-nunito py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" >FAQ</Link>
-        <Link to='/harga-tiket' className="block font-nunito py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" >{t('landing.harga.judul')}</Link>
-        <Link to='/tikets' className="block font-nunito py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" >
+        <Link  to='/panduan' className="block font-nunito py-2 px-4 text-black font-bold hover:bg-red-200  transition-all duration-300 ease-in-out active:bg-red-400 focus:bg-red-400'">{t('landing.panduan.judul')}</Link>
+        <Link to='/faq' className="block font-nunito py-2 px-4 text-black font-bold hover:bg-red-200  transition-all duration-300 ease-in-out active:bg-red-400 focus:bg-red-400'" >FAQ</Link>
+        <Link to='/harga-tiket' className="block font-nunito py-2 px-4 text-black font-bold hover:bg-red-200  transition-all duration-300 ease-in-out active:bg-red-400 focus:bg-red-400'" >{t('landing.harga.judul')}</Link>
+        <Link to='/tikets' className="block font-nunito py-2 px-4 text-black font-bold hover:bg-red-200  transition-all duration-300 ease-in-out active:bg-red-400 focus:bg-red-400'" >
         {/* {t('landing.caritiket.judul')} */}
         Cari Tiket
         </Link>

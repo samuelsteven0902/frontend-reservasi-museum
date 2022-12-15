@@ -34,9 +34,9 @@ export default function Header() {
                 <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
             </div>
 
-            <div class="carousel-inner relative bg-center bg-cover overflow-hidden justify-center items-center mx-auto w-11/12 h-[22rem] mb-40 rounded-[2rem]">
+            <div class="carousel-inner relative bg-center bg-cover overflow-hidden justify-center items-center mx-auto w-11/12 h-[26rem] mb-40 rounded-[2rem]">
                 <div class="carousel-item active relative float-left w-full">
-                    <div class="absolute bg-landing-background bg-cover sm:bg-cover bg-[#ECE3DE] bg-center w-full h-64 sm:h-96 rounded-[2rem]" alt="..."/>
+                    <div class="absolute bg-landing-background bg-cover sm:bg-cover bg-[#ECE3DE] bg-center w-full h-64 sm:h-[30rem] rounded-[2rem]" alt="..."/>
                     <div class="md:block absolute w-full lg:w-6/12 px-0 sm:ml-24 ml-10 mr-auto text-left mb-12 mt-36 sm:mb-0">
                         <p className='tracking-wide text-4xl font-bold font-merriweather pt-auto text-[#A70B0B]'>{textEffect}</p>
                         <p className='tracking-[0.3rem] font-bold font-nunito pt-auto text-[#A70B0B]'>- UPT Museum Surakarta</p>
@@ -44,11 +44,11 @@ export default function Header() {
                 </div>
 
                 <div class="carousel-item relative float-left w-full">
-                    <div class="absolute bg-landing-background2 bg-cover sm:bg-cover bg-[#ECE3DE] bg-center w-full h-64 sm:h-96 rounded-[2rem]" alt="..."/>
+                    <div class="absolute bg-landing-background2 bg-cover sm:bg-cover bg-[#ECE3DE] bg-center w-full h-64 sm:h-[30rem] rounded-[2rem]" alt="..."/>
                 </div>
                 
                 <div class="carousel-item relative float-left w-full">
-                    <div class="absolute bg-landing-background3 bg-cover sm:bg-cover bg-[#ECE3DE] bg-center w-full h-64 sm:h-96 rounded-[2rem]" alt="..."/>
+                    <div class="absolute bg-landing-background3 bg-cover sm:bg-cover bg-[#ECE3DE] bg-center w-full h-64 sm:h-[30rem] rounded-[2rem]" alt="..."/>
                     <div class="carousel-caption hidden md:block absolute text-center">
                         <h5 class="text-xl">Third slide label</h5>
                         <p>Some representative placeholder content for the third slide.</p>

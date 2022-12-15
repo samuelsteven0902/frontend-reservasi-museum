@@ -48,9 +48,9 @@ export default function CardLineChart() {
 
       var dataPengunjungMar = data.filter(val=>{
         return val.tanggal.slice(val.tanggal.indexOf('-') + 1,val.tanggal.lastIndexOf('-')) === '03'
-      }).map((item,index)=>Math.floor(item.jumlah).reduce((accumulator, value) => {
-  return accumulator + value;
-}, 0));
+      }).map((item,index)=>Math.floor(item.jumlah)).reduce((accumulator, value) => {
+        return accumulator + value;
+      }, 0);
 
       var dataPengunjungApril = data.filter(val=>{
         return val.tanggal.slice(val.tanggal.indexOf('-') + 1,val.tanggal.lastIndexOf('-')) === '04'

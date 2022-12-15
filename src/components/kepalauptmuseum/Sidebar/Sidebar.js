@@ -33,7 +33,7 @@ export default function Sidebar() {
               to="/"> UPT MUSEUM
               </Link>
               <p 
-              className="md:block text-left md:pb-1 font-merriweather text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-1 px-1">Admin
+              className="md:block text-left md:pb-1 font-merriweather text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-1 px-1">Kepala UPT Museum
               </p>
             </div>
           </div>
@@ -173,7 +173,7 @@ export default function Sidebar() {
                 >
                   <i
                     className={ 
-                      "fas fa-solid fa-arrow-right-from-bracket mr-2 text-sm " +
+                      " mr-2 text-sm " +
                       // <i name="log-out"></i> +
                       // <i class=""></i>
                       (window.location.href.indexOf("/admin/logout") !== -1

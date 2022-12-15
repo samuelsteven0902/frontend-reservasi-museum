@@ -46,11 +46,11 @@ export default function CardLineChart() {
         return accumulator + value;
       }, 0);
 
-       var dataPengunjungMar = data.filter(val=>{
+       var dataPengunjungMar =  data.filter(val=>{
         return val.tanggal.slice(val.tanggal.indexOf('-') + 1,val.tanggal.lastIndexOf('-')) === '03'
-       }).map((item,index)=>Math.floor(item.harga_awal).reduce((accumulator, value) => {
-  return accumulator + value;
-}, 0));
+       }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
+        return accumulator + value;
+      }, 0);
 
        var dataPengunjungApril = data.filter(val=>{
         return val.tanggal.slice(val.tanggal.indexOf('-') + 1,val.tanggal.lastIndexOf('-')) === '04'

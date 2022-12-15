@@ -54,7 +54,19 @@ function CardAdmin() {
   else
   {
     var pemasukan_HTMLTABLE = "";
-    pemasukan_HTMLTABLE = pemasukan.map((item,index)=>{
+    pemasukan_HTMLTABLE = pemasukan.filter(val=>{
+      if(searchTerm == "")
+      {
+          return val
+      }
+      else if(val.tanggal.toLowerCase().includes(searchTerm.toLowerCase())||
+              val.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+              val.nama.toLowerCase().includes(searchTerm.toLowerCase()) 
+              )
+      {
+          return val
+      }
+  }).map((item,index)=>{
       return(
 <tr class="border-b bg-white ">
                 <td className=" text-gray-900  px-6 py-4 whitespace-nowrap">
@@ -85,7 +97,12 @@ function CardAdmin() {
             <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
             <div class="overflow-hidden shadow-lg rounded-xl m-2">
             <th scope="col" class="text-xl font-nunito font-semibold text-[#A70B0B] px-6 py-4 text-center">
-              Total = 0
+              Total = {
+                loading?<p>Loading</p>:
+                pemasukan.map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
+                  return accumulator + value;
+                }, 0)
+              }
                     </th>
                 <table id="pemasukann" class="min-w-full ">
                 <thead class="border-b bg-white ">
