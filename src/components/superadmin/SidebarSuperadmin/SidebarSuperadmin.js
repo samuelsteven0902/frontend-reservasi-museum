@@ -273,7 +273,7 @@ export default function SidebarSuperadmin() {
                 >
                   <i
                     className={ 
-                      "fas fa-solid fa-right-from-bracket mr-2 text-sm " +
+                      // "fas fa-solid fa-right-from-bracket mr-2 text-sm " +
                       (window.location.href.indexOf("/superadmin/logout") !== -1
                         ? "opacity-50"
                         : "text-red-300")
