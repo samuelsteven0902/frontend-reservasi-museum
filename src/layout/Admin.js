@@ -11,12 +11,12 @@ import FooterAdmin from "components/admin/Footers/FooterAdmin.js";
 // views
 import Dashboard from "components/admin/Dashboard.js";
 import Maps from "components/admin/Maps.js";
-import Settings from "components/admin/Settings.js";
-import Tables from "components/admin/Tables.js";
 import DataPengunjung from "components/admin/DataPengunjung";
 import DataSanggahan from "components/admin/DataSanggahan";
 import DataKehadiran from "components/admin/DataKehadiran";
 import StatusPembayaran from "components/admin/StatusPembayaran";
+import Jadwal from "components/admin/Jadwal";
+import CardDataSanggahan from "components/admin/Cards/CardDataSanggahan";
 
 export default function Admin() {
   return (
@@ -30,8 +30,8 @@ export default function Admin() {
           <Switch>
             <Route path="/admin/dashboard" exact component={Dashboard} />
             <Route path="/admin/maps" exact component={Maps} />
-            <Route path="/admin/settings" exact component={Settings} />
-            <Route path="/admin/tables" exact component={Tables} />
+            <Route path="/admin/jadwal" exact component={Jadwal} />
+            <Route path="/admin/datasanggahan" exact component={CardDataSanggahan} />
             <Route path="/admin/data-pengunjung" exact component={DataPengunjung} />
             <Route path="/admin/data-sanggahan" exact component={DataSanggahan} />
             <Route path="/admin/data-kehadiran" exact component={DataKehadiran} />

@@ -53,13 +53,17 @@ export default function Login() {
             if(res.data.status === 200){
                 // console.log(res.data.user.access_token);
                 SetCookie("token",res.data.user.access_token )
-                console.log(res.data.user.roles[0].id);
+                console.log(res.data.user.roles[0].id); 
             if(res.data.user.roles[0].id === 2 ){
                 history.push('/superadmin');
             }
-            else
+            else if(res.data.user.roles[0].id === 1 )
             {
                 history.push('/admin');
+            }
+            else if(res.data.user.roles[0].id === 3)
+            {
+                history.push('/kepalauptmuseum');
             }
             }
             else if(res.data.status === 401)

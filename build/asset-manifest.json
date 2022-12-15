@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/static/css/main.4e10d6ac.chunk.css",
-    "main.js": "/static/js/main.afb045d2.chunk.js",
-    "main.js.map": "/static/js/main.afb045d2.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.780c1f23.js",
-    "runtime-main.js.map": "/static/js/runtime-main.780c1f23.js.map",
+    "main.css": "/static/css/main.1439b182.chunk.css",
+    "main.js": "/static/js/main.6942459c.chunk.js",
+    "main.js.map": "/static/js/main.6942459c.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.3fee36c1.js",
+    "runtime-main.js.map": "/static/js/runtime-main.3fee36c1.js.map",
     "static/css/2.cdbc957a.chunk.css": "/static/css/2.cdbc957a.chunk.css",
-    "static/js/2.bc7f6a92.chunk.js": "/static/js/2.bc7f6a92.chunk.js",
-    "static/js/2.bc7f6a92.chunk.js.map": "/static/js/2.bc7f6a92.chunk.js.map",
-    "static/js/3.fea9184b.chunk.js": "/static/js/3.fea9184b.chunk.js",
-    "static/js/3.fea9184b.chunk.js.map": "/static/js/3.fea9184b.chunk.js.map",
+    "static/js/2.ee2720c8.chunk.js": "/static/js/2.ee2720c8.chunk.js",
+    "static/js/2.ee2720c8.chunk.js.map": "/static/js/2.ee2720c8.chunk.js.map",
+    "static/js/3.62b11c63.chunk.js": "/static/js/3.62b11c63.chunk.js",
+    "static/js/3.62b11c63.chunk.js.map": "/static/js/3.62b11c63.chunk.js.map",
     "index.html": "/index.html",
     "static/css/2.cdbc957a.chunk.css.map": "/static/css/2.cdbc957a.chunk.css.map",
-    "static/css/main.4e10d6ac.chunk.css.map": "/static/css/main.4e10d6ac.chunk.css.map",
-    "static/js/2.bc7f6a92.chunk.js.LICENSE.txt": "/static/js/2.bc7f6a92.chunk.js.LICENSE.txt",
+    "static/css/main.1439b182.chunk.css.map": "/static/css/main.1439b182.chunk.css.map",
+    "static/js/2.ee2720c8.chunk.js.LICENSE.txt": "/static/js/2.ee2720c8.chunk.js.LICENSE.txt",
     "static/media/tailwind.css": "/static/media/header_bawah.4f928467.png",
     "static/media/MuseumKeris.38de65fe.jpg": "/static/media/MuseumKeris.38de65fe.jpg",
     "static/media/Tunai.4205dacd.png": "/static/media/Tunai.4205dacd.png",
@@ -30,10 +30,10 @@
     "static/media/team-4-470x470.4ef82ef4.png": "/static/media/team-4-470x470.4ef82ef4.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.780c1f23.js",
+    "static/js/runtime-main.3fee36c1.js",
     "static/css/2.cdbc957a.chunk.css",
-    "static/js/2.bc7f6a92.chunk.js",
-    "static/css/main.4e10d6ac.chunk.css",
-    "static/js/main.afb045d2.chunk.js"
+    "static/js/2.ee2720c8.chunk.js",
+    "static/css/main.1439b182.chunk.css",
+    "static/js/main.6942459c.chunk.js"
   ]
 }

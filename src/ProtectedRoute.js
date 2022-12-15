@@ -1,9 +1,11 @@
 import Cookies from 'js-cookie';
 import Admin from 'layout/Admin';
 import SuperAdmin from 'layout/superadmin';
+// import Kepalauptmuseum from 'layout/kepalauptmuseum';
 import React, { useEffect, useState } from 'react'
 import { Route , Redirect, NavLink } from 'react-router-dom'
 import ReactLoading from 'react-loading';
+import Kepalauptmuseum from 'layout/kepalauptmuseum';
 
 function ProtectedRoute({role, component: Component, ...rest}) {
   const [token, setToken] = useState(Cookies.get('token'));
@@ -37,8 +39,8 @@ function ProtectedRoute({role, component: Component, ...rest}) {
       if (user == 'default') {
         setLoading(true)
       }
-      console.log(user);
-
+      console.log(user);  
+      
 return (
   <>
   <Route 
@@ -51,10 +53,11 @@ return (
 
       // if(user == 'admin') return <Redirect to="/admin" />
       if(user == 'admin') return <Admin {...props}/>
-      if(user == 'superadmin') return <SuperAdmin {...props}/>
+      if(user == 'superadmin') return <SuperAdmin {...props }/>
+      if(user == "kepalauptmuseum") return <Kepalauptmuseum {...props }/>
 
       // if(user == 'superadmin') return <Redirect to={{path: "/superadmin", state:{from: props.location}}}  />;
-      if(user !== 'admin' || user !== 'superadmin' ) return <Redirect to={{path: "/", state:{from: props.location}}} />;
+      if(user !== 'admin' || user !== 'superadmin' || user !== 'kepalauptmuseum' ) return <Redirect to={{path: "/", state:{from: props.location}}} />;
     }}
   />
   </>

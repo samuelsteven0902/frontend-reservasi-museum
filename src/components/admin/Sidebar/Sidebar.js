@@ -193,7 +193,7 @@ export default function Sidebar() {
                 >
                   <i
                     className={ 
-                      // "fas fa-solid fa-arrow-right-from-bracket mr-2 text-sm " +
+                      "mr-2 text-sm " +
                       // <i name="log-out"></i> +
                       // <i class=""></i>
                       (window.location.href.indexOf("/admin/logout") !== -1

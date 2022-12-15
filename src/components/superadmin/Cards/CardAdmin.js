@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import swal from 'sweetalert'
 import $ from 'jquery';
 import ReactLoading from 'react-loading';
@@ -13,6 +13,8 @@ function CardAdmin() {
         email: '',
         password: ''
     })
+
+    const CloseRef = useRef();
 
     const handleInput = (e) => {
         e.persist();
@@ -38,14 +40,14 @@ function CardAdmin() {
             password:input.password,
         }
         
-        console.log(thisClicked);
         axios.post(`http://localhost:8000/api/add_admin`, data).then(res=>{
             console.log(res);
             if(res.data.status === 200)
             {
                 swal("Success!",res.data.message,"success");
                 fetchData();
-                // $('#closemodal').modal('hide');
+                CloseRef.current.click();
+                
             }
         }) 
     }
@@ -69,8 +71,8 @@ function CardAdmin() {
                     if(res.data.status === 200)
                     {
                         // console.log('berhasil delet');
-                        swal("Deleted!",res.data.message,"success").then(e=>
-                            window.location.reload(false));;
+                        swal("Deleted!",res.data.message,"success")
+                        fetchData();
                         // thisClicked.closest("tr").remove();
                     }
                     else if(res.data.status === 404)
@@ -141,7 +143,7 @@ return (
                         </div>
                     </div>
             <div>
-                <div className="modal fade fixed bg-gray-300 z-50  py-24   mx-auto items-center m-auto w-screen bg-opacity-60 top-0 left-0 hidden h-screen outline-none overflow-x-hidden overflow-y-auto" id="tambahFAQ" tabIndex="-1" aria-labelledby="tambahFAQ" aria-modal="true" role="dialog">
+                <div className="modal fade fixed bg-gray-300    py-24   mx-auto items-center m-auto w-screen bg-opacity-60 top-0 left-0 hidden h-screen outline-none overflow-x-hidden overflow-y-auto" id="tambahFAQ" tabIndex="-1" aria-labelledby="tambahFAQ" aria-modal="true" role="dialog">
                 <div className="modal-dialog w-11/12 justify-center md:w-1/2  px-0 sm:px-12 mx-auto  h-full  my-auto modal-dialog-centered modal-dialog-scrollable relative items-center pointer-events-none lg:w-1/3" >
                         <div className="modal-content border-none shadow-lg relative flex flex-col sm:w-full sm:min-w-max pointer-events-auto my-auto bg-white  bg-clip-padding rounded-md outline-none text-current">
                             <div className="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
@@ -175,8 +177,8 @@ return (
                             <div
                                 className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
                                 <button type="button" className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
-                                data-bs-dismiss="modal">Tutup</button>
-                                <button type="submit" className="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out ml-1">Tambah Admin</button>
+                                data-bs-dismiss="modal" ref={CloseRef}>Tutup</button>
+                                <button id='tambahAdmin' type="submit" className="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out ml-1">Tambah Admin</button>
                             </div>
                         </form>
                         </div>

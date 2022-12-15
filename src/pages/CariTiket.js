@@ -28,7 +28,7 @@ function CariTiket() {
                 </p>
                 <div className='flex justify-center'>
                   
-                <input type='text' className="  w-1/3   border-none ring-2 ring-red-300 focus:border-none focus:ring-red-500 focus:ring-2 active:border-none  rounded-lg"  placeholder="Cari pertanyaan atau jawaban disini..." onChange={e=>setKode(e.target.value)} /> 
+                <input type='text' className="  w-1/3   border-none ring-2 ring-red-300 focus:border-none focus:ring-red-500 focus:ring-2 active:border-none  rounded-lg"  placeholder="Cari ID Tiket disini..." onChange={e=>setKode(e.target.value)} /> 
                 <button className='bg-gray-300 rounded-lg ml-2 px-3 flex items-center'> <FaSearch /> <p className='pl-1' onClick={handleCari}>Cari Tiket</p> </button>
                 </div>
             </div>

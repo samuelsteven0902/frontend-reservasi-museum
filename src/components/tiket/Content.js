@@ -50,14 +50,14 @@ function Content({id}) {
     
   return (
 
-      <div className='container mx-auto justify-center'>
+      <div className='container mx-auto justify-center  pt-14  '>
         <div className='flex justify-center'>
           <button class=" mt-10 bg-[#A70B0B] hover:bg-[#A70B0B]  text-white font-bold py-4 px-8 rounded-full focus:outline-none focus:shadow-outline" onClick={handleCaptureClick}>
             Download
           </button>
         </div>
 
-        <div className="     mt-14  mx-3 lg:mx-32">
+        <div className="    mt-6">
         <div className='bg-[#A70B0B] pt-10 pb-2 ' id='tiket'>
           
         <div className="w-auto px-10 ml-auto mr-auto text-center">

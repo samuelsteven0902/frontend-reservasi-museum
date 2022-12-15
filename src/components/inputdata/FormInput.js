@@ -126,8 +126,6 @@ console.log(dataa);
 
     }
 
-    console.log(dataPengunjung,totalOrang);
-
     useEffect(() => {
     setHarga(dataa && dataa.hari_libur)
 

@@ -1,8 +1,8 @@
+import axios from "axios";
 import React from "react";
 import Chart from "chart.js";
 import { useState } from "react";
 import { useEffect } from "react";
-import axios from "axios";
 import ReactLoading from 'react-loading';
 
 export default function CardLineChart() {
@@ -48,9 +48,9 @@ export default function CardLineChart() {
 
       var dataPengunjungMar = data.filter(val=>{
         return val.tanggal.slice(val.tanggal.indexOf('-') + 1,val.tanggal.lastIndexOf('-')) === '03'
-      }).map((item,index)=>Math.floor(item.jumlah).reduce((accumulator, value) => {
-  return accumulator + value;
-}, 0));
+      }).map((item,index)=>Math.floor(item.jumlah)).reduce((accumulator, value) => {
+        return accumulator + value;
+      }, 0);
 
       var dataPengunjungApril = data.filter(val=>{
         return val.tanggal.slice(val.tanggal.indexOf('-') + 1,val.tanggal.lastIndexOf('-')) === '04'
@@ -113,8 +113,8 @@ export default function CardLineChart() {
       type: "line",
       data: {
         labels: [
-          "January",
-          "February",
+          "Januari",
+          "February ",
           "March",
           "April",
           "May",
