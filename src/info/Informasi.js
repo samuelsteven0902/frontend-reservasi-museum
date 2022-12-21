@@ -36,8 +36,8 @@ function Informasi() {
                 </Link>
                 <Link to='/' className='text-center w-72 border-0 transition-all duration-200 ease-in-out rounded-2xl hover:bg-none sm:hover:bg-[#ECE3DE] p-7' data-aos="fade-up" data-aos-delay="450" aos-duration="1000"> 
                 <img src={ct} className="w-24 h-24 mx-auto mb-3"/>
-                  <p className='tracking-wide text-lg font-extrabold font-nunito pt-auto text-[#A70B0B]'>{t('landing.harga.judul')}</p>
-                  <p className='tracking-wide text-sm font-medium font-nunito pt-auto text-black'>{t('landing.harga.desc')}</p>
+                  <p className='tracking-wide text-lg font-extrabold font-nunito pt-auto text-[#A70B0B]'>{t('landing.cari.judul')}</p>
+                  <p className='tracking-wide text-sm font-medium font-nunito pt-auto text-black'>{t('landing.cari.desc')}</p>
                 </Link>
             </div>
       </div>

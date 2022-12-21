@@ -20,7 +20,7 @@ function CariTiket() {
         <DefaultNavbar />
       </div>
     <div className='container mx-auto  p-10 h- relative min-h-screen'>
-      <div className='flex justify-center flex-wrap flex-col mt-44 '>
+      <div className='flex justify-center flex-wrap flex-col mt-44' data-aos="fade-down" data-aos-duration="750">
                 <p className='text-5xl font-merriweather  font-bold p-4 pb- w-full text-center'>Cari Tiket</p>
                 <hr className='h-1 bg-red-300 w-1/3 flex mx-auto' />
                 <p className='font-nunito tracking-wider w-3/5 mx-auto pt-6 pb-3 text-center'>

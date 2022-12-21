@@ -52,7 +52,7 @@ export default function Container({  }) {
     
 
     return (
-        <div className=''>
+        <div className data-aos="fade-down" data-aos-duration="750">
             <div className='flex justify-center flex-wrap flex-col my-24 '>
                 <p className='text-5xl font-merriweather  font-bold p-4 pb- w-full text-center'>About</p>
                 <hr className='h-1 bg-red-300 w-1/3 flex mx-auto' />
