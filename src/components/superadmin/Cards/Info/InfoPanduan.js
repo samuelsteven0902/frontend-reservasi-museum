@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Images from "./Images";
+import CKEditorComponent from "./CKEditorComponent";
+import TextEditor from "./TextEditor";
 // import Images from "./Image";
  
 export default class ImageUpload extends Component {
@@ -29,8 +31,10 @@ export default class ImageUpload extends Component {
     this.setState({
       image: imagesArray,
     });
+    
+    console.log(this.state);
   };
- 
+  
   // submit handler
   submitHandler = (e) => {
     e.preventDefault();
@@ -38,31 +42,32 @@ export default class ImageUpload extends Component {
     for (let i = 0; i < this.state.image.length; i++) {
       data.append("images[]", this.state.image[i]);
     }
+    console.log(data);
  
-    axios.post("http://localhost:8000/api/files", data)
-      .then((response) => {
-        if (response.status === 200) {
-          this.setState({
-            responseMsg: {
-              status: response.data.status,
-              message: response.data.message,
-            },
-          });
-          setTimeout(() => {
-            this.setState({
-              image: "",
-              responseMsg: "",
-            });
-          }, 100000);
+    // axios.post("http://localhost:8000/api/files", data)
+    //   .then((response) => {
+    //     if (response.status === 200) {
+    //       this.setState({
+    //         responseMsg: {
+    //           status: response.data.status,
+    //           message: response.data.message,
+    //         },
+    //       });
+    //       setTimeout(() => {
+    //         this.setState({
+    //           image: "",
+    //           responseMsg: "",
+    //         });
+    //       }, 100000);
  
-          document.querySelector("#imageForm").reset();
-          // getting uploaded images
-          this.refs.child.getImages();
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    //       document.querySelector("#imageForm").reset();
+    //       // getting uploaded images
+    //       this.refs.child.getImages();
+    //     }
+    //   })
+    //   .catch((error) => {
+    //     console.error(error);
+    //   });
   };
  
   // file validation
@@ -126,6 +131,8 @@ export default class ImageUpload extends Component {
                     </span>
                   </div>
                 </div>
+                <CKEditorComponent />
+                {/* <TextEditor /> */}
  
                 <div className="card-footer">
                   <button type="submit" className="bg-green-500 rounded-xl px-4 py-2 text-xl text-white">

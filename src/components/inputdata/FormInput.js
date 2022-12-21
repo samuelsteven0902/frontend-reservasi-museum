@@ -57,10 +57,10 @@ console.log(dataa);
     const value = Math.max(null , Math.min(max, Number(e.target.value)));
         setOrang(value)   
         setDataPengunjung({...dataPengunjung, [e.target.name]: e.target.value })
-        console.log(orang);
         e.persist();
         
     } 
+    console.log(dataPengunjung);
 
     const validasiDataPengunjung = (e) => {
         e.preventDefault();
@@ -72,7 +72,7 @@ console.log(dataa);
         }
         else if(checked === true)
         {
-            if(dataPengunjung.jumlah <= dataa.min)
+            if(+dataPengunjung.jumlah <= +dataa.min)
             {
                 swal("Gagal!","Jumlah Pengunjung tidak sesuai batas minimum","warning");
             }
@@ -188,7 +188,7 @@ console.log(dataa);
                         <label className="block text-gray-700 text-sm font-bold mb-2 font-nunito" for="jumlah">
                         {t('formInput.input.jumlah')}
                         </label>
-                        <input name='jumlah' onChange={(e)=>{ handleJummlah(e);  }} value={orang} maxLength={dataa && dataa.max} className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="number" placeholder={dataa && "contoh : " + dataa.min + " orang"} />
+                        <input name='jumlah' onChange={(e)=>{ handleJummlah(e);  }} value={orang} className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="number" placeholder={dataa && "contoh : " + dataa.min + " orang"} />
                         <div className='flex justify-end pr-2'>
                             <span className="text-sm pr-6">min : {dataa && dataa.min}</span>
                             <span className="text-sm ">max : {dataa && dataa.max}</span>

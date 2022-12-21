@@ -33,7 +33,7 @@ function DataKehadiran({ color }) {
         var result =''
         if(json.message !== 'Unauthenticated.')
         {
-          result = json.user.id;
+          result = json.user.name;
         }
 
         setUser(result);
@@ -56,7 +56,7 @@ function DataKehadiran({ color }) {
               fetchPengunjung();
               
             }, []);
-            console.log(pengunjung);
+            console.log(user);
     
       const handleKonfirmasi = (e,idData) =>{
         // e.preventDefault();

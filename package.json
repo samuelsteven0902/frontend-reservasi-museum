@@ -4,6 +4,8 @@
   "private": true,
   "homepage": "",
   "dependencies": {
+    "@ckeditor/ckeditor5-build-classic": "^35.4.0",
+    "@ckeditor/ckeditor5-react": "^5.0.3",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@fortawesome/fontawesome-free": "^5.15.3",
@@ -22,6 +24,7 @@
     "aos": "^2.3.4",
     "axios": "^0.27.2",
     "chart.js": "2.9.4",
+    "ckeditor5-custom-build": "^0.0.6",
     "datatables.net": "^1.12.1",
     "datatables.net-dt": "^1.12.1",
     "datatables.net-select-dt": "^1.4.0",
