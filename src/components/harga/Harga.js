@@ -16,20 +16,20 @@ function Harga() {
     useEffect(()=>{
         window.scrollTo(0,0)
     },[pathname])
-  
+
     const [dataHarga,setDataHarga] = useState()
     const [loading,setLoading] = useState(true);
     const [loading2,setLoading2] = useState(true);
     const [museum, setMuseum] = useState("");
-  
-  const fetchData = () =>
-  {
+
+    const fetchData = () =>
+    {
     axios.get('http://localhost:8000/api/show_harga').then(res=>{
         setDataHarga(res.data.harga)
     })
-  }
+    }
 
-  const fetchMuseum = async ()=>{
+const fetchMuseum = async ()=>{
     const resMuseum = await axios.get('http://localhost:8000/api/show_museum').then((res)=>{
         setMuseum(res.data.museum);
         setLoading(false)
@@ -39,16 +39,16 @@ function Harga() {
     useEffect(() => {
         fetchData();
         fetchMuseum();
-  }, [])
+}, [])
 
-  const rupiah = (number)=>{
+const rupiah = (number)=>{
     return new Intl.NumberFormat("id-ID", {
     //   style: "currency",
     currency: "IDR"
     }).format(number);
 }
-  
-  if(loading)
+
+if(loading)
 {
     var harga_HTMLTABLE =   <tr className="bg-white border-b" >
                                 <td colspan={6} className="text-xl text-center justify-center font-semibold py-5">

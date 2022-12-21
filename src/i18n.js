@@ -78,6 +78,10 @@ i18n
               judul:'Price List Ticket',
               desc:'Information on museum ticket reservation prices can be read here'
             },
+            cari:{
+              judul:'Find Ticket',
+              desc:'Find the ticket code for validation your ticker'
+            },
             about:{
               part1:'UPT Museum is an agency under the supervision of the Surakarta City Culture and Tourism Office. The UPT Museum was established to protect cultural heritage, especially in the city of Solo where there are abundant relics',
               part2:'VISION OF UPT MUSEUM SURAKARTA Realization of a global historical and cultural tourist destination. MISSION OF UPT MUSEUM SURAKARTA To make the museum a competitive place of education, source of knowledge and recreation. Maintain Cultural Heritage Objects and Buildings. Preserving and publicizing the rich collection of cultural heritage to the domestic and foreign communities.',
@@ -195,6 +199,10 @@ i18n
             about:{
               part1:'UPT Museum adalah Dinas yang berada dalam pengawasan Dinas Kebudayaan dan Pariwisata Kota Surakarta. UPT Museum berdiri untuk menjaga cagar budaya yang terlebih di dalam kota solo terdapat peninggalan yang sangat melimpah.',
               part2:'VISI UPT MUSEUM SURAKARTA Terwujudnya destinasi wisata sejarah dan budaya yang mendunia. MISI UPT MUSEUM SURAKARTA Mewujudkan museum menjadi tempat edukasi, sumber pengetahuan dan rekreasi yang kompetitif. Memelihara Benda dan Bangunan Cagar Budaya. Melestarikan dan mempublikasikan kekayaan koleksi warisan budaya kepada masyarakat domestik maupun mancanegara.',
+            },
+            cari:{
+              judul:'Cari Tiket',
+              desc:'Cari kode tiket untuk memvalidasi tiket anda'
             },
             footer:'Reservasi Tiket Museum bertujuan untuk memudahkan para pengunjung dalam memesan tiket secara online',
             // :'',

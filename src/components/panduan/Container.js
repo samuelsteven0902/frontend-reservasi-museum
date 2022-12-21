@@ -25,7 +25,7 @@ useEffect(() => {
 
 
     return (
-        <div className='container mx-auto py-24 '>
+        <div className='container mx-auto py-24' data-aos="fade-down" data-aos-duration="750">
             <div className='flex justify-center flex-wrap flex-col my-12 '>
                     <p className='text-5xl font-merriweather  font-bold p-4 pb- w-full text-center'>{t('panduan.judul')}</p>
                     <hr className='h-1 bg-red-300 w-1/3 flex mx-auto' />

@@ -43,14 +43,14 @@ export default function Container({  }) {
         faq_data = dataFaq.filter(val=>{
             if(searchTerm == "")
             {
-              return val
+                return val
             }
             else if(val.answer.toLowerCase().includes(searchTerm.toLowerCase()) ||
             val.question    .toLowerCase().includes(searchTerm.toLowerCase()) )
             {
-              return val
+                return val
             }
-          }).map((item,index)=>{
+        }).map((item,index)=>{
             return(
                 <Accordion TransitionProps={{ unmountOnExit: true }} key={index} className="bg-red-300 text-xs" sx={{ color: '#ff8a80'}}>
                     <AccordionSummary
@@ -60,13 +60,13 @@ export default function Container({  }) {
                     >
                     <Typography>
                         <p className='text-2xl p-3 text-black'>
-                       <span className='pr-3'>Q:</span>  {item.question}
+                        <span className='pr-3'>Q:</span>  {item.question}
                         </p>
-                         </Typography>
+                        </Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                     <Typography>
-                   <p className='text-red-600'><span className='text-2xl px-3'>A:</span> {item.answer}</p>
+                <p className='text-red-600'><span className='text-2xl px-3'>A:</span> {item.answer}</p>
                     </Typography>
                     </AccordionDetails>
                 </Accordion>
@@ -76,7 +76,7 @@ export default function Container({  }) {
     
 
     return (
-        <div className=''>
+        <div className data-aos="fade-down" data-aos-duration="750">
             <div className='flex justify-center flex-wrap flex-col my-24 '>
                 <p className='text-5xl font-merriweather  font-bold p-4 pb- w-full text-center'>Frequently Asked Questions</p>
                 <hr className='h-1 bg-red-300 w-1/3 flex mx-auto' />

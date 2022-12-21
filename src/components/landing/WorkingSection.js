@@ -175,7 +175,7 @@ export default function WorkingSection({setRes}) {
         // setRes({input});
         redirect.push('/input-data')
     }
-    
+
 // console.log(museum);
 console.log(namaInput.namaCategory);
 console.log(input);
