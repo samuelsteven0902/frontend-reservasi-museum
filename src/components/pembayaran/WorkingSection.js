@@ -141,17 +141,17 @@ return (
                         <div className='w-full mx-auto justify-center'>
                             <label className='flex max-w-full items-center hover:bg-gray-100 p-5 mx-5 rounded-3xl my-5 transition-all duration-500 ease-in-out'>
                                 <div className='flex w-2/3 justify-around items-center'>
-                                    <img src={tunai}  className='w-1/5 '/>
-                                    <p className='font-nunito text-center text-2xl'>  {t('pembayaran.metode.cash')} </p>
+                                    <img src={tunai}  className='w-1/5'/>
+                                    <p className='font-nunito font-bold text-center text-2xl'> {t('pembayaran.metode.cash')} </p>
                                 </div>
                                 <input  type="radio" value="tunai" checked={pembayaran === "Male"}  onChange={onValueChange}
-                                className ='form-check-input form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2'
+                                className ='form-check-input form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-1 cursor-pointer" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2'
                                 />
                             </label>
                             <label  className='cursor-not-allowed flex max-w-full items-center hover:bg-gray-100 p-5 mx-5 rounded-3xl my-5 transition-all duration-500 ease-in-out'>
                                 <div className='flex w-2/3 justify-around items-center'>
                                     <img src={qris}  className='w-1/5'/>
-                                    <p className='font-nunito font-bold text-center text-2xl'>Qris</p>
+                                    <p className='font-nunito font-bold text-center text-2xl'>Cashless</p>
                                 </div>
                                 <input disabled={true} type="radio" value="qris" checked={pembayaran === "Female"} onChange={onValueChange}
                                 className ='ml-24 w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600'
