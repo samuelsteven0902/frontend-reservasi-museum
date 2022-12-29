@@ -939,6 +939,9 @@ input[type="range"]::-ms-fill-lower{
 .order-none{
 	order: 0;
 } 
+.row-span-2{
+	grid-row: span 2 / span 2;
+} 
 .float-right{
 	float: right;
 } 
@@ -1192,9 +1195,6 @@ input[type="range"]::-ms-fill-lower{
 .mt-2{
 	margin-top: 0.5rem;
 } 
-.mt-1{
-	margin-top: 0.25rem;
-} 
 .ml-24{
 	margin-left: 6rem;
 } 
@@ -1203,6 +1203,9 @@ input[type="range"]::-ms-fill-lower{
 } 
 .mt-0{
 	margin-top: 0px;
+} 
+.-mt-52{
+	margin-top: -13rem;
 } 
 .mb-1{
 	margin-bottom: 0.25rem;
@@ -1215,6 +1218,9 @@ input[type="range"]::-ms-fill-lower{
 } 
 .mt-20{
 	margin-top: 5rem;
+} 
+.mt-1{
+	margin-top: 0.25rem;
 } 
 .mr-3{
 	margin-right: 0.75rem;
@@ -1504,6 +1510,9 @@ input[type="range"]::-ms-fill-lower{
 .grid-cols-1{
 	grid-template-columns: repeat(1, minmax(0, 1fr));
 } 
+.grid-cols-2{
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+} 
 .flex-row{
 	flex-direction: row;
 } 
@@ -1750,6 +1759,10 @@ input[type="range"]::-ms-fill-lower{
 	--tw-bg-opacity: 1;
 	background-color: rgba(224, 36, 36, var(--tw-bg-opacity));
 } 
+.bg-blue-500{
+	--tw-bg-opacity: 1;
+	background-color: rgba(63, 131, 248, var(--tw-bg-opacity));
+} 
 .bg-green-400{
 	--tw-bg-opacity: 1;
 	background-color: rgba(49, 196, 141, var(--tw-bg-opacity));
@@ -1780,10 +1793,6 @@ input[type="range"]::-ms-fill-lower{
 .bg-teal-500{
 	--tw-bg-opacity: 1;
 	background-color: rgba(6, 148, 162, var(--tw-bg-opacity));
-} 
-.bg-blue-500{
-	--tw-bg-opacity: 1;
-	background-color: rgba(63, 131, 248, var(--tw-bg-opacity));
 } 
 .bg-indigo-500{
 	--tw-bg-opacity: 1;
@@ -1825,6 +1834,10 @@ input[type="range"]::-ms-fill-lower{
 	--tw-bg-opacity: 1;
 	background-color: rgba(126, 58, 242, var(--tw-bg-opacity));
 } 
+.bg-green-600{
+	--tw-bg-opacity: 1;
+	background-color: rgba(5, 122, 85, var(--tw-bg-opacity));
+} 
 .bg-opacity-60{
 	--tw-bg-opacity: 0.6;
 } 
@@ -1838,7 +1851,7 @@ input[type="range"]::-ms-fill-lower{
 	background-image: linear-gradient(rgba(0,0,0, 0), rgba(0,0,0, 0)), url('/src/assets/img/Landing/Museumlandingpage.png');
 } 
 .bg-landing-background2{
-	background-image: linear-gradient(rgba(0,0,0, 0), rgba(0,0,0, 0)), url('/src/assets/img/Landing/MuseumRadyaLanding2.JPG');
+	background-image: linear-gradient(rgba(0,0,0, 0), rgba(0,0,0, 0)), url('/src/assets/img/Landing/radya.png');
 } 
 .bg-landing-background3{
 	background-image: linear-gradient(rgba(0,0,0, 0), rgba(0,0,0, 0)), url('/src/assets/img/Landing/MuseumRadyaLanding.JPG');
@@ -1855,9 +1868,6 @@ input[type="range"]::-ms-fill-lower{
 } 
 .bg-cover{
 	background-size: cover;
-} 
-.bg-contain{
-	background-size: contain;
 } 
 .bg-clip-padding{
 	background-clip: padding-box;
@@ -1885,6 +1895,9 @@ input[type="range"]::-ms-fill-lower{
 } 
 .p-10{
 	padding: 2.5rem;
+} 
+.p-72{
+	padding: 18rem;
 } 
 .p-5{
 	padding: 1.25rem;
@@ -1990,6 +2003,14 @@ input[type="range"]::-ms-fill-lower{
 .px-12{
 	padding-left: 3rem;
 	padding-right: 3rem;
+} 
+.py-8{
+	padding-top: 2rem;
+	padding-bottom: 2rem;
+} 
+.py-7{
+	padding-top: 1.75rem;
+	padding-bottom: 1.75rem;
 } 
 .py-0\.5{
 	padding-top: 0.125rem;
@@ -2124,11 +2145,20 @@ input[type="range"]::-ms-fill-lower{
 .pr-12{
 	padding-right: 3rem;
 } 
+.pt-14{
+	padding-top: 3.5rem;
+} 
 .pt-12{
 	padding-top: 3rem;
 } 
-.pt-14{
-	padding-top: 3.5rem;
+.pt-32{
+	padding-top: 8rem;
+} 
+.pl-5{
+	padding-left: 1.25rem;
+} 
+.pb-4{
+	padding-bottom: 1rem;
 } 
 .pt-0{
 	padding-top: 0px;
@@ -2141,9 +2171,6 @@ input[type="range"]::-ms-fill-lower{
 } 
 .pl-16{
 	padding-left: 4rem;
-} 
-.pb-4{
-	padding-bottom: 1rem;
 } 
 .pt-1{
 	padding-top: 0.25rem;
@@ -2159,9 +2186,6 @@ input[type="range"]::-ms-fill-lower{
 } 
 .text-justify{
 	text-align: justify;
-} 
-.align-top{
-	vertical-align: top;
 } 
 .align-middle{
 	vertical-align: middle;
@@ -4538,14 +4562,6 @@ video {
     font-family: "Merriweather";
     src: url("../fonts/MerriweatherSans-VariableFont_wght.ttf");
   } 
-.checked\:border-blue-600:checked{
-	--tw-border-opacity: 1;
-	border-color: rgba(28, 100, 242, var(--tw-border-opacity));
-} 
-.checked\:bg-blue-600:checked{
-	--tw-bg-opacity: 1;
-	background-color: rgba(28, 100, 242, var(--tw-bg-opacity));
-} 
 .hover\:rounded-tr-none:hover{
 	border-top-right-radius: 0px;
 } 
@@ -4975,6 +4991,9 @@ video {
 	.md\:ml-12{
 		margin-left: 3rem;
 	} 
+	.md\:mt-32{
+		margin-top: 8rem;
+	} 
 	.md\:mt-4{
 		margin-top: 1rem;
 	} 
@@ -5113,9 +5132,9 @@ video {
 		margin-left: 18rem;
 		margin-right: 18rem;
 	} 
-	.lg\:mx-32{
-		margin-left: 8rem;
-		margin-right: 8rem;
+	.lg\:mx-40{
+		margin-left: 10rem;
+		margin-right: 10rem;
 	} 
 	.lg\:ml-0{
 		margin-left: 0px;

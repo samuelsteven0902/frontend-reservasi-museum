@@ -3,12 +3,14 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import ReactLoading from 'react-loading';
+import ReactHtmlParser from 'react-html-parser';
 
 export default function Container({  }) {
 const {t}=useTranslation()
 
 const [panduan,setPanduan] = useState();
 const [loading,setLoading] = useState(true);
+const [dataAbout,setDataAbout] = useState([])
 
 const fetchPanduan = () => {
     axios.get("http://localhost:8000/api/show_files").then(res=>{
@@ -17,8 +19,19 @@ const fetchPanduan = () => {
     })
 }
 
+const fetchPanduanText = () => {
+    axios.get('http://localhost:8000/api/show_about').then(res=>{
+            if(res.status == 200)
+            {
+                setDataAbout(res.data.dataAbout[1])
+                setLoading(false)
+            }
+        })
+}
+
 useEffect(() => {
     fetchPanduan();
+    fetchPanduanText();
 
 }, [])
 
@@ -38,6 +51,7 @@ useEffect(() => {
                             {/* <button className="bg-red-500 w-7 h-7 rounded-full text-white hover:bg-red-300" onClick={e=>this.deleteFile(image.id,e)}>X</button> */}
                         </div>
                         ))}
+                        {ReactHtmlParser(dataAbout.about)}
                     
                     <div className="h-32 shadow-lg">
                     </div>

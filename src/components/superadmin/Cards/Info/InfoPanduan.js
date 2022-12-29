@@ -95,8 +95,12 @@ export default class ImageUpload extends Component {
   };
  
   render() {
-    return (
-      <div className="container py-5">
+    return (<>
+    <div>
+      
+    </div>
+    
+    <div className="container py-">
         <div className="row">
           <div className="">
             <form onSubmit={this.submitHandler} encType="multipart/form-data" id="imageForm">
@@ -131,7 +135,6 @@ export default class ImageUpload extends Component {
                     </span>
                   </div>
                 </div>
-                <CKEditorComponent />
                 {/* <TextEditor /> */}
  
                 <div className="card-footer">
@@ -146,6 +149,7 @@ export default class ImageUpload extends Component {
  
         <Images ref="child" />
       </div>
+    </>
     );
   }
 }
