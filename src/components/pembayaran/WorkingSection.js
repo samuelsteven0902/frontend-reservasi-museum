@@ -48,7 +48,7 @@ function WorkingSection(input) {
     console.log(input);
     const handleCash = () =>{
         // console.log(input.data);
-        if(pembayaran !== '' || input.input == 0){
+        if(pembayaran == 'tunai' || input.input == 0){
             setPembayaran('Tunai')
         console.log(pembayaran);
 
@@ -79,6 +79,8 @@ function WorkingSection(input) {
                         console.log('ada yang salah di BE');
                     }
                 });
+        }else if(pembayaran == 'Non-Tunai'){
+            history.push({ pathname:"/pembayaran-noncash" });
         }else{
             setDanger("Silahkan pilih pembayaran terlebih dahulu")
         }
@@ -141,19 +143,32 @@ return (
                         <div className='w-full mx-auto justify-center'>
                             <label className='flex max-w-full items-center hover:bg-gray-100 p-5 mx-5 rounded-3xl my-5 transition-all duration-500 ease-in-out'>
                                 <div className='flex w-2/3 justify-around items-center'>
+<<<<<<< HEAD
                                     <img src={tunai}  className='w-1/5'/>
                                     <p className='font-nunito font-bold text-center text-2xl'> {t('pembayaran.metode.cash')} </p>
                                 </div>
                                 <input  type="radio" value="tunai" checked={pembayaran === "Male"}  onChange={onValueChange}
                                 className ='form-check-input form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-1 cursor-pointer" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2'
+=======
+                                    {/* <img src={tunai}  className='w-1/5 '/> */}
+                                    <p className='font-nunito text-center text-2xl font-bold'>  {t('pembayaran.metode.cash')} </p>
+                                </div>
+                                <input  id="default-radio-1" type="radio" name="default-radio" value="tunai" checked={pembayaran === "Male"}  onChange={onValueChange}
+                                className ='w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 '
+>>>>>>> 1c881f2bb5afcc2645e6727f094900c644b2cfb9
                                 />
                             </label>
-                            <label  className='cursor-not-allowed flex max-w-full items-center hover:bg-gray-100 p-5 mx-5 rounded-3xl my-5 transition-all duration-500 ease-in-out'>
+                            <label  className='flex max-w-full items-center hover:bg-gray-100 p-5 mx-5 rounded-3xl my-5 transition-all duration-500 ease-in-out'>
                                 <div className='flex w-2/3 justify-around items-center'>
+<<<<<<< HEAD
                                     <img src={qris}  className='w-1/5'/>
                                     <p className='font-nunito font-bold text-center text-2xl'>Cashless</p>
+=======
+                                    {/* <img src={qris}  className='w-1/5'/> */}
+                                    <p className='font-nunito font-bold text-center text-2xl'>Non - Tunai</p>
+>>>>>>> 1c881f2bb5afcc2645e6727f094900c644b2cfb9
                                 </div>
-                                <input disabled={true} type="radio" value="qris" checked={pembayaran === "Female"} onChange={onValueChange}
+                                <input type="radio" value="Non-Tunai" checked={pembayaran === "Female"} onChange={onValueChange}
                                 className ='ml-24 w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600'
                                 />
                             </label>

@@ -10,6 +10,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import axios from 'axios';
 import ReactLoading from 'react-loading';
 import { useTranslation } from 'react-i18next';
+import ReactHtmlParser from 'react-html-parser';
 
 export default function Container({  }) {
 
@@ -24,12 +25,13 @@ export default function Container({  }) {
         axios.get('http://localhost:8000/api/show_about').then(res=>{
             if(res.status == 200)
             {
-                setDataAbout(res.data.dataAbout)
+                setDataAbout(res.data.dataAbout[0])
                 setLoading(false)
             }
         })
         
     }, [])
+    console.log(dataAbout);
 
     if(loading)
     {
@@ -39,15 +41,8 @@ export default function Container({  }) {
     }
     else
     {
-        var about_data = "";
-        about_data = dataAbout.map((item,index)=>{
-            return(
-                
-                <div>
-                    <p className=''>{item.about}</p>
-                </div>
-            )
-        })
+        var about_data = ReactHtmlParser(dataAbout.about);
+       
     }
     
 

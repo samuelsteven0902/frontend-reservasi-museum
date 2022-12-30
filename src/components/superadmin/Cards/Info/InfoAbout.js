@@ -7,6 +7,7 @@ import ReactLoading from 'react-loading';
 import { useRef } from 'react';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import ReactHtmlParser from 'react-html-parser';
 // import Editor from 'ckeditor5-custom-build/build/ckeditor'
 
 
@@ -15,6 +16,7 @@ function InfoAbout() {
 const [dataAbout,setDataAbout] = useState()
 const [About,setAbout] = useState()
 const [idAbout,setIdAbout] = useState()
+const [isiAbout,setIsiAbout] = useState('')
 const [tambahAbout,setTambahAbout] = useState()
 
 const [loading,setLoading] = useState(true)
@@ -24,7 +26,7 @@ const CloseRef = useRef();
 
 
     const fetchAbout = () =>{
-        axios.get('http://localhost:8000/api/show_about').then(res=>{setDataAbout(res.data.dataAbout);console.log(res);setLoading(false)})
+        axios.get('http://localhost:8000/api/show_about').then(res=>{setDataAbout(res.data.dataAbout[0]);console.log(res);setLoading(false)})
     }
 
 useEffect(() => {
@@ -58,19 +60,17 @@ if(loading){
             </td>
         </tr>
 }
-
 else
 {
     var about_HTMLTABLE = ''
     about_HTMLTABLE = dataAbout.map((item,index)=>{
         return(
             <tr className='' key={index}>
-                <th scope="col" class="text-base font-medium text-[#A70B0B] px-6 py-4 text-left ">{index + 1}</th>
                 <th scope="col" class="text-base font-medium text-[#A70B0B] px-6 py-4 text-left">
-                    {item.about}<br></br>
+                    {ReactHtmlParser(item.about)}<br></br>
                     </th>   
                     <td class=" text-gray-900 px-6 py-4 text-center w-7 whitespace-nowrap ">
-                        <button type="button" className="text-white ml-4 bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded text-sm px-4 py-1.5 flex text-center mr-2 w-3/4 mb-2 align-middle items-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900" data-bs-toggle="modal" id={item.id} data-bs-target="#exampleModalCenteredScrollable" onClick={handleIdAbout}><BiPencil className="mr-1" /> Edit</button>
+                        {/* <button type="button" className="text-white ml-4 bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded text-sm px-4 py-1.5 flex text-center mr-2 w-3/4 mb-2 align-middle items-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900" data-bs-toggle="modal" id={item.id} data-bs-target="#exampleModalCenteredScrollable" onClick={handleIdAbout}><BiPencil className="mr-1" /> Edit</button> */}
                         
                     </td>
             </tr>
@@ -84,10 +84,10 @@ const updateAbout = (e) =>{
     // const thisClicked = e.target[3];
     // thisClicked.innerText = "Updating";
     const data = {
-        about: About.about,
+        about: isiAbout,
     }
 
-axios.put(`http://localhost:8000/api/update_about/${idAbout}`, data).then(res=>{
+axios.put(`http://localhost:8000/api/update_about/${1}`, data).then(res=>{
     if(res.data.status === 200)
     {
         console.log('berhasil');
@@ -189,6 +189,13 @@ const deleteAbout = (e, id) => {
         }
     }
 
+    const handleChange = (e,editor) => {
+        setIsiAbout(editor.getData())
+    }
+
+    console.log(isiAbout);
+
+
 return (
     <div className='container  relative flex flex-col min-w-0 break-words w-full'>
     <div className='justify-between'>
@@ -200,7 +207,7 @@ return (
     <CKEditor
                    
                     editor={ ClassicEditor }
-                    data="<p>Hello from CKEditor 5!</p>"
+                    data={dataAbout && dataAbout[0].about}
                     // config={{
                     //     extraPlugins : [uploadPlugin]
                     // }}
@@ -208,9 +215,8 @@ return (
                         // You can store the "editor" and use when it is needed.
                         console.log( 'Editor is ready to use!', editor );
                     } }
-                    onChange={ ( event, editor ) => {
-                        const data = editor.getData();
-                        console.log( { event, editor, data } );
+                    onChange={ ( e, editor ) => {
+                        handleChange(e,editor)
                     } }
                     onBlur={ ( event, editor ) => {
                         console.log( 'Blur.', editor );
@@ -219,6 +225,7 @@ return (
                         console.log( 'Focus.', editor );
                     } }
                 />
+                <button className='py-2 px-4 bg-green-600 my-5' onClick={updateAbout}>Simpan Perubahan</button>
     <div class="flex flex-col" >
         <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
