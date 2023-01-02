@@ -42,7 +42,6 @@ export default function Container({  }) {
     else
     {
         var about_data = ReactHtmlParser(dataAbout.about);
-       
     }
     
 
