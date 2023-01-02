@@ -28,9 +28,9 @@ export default function DefaultNavbar() {
         const fetchData = async () => {
             const data = await fetch(`http://localhost:8000/api/me`, {
                 headers : {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json',
-                    Authorization: `Bearer ${token}`,
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                        Authorization: `Bearer ${token}`,
                 }
             });
         const json = await data.json();
@@ -98,10 +98,11 @@ export default function DefaultNavbar() {
 						</select>
 					</li>
 				</ul> */}
-                <LanguageDropdownn />
+                {/* <LanguageDropdownn /> */}
 			</div>
                 </NavbarWrapper>
                 <NavbarCollapse open={openNavbar}>
+                 <LanguageDropdownn />
                     <Nav>
                         <div className="flex flex-col z-50 py-2 pr-2 lg:flex-row lg:items-center">
                             <Link to="/" className='px-4 py-2  text-black font-nunito font-bold hover:bg-red-200 rounded-xl transition-all duration-300 ease-in-out active:bg-red-400 '>Home</Link>
