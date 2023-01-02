@@ -26,10 +26,10 @@ module.exports = {
                     "linear-gradient(rgba(0,0,0, 0.75), rgba(0,0,0, 0.75)), url('/src/assets/img/background-1920x1280.jpg')",
                 'landing-background':
                     "linear-gradient(rgba(0,0,0, 0), rgba(0,0,0, 0)), url('/src/assets/img/Landing/Museumlandingpage.png')",
-                'profile-background':
-                    "linear-gradient(rgba(0,0,0, 0.75), rgba(0,0,0, 0.75)), url('/src/assets/img/Landing/header_bawah.png')",
-                'landing-bawah':
-                    "linear-gradient(rgba(243, 244, 246, 1), rgba(243, 244, 246, 0)), url('/src/assets/img/Landing/header_bawah.png')",
+                // 'profile-background':
+                //     "linear-gradient(rgba(0,0,0, 0.75), rgba(0,0,0, 0.75)), url('/src/assets/img/Landing/header_bawah.png')",
+                // 'landing-bawah':
+                //     "linear-gradient(rgba(243, 244, 246, 1), rgba(243, 244, 246, 0)), url('/src/assets/img/Landing/header_bawah.png')",
                 'inputdata-backgroung':
                     "linear-gradient(rgba(243, 244, 246, 0), rgba(243, 244, 246, 0)), url('/src/assets/img/InputData/headerInput.png')",
                 'landing-background2':
