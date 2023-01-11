@@ -9,7 +9,7 @@ import { initReactI18next } from 'react-i18next';
 // import translationID from './assets/locales/id/translation.json';
 // import translationID from '../public/locales/id/translation.json';
 
-// const resources = {
+// const resources = {Ppem
 //   en: {
 //     translation: translationEN
 //   },

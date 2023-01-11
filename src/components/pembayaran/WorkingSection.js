@@ -143,7 +143,7 @@ return (
                         <div className='w-full mx-auto justify-center'>
                             <label className='flex max-w-full items-center hover:bg-gray-100 p-5 mx-5 rounded-3xl my-5 transition-all duration-500 ease-in-out'>
                                 <div className='flex w-2/3 justify-around items-center'>
-                                    <img src={tunai}  className='w-1/5'/>
+                                    {/* <img src={tunai}  className='w-1/5'/> */}
                                     <p className='font-nunito font-bold text-center text-2xl'> {t('pembayaran.metode.cash')} </p>
                                 </div>
                                 <input  type="radio" value="tunai" checked={pembayaran === "Male"}  onChange={onValueChange}
@@ -152,10 +152,11 @@ return (
                             </label>
                             <label  className='flex max-w-full items-center hover:bg-gray-100 p-5 mx-5 rounded-3xl my-5 transition-all duration-500 ease-in-out'>
                                 <div className='flex w-2/3 justify-around items-center'>
-                                    <img src={qris}  className='w-1/5'/>
+                                    {/* <img src={qris}  className='w-1/5'/> */}
                                     <p className='font-nunito font-bold text-center text-2xl'>Cashless</p>
                                 </div>
-                                <input type="radio" value="Non-Tunai" checked={pembayaran === "Female"} onChange={onValueChange}
+                                <input type="radio" value="Non-Tunai" checked={pembayaran 
+                                === "Female"} onChange={onValueChange}
                                 className ='ml-24 w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600'
                                 />
                             </label>
