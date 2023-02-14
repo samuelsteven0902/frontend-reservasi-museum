@@ -4821,9 +4821,6 @@ video {
 	.sm\:w-96{
 		width: 24rem;
 	} 
-	.sm\:w-1\/2{
-		width: 50%;
-	} 
 	.sm\:min-w-max{
 		min-width: max-content;
 	} 
