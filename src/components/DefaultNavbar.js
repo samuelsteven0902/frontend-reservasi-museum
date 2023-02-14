@@ -117,10 +117,10 @@ export default function DefaultNavbar() {
                                 >about</Link> */}
                             <Link to="/about" className='px-4 py-2 mx-1  text-black font-nunito font-bold hover:bg-red-200 rounded-xl transition-all duration-300 ease-in-out active:bg-red-400 focus:bg-red-400'>About</Link>
                             <NavbarDropdown />
-                            <div className='w-60'>
+                            {/* <div className='w-60'>
                                 {user == ""? <Link to="/login" className='bg-[#A70B0B] hover:bg-red-700 px-2 mx-2 py-2 text-white font-nunito font-bold rounded-md'>Login as Admin
                                 </Link>:<Link to={'/'+user} className='bg-[#A70B0B] hover:bg-red-700 px-2 mx-2 py-2 text-white font-nunito font-bold rounded-md'>Dashboard {user}</Link>}
-                            </div>
+                            </div> */}
                         </div>
                     </Nav>
                 </NavbarCollapse>
@@ -136,7 +136,7 @@ export default function DefaultNavbar() {
                 <NavbarCollapse open={openNavbar}>
                     <Nav>
                         <div className="flex flex-col z-50 py-2 pr-2 lg:flex-row lg:items-center">
-                            <Link to="/" className='px-4 py-2  text-black font-nunito font-bold hover:bg-red-200 rounded-xl transition-all duration-300 ease-in-out active:bg-red-400 '>Home</Link>
+                            <Link to="/" className='px-4 py-2  text-black font-nunito font-bold hover:bg-red-200 rounded-xl transition-all duration-300 ease-in-out active:bg-red-400 '>{t('home')}</Link>
                             {/* <Link
                                 className={
                                     "text-xs uppercase py-3 font-bold block " +
@@ -146,12 +146,12 @@ export default function DefaultNavbar() {
                                 }
                                 to="/about"
                                 >about</Link> */}
-                            <Link to="/about" className='px-4 py-2 mx-1  text-black font-nunito font-bold hover:bg-red-200 rounded-xl transition-all duration-300 ease-in-out active:bg-red-400 focus:bg-red-400'>About</Link>
+                            <Link to="/about" className='px-4 py-2 mx-1  text-black font-nunito font-bold hover:bg-red-200 rounded-xl transition-all duration-300 ease-in-out active:bg-red-400 focus:bg-red-400'>{t('aboutt')}</Link>
                             <NavbarDropdown />
-                            <div className='w-60'>
+                            {/* <div className='w-60'>
                                 {user == ""? <Link to="/login" className='bg-[#A70B0B] hover:bg-red-700 px-2 mx-2 py-2 text-white font-nunito font-bold rounded-md'>Login as Admin
                                 </Link>:<Link to={'/'+user} className='bg-[#A70B0B] hover:bg-red-700 px-2 mx-2 py-2 text-white font-nunito font-bold rounded-md'>Dashboard {user}</Link>}
-                            </div>
+                            </div> */}
                         </div>
                     </Nav>
                 </NavbarCollapse>

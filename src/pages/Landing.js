@@ -16,10 +16,10 @@ export default function Landing() {
                 <DefaultNavbar />
             </div>  
             <main className='bg-gray-50'>
-                <Header />
-                <WorkingSection />
+                <Header/>
+                <WorkingSection/>
                 {/* <HargaTiket /> */}
-                <Informasi />
+                <Informasi/>
                 <About/>
                 {/* <TeamSection /> */}
                 {/* <ContactSection /> */}

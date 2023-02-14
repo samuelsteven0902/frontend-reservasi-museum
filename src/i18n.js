@@ -52,21 +52,17 @@ i18n
       en: {
         translation: {
           logo:"en",
-          navbar:'Reservation Information ',
+          home:"Home",
+          aboutt:"About",
+          navbar:'Reservation Information',
           navbar_lg:'Language',
           landing: {
             judul:'TICKET RESERVATION',
             working:{
-              museum:{
-                part1:"Select Museum",
-                part2:"Select Museum First"
-              },
-              kategori:{
-                part1:"Select Category",
-                part2:"Select Category First"
-              },
+              museum: "Select Museum",
+              kategori:"Select Category",
               tanggal:"Select Date",
-              pesan:'Booking Ticket'
+              pesan:'Booking Ticket',
             },
             judul: 'Ticket Reservation',
             panduan: {
@@ -76,17 +72,22 @@ i18n
             faq:'Collection of Frequently Asked Questions',
             harga:{
               judul:'Price List Ticket',
-              desc:'Information on museum ticket reservation prices can be read here'
+              desc:'Information on museum ticket reservation prices can be read here',
             },
             cari:{
               judul:'Find Ticket',
-              desc:'Find the ticket code for validation your ticker'
+              desc:'Find ticket to validate your ticket',
             },
             about:{
               part1:'UPT Museum is an agency under the supervision of the Surakarta City Culture and Tourism Office. The UPT Museum was established to protect cultural heritage, especially in the city of Solo where there are abundant relics',
               part2:'VISION OF UPT MUSEUM SURAKARTA Realization of a global historical and cultural tourist destination. MISSION OF UPT MUSEUM SURAKARTA To make the museum a competitive place of education, source of knowledge and recreation. Maintain Cultural Heritage Objects and Buildings. Preserving and publicizing the rich collection of cultural heritage to the domestic and foreign communities.',
             },
-            footer:'Museum Ticket Reservation aims to make it easier for visitors to order tickets online',
+            footer: {
+              title:'TICKET RESERVATION',
+              desc:'Museum Ticket Reservation aims to make it easier for visitors to order tickets online'
+            },
+            kontak:'contact',
+            alamat:'Bhayangkara St No. 2, Sriwedari, Laweyan, Surakarta, Center Java 57141',
             // :'',
           },
           about:{
@@ -102,7 +103,7 @@ i18n
             },
           },
           panduan: {
-            judul:'Reservation Museum Guide',
+            judul:'Ticket Reservation Guide',
             desc:'Procedure for ordering tickets online at the UPT Museum.'
           },
           faq:{
@@ -110,10 +111,14 @@ i18n
           },
           harga:{
             judul:'Price List Ticket Museum',
-            desc1:'List of ticket prices of each available Museum. The price could changes every time  .',
+            desc1:'List of ticket prices of each available Museum. The price could changes every time.',
             desc2:'Perda Number 5 of 2016 about RETRIBUSI DAERAH TIKET MASUK MUSEUM KERIS NUSANTARA KOTA SURAKARTA.',
             biasa:"Weekday",
-            libur:"Weekend"
+            libur:"Weekend",
+          },
+          cari:{
+            judul:'Find Ticket',
+            desc1:'Search Tickets using Ticket Code or Mobile Number here...',
           },
           formInput:{
             desc:{
@@ -123,8 +128,9 @@ i18n
               libur: 'Weekday Prices',
             },
             input:{
+              judul:'Visitor Input Form',
               nama:'Name',
-              kota:'Home Town',
+              kota:'FAQ Town',
               no:'Phone Number',
               jumlah:'Number of People',
             },
@@ -137,7 +143,11 @@ i18n
               part5:'5. If you have paid and are not present, the payment cannot be returned',
               checkbox:'I agree with the Terms and Conditions',
             },
-            tombol:'Next to Payment'
+            tombol:'Next to Payment',
+            perhatian:{
+              judul:'Attention!',
+              desc:'Please bring your ID card when you come to validate the ticket',
+            }
           },
           pembayaran:{
             judul:'Payment',
@@ -150,6 +160,7 @@ i18n
             metode:{
               judul:'Choose a Payment Method',
               cash:'Cash',
+              cashless:'Cashless',
               pilih:'Payment',
             },
             detail:{
@@ -164,49 +175,57 @@ i18n
               total:'',
             },
             tombol:'Next'
+          },
+          tiket:{
+            judul:'Reservation Ticket',
+            nama:'Booker Name',
+            qty:'Number of Tickets',
+            tgl:'Date of Visit',
+            kategori:'Category',
+            total:'Total Payment',
+            keterangan:'Ticket Description',
           }
         }
       },
       id: {
         translation: {
           logo:"id",
+          home:"Beranda",
+          aboutt:"Tentang",
           navbar:'Informasi Reservasi',
           navbar_lg:'Bahasa',
           landing: {
             judul:'RESERVASI TIKET',
             working:{
-              museum:{
-                part1:"Pilih Museum",
-                part2:"Pilih Museum Dulu"
-              },
-              kategori:{
-                part1:"Pilih Kategori",
-                part2:"Pilih Kategori Dulu"
-              },
+              museum:"Pilih Museum",
+              kategori:"Pilih Kategori",
               tanggal:"Pilih Tanggal",
-              pesan:'Pesan Tiket'
+              pesan:'Pesan Tiket',
             },
             judul: 'Reservasi Tiket',
             panduan: {
               judul:'Panduan Reservasi Tiket',
               desc: 'Petunjuk reservasi tiket dapat dilihat disini'
             },
-            faq:'Kumpulan Pertanyaan yang sering dipertanyakan',
+            faq:'Kumpulan Pertanyaan yang sering ditanyakan',
             harga:{
               judul:'Harga Tiket',
               desc:'Kumpulan Info harga reservasi tiket museum dapat dibaca disini'
+            },
+            cari:{
+              judul:'Cari Tiket',
+              desc1:'Cari Tiket untuk memvalidasi tiket anda',
             },
             about:{
               part1:'UPT Museum adalah Dinas yang berada dalam pengawasan Dinas Kebudayaan dan Pariwisata Kota Surakarta. UPT Museum berdiri untuk menjaga cagar budaya yang terlebih di dalam kota solo terdapat peninggalan yang sangat melimpah.',
               part2:'VISI UPT MUSEUM SURAKARTA Terwujudnya destinasi wisata sejarah dan budaya yang mendunia. MISI UPT MUSEUM SURAKARTA Mewujudkan museum menjadi tempat edukasi, sumber pengetahuan dan rekreasi yang kompetitif. Memelihara Benda dan Bangunan Cagar Budaya. Melestarikan dan mempublikasikan kekayaan koleksi warisan budaya kepada masyarakat domestik maupun mancanegara.',
             },
-            cari:{
-              judul:'Cari Tiket',
-              desc:'Cari kode tiket untuk memvalidasi tiket anda'
+            footer:{
+              title:'RESERVASI TIKET',
+              desc:'Reservasi Tiket Museum bertujuan untuk memudahkan para pengunjung dalam memesan tiket secara online'
             },
-            footer:'Reservasi Tiket Museum bertujuan untuk memudahkan para pengunjung dalam memesan tiket secara online',
-            // :'',
-            // :'',
+            kontak:'Kontak',
+            alamat:'Jl. Bhayangkara No.2, Sriwedari, Kec. Laweyan, Kota Surakarta, Jawa Tengah 57141',
           },
           about:{
             desc:'Mendeskripsikan mengenai UPT Museum Surakarta',
@@ -222,7 +241,7 @@ i18n
           },
           panduan: {
             judul:'Panduan Reservasi Museum',
-            desc:'Tata cara untuk memesa tiket online di UPT Museum  .'
+            desc:'Tata cara untuk memesa tiket online di UPT Museum.'
           },
           faq:{
             desc:'Cari Pertanyaan Anda'
@@ -232,7 +251,11 @@ i18n
             desc1:'Daftar harga tiket dari setiap Museum yang tersedia. Harga dapat berubah sewaktu-waktu.',
             desc2:'Perda No.5 Tahun 2016 Tentang RETRIBUSI DAERAH TIKET MASUK MUSEUM KERIS NUSANTARA KOTA SURAKARTA',
             biasa:"Hari Biasa",
-            libur:"Hari Libur"
+            libur:"Hari Libur",
+          },
+          cari:{
+            judul:'Cari Tiket',
+            desc1:'Cari Tiket menggunakan Kode Tiket atau Nomor Handphone disini...',
           },
           formInput:{
             desc:{
@@ -242,6 +265,7 @@ i18n
               libur: 'Harga Hari Libur',
             },
             input:{
+              judul:'Form Input Pengunjung',
               nama:'Nama',
               kota:'Asal Kota',
               no:'Nomor Handpone',
@@ -256,7 +280,11 @@ i18n
               part5:'5. Apabila sudah membayar dan tidak hadir maka uang pembayaran tidak bisa dikembalikan',
               checkbox:'Saya setuju dengan Syarat dan Ketentuan',
             },
-            tombol:'Lanjut Pembayaran'
+            tombol:'Lanjut Pembayaran',
+            perhatian:{
+              judul:'Perhatian!',
+              desc:'Dimohon membawa kartu tanda pengenal ketika datang untuk memvalidasi tiket',
+            }
           },
           pembayaran:{
             judul:'Pembayaran',
@@ -269,6 +297,7 @@ i18n
             metode:{
               judul:'Pilih Metode Pembayaran',
               cash:'Tunai',
+              cashless:'Non-Tunai',
               pilih:'Pembayaran',
             },
             detail:{
@@ -283,6 +312,15 @@ i18n
               total:'',
             },
             tombol:'Selanjutnya'
+          },
+          tiket:{
+            judul:'Tiket Reservasi',
+            nama:'Nama Pemesan',
+            qty:'Jumlah Tiket',
+            tgl:'Tanggal Kunjungan',
+            kategori:'Kategori',
+            total:'Total Pembayaran',
+            keterangan:'Keterangan Tiket',
           }
         }
       }

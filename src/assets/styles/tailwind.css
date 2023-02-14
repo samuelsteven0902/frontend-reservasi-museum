@@ -1109,8 +1109,14 @@ input[type="range"]::-ms-fill-lower{
 .mt-8{
 	margin-top: 2rem;
 } 
+.mt-16{
+	margin-top: 4rem;
+} 
 .ml-3{
 	margin-left: 0.75rem;
+} 
+.mt-10{
+	margin-top: 2.5rem;
 } 
 .mt-9{
 	margin-top: 2.25rem;
@@ -1120,12 +1126,6 @@ input[type="range"]::-ms-fill-lower{
 } 
 .-mt-12{
 	margin-top: -3rem;
-} 
-.mt-16{
-	margin-top: 4rem;
-} 
-.mt-10{
-	margin-top: 2.5rem;
 } 
 .mb-36{
 	margin-bottom: 9rem;
@@ -1734,6 +1734,10 @@ input[type="range"]::-ms-fill-lower{
 	--tw-bg-opacity: 1;
 	background-color: rgba(200, 30, 30, var(--tw-bg-opacity));
 } 
+.bg-red-100{
+	--tw-bg-opacity: 1;
+	background-color: rgba(253, 232, 232, var(--tw-bg-opacity));
+} 
 .bg-orange-500{
 	--tw-bg-opacity: 1;
 	background-color: rgba(255, 90, 31, var(--tw-bg-opacity));
@@ -1840,11 +1844,11 @@ input[type="range"]::-ms-fill-lower{
 .fill-current{
 	fill: currentColor;
 } 
-.p-6{
-	padding: 1.5rem;
-} 
 .p-4{
 	padding: 1rem;
+} 
+.p-6{
+	padding: 1.5rem;
 } 
 .p-7{
 	padding: 1.75rem;
@@ -2116,9 +2120,6 @@ input[type="range"]::-ms-fill-lower{
 .pl-5{
 	padding-left: 1.25rem;
 } 
-.pb-4{
-	padding-bottom: 1rem;
-} 
 .pt-0{
 	padding-top: 0px;
 } 
@@ -2130,6 +2131,9 @@ input[type="range"]::-ms-fill-lower{
 } 
 .pl-16{
 	padding-left: 4rem;
+} 
+.pb-4{
+	padding-bottom: 1rem;
 } 
 .pt-1{
 	padding-top: 0.25rem;

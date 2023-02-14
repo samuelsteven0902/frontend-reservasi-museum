@@ -63,19 +63,16 @@ if(loading){
 else
 {
     var about_HTMLTABLE = ''
-    about_HTMLTABLE = dataAbout.map((item,index)=>{
-        return(
-            <tr className='' key={index}>
+    about_HTMLTABLE = 
+            <tr className='' >
                 <th scope="col" class="text-base font-medium text-[#A70B0B] px-6 py-4 text-left">
-                    {ReactHtmlParser(item.about)}<br></br>
+                    {ReactHtmlParser(dataAbout.about)}<br></br>
                     </th>   
                     <td class=" text-gray-900 px-6 py-4 text-center w-7 whitespace-nowrap ">
                         {/* <button type="button" className="text-white ml-4 bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded text-sm px-4 py-1.5 flex text-center mr-2 w-3/4 mb-2 align-middle items-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900" data-bs-toggle="modal" id={item.id} data-bs-target="#exampleModalCenteredScrollable" onClick={handleIdAbout}><BiPencil className="mr-1" /> Edit</button> */}
                         
                     </td>
             </tr>
-        )
-    })
 }
 
 const updateAbout = (e) =>{
@@ -193,7 +190,7 @@ const deleteAbout = (e, id) => {
         setIsiAbout(editor.getData())
     }
 
-    console.log(isiAbout);
+    console.log(dataAbout);
 
 
 return (
@@ -207,7 +204,7 @@ return (
     <CKEditor
                    
                     editor={ ClassicEditor }
-                    data={dataAbout && dataAbout[0].about}
+                    data={dataAbout && dataAbout.about}
                     // config={{
                     //     extraPlugins : [uploadPlugin]
                     // }}
