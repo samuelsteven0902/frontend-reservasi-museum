@@ -20,6 +20,7 @@ export default function About() {
                 <DefaultNavbar />
             </div>  
             <main className='container mx-auto  p-10 h- relative min-h-screen'>
+               {/* <p>ini about museum</p> */}
                 <Container/>
             </main>
             <FooterPengunjung />

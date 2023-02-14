@@ -25,6 +25,7 @@ import { Suspense } from 'react';
 import CariTiket from 'pages/CariTiket';
 import Kepalauptmuseum from 'layout/kepalauptmuseum';
 import NonCash from 'pages/NonCash';
+import AboutMusuem from 'pages/AboutMusuem';
 
 
 function App() {
@@ -40,11 +41,12 @@ function App() {
             <Route path="/pembayaran-noncash" component={NonCash}/>
             <Route path="/tikets" component={CariTiket}/>
             <Route path="/tiket/:id" component={Tiket}/>
+            <Route path="/about" component={About}/>
+            <Route path="/about-museum/:code" component={AboutMusuem}/>
             <Route path="/authuser" component={AuthUser}/>
             {/* <Route path="/admin" component={Admin}/> */}
             <Route path="/panduan" component={Panduan}/>
             <Route path="/faq" component={Faq}/>
-            <Route path="/about" component={About}/>
             <Route path="/harga-tiket" component={harga}/>
             <ProtectedRoute path="/kepalauptmuseum" render={props=><Kepalauptmuseum {...props} />}/>
             <ProtectedRoute path="/admin" render={props=><Admin {...props} />}/>

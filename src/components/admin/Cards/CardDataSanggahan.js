@@ -91,6 +91,7 @@ const handleTiket = (e) =>{
           <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.harga_awal}</td>
           <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.pembayaran}</td>
           <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.status == "Lunas" ? "Lunas" : "Belum Lunas"}</td>
+          <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.tanggal_pembayaran}</td>
           <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.kehadiran == "Hadir" ? "Hadir" : "Tidak Hadir"}</td>
           <td className="sticky right-0 bg-white  w-full m-auto border-b flex py-3 justify-center">
             <button className="bg-gray-500 hover:bg-gray-600 rounded shadow-inner drop-shadow-2xl  py-0.5 px-1" onClick={e=>handleTiket(item.kode_tiket,e)}>
@@ -177,6 +178,10 @@ const handleTiket = (e) =>{
                 <th
                   className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-nunito font-semibold text-left ">
                   Kehadiran
+                </th>
+                <th
+                  className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-nunito font-semibold text-left ">
+                  Tanggal Pembayaran
                 </th>
                 <th
                   className="sticky right-0 bg-white text-red-700 px-2">
