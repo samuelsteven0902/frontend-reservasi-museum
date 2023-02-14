@@ -1112,8 +1112,14 @@ input[type="range"]::-ms-fill-lower{
 .mt-8{
 	margin-top: 2rem;
 } 
+.mt-16{
+	margin-top: 4rem;
+} 
 .ml-3{
 	margin-left: 0.75rem;
+} 
+.mt-10{
+	margin-top: 2.5rem;
 } 
 .mt-9{
 	margin-top: 2.25rem;
@@ -1123,12 +1129,6 @@ input[type="range"]::-ms-fill-lower{
 } 
 .-mt-12{
 	margin-top: -3rem;
-} 
-.mt-16{
-	margin-top: 4rem;
-} 
-.mt-10{
-	margin-top: 2.5rem;
 } 
 .mb-36{
 	margin-bottom: 9rem;
@@ -1157,6 +1157,9 @@ input[type="range"]::-ms-fill-lower{
 .mt-2{
 	margin-top: 0.5rem;
 } 
+.mt-1{
+	margin-top: 0.25rem;
+} 
 .ml-24{
 	margin-left: 6rem;
 } 
@@ -1180,9 +1183,6 @@ input[type="range"]::-ms-fill-lower{
 } 
 .mt-20{
 	margin-top: 5rem;
-} 
-.mt-1{
-	margin-top: 0.25rem;
 } 
 .mr-3{
 	margin-right: 0.75rem;
@@ -1760,6 +1760,10 @@ input[type="range"]::-ms-fill-lower{
 	--tw-bg-opacity: 1;
 	background-color: rgba(200, 30, 30, var(--tw-bg-opacity));
 } 
+.bg-red-100{
+	--tw-bg-opacity: 1;
+	background-color: rgba(253, 232, 232, var(--tw-bg-opacity));
+} 
 .bg-orange-500{
 	--tw-bg-opacity: 1;
 	background-color: rgba(255, 90, 31, var(--tw-bg-opacity));
@@ -1848,6 +1852,9 @@ input[type="range"]::-ms-fill-lower{
 .bg-cover{
 	background-size: cover;
 } 
+.bg-contain{
+	background-size: contain;
+} 
 .bg-clip-padding{
 	background-clip: padding-box;
 } 
@@ -1860,11 +1867,11 @@ input[type="range"]::-ms-fill-lower{
 .fill-current{
 	fill: currentColor;
 } 
-.p-6{
-	padding: 1.5rem;
-} 
 .p-4{
 	padding: 1rem;
+} 
+.p-6{
+	padding: 1.5rem;
 } 
 .p-7{
 	padding: 1.75rem;
@@ -2136,9 +2143,6 @@ input[type="range"]::-ms-fill-lower{
 .pl-5{
 	padding-left: 1.25rem;
 } 
-.pb-4{
-	padding-bottom: 1rem;
-} 
 .pt-0{
 	padding-top: 0px;
 } 
@@ -2150,6 +2154,9 @@ input[type="range"]::-ms-fill-lower{
 } 
 .pl-16{
 	padding-left: 4rem;
+} 
+.pb-4{
+	padding-bottom: 1rem;
 } 
 .pt-1{
 	padding-top: 0.25rem;
@@ -2165,6 +2172,9 @@ input[type="range"]::-ms-fill-lower{
 } 
 .text-justify{
 	text-align: justify;
+} 
+.align-top{
+	vertical-align: top;
 } 
 .align-middle{
 	vertical-align: middle;
@@ -4501,6 +4511,14 @@ video {
     font-family: "Merriweather";
     src: url("../fonts/MerriweatherSans-VariableFont_wght.ttf");
   } 
+.checked\:border-blue-600:checked{
+	--tw-border-opacity: 1;
+	border-color: rgba(28, 100, 242, var(--tw-border-opacity));
+} 
+.checked\:bg-blue-600:checked{
+	--tw-bg-opacity: 1;
+	background-color: rgba(28, 100, 242, var(--tw-bg-opacity));
+} 
 .hover\:rounded-tr-none:hover{
 	border-top-right-radius: 0px;
 } 

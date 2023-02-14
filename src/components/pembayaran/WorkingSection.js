@@ -20,7 +20,6 @@ function WorkingSection(input) {
     const history = useHistory();
 
     // tambahan dari form input
-   
     // const [input,setInput] = useState({
     //     museum : '',
     //     category : '',
@@ -35,7 +34,6 @@ function WorkingSection(input) {
     //     status : ''
         
     // })
-
     // end tambahan dari form input
     
     const redirect = useHistory();
@@ -48,8 +46,8 @@ function WorkingSection(input) {
     console.log(input);
     const handleCash = () =>{
         // console.log(input.data);
-        if(pembayaran == 'tunai' || input.input == 0){
-            setPembayaran('Tunai')
+        if(pembayaran == t('pembayaran.metode.cash') || input.input == 0){
+            setPembayaran (t('pembayaran.metode.cash'))
         console.log(pembayaran);
 
         const data = {
@@ -79,7 +77,7 @@ function WorkingSection(input) {
                         console.log('ada yang salah di BE');
                     }
                 });
-        }else if(pembayaran == 'Non-Tunai'){
+        }else if(pembayaran == t('pembayaran.metode.cashless')){
             history.push({ pathname:"/pembayaran-noncash" });
         }else{
             setDanger("Silahkan pilih pembayaran terlebih dahulu")
@@ -101,14 +99,13 @@ function WorkingSection(input) {
         setPembayaran(e.target.value)
     }
     
-
 return (
     <div>
         <div className=' xl:px-32 lg:px-10 px-4  lg:flex   justify-center bg-gray-100'>
             <div className='lg:w-2/3 w-full my-2 mt-6 mx-4'>
                 <div className='container mx-auto flex bg-white   rounded-2xl py-4'>
                     <div className='w-1/6 flex mx-auto justify-center'>
-                    <img src={identitas}  className='w-16 h-16'/>
+                    <img src={identitas} className='w-16 h-16'/>
                     </div>
                     <div className='w-5/6 justify-around '>
                         <p className='my-5 font-merriweather font-bold text-3xl'>{t('pembayaran.judul')}</p>
@@ -143,19 +140,20 @@ return (
                         <div className='w-full mx-auto justify-center'>
                             <label className='flex max-w-full items-center hover:bg-gray-100 p-5 mx-5 rounded-3xl my-5 transition-all duration-500 ease-in-out'>
                                 <div className='flex w-2/3 justify-around items-center'>
-                                    {/* <img src={tunai}  className='w-1/5 '/> */}
-                                    <p className='font-nunito text-center text-2xl font-bold'>  {t('pembayaran.metode.cash')} </p>
+                                    {/* <img src={tunai}  className='w-1/5'/> */}
+                                    <p className='font-nunito font-bold text-center text-2xl'> {t('pembayaran.metode.cash')} </p>
                                 </div>
-                                <input  id="default-radio-1" type="radio" name="default-radio" value="tunai" checked={pembayaran === "Male"}  onChange={onValueChange}
-                                className ='w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 '
+                                <input  type="radio" value= {t('pembayaran.metode.cash')} checked={pembayaran === "Male"}  onChange={onValueChange}
+                                className ='form-check-input form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-1 cursor-pointer" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2'
                                 />
                             </label>
                             <label  className='flex max-w-full items-center hover:bg-gray-100 p-5 mx-5 rounded-3xl my-5 transition-all duration-500 ease-in-out'>
                                 <div className='flex w-2/3 justify-around items-center'>
                                     {/* <img src={qris}  className='w-1/5'/> */}
-                                    <p className='font-nunito font-bold text-center text-2xl'>Non - Tunai</p>
+                                    <p className='font-nunito font-bold text-center text-2xl'>{t('pembayaran.metode.cashless')}</p>
                                 </div>
-                                <input type="radio" value="Non-Tunai" checked={pembayaran === "Female"} onChange={onValueChange}
+                                <input type="radio" value={t('pembayaran.metode.cashless')}checked={pembayaran 
+                                === "Female"} onChange={onValueChange}
                                 className ='ml-24 w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600'
                                 />
                             </label>
@@ -226,9 +224,6 @@ return (
                         </div>
                     </div>
                 </div>
-            
-
-
             </div>
                 <div className='bg-gray-100 flex justify-center items-end '>
                     

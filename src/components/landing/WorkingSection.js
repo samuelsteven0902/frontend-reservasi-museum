@@ -21,25 +21,25 @@ export default function WorkingSection({setRes}) {
     const { t } = useTranslation()
     const [museum, setMuseum] = useState("");
     const [museumId, setMuseumId] = useState("");
-    const [category, setCategory] = useState("Pilih Museum dulu");
+    const [category, setCategory] = useState("Kategori");
     const [disabledCategory , setDisabledCategory] = useState(true);
     const [disabledDate , setDisabledDate] = useState(true);
     const [disableInput , setDisableInput] = useState(true);
-    const [calendar, setCalendar] = useState(t('landing.working.museum.part2'));
+    const [calendar, setCalendar] = useState(t('landing.working.tanggal'));
     const [count, setCount] = useState(0);
     const [open,setOpen] = useState(false);
     // const [libur, setLibur] = useState('')
     const [input,setInput] = useState({
         museum : t('landing.working'),
-        category : 'Pilih Museum Dulu',
-        calendar : 'Pilih Museum Dulu'
+        category : 'Pilih Kategori',
+        calendar : 'Pilih Tanggal'
     })
     const [namaInput, setNamaInput] = useState({
         bebas : 'asdsa',
         namaMuseumm : t('landing.working'),
-        namaCategory : t('landing.working.museum.part2'),
-        namaCalendar : t('landing.working.museum.part2'),
-        namaMuseumBanget : t('landing.working.museum.part1')
+        namaCategory : t('landing.working.kategori'),
+        namaCalendar : t('landing.working.tanggal'),
+        namaMuseumBanget : t('landing.working.museum')
     })
 
     const redirect = useHistory();
@@ -63,9 +63,9 @@ export default function WorkingSection({setRes}) {
             museumClass.classList.add('font-bold','text-[#A70B0B]',)
             console.log(e);
             // setCategory('Pilih Category')
-            setNamaInput({...namaInput,namaMuseumBanget:e,namaCategory:t('landing.working.kategori.part1')})
+            setNamaInput({...namaInput,namaMuseumBanget:e,namaCategory:t('landing.working.kategori')})
             // setNamaInput({...namaInput,namaCategory:'Pilih Kategori'}) 
-            setCalendar(t('landing.working.kategori.part2'))
+            setCalendar(t('landing.working.tanggal'))
         }
     }
     
@@ -78,7 +78,7 @@ export default function WorkingSection({setRes}) {
         }
     }
 
-// Tnanggal
+// Tanggal
     const handleSelect = (date) =>{
         const categoryClass = document.getElementById('button');
         categoryClass.classList.remove('pointer-events-none', 'text-gray-600','bg-gray-300', )
@@ -87,8 +87,6 @@ export default function WorkingSection({setRes}) {
         setCalendar(format(date, 'dd-MM-yyyy'))
         setCount(count + 1)
         setOpen(false)
-
-        
 }
 
     useEffect(() => {
@@ -142,9 +140,7 @@ export default function WorkingSection({setRes}) {
             setOpen(false)
         }
     }
-
     
-
     function customDayContent(day) {
         let extraDot = null;
         if (isSunday(day)) {

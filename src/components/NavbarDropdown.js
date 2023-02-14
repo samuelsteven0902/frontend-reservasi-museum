@@ -50,9 +50,7 @@ const NavbarDropdown = () => {
         <Link to='/faq' className="block font-nunito py-2 px-4 text-black font-bold hover:bg-red-200  transition-all duration-300 ease-in-out active:bg-red-400 focus:bg-red-400'" >FAQ</Link>
         <Link to='/harga-tiket' className="block font-nunito py-2 px-4 text-black font-bold hover:bg-red-200  transition-all duration-300 ease-in-out active:bg-red-400 focus:bg-red-400'" >{t('landing.harga.judul')}</Link>
         <Link to='/tikets' className="block font-nunito py-2 px-4 text-black font-bold hover:bg-red-200  transition-all duration-300 ease-in-out active:bg-red-400 focus:bg-red-400'" >
-        {/* {t('landing.caritiket.judul')} */}
-        Cari Tiket
-        </Link>
+        {t('landing.cari.judul')}</Link>
       </div>
     </>
   );
