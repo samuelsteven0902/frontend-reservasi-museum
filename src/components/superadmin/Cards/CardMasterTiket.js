@@ -28,6 +28,7 @@ const [harga,setHarga] = useState()
 // select and add new museum
 
 const [museum, setMuseum] = useState("");
+const [kategori, setKategori] = useState("");
 const [tambahMuseum, setTambahMuseum] = useState("");
 const [museumId, setMuseumId] = useState("");
 
@@ -39,13 +40,18 @@ const CloseRef = useRef();
 
 const [namaInput, setNamaInput] = useState({
     namaMuseum : 'Pilih Museum',
+    namaKategori : 'Pilih Kategori'
 })
 
 
 const fetchMuseum = async ()=>{
     const resMuseum = await axios.get('http://localhost:8000/api/show_museum').then((res)=>{
         setMuseum(res.data.museum);
-        console.log(res.data.museum);
+        // console.log(res.data.museum);
+    }) 
+    const resKategori = await axios.get('http://localhost:8000/api/show_kategori').then((res)=>{
+        setKategori(res.data.kategori);
+        console.log(res.data.kategori);
     }) 
 }
 useEffect(() => {
@@ -76,16 +82,24 @@ const fetchData = () =>{
 useEffect(() => {
     fetchData();
     
-    idHarga !== undefined &&  axios.get(`http://localhost:8000/api/edit-harga/${idHarga}`).then(res=>{
-        setHarga(res.data.harga[0]);console.log(res.data.harga[0]);
-        setLoadingHarga(false);
-    })
-    }, [idHarga])
+    }, [])
 
 const handleHarga = async(e) =>{
-    setIdHarga(...e.target.id)
-    console.log(idHarga);
-}
+    setIdHarga(e.target.id)
+    setHarga({
+        nama_museum : 'loading...',
+        nama_kategori : 'loading...',
+        hari_biasa : 'loading...',
+        hari_libur : 'loading...',
+    })
+    
+    e.target.id ? axios.get(`http://localhost:8000/api/edit-harga/${e.target.id}`).then(res=>{
+        setHarga(res.data.harga[0]);
+        // console.log(res.data.harga[0]);
+        setLoadingHarga(false);})
+        : swal("Mohon maaf untuk diulang kembali","Terdapat Kesalahan didalam sistem","error");
+
+    }
 
 const handleInput = (e) => {
     e.persist();
@@ -113,8 +127,7 @@ const updateHarga = (e) => {
             console.log('berhasil');
             swal("Success",res.data.message,"success")
             CloseRef.current.click();
-            // history.push('/students');
-            
+            thisClicked.innerText = "Simpan";
         }
         else if(res.data.status === 422)
         {
@@ -190,7 +203,7 @@ const storeData = (e) => {
             CloseRef.current.click();
             
         }
-        else if(res.data.status === 205)
+        else if(res.data.status === 220)
         {
             swal("Gagal Menambahkan",res.data.message,"error");
         }
@@ -258,7 +271,6 @@ const rupiah = (number)=>{
     }).format(number);
 }
 
-console.log(tambahMuseum);
 if(loading)
 {
     var harga_HTMLTABLE =   
@@ -362,7 +374,7 @@ return (
                         </div>
                         
                     {loadingHarga?
-                            <form onSubmit={updateHarga} >
+                            <form >
                             <div className="modal-body relative p-4">
                                 <div className='justify-around md:mt-0 mt-8'>    
                                     <div className="w-96 mb-4 mx-auto ">
@@ -399,13 +411,11 @@ return (
                             <div
                                 className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
                                 <button type="button"
-                                className="inline-block px-6 py-2.5 bg-blue-600 text-white font-bold text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
-                                data-bs-dismiss="modal"
-                                ref={CloseRef}>
+                                className="inline-block px-6 py-2.5 bg-blue-600 text-white font-bold text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" data-bs-dismiss="modal" ref={CloseRef}>
                                 Tutup
                                 </button>
                                 <button type="submit"
-                                className="inline-block px-6 py-2.5 bg-red-600 text-white font-bold text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out ml-1" id="idSave">
+                                className="inline-block px-6 py-2.5 bg-red-600 text-white font-bold text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out ml-1" id="idSave" disabled={true}>
                                 Simpan Perubahan
                                 </button>
                             </div>
@@ -437,9 +447,9 @@ return (
                                     </div>
                                     <div className="w-96 mb-4  mx-auto md:mt-0 mt-8">
                                         <label className="block text-gray-700 text-sm font-nunito font-semibold mb-2" for="username">
-                                            Hari Liburr
+                                            Hari Libur
                                         </label>
-                                        <input name='hari_libur' onChange={handleInput}  className="shadow p-2  appearance-none border border-black rounded-full w-72 sm:w-full mx-auto text-gray-700  leading-tight focus:outline-none focus:shadow-outline"   value={harga.hari_libur} />
+                                        <input name='hari_libur' onChange={handleInput}  className="shadow p-2  appearance-none border border-black rounded-full w-72 sm:w-full mx-auto text-gray-700  leading-tight focus:outline-none focus:shadow-outline" type="number" value={harga.hari_libur} />
                                         <span className="text-sm text-red-500"></span>
                                     </div>
                                 </div>
@@ -448,9 +458,7 @@ return (
                             <div
                                 className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
                                 <button type="button"
-                                className="inline-block px-6 py-2.5 bg-blue-600 text-white font-bold text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
-                                data-bs-dismiss="modal"
-                                ref={CloseRef}>
+                                className="inline-block px-6 py-2.5 bg-blue-600 text-white font-bold text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" data-bs-dismiss="modal"  ref={CloseRef}>
                                 Tutup
                                 </button>
                                 <button type="submit"
@@ -490,25 +498,44 @@ return (
                                                 Nama Museum
                                             </label>
                                             <div className="flex justify-between">
-                                            <select id='museum' value={input.namaMuseum} className="block appearance-none w-72 sm:w-full p-2.5 bg-white text-center border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
-                                                onChange={(e) => {
-                                                    const index = e.target.selectedIndex;
-                                                    const el = e.target.childNodes[index]
-                                                    const option =  el.getAttribute('id'); 
-                                                    const selectedMuseum = e.target.value;
-                
-                                                    setTambahData({...tambahData, nama_museum: e.target.value });
-                                                    setMuseumId(option)
-                                                    setInput({...input,namaMuseum:option})
-                                                    console.log(selectedMuseum);
-                                                }}>
-                                                <option >{namaInput.namaMuseum}</option>
-                                                {museum && museum.map((item,index) =>{
-                                                    return(
-                                                        <option className='py-6 my-6 h-32' key={index} id={item.id} value={item.id}>{item.nama_museum}</option>
-                                                    )})}
-                                            </select>
-                                            {/* <Link to="/superadmin/tambah-museum" className='inline-block px-6 py-2.5 bg-red-600 text-white font-bold text-xs leading-tight uppercase rounded-full shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out'>Tambah Museum</Link> */}
+                                                <select id='museum' value={input.namaMuseum} className="block appearance-none w-72 sm:w-full p-2.5 bg-white text-center border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+                                                    onChange={(e) => {
+                                                        const index = e.target.selectedIndex;
+                                                        const el = e.target.childNodes[index]
+                                                        const option =  el.getAttribute('id'); 
+                                                        const selectedMuseum = e.target.value;
+                    
+                                                        setTambahData({...tambahData, nama_museum: e.target.value });
+                                                        setMuseumId(option)
+                                                        setInput({...input,namaMuseum:option})
+                                                        console.log(selectedMuseum);
+                                                    }}>
+                                                    <option >{namaInput.namaMuseum}</option>
+                                                    {museum && museum.map((item,index) =>{
+                                                        return(
+                                                            <option className='py-6 my-6 h-32' key={index} id={item.id} value={item.id}>{item.nama_museum}</option>
+                                                        )})}
+                                                </select>
+                                            </div>
+                                            <div className="flex justify-between">
+                                                <select id='kategori' value={input.namaKategori} className="block appearance-none w-72 sm:w-full p-2.5 bg-white text-center border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+                                                    onChange={(e) => {
+                                                        const index = e.target.selectedIndex;
+                                                        const el = e.target.childNodes[index]
+                                                        const option =  el.getAttribute('id'); 
+                                                        const selectedMuseum = e.target.value;
+                    
+                                                        setTambahData({...tambahData, nama_kategori: e.target.value });
+                                                        setMuseumId(option)
+                                                        setInput({...input,namaKategori:option})
+                                                        console.log(selectedMuseum);
+                                                    }}>
+                                                    <option >{namaInput.namaKategori}</option>
+                                                    {kategori && kategori.map((item,index) =>{
+                                                        return(
+                                                            <option className='py-6 my-6 h-32' key={index} id={item.id} value={item.id}>{item.nama_kategori}</option>
+                                                        )})}
+                                                </select>
                                             </div>
 
                                             <span className="text-sm text-red-500"></span>
@@ -538,7 +565,7 @@ return (
         
                                 <div
                                     className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
-                                    <button type="button" className="inline-block px-6 py-2.5 bg-blue-600 text-white font-bold text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"data-bs-dismiss="modal" ref={CloseRef}>Tutup</button>
+                                    <button type="button" className="inline-block px-6 py-2.5 bg-blue-600 text-white font-bold text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" data-bs-dismiss="modal" ref={CloseRef}>Tutup</button>
                                     <button type="submit" className="inline-block px-6 py-2.5 bg-red-600 text-white font-bold text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out ml-1">Tambah Data</button>
                                 </div>
 

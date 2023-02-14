@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import swal from 'sweetalert'
 import $ from 'jquery';
 import ReactLoading from 'react-loading';
+import { AiOutlineEyeInvisible,AiOutlineEye } from 'react-icons/ai';
 
 function CardAdmin() {
 
@@ -11,8 +12,19 @@ function CardAdmin() {
     const [input,setInput] = useState({
         nama: '',
         email: '',
-        password: ''
+        password: '',
+        err_msg:[]
     })
+    const [passwordType, setPasswordType] = useState("password");
+    const togglePassword =(e)=>{
+        e.preventDefault();
+      if(passwordType==="password")
+      {
+       setPasswordType("text")
+       return;
+      }
+      setPasswordType("password")
+    }
 
     const CloseRef = useRef();
 
@@ -48,6 +60,9 @@ function CardAdmin() {
                 fetchData();
                 CloseRef.current.click();
                 
+            }else if(res.data.status === 422)
+            {
+                setInput({...input, err_msg: res.data.validate_err.password })
             }
         }) 
     }
@@ -108,6 +123,7 @@ function CardAdmin() {
                 <tr class="border-b bg-white" key={index}>
                     <td class=" text-gray-900 px-6 py-4 whitespace-nowrap text-center">{item.id}</td>
                     <td class=" text-gray-900 px-6 py-4 whitespace-nowrap text-center">{item.name}</td>
+                    <td class=" text-gray-900 px-6 py-4 whitespace-nowrap text-center">{item.roles[0].name}</td>
                     <td class=" text-gray-900 px-6 py-4 whitespace-nowrap text-center">{item.email}</td>
                     <td class=" text-gray-900 px-6 py-4 whitespace-nowrap text-center" >Sensor</td>
                     <td class=" text-gray-900 px-6 py-4 whitespace-nowrap ">
@@ -130,7 +146,8 @@ return (
                                 <thead class="border-b bg-white ">
                                     <tr className=''>
                                         <th scope="col" class="text-xl font-nunito font-semibold text-[#A70B0B] px-6 py-4 text-center ">Admin ID</th>
-                                        <th scope="col" class="text-xl font-nunito font-semibold text-[#A70B0B] px-6 py-4 text-center">Nama Admin</th>
+                                        <th scope="col" class="text-xl font-nunito font-semibold text-[#A70B0B] px-6 py-4 text-center">Nama User</th>
+                                        <th scope="col" class="text-xl font-nunito font-semibold text-[#A70B0B] px-6 py-4 text-center">Role User</th>
                                         <th scope="col" class="text-xl font-nunito font-semibold text-[#A70B0B] px-6 py-4 text-center">Email</th>
                                         <th scope="col" class="text-xl font-nunito font-semibold text-[#A70B0B] px-6 py-4 text-center">Password</th>
                                         <th scope="col" class="text-xl font-nunito font-semibold text-[#A70B0B] px-6 py-4 text-center">Aksi</th>
@@ -168,9 +185,17 @@ return (
                                     </div>
                                     <div className="w-96 mb-4 mx-auto ">
                                         <label className="block text-gray-700 text-sm font-nunito font-semibold mb-2" for="username">Password</label>
-                                        <input name='password'  className="shadow appearance-none border rounded-full w-72 sm:w-full mx-auto text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-gray-200" type="password" 
+                                        <div className='relative'>
+                                        <input name='password'  className="shadow appearance-none border rounded-full z-10 w-72 sm:w-full mx-auto text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-gray-200" type={passwordType}
                                         onChange={handleInput}/>
-                                        <span className="text-sm text-red-500"></span>
+                                        <button className="  px-5 py-2.5 absolute -ml-14 -mt-1 z-40 focus:border-none active:border-none focus:outline-none focus:ring-0"  onClick={togglePassword}>
+                                            { passwordType==="password"? <AiOutlineEyeInvisible size={24} /> :<AiOutlineEye size={24} /> }
+                                            </button>
+                                        </div>
+                                        <span className="text-xs text-red-500"><ul>{input.err_msg.map((item,index)=>{
+                                            return (<li>{index+1 }. {item} </li>)
+                                        }
+                                        )}</ul></span>
                                     </div>
                                 </div>
                             </div>

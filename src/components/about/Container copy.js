@@ -11,7 +11,6 @@ import axios from 'axios';
 import ReactLoading from 'react-loading';
 import { useTranslation } from 'react-i18next';
 import ReactHtmlParser from 'react-html-parser';
-import { useHistory } from 'react-router-dom';
 
 export default function Container({  }) {
 
@@ -21,28 +20,26 @@ export default function Container({  }) {
     const [dataAbout,setDataAbout] = React.useState([])
     const [searchTerm, setSearchTerm] = React.useState("")
     const [museum,setMuseum] = React.useState("")
-    const [idMuseum,setIdMuseum] = React.useState("")
-    const history = useHistory();
 
     const fetchMuseum = async ()=>{
         const resMuseum = await axios.get('http://localhost:8000/api/show_museum').then((res)=>{
             setMuseum(res.data.museum);
-                    setLoading(false)
             console.log(res.data.museum);
         }) 
     }
     
     useEffect(() => {
         fetchMuseum();
+        axios.get('http://localhost:8000/api/show_about').then(res=>{
+            if(res.status == 200)
+            {
+                setDataAbout(res.data.dataAbout[0])
+                setLoading(false)
+            }
+        })
         
     }, [])
     console.log(dataAbout);
-    
-    const handleMuseum = (e) =>{
-        history.push({ pathname:"/about-museum/" + e.target.value,
-                                        state : e.target.id
-                                            });
-    }
 
     if(loading)
     {
@@ -52,14 +49,9 @@ export default function Container({  }) {
     }
     else
     {
-        var about_data = museum.map((item,index)=>{
-            return (
-                <button className='border-4 rounded-md hover:bg-red-200 transition-all duration-300 hover:text-lg flex justify-center items-center border-red-200 h-24' value={item.nama_museum} onClick={handleMuseum} key={index} id={item.id}>{item.nama_museum}</button>
-            )
-        })
+        var about_data = ReactHtmlParser(dataAbout.about);
        
     }
-
     
 
     return (
@@ -89,11 +81,8 @@ export default function Container({  }) {
                     </div>
                 </div> */}
             <div className=' py-6 pb-12 mt-12'>
-                <div className='w-11/12 mx-auto '>
-                <div className='grid grid-cols-4 gap-4 '>
-                    {about_data}
-                </div>
-
+                <div className='w-11/12 mx-auto'>
+                {about_data}
                 </div>             
             </div>
         </div>

@@ -11,6 +11,7 @@ import { Redirect, useHistory } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import SetCookie from 'hooks/setCookie';
 import swal from 'sweetalert';
+import { AiOutlineEyeInvisible,AiOutlineEye } from 'react-icons/ai';
 
 
 export default function Login() {
@@ -37,18 +38,18 @@ export default function Login() {
     const handleSubmit = (e) =>{
         e.preventDefault();
 
-    console.log(e.target);
-        const thisClicked = document.getElementById('button')
-        console.log(thisClicked);
-        thisClicked.innerText = "Silahkan Tunggu..."
+        console.log(e.target);
+            const thisClicked = document.getElementById('button')
+            console.log(thisClicked);
+            thisClicked.innerText = "Silahkan Tunggu..."
 
-    const data = {
-        email:email,
-        password:pwd
-    }
+        const data = {
+            email:email,
+            password:pwd
+        }
 
-    console.log(data);
-        axios.post(`http://localhost:8000/api/login`, data).then(res=>{
+        console.log(data);
+            axios.post(`http://localhost:8000/api/login`, data).then(res=>{
             console.log(res);
             if(res.data.status === 200){
                 // console.log(res.data.user.access_token);
@@ -78,6 +79,17 @@ export default function Login() {
     useEffect(() => {
     }, [idRole])
 
+    const [passwordType, setPasswordType] = useState("password");
+    const togglePassword =(e)=>{
+        e.preventDefault();
+      if(passwordType==="password")
+      {
+       setPasswordType("text")
+       return;
+      }
+      setPasswordType("password")
+    }
+
     return (
     <>
     <DefaultNavbar/>
@@ -90,7 +102,7 @@ export default function Login() {
                     <div className="flex flex-row-reverse pt-10">
                         <div className='w-full md:w-3/4 mx-auto '>
                             <div className='w-full  mx-auto h-full my-auto p-6 flex justify-center items-center'>
-                                <form className='w-full  ' onSubmit={handleSubmit}>
+                                <form className='w-full  ' >
                                     <div className=' mb-6 flex items-center py-4 justify-center'>
                                         <hr className='w-1/3 mx-3 bg-red-400'/>
                                         <p className='text-center text-xl font-merriweather font-extrabold'>Log in </p>
@@ -107,19 +119,22 @@ export default function Login() {
                                         onChange={handleEmail}/>
                                     </div>
                                     {/* <!-- Password input --> */}
-                                    <div class="mb-6">
+                                    <div class="mb-6 flex relative">
                                         <input
                                         name='Pwd'
-                                        type="password"
-                                        class="w-3/4 mx-auto form-control block px-4 py-2 text-lg font-normal font-nunito text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-red-600 focus:outline-none focus:ring-0"
+                                        type={passwordType}
+                                        class="w-3/4 mx-auto form-control block px-4 py-2 text-lg font-normal font-nunito text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition z-10 ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-red-600 focus:outline-none focus:ring-0"
                                         id="exampleFormControlInput2"
                                         placeholder="Password"
                                         value={pwd}
                                         onChange={e=>setPwd(e.currentTarget.value)}/>
+                                    <button className="  px-5 py-2.5 absolute right-0 mr-24 z-20 focus:border-none active:border-none focus:outline-none focus:ring-0"  onClick={togglePassword}>
+                                        { passwordType==="password"? <AiOutlineEyeInvisible size={24} /> :<AiOutlineEye size={24} /> }
+                                        </button>
                                     </div>
                                     <div class="text-center">
                                         <button
-                                        type="submit" id='button'
+                                        type="submit" id='button' onClick={handleSubmit}
                                         class="inline-block w-3/4 px-7 py-3 mt-4 bg-red-600 text-white font-nunito font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out"                                >
                                         Login
                                         </button>

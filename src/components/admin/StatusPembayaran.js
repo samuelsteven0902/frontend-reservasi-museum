@@ -35,11 +35,12 @@ function StatusPembayaran({ color }) {
       var result =''
       if(json.message !== 'Unauthenticated.')
       {
-        result = json.user.id;
+        result = json.user.name;
       }
 
       setUser(result);
     }
+    console.log();
 
     const fetchPengunjung = () => 
     {
