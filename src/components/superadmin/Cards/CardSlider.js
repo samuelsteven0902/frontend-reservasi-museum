@@ -2,9 +2,11 @@ import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
 import ReactLoading from 'react-loading';
 import swal from "sweetalert";
+import Images from "./Info/Images";
 
 
 function CardSlider() {
+
   //manage data
   const [loading, setLoading] = useState(true)
   const [loadingGambar,setLoadingGambar] = useState(true)
@@ -143,6 +145,54 @@ console.log(e,id);
     })
 }
 
+// handleChange = (e) => {
+//   const imagesArray = [];
+//   let isValid = "";
+
+//   for (let i = 0; i < e.target.files.length; i++) {
+//     isValid = this.fileValidate(e.target.files[i]);
+//     imagesArray.push(e.target.files[i]);
+//   }
+//   this.setState({
+//     image: imagesArray,
+//   });
+  
+//   console.log(this.state);
+// };
+
+// submitHandler = (e) => {
+//   e.preventDefault();
+//   const data = new FormData();
+//   for (let i = 0; i < this.state.image.length; i++) {
+//     data.append("images[]", this.state.image[i]);
+//   }
+//   console.log(data);
+// }
+
+// // file validation
+//   fileValidate = (file) => {
+//     if (
+//       file.type === "image/png" ||
+//       file.type === "image/jpg" ||
+//       file.type === "image/jpeg"||
+//       file.type === "image/pdf"
+//     ) {
+//       this.setState({
+//         responseMsg: {
+//           error: "",
+//         },
+//       });
+//       return true;
+//     } else {
+//       this.setState({
+//         responseMsg: {
+//           error: "File type allowed only jpg, png, jpeg",
+//         },
+//       });
+//       return false;
+//     }
+//   };
+
 
 return (
   <div className='container relative flex flex-col min-w-0 break-words w-full mb-6  rounded '>
@@ -219,7 +269,7 @@ return (
             <h5 className="text-xl font-nunito font-semibold leading-normal text-gray-800" id="TambahGambarlabel">Tambah Gambar</h5>
             <button type="button" className="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <form onSubmit={storeGambar}>
+          {/* <form onSubmit={storeGambar}>
             <div className="modal-body relative p-4">
               <div className='justify-around md:mt-0 mt-8'>    
                 <div className="w-96 mb-4  mx-auto md:mt-0 mt-8">
@@ -233,7 +283,27 @@ return (
               <button type="button" className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" data-bs-dismiss="modal" ref={CloseRef}>Tutup</button> 
               <button type="submit" className="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out ml-1">Tambah Gambar</button>
             </div>    
-          </form> 
+          </form>  */}
+          <div className="container">
+            <div className="row">
+              <div className="">
+                <form encType="multipart/form-data" id="imageForm">
+                  <div className="bg-white p-10">
+                    <div className="card-body form-group py-2">
+                        <input type="file" name="image" multiple className="rounded-xl bg-gray-200 w-full"/>
+                        <div className="font-base font-bold font-nunito">Max. Upload 2MB</div>
+                    </div>
+                  </div>
+                  <div className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200">
+                    <button type="button" className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+                    data-bs-dismiss="modal" ref={CloseRef}>Tutup</button>
+                    <button id='tambahGambar' type="submit" className="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out ml-1">Tambah Gambar</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          {/* <Images ref="child"/> */}
+          </div>
         </div>
       </div>
     </div>

@@ -10,7 +10,7 @@ export default function Admin() {
     <>
       <div className="flex flex-wrap">
         <div className="w-full px-4">
-          <CardAdmin />
+          <CardAdmin/>
         </div>
       </div>
           <DefaultFooterAdmin/>
