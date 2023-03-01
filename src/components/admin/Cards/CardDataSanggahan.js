@@ -9,24 +9,11 @@ import axios from "axios";
 import excel from "../../../assets/img/admin/excel.png"
 import $ from 'jquery'; 
 import { useHistory } from 'react-router-dom';
-import DataTable from 'datatables.net';
-import { Dataset } from "@mui/icons-material";
+// import DataTable from 'datatables.net';
 export default function CardTable({ color }) {
   const [loading,setLoading] = useState(true)
   const [pengunjung,setPengunjung] = useState([])
   const [searchTerm, setSearchTerm] = useState("")
-
-// class DataTables extends React.Component{
-//   super() {
-//     this.state {
-//       isFetching: true,
-//       dataSet :[],
-//       fieldToShow:[],
-//         module:"",
-//         tabname:""
-//     }
-//   }
-// }
 
   const history = useHistory()
 
@@ -64,10 +51,6 @@ const handleTiket = (e) =>{
       }
   });
 }, [])
-
-  // componentDidMount() {
-  //   this.getUserData();
-  // }
 
   if(loading)
   {

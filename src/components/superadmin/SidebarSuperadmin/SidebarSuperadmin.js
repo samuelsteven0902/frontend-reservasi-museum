@@ -170,9 +170,9 @@ export default function SidebarSuperadmin() {
                 >
                   <i
                     className={
-                      "fas fa-solid fa-square-plus mr-2 text-base" +
+                      "fas fa-solid fa-landmark mr-2 text-sm " +
                       (window.location.href.indexOf("/superadmin/tambah-kategori") !== -1
-                        ? "opacity-50"
+                        ? "opacity-75"
                         : "text-blueGray-500")
                     }
                   ></i>{" "}
@@ -198,7 +198,7 @@ export default function SidebarSuperadmin() {
                         : "text-blueGray-500")
                     }
                   ></i>{" "}
-                  Users
+                  Admin
                 </Link>
               </li>
 

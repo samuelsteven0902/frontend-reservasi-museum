@@ -1836,9 +1836,6 @@ input[type="range"]::-ms-fill-lower{
 .bg-landing-background{
 	background-image: linear-gradient(rgba(0,0,0, 0), rgba(0,0,0, 0)), url('/src/assets/img/Landing/Museumlandingpage.png');
 } 
-.bg-landing-background2{
-	background-image: linear-gradient(rgba(0,0,0, 0), rgba(0,0,0, 0)), url('/src/assets/img/Landing/radya.png');
-} 
 .bg-landing-background3{
 	background-image: linear-gradient(rgba(0,0,0, 0), rgba(0,0,0, 0)), url('/src/assets/img/Landing/MuseumRadyaLanding.JPG');
 } 

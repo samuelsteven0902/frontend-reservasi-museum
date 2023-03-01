@@ -44,7 +44,7 @@ export default function Header() {
                 </div>
 
                 <div class="carousel-item relative float-left w-full">
-                    <div class="absolute bg-landing-background2 bg-cover sm:bg-cover bg-[#ECE3DE] bg-center w-full h-64 sm:h-[30rem] rounded-[2rem]" alt="..."/>
+                    <div class="absolute ebg-landing-background2 bg-cover sm:bg-cover bg-[#ECE3DE] bg-center w-full h-64 sm:h-[30rem] rounded-[2rem]" alt="..."/>
                 </div>
                 
                 <div class="carousel-item relative float-left w-full">
