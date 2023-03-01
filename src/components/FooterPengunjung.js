@@ -24,7 +24,7 @@ return (
     <footer className="relative text-center lg:text-left bg-[#ECE3DE] text-black z-10">
     <WaveFooter />
         
-        <div className="mx-6 py-12 text-center sm:text-left">
+        <div className="mx-6 py-12 text-right sm:text-left">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                 <div className="w-full sm:w-5/6 h-56 z-20  sm:col-span-2 mx-auto">
                     {/* <Map /> */}
@@ -35,27 +35,27 @@ return (
                     <p className="font-nunito text-black mb-4 text-sm mr-20  ml-20 lg:ml-0 sm:mr-0 ">
                     {t('landing.footer.desc')}
                     </p>
-                    <div className="flex flex-col justify-center">
-                <a href="https://uptmuseum.surakarta.go.id/" className="flex justify-center mr-6 text-black text-xl">
-                    <BsGlobe/>
-                    <p className='text-sm ml-2 text-blue-600 underline'>uptmuseum.surakarta.go.id</p>
-                </a>
-                <a href="https://www.youtube.com/@uptmuseumkotasurakarta1625 " className="my-3 flex justify-center mr-6 text-black text-xl">
-                    <AiFillYoutube/>
-                    <p className='text-sm ml-2 text-blue-600 underline'>uptmuseumkotasurakarta1625</p>
-                </a>
-                <a href="https://www.instagram.com/uptmuseum_surakarta/ " className="flex justify-center mr-6 text-black text-xl">
-                    <AiFillInstagram />
-                    <p className='text-sm ml-2 text-blue-600 underline'>@uptmuseum_surakarta</p>
-                </a>
-            </div>
+                    <div className="flex flex-wrap">
+                        <a href="https://uptmuseum.surakarta.go.id/" className="flex justify-center mr-6 text-black text-xl">
+                            <BsGlobe/>
+                            <p className='text-sm ml-2 text-blue-600 underline'>uptmuseum.surakarta.go.id</p>
+                        </a>
+                        <a href="https://www.youtube.com/@uptmuseumkotasurakarta1625" className="my-3 flex justify-center mr-6 text-black text-xl">
+                            <AiFillYoutube/>
+                            <p className='text-sm ml-2 text-blue-600 underline'>uptmuseumkotasurakarta1625</p>
+                        </a>
+                        <a href="https://www.instagram.com/uptmuseum_surakarta/ " className="flex justify-center mr-6 text-black text-xl">
+                            <AiFillInstagram />
+                            <p className='text-sm ml-2 text-blue-600 underline'>@uptmuseum_surakarta</p>
+                        </a>
+                    </div>
                 </div>
                 <div className="text-sm flex flex-wrap">
-                    <h6 className="uppercase font-merriweather w-full mx-auto  font-bold text-[#A70B0B] mb-4 flex justify-center md:justify-start text-3xl sm:text-base">{t('landing.kontak')}</h6>
+                    <h6 className="uppercase font-merriweather w-full mx-auto font-bold text-[#A70B0B] mb-4 flex justify-center md:justify-start text-3xl sm:text-base">{t('landing.kontak')}</h6>
                     <div className="flex items-center justify-center font-nunito text-black sm:justify-start mb-4 sm:mx-0 mx-16">
                         <div className="fas fa-solid fa-home mr-4 text-black"></div>{t('landing.alamat')}
                     </div>
-                    <div className="flex items-center w-1/2 sm:w-full justify-center font-nunito text-black sm:justify-start my-4  ">
+                    <div className="flex items-center w-1/2 sm:w-full justify-center font-nunito text-black sm:justify-start my-4">
                         <div className="fas fa-solid fa-envelope mr-4 text-base text-black"></div>uptdmuseum@gmail.com
                     </div>
                     <div className="flex items-center w-1/2 sm:w-full justify-center font-nunito text-black sm:justify-start mb-2">
@@ -66,7 +66,7 @@ return (
         </div>
         <hr className='w-full h-0.5 bg-gray-500'/>
         <div className="text-center font-merriweather text-black p-4 text-xs bg-[#ECE3DE]">
-            <span>© {new Date().getFullYear()} Copyright </span><a className="font-merriweather text-black font-bold" href="https://uptmuseum.surakarta.go.id/">UPT Museum Surakarta </a><span> by KMI Team 22 </span>
+            <span>© {new Date().getFullYear()} Copyright </span><a className="font-merriweather text-black font-bold" href="https://uptmuseum.surakarta.go.id/">UPT Museum Surakarta </a><span> by KMI UNS Team 22 </span>
         </div>
     </footer>
     </>

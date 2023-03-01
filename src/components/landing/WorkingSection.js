@@ -184,7 +184,7 @@ console.log(category);
                     <div className="flex flex-wrap relative z-20">
                         <StatusCard color="none" icon="stars" title="Pesan Tiket">
                             <div className="sm:flex justify-center block z-10">
-                                <select value={{ label : input.museum}} id='museum' className="block appearance-none sm:w-1/3 w-full p-2.5 bg-[#ECE3DE] text-[#A70B0B] font-nunito font-semibold text-center border-none px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline" onChange={(e) => {
+                                <select value={{ label : input.museum}} id='museum' className="block appearance-none sm:w-1/3 w-full sm:my-0 my-5 p-2.5 bg-[#ECE3DE] text-[#A70B0B] font-nunito font-semibold text-center border-none px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline" onChange={(e) => {
                                     const index = e.target.selectedIndex;
                                     const el = e.target.childNodes[index]
                                     const option =  el.getAttribute('id'); 
@@ -222,7 +222,7 @@ console.log(category);
                                 </select>
 
                                 <input value={calendar} readOnly onClick={(e)=>{ setOpen(open => !open); 
-                                console.log(e)} } className={disabledDate?"disabled:text-gray-600 disabled:bg-gray-300 relative text-[#A70B0B] disabled:cursor-not-allowed font-nunito font-semibold text-center sm:w-1/3 w-full p-2.5 rounded-md border bg-[#ECE3DE]  opacity-70":"relative text-center w-1/3 rounded-md text-[#A70B0B] font-semibold border bg-[#ECE3DE]  "} disabled={disabledDate} />
+                                console.log(e)} } className={disabledDate?"disabled:text-gray-600 disabled:bg-gray-300 relative text-[#A70B0B] disabled:cursor-not-allowed font-nunito font-semibold text-center sm:w-1/3 w-full sm:my-0 my-5 p-2.5 rounded-md border bg-[#ECE3DE] opacity-70":"relative text-center sm:w-1/3 w-full sm:my-0 my-5 p-2.5 rounded-md text-[#A70B0B] font-semibold border bg-[#ECE3DE]"} disabled={disabledDate}/>
                                     <div ref={refOne} className="absolute right-0 mr-20 mt-8">
         
                                 {open && 
@@ -244,7 +244,7 @@ console.log(category);
                         </StatusCard>
                     </div>
                 <div className='flex flex-wrap relative justify-center pt-6 '>
-                    <Link  ripple="light" id='button'  className="pointer-events-none text-gray-600 bg-gray-300 disabled:cursor-not-allowed w-64 h-12 text-center align-middle px-6  hover:bg-red-600  font-medium text-xl pt-2.5 font-merriweather leading-tight uppercase rounded shadow-md hover:shadow-lg focus:bg-red-300 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-400 active:shadow-lg transition duration-150 ease-in-out" to={{
+                    <Link  ripple="light" id='button' className="pointer-events-none text-gray-600 bg-gray-300 disabled:cursor-not-allowed w-64 h-12 text-center align-middle px-6 hover:bg-red-600  font-medium text-xl pt-2.5 font-merriweather leading-tight uppercase rounded shadow-md hover:shadow-lg focus:bg-red-300 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-400 active:shadow-lg transition duration-150 ease-in-out" to={{
                         pathname:"/input-data",
                         state : {input},
                     }}>{t('landing.working.pesan')}</Link>

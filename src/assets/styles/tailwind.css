@@ -2447,6 +2447,10 @@ input[type="range"]::-ms-fill-lower{
 	--tw-ring-opacity: 1;
 	--tw-ring-color: rgba(248, 180, 180, var(--tw-ring-opacity));
 } 
+.blur{
+	--tw-blur: blur(8px);
+	filter: var(--tw-filter);
+} 
 .drop-shadow-2xl{
 	--tw-drop-shadow: drop-shadow(0 25px 25px rgba(0, 0, 0, 0.15));
 	filter: var(--tw-filter);
