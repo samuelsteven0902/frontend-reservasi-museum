@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next';
 import { Link, useHistory } from 'react-router-dom';
 import swal from 'sweetalert';
+import $ from 'jquery';
 
 function FormInput({dataAwal,dataa}) {
     const { t } = useTranslation()
@@ -72,6 +73,37 @@ console.log(dataa);
             {
                 swal("Gagal!","Jumlah Pengunjung tidak sesuai batas minimum","warning");
             }
+            else if(+dataPengunjung.jumlah >= +dataa.max)
+            {
+                const dataInput = {
+                    nama:dataPengunjung.nama,
+                    kota:dataPengunjung.kota,
+                    phone:dataPengunjung.phone,
+                    jumlah:dataa.max,
+                    foto:dataPengunjung.foto,
+                    museum:dataa.nama_museum,
+                    kategori:dataa.nama_kategori,
+                    tanggal:dataAwal.calendar,  
+                }
+                axios.post(`http://localhost:8000/api/validasi-pengunjung`, dataInput,{
+                    headers:{
+                        "Content-Type":"multipart/form-data",
+                    }
+                }).then(res => {
+                    console.log(res.data.foto);
+                    if(res.data.status === 200)
+                    {
+                        console.log('MANTAB BERHASIL');
+                        history.push({ pathname:"/Pembayaran",
+                                        state : {dataInput,totalOrang}
+                                            });
+                    }
+                    else if(res.data.status === 422)
+                    {
+                        setDataPengunjung({...dataPengunjung, error_list: res.data.validate_err });
+                    }
+                });
+            }
             else
             {
                 const dataInput = {
@@ -135,6 +167,10 @@ console.log(dataa);
     //   }
     }, [orang,dataPengunjung,kartu,dataa,harga])
 
+    $('input[type=number]').on('mousewheel', function(e) {
+        $(e.target).blur();
+      });
+    
     return (
     <div className='pt-36 py- mx-auto'>
         <div className="w-full px-6 md:px-16 py-12 mx-auto">
@@ -162,7 +198,7 @@ console.log(dataa);
                     </div>
                     <div className="w-96 mb-4 md:mx-6 mx-auto md:mt-0 mt-8">
                         <label className="block text-gray-700 text-sm font-bold mb-2 font-nunito" for="jumlah">{t('formInput.input.jumlah')}</label>
-                        <input name='jumlah' onChange={(e)=>{ handleJummlah(e);  }} value={orang} className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="number" placeholder={dataa && "contoh : " + dataa.min + " orang"} />
+                        <input type="text" inputmode="numeric" pattern="[0-9]*" name='jumlah' onChange={(e)=>{ handleJummlah(e);  }} value={orang} className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder={dataa && "contoh : " + dataa.min + " orang"}></input>
                         <div className='flex justify-end pr-2'>
                             <span className="text-sm pr-6">min : {dataa && dataa.min}</span>
                             <span className="text-sm ">max : {dataa && dataa.max}</span>

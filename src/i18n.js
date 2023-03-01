@@ -210,7 +210,7 @@ i18n
             faq:'Kumpulan Pertanyaan yang sering ditanyakan',
             harga:{
               judul:'Harga Tiket',
-              desc:'Kumpulan Info harga reservasi tiket museum dapat dibaca disini'
+              desc:'Info harga reservasi tiket museum dapat dibaca disini'
             },
             cari:{
               judul:'Cari Tiket',
