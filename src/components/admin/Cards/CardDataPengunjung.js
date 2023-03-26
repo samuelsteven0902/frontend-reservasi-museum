@@ -1,121 +1,162 @@
-import React, {Component, useState} from 'react';
+import React, { useEffect, useState, Fragment} from "react";
+import ReactLoading from 'react-loading';
 import { GrFormView } from 'react-icons/gr';
+
+// components
+import axios from "axios";
+import excel from "../../../assets/img/admin/excel.png"
 import { useHistory } from 'react-router-dom';
-//jQuery libraries
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'jquery/dist/jquery.min.js';
+import Datatable from 'react-data-table-component';
+import styled from 'styled-components'
+import FontAwesome from 'font-awesome/css/font-awesome.min.css';
 
-//Datatable Modules
-import "datatables.net-dt/js/dataTables.dataTables"
-import "datatables.net-dt/css/jquery.dataTables.min.css"
-import $ from 'jquery';
+export default function CardTable({ color }) {
 
-//For API Requests
-import axios from 'axios';
+  const columns = [
+    {
+      name: 'Nama',
+      selector: row => row.nama
+    },
+    {
+      name: 'Museum',
+      selector: row => row.museum
+    },
+    {
+      name: 'Kategori',
+      selector: row => row.kategori
+    },
+    {
+      name: 'Phone',
+      selector: row => row.phone
+    },
+    {
+      name: 'Kota',
+      selector: row => row.kota
+    },
+    {
+      name: 'Jumlah',
+      selector: row => row.jumlah
+    },
+    {
+      name: 'Harga_awal',
+      selector: row => row.harga_awal
+    },
+    {
+      name: 'Pembayaran',
+      selector: row => row.pembayaran
+    },
+    {
+      name: 'Status',
+      selector: row => row.status
+    },
+    {
+      name: 'Tanggal Pembayaran',
+      selector: row => row.tanggal_pembayaran
+    },
+    {
+      name: 'Kehadiran',
+      selector: row => row.kehadiran
+    },
+    {
+      id: 'kode_tiket',
+      name: 'Kode Tiket',
+      style: {
+        background: "orange",
+        right: 0,
+        position: 'sticky',
+        // content: 'fa-solid fa-eye',
+        fontWeight: 900,
+      },
+      selector: row => row.kode_tiket,
+    },
+  ];
 
-class CardDataPengunjung extends Component {
+  const [loading,setLoading] = useState(true)
+  const [pengunjung,setPengunjung] = useState([])
+  const [searchTerm, setSearchTerm] = useState("")
+  
+  const history = useHistory()
+  useEffect(() => {
+    axios.get(`http://localhost:8000/api/pengunjung`).then(res=>{
+    if(res.status === 200)
+      {
+        setPengunjung(res.data.pengunjung)
+      }
+    });
+  }, []);
+  
+  const handleDownload = () => {
+    axios({
+      url: 'http://localhost:8000/api/pengunjungExport',
+      method: 'GET',
+      responseType: 'blob', // important`
+    }).then((response) => {
+      console.log(response);
+  const url = window.URL.createObjectURL(new Blob([response.data]));
+  const link = document.createElement('a');
+  link.href = url;
+  
+  const tanggal = new Date(Date.now()).toLocaleString().split(',')[0];
 
-// State array variable to save and show data
-  constructor(props) {
-    super(props)
-      this.state = {
-        data: [],
-        
-      }}
-      
-  componentDidMount() {
-
-//Get all users details in bootstrap table
-  axios.get(`http://localhost:8000/api/pengunjung`).then(res=>{
-    console.log(res);  
-      if(res.status === 200)
-        {
-          this.setState({data: res.data.pengunjung});
-        }
-      }); 
-
-//initialize datatable
-  $(document).ready(function () {
-    setTimeout(function(){
-      $('#example').DataTable();
-    } ,1000);
-  });
+  let filename = 'file-' + tanggal + '.xlsx';
+  link.setAttribute('download', filename); //or any other extension
+  document.body.appendChild(link);
+  link.click();
+});
 }
 
-render(){
-//Datatable HTML
-  return (
-    <div className= "relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-white">
-      <div className="rounded-t mb-0 px-4 py-3 border-0">
-        <div className="flex flex-wrap items-center">
-          <div className="relative w-full px-4 max-w-full flex-grow flex-1">
-            <h3 className="font-semibold text-lg font-merriweather text-red-600">Data Pengunjung</h3>
-          </div>
-        </div>
-      </div>
+const handleTiket = (e) =>{
+  history.push("/tiket/" + e );
+}
 
-    <div className="block w-full overflow-x-auto">
-      <table id="example" class="table table-hover table-bordered">
-        <thead>
-          <tr className='bg-red-600 text-red-200'>
-            <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-nunito font-semibold text-left">Nama</th>
-            <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-nunito font-semibold text-left">Museum</th>
-            <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-nunito font-semibold text-left">Kategori</th>
-            <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-nunito font-semibold text-left">Nomor Hp</th>
-            <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-nunito font-semibold text-left">Asal Kota</th>
-            <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-nunito font-semibold text-left">Asal Negara</th>
-            <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-nunito font-semibold text-left">Jumlah Pengunjung</th>
-            <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-nunito font-semibold text-left">Total Pembelian Tiket</th>
-            <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-nunito font-semibold text-left">Pembayaran</th>
-            <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-nunito font-semibold text-left">Status</th>
-            <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-nunito font-semibold text-left">Kehadiran</th>
-            <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-nunito font-semibold text-left ">
-                  Tanggal Pembayaran
-                </th>
-                <th
-                  className="sticky right-0 bg-white text-red-700 px-2">
-                  Tiket
-                </th>
-              </tr>
-          </thead>
-          <tbody>
-          {this.state.data.map((result) => {
-            return (
-              
-                <tr key={result} className="text-black">
-                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{result.nama }</td>
-                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{result.museum}</td>
-                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{result.kategori}</td>
-                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{result.phone}</td>
-                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{result.kota}</td>
-                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{result.negara == null?"Indonesia":result.negara}</td>
-                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{result.jumlah}</td>
-                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{result.harga_awal}</td>
-                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{result.pembayaran}</td>
-                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{result.status == "Lunas" ? "Lunas" : "Belum Lunas"}</td>
-                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{result.tanggal_pembayaran}</td>
-                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{result.kehadiran == "Hadir" ? "Hadir" : "Tidak Hadir"}</td>
-                    <td className="sticky right-0 bg-white  w-full m-auto border-b flex py-3 justify-center">
-                    <button href={'http://localhost:3000/tiket/' + result.kode_tiket} className="bg-gray-500 hover:bg-gray-600 rounded shadow-inner drop-shadow-2xl  py-0.5 px-1">
-                        
-                    <GrFormView className=""/>
-                    </button>
-                    </td>
-                </tr>
-              
-            )
-          })}
-            
-             
-          </tbody>
-        </table>
-           
-        </div>
+var pengunjung_HTMLTABLE = "";
+
+pengunjung_HTMLTABLE = pengunjung.filter(val=>{
+  if(searchTerm == "")
+  {
+    return val
+  }
+  else if(val.nama.toLowerCase().includes(searchTerm.toLowerCase()) ||
+  val.museum.toLowerCase().includes(searchTerm.toLowerCase()) ||
+  val.kategori.toLowerCase().includes(searchTerm.toLowerCase()) ||
+  val.phone.toLowerCase().includes(searchTerm.toLowerCase()) ||
+  val.kota.toLowerCase().includes(searchTerm.toLowerCase()) )
+  {
+    return val
+  }
+});
+
+return (
+    <>
+    <div className="flex">
+      <div className="my-2  w-72">
+        <input type='text' className="w-full font-nunito border-none ring-2 ring-red-300 focus:border-none focus:ring-red-500 focus:ring-2 active:border-none rounded-lg"  placeholder="Cari nama, kategori, kota,..." onChange={e=>{setSearchTerm(e.target.value)}} /> 
       </div>
+      <div className=" flex justify-end items-center w-full">
+        <button className="bg-green-400 rounded-xl h-7 px-5 text-sm font-nunito text-green-800" onClick={handleDownload}><p className="flex">Unduh Laporan <img src={excel} className='w-4 ml-2'/></p></button>
+      </div>
+    </div>
+      <div className="container mt-5">
+        <Datatable title="Data Pengunjung" columns={columns} data={pengunjung_HTMLTABLE} pagination highlightOnHover >
+        <Fragment>
+                  <button
+                      className="btn btn-primary btn-sm"
+                      onClick={() => this.handleDownload()}
+                      style={{marginRight: '5px'}}>
+                      <i className="glyphicon glyphicon-edit fa-solid fa-eye"></i>
+                  </button>                  
+              </Fragment>
+        </Datatable>
+
+      </div>
+    </>
   );
- }
 }
+//  title="Data Pengunjung" columns={columns} data={pengunjung_HTMLTABLE} pagination highlightOnHover >
+// CardDataSanggahan.defaultProps = {
+//   color: "light",
+// };
 
-// }
-
-export default CardDataPengunjung;
+// CardDataSanggahan.propTypes = {
+//   color: PropTypes.oneOf(["light", "dark"]),
+// };
