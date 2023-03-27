@@ -2,9 +2,11 @@ import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
 import ReactLoading from 'react-loading';
 import swal from "sweetalert";
+import Images from "./Info/Images";
 
 
 function CardSlider() {
+
   //manage data
   const [loading, setLoading] = useState(true)
   const [loadingGambar,setLoadingGambar] = useState(true)
@@ -13,109 +15,38 @@ function CardSlider() {
 
   //add data gambar
   const [gambar, setGambar] = useState("")
-  const [tambahGambar, setTambahGambar] = useState("")
+  const [responseMsg,setResponseMsg] = useState({
+      status: "",
+      message: "",
+      error: "",
+  })
+  const [jumlahGambar, setJumlahGambar] = useState("")
   const [gambarId, seGambarId] = useState("")
+
+  const CloseRef = useRef();
   
   //show data
-  const showData = async ()=>{
-    const resGambar = await axios.get ('http://localhost:8000/api/show_gambar').then ((res)=>{
-      setGambar(res.data.gambar)
-      console.log(res.data.gambar)
+  const showData = ()=>{
+    axios.get ('http://localhost:8000/api/show_slider').then ((res)=>{
+      if(res.status === 200){
+        setGambar(res.data.data)
+        setJumlahGambar(res.data.count)
+        setLoading(false)
+      }
     })
+    .catch((error) => {
+      console.error(error);
+    });
   }
 
   useEffect(() => {
     showData();
   }, [])
 
-  const CloseRef = useRef();
 
-  useEffect(() => {
-    axios.get('http://localhost:8000/api/show_gambar')
-        .then(res=>{setNamaGambar(res.data.gambar);console.log(res); 
-            setLoading(false)
-        })
-    
-    idGambar !== undefined && axios.get(`http://localhost:8000/api/edit-gambar/${idGambar}`).then(res=>{
-        console.log(res.data);
-        setNamaGambar(res.data.gambar.nama_gambar)
-        setLoadingGambar(false);
-    })
-  }, [idGambar])
-
-  const handleGambar = async(e) =>{
-    setNamaGambar('loading data...');
-    setIdGambar(...e.target.id)
-    console.log(e.target);
-  }
-
-  const handleEdit = (e) => {
-    e.persist();
-    setNamaGambar(e.target.value)
-}
-
-  const updateGambar = (e) => {
-    e.preventDefault();
-    const data = {
-      gambar: namaGambar
-  }
-
-  axios.put(`http://localhost:8000/api/update-gambar/${idGambar}`, data).then(res=>{
-        if(res.data.status === 200)
-        {
-            // console.log('berhasil');
-            swal("Success",res.data.message,"success")
-            showData();
-            CloseRef.current.click();
-        }
-        else if(res.data.status === 422)
-        {
-            // swal("All fields are mandetory","","error");
-        }
-        else if(res.data.status === 404)
-        {
-            // swal("Error",res.data.message,"error");
-            // history.push('/students');
-        }
-    });
-}
-
-  const handleNamaGambar = (e) =>{
-    console.log(e.currentTarget.value)
-  }
-
-  const storeGambar = (e) =>{
-    e.preventDefault();
-
-    // const thisClicked = e.currentTarget[5];
-    // thisClicked.innerText = "Tambah gambar";
-    const data = {
-        nama_gambar : tambahGambar
-    }
-    console.log(tambahGambar)
-
-    axios.post(`http://localhost:8000/api/add_gambar`, data).then(res=>{
-        if(res.data.status === 200)
-        {
-            swal("Success",res.data.message,"success")
-            showData();
-            CloseRef.current.click();
-            
-        }
-        else if(res.data.status === 205)
-        {
-            swal("Tidak bisa menambahkan Gambar",res.data.message,"info");
-        }
-    });
-}
-
-  const deleteGambar = (e, id) => {
-    e.preventDefault();
-    
-    // const thisClicked = e.currentTarget;
-    // thisClicked.innerText = "Deleting";
-    
-console.log(e,id);
+  const deleteGambar = (id,e) => {
+    console.log(id);
+    // e.preventDefault();
     swal({
         title: "Anda Yakin menghapus Gambar?",
         text: "Sekali Hapus, anda tidak bisa mencadangkannya lagi!",
@@ -125,7 +56,8 @@ console.log(e,id);
     })
     .then((willDelete) => {
         if (willDelete) {
-            axios.delete(`http://localhost:8000/api/delete_gambar/${id}`).then(res=>{
+          console.log(id);
+            axios.delete(`http://localhost:8000/api/delete-slider/${id}`).then(res=>{
                 if(res.data.status === 200)
                 {
                     // console.log('berhasil delet');
@@ -143,11 +75,124 @@ console.log(e,id);
     })
 }
 
+const handleInput = (e) =>{
+    const imagesArray = [];
+    let isValid = "";
+
+    for (let i = 0; i < e.target.files.length; i++) {
+      isValid = fileValidate(e.target.files[i]);
+      imagesArray.push(e.target.files[i]);
+    }
+    setGambar(
+      imagesArray,
+    );
+    
+    console.log(e);
+    // console.log(gambar);
+}
+console.log(gambar);
+
+const fileValidate = (file) => {
+  console.log(file.type);
+  if (
+    file.type === "image/png" ||
+    file.type === "image/jpg" ||
+    file.type === "image/jpeg"||
+    file.type === "image/pdf"
+  ) {
+    setResponseMsg({
+        error: "",
+      
+    });
+    return true;
+  } else {
+    setResponseMsg({
+      error: "",
+  });
+    return false;
+  }
+};
+
+const handleSubmit = (e) =>{
+  e.preventDefault();
+  if(jumlahGambar <= 5 )
+  {
+    const data = new FormData();
+  for (let i = 0; i < gambar.length; i++) {
+    data.append("images[]", gambar[i]);
+  }
+  console.log(gambar);
+  // console.log(data);
+  axios.post("http://localhost:8000/api/upload_slider", data)
+    .then((response) => {
+      if (response.status === 200) {
+        setResponseMsg({
+            status: response.data.status,
+            message: response.data.message,
+        });
+        swal("Success",response.data.message,"success")
+        CloseRef.current.click();
+        showData();
+        setTimeout(() => {
+          setGambar("");
+          setResponseMsg("");
+          // console.log(gambar);
+        }, 100000);
+        document.querySelector("#imageForm").reset();
+        // getting uploaded images
+        // refs.child.getImages();
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  }
+  else
+  {
+    swal("Maksimal ( 6 ) Gambar","Hapus Gambar terlebih dahulu","error")
+    CloseRef.current.click();
+    showData();
+  }
+}
+
+
+if(loading)
+{
+  var SLIDER_HTMLTABLE =   
+  <tr className="bg-white border-b" >
+      <td colspan={5} className="text-xl text-center justify-center font-semibold py-5">
+          <ReactLoading type={"spin"} color={"red"} height={'5%'} width={'5%'} className="m-auto" />
+      </td>
+  </tr>
+}else{
+
+  var SLIDER_HTMLTABLE =  "";
+  SLIDER_HTMLTABLE = gambar.map((item,index)=>{
+    return (
+      <>
+      <tr key={index}>
+        <td className="text-center">{index + 1}</td>
+        <td>
+          <div className="w-full flex items-center justify-center mt-3" key={item.id}>
+            <img src={ "http://localhost:8000/uploads/" + item.slider_name } className="img-fluid img-bordered" width="300px"/>
+          </div>
+        </td>
+        <td className="w-1/3 text-center">
+          <button className="bg-red-400 hover:bg-red-200 px-4 py-2 rounded " onClick={e=>deleteGambar(item.id,e)}>delete</button>
+        </td>
+      </tr>
+      </>
+    )
+  })
+
+}
+
 
 return (
   <div className='container relative flex flex-col min-w-0 break-words w-full mb-6  rounded '>
     <div className="flex justify-between ">
-      <button type="button" className="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out" data-bs-toggle="modal" data-bs-target="#modalTambahGambar">Tambah Gambar</button>
+      <button type="button" className="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out" data-bs-toggle="modal" data-bs-target="#modalTambahGambar">Tambah Gambar</button>  
+      <p>Maksimal Gambar Slider &#40; 6 &#41;  Gambar</p>
     </div>
 
   <div className="flex flex-col">
@@ -157,13 +202,13 @@ return (
           <table id="table_id" className="rounded-xl shadow-xl w-full" >
           <thead className="border-b bg-white ">
             <tr className=''>
-              <th scope="col" className="text-xl w-12 font-nunito font-semibold text-[#A70B0B] px-6 py-4 text-center ">ID</th>
-              <th scope="col" className="text-xl font-nunito font-semibold text-[#A70B0B]  px-6 py-4 text-left">Nama Gambar</th>
-              <th scope="col" className="text-xl w-72 font-nunito font-semibold text-[#A70B0B] px-6 py-4 text-">Aksi</th>
+              <th scope="col" className="text-xl w-12 font-nunito font-semibold text-[#A70B0B] px-6 py-4 text-center ">No</th>
+              <th scope="col" className="text-xl font-nunito font-semibold text-[#A70B0B]  px-6 py-4 text-center">Nama Gambar</th>
+              <th scope="col" className="text-xl w-72 font-nunito font-semibold text-[#A70B0B] px-6 py-4 text-center">Aksi</th>
             </tr>
           </thead>
           <tbody className=''>
-            {/* {harga_HTMLTABLE} */}
+            {SLIDER_HTMLTABLE}
             <div className="modal fade fixed bg-gray-300 py-24 mx-auto items-center m-auto w-screen bg-opacity-60 top-0 left-0 hidden h-screen outline-none overflow-x-hidden overflow-y-auto" id="EditGambar" tabIndex="-1" aria-labelledby="EditGambar" aria-modal="true" role="dialog">
               <div className="modal-dialog w-11/12 justify-center md:w-1/2  px-0 sm:px-12 mx-auto  h-full  my-auto modal-dialog-centered modal-dialog-scrollable relative items-center pointer-events-none lg:w-1/3">
                 <div className="modal-content border-none shadow-lg relative flex flex-col sm:w-full sm:min-w-max pointer-events-auto my-auto bg-white  bg-clip-padding rounded-md outline-none text-current">
@@ -171,38 +216,6 @@ return (
                     <h5 className="text-xl font-nunito font-semibold leading-normal text-gray-800" id="EditGambarLabel">Edit Gambar</h5>
                     <button type="button" className="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
-            {loadingGambar?
-            <form onSubmit={updateGambar} >
-              <div className="modal-body relative p-4">
-                <div className='justify-around md:mt-0 mt-8'>    
-                  <div className="w-96 mb-4 mx-auto md:mt-0 mt-8">
-                    <label className="block text-gray-700 text-sm font-nunito font-semibold mb-2" htmlFor="nama_kategori">Nama Gambar</label>
-                    <input value="loading data..." name='nama_kategori' className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="nama_kategori" type="text" onChange={e=>setTambahGambar(e.target.value)}/>
-                    <span className="text-sm text-red-500"></span>
-                  </div>
-                </div>
-              </div>
-              <div className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
-                <button type="button" className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" data-bs-dismiss="modal">Tutup</button>
-                <button type="submit" className="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out ml-1">Edit Gambar</button>
-              </div>
-            </form> 
-              :
-              <form onSubmit={updateGambar} >
-                <div className="modal-body relative p-4">
-                  <div className='justify-around md:mt-0 mt-8'>    
-                    <div className="w-96 mb-4  mx-auto md:mt-0 mt-8">
-                      <label className="block text-gray-700 text-sm font-nunito font-semibold mb-2" htmlFor="nama_kategori">Nama Gambar</label>
-                      <input  onChange={handleEdit} name='nama_kategori'className="shadow appearance-none border rounded-full w-72 sm:w-full mx-auto py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="nama_kategori" type="text" value={namaGambar}/>
-                      <span className="text-sm text-red-500"></span>
-                    </div>
-                  </div>
-                </div>
-                <div className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
-                  <button type="button" className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" data-bs-dismiss="modal" ref={CloseRef}>Tutup</button>
-                  <button type="submit" className="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out ml-1">Edit Gambar</button>
-                </div>
-              </form>}
                 </div>
               </div>
             </div>
@@ -219,21 +232,26 @@ return (
             <h5 className="text-xl font-nunito font-semibold leading-normal text-gray-800" id="TambahGambarlabel">Tambah Gambar</h5>
             <button type="button" className="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <form onSubmit={storeGambar}>
-            <div className="modal-body relative p-4">
-              <div className='justify-around md:mt-0 mt-8'>    
-                <div className="w-96 mb-4  mx-auto md:mt-0 mt-8">
-                  <label className="block text-gray-700 text-sm font-nunito font-semibold mb-2" htmlFor="nama_kategori">Nama Gambar</label>
-                  <input name='nama_kategori' className="shadow appearance-none border rounded-full  w-72 sm:w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="nama_kategori" type="text" onChange={e=>setTambahGambar(e.target.value)}/>
-                  <span className="text-sm text-red-500"></span>
-                </div>
+          <div className="container">
+            <div className="row">
+              <div className="">
+                <form onSubmit={handleSubmit} encType="multipart/form-data" id="imageForm">
+                  <div className="bg-white p-10">
+                    <div className="card-body form-group py-2">
+                        <input type="file" name="image" multiple onChange={handleInput} className="rounded-xl bg-gray-200 w-full"/>
+                        <div className="font-base font-bold font-nunito">Max. Upload 2MB</div>
+                    </div>
+                  </div>
+                  <div className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200">
+                    <button type="button" className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+                    data-bs-dismiss="modal" ref={CloseRef}>Tutup</button>
+                    <button id='tambahGambar' type="submit" className="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out ml-1">Tambah Gambar</button>
+                  </div>
+                </form>
               </div>
             </div>
-            <div className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
-              <button type="button" className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" data-bs-dismiss="modal" ref={CloseRef}>Tutup</button> 
-              <button type="submit" className="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out ml-1">Tambah Gambar</button>
-            </div>    
-          </form> 
+          {/* <Images ref="child"/> */}
+          </div>
         </div>
       </div>
     </div>

@@ -1,8 +1,25 @@
+import axios from 'axios';
 import DefaultFooter from 'components/DefaultFooter'
 import DefaultNavbar from 'components/DefaultNavbar'
 import React from 'react'
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 function NonCash() {
+  const stateParamVal = useLocation().state;
+  console.log(stateParamVal);
+
+
+  useEffect(() => {
+    axios.get('http://localhost:8000/api/metode').then((res)=>
+    {
+      console.log(res);
+    })
+
+  
+  }, [])
+  
+
   return (
     <div>
       <div className="absolute w-full z-20">

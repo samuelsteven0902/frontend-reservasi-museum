@@ -179,12 +179,12 @@ export default function WorkingSection({setRes}) {
 console.log(category);
     return (
         <section className="pb-20 -mt-80 sm:-mt-56 left-1/2 mx-auto z-10 w-5/6" data-aos="fade-down" data-aos-duration="750">
-            <div className="container text-center max-w-5xl mx-auto sm:px-10">
+            <div className="container text-center max-w-5xl mx-auto sm:px-10 ">
                 <form onSubmit={saveData}>
                     <div className="flex flex-wrap relative z-20">
                         <StatusCard color="none" icon="stars" title="Pesan Tiket">
                             <div className="sm:flex justify-center block z-10">
-                                <select value={{ label : input.museum}} id='museum' className="block appearance-none sm:w-1/3 w-full sm:my-0 my-5 p-2.5 bg-[#ECE3DE] text-[#A70B0B] font-nunito font-semibold text-center border-none px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline" onChange={(e) => {
+                                <select value={{ label : input.museum}} id='museum' className="block appearance-none sm:w-1/3 w-full sm:my-0  p-2.5 bg-[#ECE3DE] text-[#A70B0B] font-nunito font-semibold text-center border-none px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline" onChange={(e) => {
                                     const index = e.target.selectedIndex;
                                     const el = e.target.childNodes[index]
                                     const option =  el.getAttribute('id'); 
@@ -205,7 +205,7 @@ console.log(category);
                                         <option className='py-6 my-6  h-32' key={index} id={item.id} value={item.nama_museum}>{item.nama_museum}</option>
                                     )})}
                                 </select>
-                                <select value={{label: namaInput.namaCategory}} id="category" className="disabled:text-gray-600 disabled:cursor-not-allowed disabled:bg-gray-300 sm:w-1/3 w-full sm:mx-5 sm:my-0 my-5 p-2.5 text-[#A70B0B] font-nunito font-semibold text-center bg-[#ECE3DE] border-none rounded-md shadow-sm  appearance-none focus:border-red-800  focus:outline-none" onChange={(e) => {
+                                <select value={{label: namaInput.namaCategory}} id="category" className="disabled:text-gray-600 disabled:cursor-not-allowed disabled:bg-gray-300 sm:w-1/3 w-full sm:mx-5 sm:my-0 p-2.5 text-[#A70B0B] font-nunito font-semibold text-center bg-[#ECE3DE] border-none rounded-md shadow-sm  appearance-none focus:border-red-800  focus:outline-none" onChange={(e) => {
                                     const index = e.target.selectedIndex;
                                     const el = e.target.childNodes[index]
                                     const option =  el.getAttribute('id');
@@ -214,7 +214,7 @@ console.log(category);
                                     cekCategory()
                                     }} 
                                     disabled={disabledCategory} > 
-                                    <option className='p-7 m-5 text-xl '>{namaInput.namaCategory}</option>
+                                    <option className=' text-xl '>{namaInput.namaCategory}</option>
                                     {category && typeof category !== 'string'  && category.map((itemm,indexx)=>{
                                     return(
                                         <option  key={indexx} id={itemm.id} value={itemm.nama_kategori} >{itemm.nama_kategori}</option>
@@ -222,7 +222,7 @@ console.log(category);
                                 </select>
 
                                 <input value={calendar} readOnly onClick={(e)=>{ setOpen(open => !open); 
-                                console.log(e)} } className={disabledDate?"disabled:text-gray-600 disabled:bg-gray-300 relative text-[#A70B0B] disabled:cursor-not-allowed font-nunito font-semibold text-center sm:w-1/3 w-full sm:my-0 my-5 p-2.5 rounded-md border bg-[#ECE3DE] opacity-70":"relative text-center sm:w-1/3 w-full sm:my-0 my-5 p-2.5 rounded-md text-[#A70B0B] font-semibold border bg-[#ECE3DE]"} disabled={disabledDate}/>
+                                console.log(e)} } className={disabledDate?"disabled:text-gray-600 disabled:bg-gray-300 relative text-[#A70B0B] disabled:cursor-not-allowed font-nunito font-semibold text-center sm:w-1/3 w-full sm:my-0  p-2.5 rounded-md border bg-[#ECE3DE] opacity-70":"relative text-center sm:w-1/3 w-full sm:my-0 my-5 p-2.5 rounded-md text-[#A70B0B] font-semibold border bg-[#ECE3DE]"} disabled={disabledDate}/>
                                     <div ref={refOne} className="absolute right-0 mr-20 mt-8">
         
                                 {open && 

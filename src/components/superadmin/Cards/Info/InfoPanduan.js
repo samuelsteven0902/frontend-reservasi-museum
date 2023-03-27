@@ -40,31 +40,33 @@ export default class ImageUpload extends Component {
     const data = new FormData();
     for (let i = 0; i < this.state.image.length; i++) {
       data.append("images[]", this.state.image[i]);
+      console.log(this.state.image);
     }
     console.log(data);
-    // axios.post("http://localhost:8000/api/files", data)
-    //   .then((response) => {
-    //     if (response.status === 200) {
-    //       this.setState({
-    //         responseMsg: {
-    //           status: response.data.status,
-    //           message: response.data.message,
-    //         },
-    //       });
-    //       setTimeout(() => {
-    //         this.setState({
-    //           image: "",
-    //           responseMsg: "",
-    //         });
-    //       }, 100000);
-    //       document.querySelector("#imageForm").reset();
-    //       // getting uploaded images
-    //       this.refs.child.getImages();
-    //     }
-    //   })
-    //   .catch((error) => {
-    //     console.error(error);
-    //   });
+    axios.post("http://localhost:8000/api/files", data)
+      .then((response) => {
+        if (response.status === 200) {
+          this.setState({
+            responseMsg: {
+              status: response.data.status,
+              message: response.data.message,
+            },
+          });
+          setTimeout(() => {
+            this.setState({
+              image: "",
+              responseMsg: "",
+            });
+            console.log(this.image)
+          }, 100000);
+          document.querySelector("#imageForm").reset();
+          // getting uploaded images
+          this.refs.child.getImages();
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   // file validation

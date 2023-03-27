@@ -76,7 +76,7 @@ export default class Images extends Component {
                 <div className="flex">
  
                   {
-                    this.state.images.length > 0 ? (
+                    this.state.images && this.state.images.length > 0 ? (
                         this.state.images.map((image) => (
                         <div className="w-1/3 flex items-start mt-3" key={image.id}>
                             <img src={ "http://localhost:8000/uploads/" + image.panduan_name } className="img-fluid img-bordered" width="200px"/>
