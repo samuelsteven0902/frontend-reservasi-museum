@@ -1,15 +1,18 @@
-import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
+import React, { useEffect, useState, } from "react";
+// import PropTypes from "prop-types";
 import ReactLoading from 'react-loading';
 import { GrFormView } from 'react-icons/gr';
 
 // components
-import TableDropdown from "../Dropdowns/TableDropdown.js";
+// import TableDropdown from "../Dropdowns/TableDropdown.js";
 import axios from "axios";
 import excel from "../../../assets/img/admin/excel.png"
-import $ from 'jquery'; 
+// import $ from 'jquery'; 
 import { useHistory } from 'react-router-dom';
 // import DataTable from 'datatables.net';
+// import DataTable from 'datatables.net';
+// import { Dataset } from "@mui/icons-material";
+
 export default function CardTable({ color }) {
   const [loading,setLoading] = useState(true)
   const [pengunjung,setPengunjung] = useState([])
@@ -52,6 +55,7 @@ const handleTiket = (e) =>{
   });
 }, [])
 
+
   if(loading)
   {
     var pengunjung_HTMLTABLE =   
@@ -63,9 +67,10 @@ const handleTiket = (e) =>{
   }
   else
   {
-    var pengunjung_HTMLTABLE = "";
-    pengunjung_HTMLTABLE = pengunjung.filter(val=>{
-      if(searchTerm == "")
+    // var pengunjung_HTMLTABLE = "";
+    // eslint-disable-next-line array-callback-return
+    pengunjung_HTMLTABLE = pengunjung.filter(val => {
+      if(searchTerm === "")
       {
         return val
       }
@@ -90,9 +95,9 @@ const handleTiket = (e) =>{
           <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.jumlah}</td>
           <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.harga_awal}</td>
           <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.pembayaran}</td>
-          <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.status == "Lunas" ? "Lunas" : "Belum Lunas"}</td>
+          <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.status === "Lunas" ? "Lunas" : "Belum Lunas"}</td>
           <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.tanggal_pembayaran}</td>
-          <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.kehadiran == "Hadir" ? "Hadir" : "Tidak Hadir"}</td>
+          <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.kehadiran === "Hadir" ? "Hadir" : "Tidak Hadir"}</td>
           <td className="sticky right-0 bg-white  w-full m-auto border-b flex py-3 justify-center">
             <button className="bg-gray-500 hover:bg-gray-600 rounded shadow-inner drop-shadow-2xl  py-0.5 px-1" onClick={e=>handleTiket(item.kode_tiket,e)}>
             <GrFormView className=""/>
@@ -111,7 +116,7 @@ const handleTiket = (e) =>{
         <input type='text' className="w-full font-nunito border-none ring-2 ring-red-300 focus:border-none focus:ring-red-500 focus:ring-2 active:border-none rounded-lg"  placeholder="Cari nama, kategori, kota,..." onChange={e=>{setSearchTerm(e.target.value)}} /> 
       </div>
       <div className=" flex justify-end items-center w-full">
-        <button className="bg-green-400 rounded-xl h-7 px-5 text-sm font-nunito text-green-800" onClick={handleDownload}><p className="flex">Unduh Laporan <img src={excel} className='w-4 ml-2'/></p></button>
+        <button className="bg-green-400 rounded-xl h-7 px-5 text-sm font-nunito text-green-800" onClick={handleDownload}><p className="flex">Unduh Laporan <img src={excel} className='w-4 ml-2' alt="excel" /></p></button>
       </div>
     </div>
 

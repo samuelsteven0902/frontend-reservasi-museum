@@ -1,27 +1,28 @@
-import axios from 'axios'
-import CardTable from './Cards/CardDataSanggahan'
-import CardDataPengunjung from './Cards/CardDataPengunjung'
+// import axios from 'axios'
+// import CardTable from './Cards/CardDataSanggahan'
 import React, { useEffect, useState, Component } from 'react'
+// import CardDataPengunjung from './Cards/CardDataPengunjung'
+// import CardDataSanggahan from './Cards/CardDataSanggahan'
+import CardDataaaa from './Cards/CardDataaaa'
 import DefaultFooterAdmin from "components/DefaultFooterAdmin.js";
-// import 'bootstrap/dist/css/bootstrap.min.css';
 
-const $ = require('jquery')
-$.DataTable = require('datatables.net')
+// const $ = require('jquery')
+// $.DataTable = require('datatables.net')
 
 function DataPengunjung() {
 
-  $(`#datatable`).DataTable()
+  // $(`#datatable`).DataTable()
 
   return (
     <>
-    {/* <div className="px-4 md:px-10 mx-auto w-full -m-20"> */}
       <div className="flex flex-wrap">
         <div className="w-full px-4">
           {/* <CardTable /> */}
-          <CardDataPengunjung/>
+          {/* <CardDataPengunjung/> */}
+          {/* <CardDataSanggahan/> */}
+          <CardDataaaa/>
         </div>
       </div>
-    {/* </div> */}
       <DefaultFooterAdmin/>
     </>
   )

@@ -1,18 +1,18 @@
-import Card from '@material-tailwind/react/Card';
-import CardImage from '@material-tailwind/react/CardImage';
-import CardBody from '@material-tailwind/react/CardBody';
-import Icon from '@material-tailwind/react/Icon';
-import H4 from '@material-tailwind/react/Heading4';
-import H6 from '@material-tailwind/react/Heading6';
-import LeadText from '@material-tailwind/react/LeadText';
-import Paragraph from '@material-tailwind/react/Paragraph';
+// import Card from '@material-tailwind/react/Card';
+// import CardImage from '@material-tailwind/react/CardImage';
+// import CardBody from '@material-tailwind/react/CardBody';
+// import Icon from '@material-tailwind/react/Icon';
+// import H4 from '@material-tailwind/react/Heading4';
+// import H6 from '@material-tailwind/react/Heading6';
+// import LeadText from '@material-tailwind/react/LeadText';
+// import Paragraph from '@material-tailwind/react/Paragraph';
+// import museumKeris from 'assets/img/MuseumKeris.jpg';
 import StatusCard from 'components/landing/StatusCard';
-import museumKeris from 'assets/img/MuseumKeris.jpg';
 import { useEffect, useRef, useState } from 'react';
 import { Calendar } from 'react-date-range';
 import { addDays, format, isMonday, isSunday } from 'date-fns';
 import { Link,  useHistory } from 'react-router-dom';
-import pesan from '../../assets/img/icon/pesan.png'
+// import pesan from '../../assets/img/icon/pesan.png'
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 
@@ -24,7 +24,6 @@ export default function WorkingSection({setRes}) {
     const [category, setCategory] = useState("Kategori");
     const [disabledCategory , setDisabledCategory] = useState(true);
     const [disabledDate , setDisabledDate] = useState(true);
-    const [disableInput , setDisableInput] = useState(true);
     const [calendar, setCalendar] = useState(t('landing.working.tanggal'));
     const [count, setCount] = useState(0);
     const [open,setOpen] = useState(false);
@@ -46,10 +45,10 @@ export default function WorkingSection({setRes}) {
 
     const refOne = useRef(null)
     // kayaknya ditambhkan di ws pembayaran
-    const handleInput =(e) =>{
-        setInput({...input,[e.target.name]:e.target.value}) 
-        console.log(e);
-    }
+    // const handleInput =(e) =>{
+    //     setInput({...input,[e.target.name]:e.target.value}) 
+    //     console.log(e);
+    // }
 
     const cekMuseum = (e) =>{
         if(input.museum === "museum_keris" || "museum_radya_pustaka") {
@@ -116,7 +115,7 @@ export default function WorkingSection({setRes}) {
         fetchCategory()
         
         console.log(category);
-    }, [museumId,namaInput])
+    }, [category,museumId,namaInput])
     
     useEffect(() => {
 
@@ -188,7 +187,7 @@ console.log(category);
                                     const index = e.target.selectedIndex;
                                     const el = e.target.childNodes[index]
                                     const option =  el.getAttribute('id'); 
-                                    const selectedMuseum = e.target.id;
+                                    // const selectedMuseum = e.target.id;
                                     setInput({...input,museum:option})
                                     setNamaInput({...namaInput,namaCategory:e.target.value})
                                     console.log(e.target.value);
