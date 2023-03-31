@@ -201,19 +201,23 @@ const storeData = (e) => {
             swal("Success",res.data.message,"success");
             fetchData();
             CloseRef.current.click();
+            thisClicked.innerText = "Tambah Data";
             
         }
         else if(res.data.status === 220)
         {
             swal("Gagal Menambahkan",res.data.message,"error");
+            thisClicked.innerText = "Tambah Data";
         }
         else if(res.data.status === 422)
         {
-            swal("All fields are mandetory","","error");
+            swal("All fields are mandetory","","error")
+            thisClicked.innerText = "Tambah Data";;
         }
         else if(res.data.status === 404)
         {
             swal("Error",res.data.message,"error");
+            thisClicked.innerText = "Tambah Data";
         }
     });
 }
@@ -421,7 +425,7 @@ return (
                             </div>
 
                         </form>:
-                            <form onSubmit={updateHarga} >
+                            <form onSubmit={updateHarga}  className="overflow-auto">
                             <div className="modal-body relative p-4">
                                 <div className='justify-around md:mt-0 mt-8'>    
                                     <div className="w-96 mb-4 mx-auto ">
@@ -447,7 +451,7 @@ return (
                                     </div>
                                     <div className="w-96 mb-4  mx-auto md:mt-0 mt-8">
                                         <label className="block text-gray-700 text-sm font-nunito font-semibold mb-2" for="username">
-                                            Hari Libur
+                                            Harga Hari Libur
                                         </label>
                                         <input name='hari_libur' onChange={handleInput}  className="shadow p-2  appearance-none border border-black rounded-full w-72 sm:w-full mx-auto text-gray-700  leading-tight focus:outline-none focus:shadow-outline" type="number" value={harga.hari_libur} />
                                         <span className="text-sm text-red-500"></span>
@@ -490,8 +494,8 @@ return (
                             data-bs-dismiss="modal" aria-lab55el="Close"></button>
                         </div>
                         
-                            <form onSubmit={storeData} >
-                                <div className="modal-body relative p-4">
+                            <form onSubmit={storeData} className="overflow-auto">
+                                <div className="modal-body relative p-4 ">
                                     <div className='justify-around md:mt-0 mt-8'>    
                                         <div className="sm:w-96 mb-4 mx-auto ">
                                             <label className="block text-gray-700 text-sm font-nunito font-semibold mb-2" for="nama_museum">
@@ -517,7 +521,10 @@ return (
                                                         )})}
                                                 </select>
                                             </div>
-                                            <div className="flex justify-between">
+                                                    <label className="block text-gray-700 text-sm font-nunito font-semibold mt-6" for="nama_museum">
+                                                        Nama Kategori
+                                                    </label>
+                                            <div className="flex justify-between  mt-2">
                                                 <select id='kategori' value={input.namaKategori} className="block appearance-none w-72 sm:w-full p-2.5 bg-white text-center border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
                                                     onChange={(e) => {
                                                         const index = e.target.selectedIndex;
@@ -532,21 +539,22 @@ return (
                                                     }}>
                                                     <option >{namaInput.namaKategori}</option>
                                                     {kategori && kategori.map((item,index) =>{
+                                                        console.log(item);
                                                         return(
-                                                            <option className='py-6 my-6 h-32' key={index} id={item.id} value={item.id}>{item.nama_kategori}</option>
+                                                            <option className='py-6 my-6 h-32 flex justify-between' key={index} id={item.id} value={item.id}>{item.nama_kategori}    ( min: {item.min} || max: {item.max} )  </option>
                                                         )})}
                                                 </select>
                                             </div>
 
                                             <span className="text-sm text-red-500"></span>
                                         </div>
-                                        <div className="w-96 mb-4  mx-auto md:mt-0 mt-8">
+                                        {/* <div className="w-96 mb-4  mx-auto md:mt-0 mt-8">
                                             <label className="block text-gray-700 text-sm font-nunito font-semibold mb-2" for="nama_kategori">
                                                 Nama Kategori
                                             </label>
                                             <input name='nama_kategori'  className="shadow appearance-none border rounded-full w-72 sm:w-full mx-auto text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="nama_kategori" type="text" onChange={handleInputTambahData}/>
                                             <span className="text-sm text-red-500"></span>
-                                        </div>
+                                        </div> */}
                                         <div className="w-96 mb-4  mx-auto md:mt-0 mt-8">
                                             <label className="block text-gray-700 text-sm font-nunito font-semibold mb-2" for="hari_biasa">
                                                 Harga Hari Biasa
@@ -556,7 +564,7 @@ return (
                                         </div>
                                         <div className="w-96 mb-4  mx-auto md:mt-0 mt-8">
                                             <label className="block text-gray-700 text-sm font-nunito font-semibold mb-2" for="hari_libur">
-                                                Hari Libur
+                                                Harga Hari Libur
                                             </label>
                                             <input name='hari_libur' className="shadow appearance-none border rounded-full w-72 sm:w-full mx-auto text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="hari_libur" type="number" onChange={handleInputTambahData}/>
                                         </div>

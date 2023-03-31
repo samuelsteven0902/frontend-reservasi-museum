@@ -78,7 +78,21 @@ function WorkingSection(input) {
                     }
                 });
         }else if(pembayaran == t('pembayaran.metode.cashless')){
-            history.push({ pathname:"/pembayaran-noncash" });
+            const data = {
+                nama:input.data.nama,
+                kota:input.data.kota,
+                phone:input.data.phone,
+                jumlah:input.data.jumlah,
+                museum:input.data.museum,
+                kategori:input.data.kategori,
+                tanggal:input.data.tanggal,
+                foto:input.data.foto,
+                harga_awal:input.input,  
+                pembayaran: 'non-cash',
+                // tiket: input.data.kode_tiket,
+                status: 'belum lunas',
+            }
+            history.push({ pathname:"/pembayaran-noncash",state: {data} });
         }else{
             setDanger("Silahkan pilih pembayaran terlebih dahulu")
         }

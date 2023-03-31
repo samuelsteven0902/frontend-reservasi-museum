@@ -1541,6 +1541,9 @@ input[type="range"]::-ms-fill-lower{
 	margin-top: calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));
 	margin-bottom: calc(1.5rem * var(--tw-space-y-reverse));
 } 
+.overflow-auto{
+	overflow: auto;
+} 
 .overflow-hidden{
 	overflow: hidden;
 } 
@@ -1828,9 +1831,6 @@ input[type="range"]::-ms-fill-lower{
 } 
 .bg-landing-background{
 	background-image: linear-gradient(rgba(0,0,0, 0), rgba(0,0,0, 0)), url('/src/assets/img/Landing/Museumlandingpage.png');
-} 
-.bg-landing-background2{
-	background-image: linear-gradient(rgba(0,0,0, 0), rgba(0,0,0, 0)), url('/src/assets/img/Landing/radya.png');
 } 
 .bg-landing-background3{
 	background-image: linear-gradient(rgba(0,0,0, 0), rgba(0,0,0, 0)), url('/src/assets/img/Landing/MuseumRadyaLanding.JPG');
@@ -4830,11 +4830,11 @@ video {
 	.sm\:flex{
 		display: flex;
 	} 
-	.sm\:h-96{
-		height: 24rem;
-	} 
 	.sm\:h-\[30rem\]{
 		height: 30rem;
+	} 
+	.sm\:h-96{
+		height: 24rem;
 	} 
 	.sm\:w-5\/6{
 		width: 83.333333%;

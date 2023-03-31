@@ -20,7 +20,6 @@ function CardAdmin() {
   });
   }, [])
 
-  console.log(pemasukan);
 
   const rupiah = (number)=>{
     return new Intl.NumberFormat("id-ID", {
@@ -73,7 +72,7 @@ function CardAdmin() {
                   {item.tanggal}
                 </td>
                 <td className=" text-gray-900  px-6 py-4 whitespace-nowrap">
-                  {item.name}
+                  {item.id_admin}
                 </td>
                 <td className=" text-gray-900  px-6 py-4 whitespace-nowrap">
                   {item.nama}

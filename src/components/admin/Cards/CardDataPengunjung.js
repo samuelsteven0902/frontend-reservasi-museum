@@ -9,6 +9,7 @@ import { useHistory } from 'react-router-dom';
 import Datatable from 'react-data-table-component';
 import styled from 'styled-components'
 import FontAwesome from 'font-awesome/css/font-awesome.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function CardTable({ color }) {
 

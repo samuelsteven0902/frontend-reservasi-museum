@@ -52,7 +52,7 @@ export default function Sidebar() {
           {/* Collapse */}
           <div
             className={
-              "md:flex md:flex-col md:items-stretch md:opacity-100 md:relative md:mt-4 md:shadow-none shadow absolute top-0 left-0 right-0 z-40 overflow-y-auto overflow-x-hidden h-auto items-center flex-1 rounded " +
+              "md:flex md:flex-col md:items-stretch md:opacity-100 md:relative md:mt-4 md:shadow-none  absolute top-0 left-0 right-0 z-40 overflow-y-auto overflow-x-hidden h-auto items-center flex-1 rounded " +
               collapseShow
             }
           >
@@ -169,7 +169,7 @@ export default function Sidebar() {
                 >
                   <i
                     className={ 
-                      "fas fa-solid fa-file-invoice mr-2 text-sm " +
+                      "fas fa-solid fa-clipboard-list mr-2 text-sm " +
                       (window.location.href.indexOf("/admin/status-pembayaran") !== -1
                         ? "opacity-50"
                         : "text-blueGray-500")

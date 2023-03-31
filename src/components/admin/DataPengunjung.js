@@ -1,8 +1,8 @@
-import axios from 'axios'
+// import axios from 'axios'
 // import CardTable from './Cards/CardDataSanggahan'
 import React, { useEffect, useState, Component } from 'react'
-import CardDataPengunjung from './Cards/CardDataPengunjung'
-import CardDataSanggahan from './Cards/CardDataSanggahan'
+// import CardDataPengunjung from './Cards/CardDataPengunjung'
+// import CardDataSanggahan from './Cards/CardDataSanggahan'
 import CardDataaaa from './Cards/CardDataaaa'
 import DefaultFooterAdmin from "components/DefaultFooterAdmin.js";
 
