@@ -13,7 +13,7 @@ export default function Slider() {
           <CardSlider/>
         </div>
       </div>
-          <DefaultFooterAdmin/>
+          {/* <DefaultFooterAdmin/> */}
     </>
   );
 }

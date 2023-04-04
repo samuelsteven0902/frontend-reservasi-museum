@@ -138,14 +138,6 @@ class CardDataKehadiran extends Component {
                 align: "left",
                 sortable: true
             },
-            // {
-            //     key: "status",
-            //     text: "Status",
-            //     className: "border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4",
-            //     TrOnlyClassName:"border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-red-200",
-            //     align: "left",
-            //     sortable: true
-            // },
             {
                 key: "kehadiran",
                 text: "Kehadiran",
@@ -155,7 +147,6 @@ class CardDataKehadiran extends Component {
                 sortable: true
             },
             {
-                // key: "konfirmasi",
                 text: "Konfirmasi",
                 className: "sticky right-0 bg-white w-full m-auto border-b flex py-3 justify-center",
                 TrOnlyClassName: "sticky right-0 bg-white text-red-700 px-2",
