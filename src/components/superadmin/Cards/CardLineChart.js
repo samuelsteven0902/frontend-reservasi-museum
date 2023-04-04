@@ -138,13 +138,13 @@ export default function CardLineChart() {
             data: [2, dataPengunjungFeb, dataPengunjungMar , dataPengunjungApril, dataPengunjungMei, dataPengunjungJuni, dataPengunjungJuli, dataPengunjungAgus, dataPengunjungSept, dataPengunjungOkt, dataPengunjungNov,dataPengunjungDes],
             fill: false,
           },
-          {
-            label: new Date().getFullYear() - 1,
-            fill: false,
-            backgroundColor: "#fff",
-            borderColor: "#fff",
-            data: [4, 6, 8, 7, 6, 0, 8],
-          },
+          // {
+          //   label: new Date().getFullYear() - 1,
+          //   fill: false,
+          //   backgroundColor: "#fff",
+          //   borderColor: "#fff",
+          //   data: [4, 6, 8, 7, 6, 0, 8],
+          // },
         ],
       },
       options: {

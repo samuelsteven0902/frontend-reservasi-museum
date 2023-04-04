@@ -201,7 +201,7 @@ console.log(category);
                                     {museum && museum.map((item,index) =>{
                                     // console.log(item.id);
                                     return(
-                                        <option className='py-6 my-6  h-32' key={index} id={item.id} value={item.nama_museum}>{item.nama_museum}</option>
+                                        <option className='py-6 my-6 h-32' key={index} id={item.id} value={item.nama_museum}>{item.nama_museum}</option>
                                     )})}
                                 </select>
                                 <select value={{label: namaInput.namaCategory}} id="category" className="disabled:text-gray-600 disabled:cursor-not-allowed disabled:bg-gray-300 sm:w-1/3 w-full sm:mx-5 sm:my-0 p-2.5 text-[#A70B0B] font-nunito font-semibold text-center bg-[#ECE3DE] border-none rounded-md shadow-sm  appearance-none focus:border-red-800  focus:outline-none " onChange={(e) => {

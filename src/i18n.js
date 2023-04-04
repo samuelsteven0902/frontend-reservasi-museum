@@ -71,7 +71,7 @@ i18n
             },
             faq:'Collection of Frequently Asked Questions',
             harga:{
-              judul:'Price List Ticket',
+              judul:'Ticket Price',
               desc:'Information on museum ticket reservation prices can be read here',
             },
             cari:{
@@ -79,27 +79,26 @@ i18n
               desc:'Find ticket to validate your ticket',
             },
             about:{
-              part1:'UPT Museum is an agency under the supervision of the Surakarta City Culture and Tourism Office. The UPT Museum was established to protect cultural heritage, especially in the city of Solo where there are abundant relics',
-              part2:'VISION OF UPT MUSEUM SURAKARTA Realization of a global historical and cultural tourist destination. MISSION OF UPT MUSEUM SURAKARTA To make the museum a competitive place of education, source of knowledge and recreation. Maintain Cultural Heritage Objects and Buildings. Preserving and publicizing the rich collection of cultural heritage to the domestic and foreign communities.',
+              part1:'UPT Museum is an Office under the supervision of the Surakarta Culture and Tourism Office. The UPT Museum was established to protect cultural heritage, especially in Solo where there are a lot of relics.',
+              part2:'THE VISION OF UPT MUSEUM SURAKARTA The Realization of a global historical and cultural tourist destination. THE MISSION OF UPT MUSEUM SURAKARTA Realizing the museum becomes an educational place, a competitive source of knowledge and recreation. Maintaining Cultural Heritage Objects and Buildings. Preserving and publicizing the wealth of culture heritage collections to the domestic and foreign communities.',
             },
             footer: {
               title:'TICKET RESERVATION',
-              desc:'Museum Ticket Reservation aims to make it easier for visitors to order tickets online'
+              desc:'Ticket Reservation aims to make it easier for visitors to order tickets online'
             },
-            kontak:'contact',
-            alamat:'Bhayangkara St No. 2, Sriwedari, Laweyan, Surakarta, Center Java 57141',
-            // :'',
+            kontak:'Contact',
+            alamat:'Jl. Bhayangkara No.2, Sriwedari, Laweyan, Surakarta, Central Java 57141',
           },
           about:{
             desc:'Describe the UPT Museum Surakarta',
             isi:{
-              part1:'UPT Museum is an agency under the supervision of the Surakarta City Culture and Tourism Office. The UPT Museum was established to protect cultural heritage, especially in the city of Solo where there are abundant relics',
-              part2:'VISION OF UPT MUSEUM SURAKARTA Realization of a global historical and cultural tourist destination. MISSION OF UPT MUSEUM SURAKARTA To make the museum a competitive place of education, source of knowledge and recreation. Maintain Cultural Heritage Objects and Buildings. Preserving and publicizing the rich collection of cultural heritage to the domestic and foreign communities.',
-              part3:'The Keris Nusantara Museum and Radya Pustaka are museums managed by the Solo government. Both have their own charm.',
-              part4:'The Keris Nusantara Museum is a museum built by the Directorate General of Culture, Ministry of Education and Culture through the Directorate of Preservation of Cultural Heritage and Museums since 2013. It was inaugurated on Tuesday Wage, 15 Maulud Dal 1890, 9 August 2017 at the initiative of the 16th Mayor of Solo, Mr. H. Ir. Joko Widodo. The Keris Museum stands above the Sriwedari Cultural Park area. At the inauguration, the Keris Museum was officially under UPT Museum Surakarta.',
-              part5:'The keris as a world cultural heritage was recognized by UNESCO on November 25, 2005 in Paris, France. Through this recognition, the keris gains recognition in the eyes of the world as a masterpiece that has high philosophical value and shows cultural excellence.',
-              part6:'Museum Radya Pustaka, Museum Tertua di Indonesia. Didirikan oleh Kanjeng Raden Adipati Sosrodiningrat IV pada 18 Oktober 1890 ini merupakan museum tertua yang ada di Indonesia.',
-              part7:'The Radya Pustaka Museum stands on the Main Street area of ​​Surakarta City, precisely on Jalan Slamet Riyadi, which is the first and oldest museum in Indonesia. The museum is the pride of the people of Surakarta which has its own uniqueness compared to other old museums, namely with a collection of various ancient objects, ranging from stone statues, bronze statues, daily necessities from ancient kings, gifts from emperors or kings. from other nations and ancient fiber books by poets of the ancient Kingdom which were stored neatly in the royal library and are also still much sought after by students, students, humanists and intellectuals today to look for data and for the sake of Literature, especially related to Literature Java.',
+              part1:'UPT Museum is an Office under the supervision of the Surakarta Culture and Tourism Office. The UPT Museum was established to protect cultural heritage,  especially in Solo where there are a lot of relics.',
+              part2:'THE VISION OF UPT MUSEUM SURAKARTA The Realization of a global historical and cultural tourist destination. THE MISSION OF UPT MUSEUM SURAKARTA Realizing the museum becomes an educational place, a competitive source of knowledge and recreation. Maintaining Cultural Heritage Objects and Buildings. Preserving and publicizing the wealth of culture heritage collections to the domestic and foreign communities.',
+              part3:'Museum Keris Nusantara and Radya Pustaka are museums managed by the Solo government. Both have their own charm.',
+              part4:'Museum Keris Nusantara is a museum built by the Directorate General of Culture, Ministry of Education and Culture through the Directorate of Preservation of Cultural Heritage and Museums since 2013. It was inaugurated on Tuesday Wage, 15 Maulud Dal 1890, August 9, 2017, initiated by the 16th Mayor of Solo, Ir. Joko Widodo. At the inauguration ceremony, Museum Keris was officially under UPT Museum Surakarta.',
+              part5:'The kris as a world cultural heritage was recognized by UNESCO on November 25, 2005 in Paris, France. Through this recognition, the kris gains recognition in the eyes of the world as a masterpiece that has high philosophical value and shows cultural excellence.',
+              part6:'Museum Radya Pustaka, the Oldest Museum in Indonesia.  Founded by Kanjeng Raden Adipati Sosrodiningrat IV on October 18, 1890, this is the oldest museum in Indonesia.',
+              part7:'Museum Radya Pustaka was built on the Main Street area of Surakarta City, precisely on Jalan Slamet Riyadi, which is the first and the oldest museum in Indonesia. The museum is the pride Surakarta people which has its own uniqueness compared to other old museums, with a collection of various ancient objects, ranging from stone statues, bronze statues, daily necessities from ancient kings, gifts from emperors or kings from other nations and ancient books of Serat by Poets of the ancient Kingdom which were stored neatly in the kingdom library. Nowadays, students, humanists and intellectuals still collecting datas for literature purpose, especially related to Java Literature.',
             },
           },
           panduan: {
@@ -110,7 +109,7 @@ i18n
             desc:'Find your question'
           },
           harga:{
-            judul:'Price List Ticket Museum',
+            judul:'Museum Ticket Price',
             desc1:'List of ticket prices of each available Museum. The price could changes every time.',
             desc2:'Perda Number 5 of 2016 about RETRIBUSI DAERAH TIKET MASUK MUSEUM KERIS NUSANTARA KOTA SURAKARTA.',
             biasa:"Weekday",
@@ -118,11 +117,11 @@ i18n
           },
           cari:{
             judul:'Find Ticket',
-            desc1:'Search Tickets using Ticket Code or Mobile Number here...',
+            desc1:'Search Tickets using Ticket Code or Phone Number here...',
           },
           formInput:{
             desc:{
-              isi: 'The UPT Museum manages the Keris Nusantara Museum and the Radya Pustaka Museum as tourist destinations for people around and outside the city. The Keris Nusantara Museum and the Radya Pustaka Museum have their own charms. Visitors will be presented with the beauty of cultural heritage as well as learn about history.',
+              isi: 'The UPT Museum manages the Museum Keris Nusantara and Museum Radya Pustaka as tourist destinations for people around and outside the city. Museum Keris Nusantara and the Museum Radya Pustaka have their own charms. Visitors will be presented with the beauty of cultural heritage as well as learn about history.',
               tggl: 'Visit Date',
               biasa: 'Weekend Prices',
               libur: 'Weekday Prices',
@@ -130,32 +129,32 @@ i18n
             input:{
               judul:'Visitor Input Form',
               nama:'Name',
-              kota:'FAQ Town',
+              kota:'City',
               no:'Phone Number',
               jumlah:'Number of People',
             },
             syarat:{
               judul:'Visitor Terms and Conditions',
-              part1:'1. It is forbidden to bring food and drink while inside the Keris Museum,',
-              part2:'2. It is forbidden to hold property in the Keris Museum,',
+              part1:'1. Do not bring food and beverage to the Museum Keris,',
+              part2:'Do not touch the property in the Museum Keris,',
               part3:'3. Do not litter',
-              part4:'4. If the day of payment exceeds the day of attendance, the ticket is considered invalid',
-              part5:'5. If you have paid and are not present, the payment cannot be returned',
+              part4:'4. If the payment date exceeds the day of attendance, the ticket is considered invalid',
+              part5:'5. If you have paid and are not attend, the payment cannot be returned',
               checkbox:'I agree with the Terms and Conditions',
             },
             tombol:'Next to Payment',
             perhatian:{
               judul:'Attention!',
-              desc:'Please bring your ID card when you come to validate the ticket',
+              desc:'Please bring your ID card when you validate the ticket',
             }
           },
           pembayaran:{
             judul:'Payment',
             identitas:{
-              judul:'Visitor Identity',
+              judul:'Identity',
               nama:'Name',
               no:'Phone Number',
-              kota:'Home town',
+              kota:'City',
             },
             metode:{
               judul:'Choose a Payment Method',
@@ -164,11 +163,11 @@ i18n
               pilih:'Payment',
             },
             detail:{
-              judul:'Order Detail',
+              judul:'Detail Order',
               museum:'Order Ticket on',
               tgl:'Order Date',
               kategori:'Category',
-              jumlah:'Qty'
+              jumlah:'The number of tickets',
             },
             total:{
               judul:'Total Payment',
@@ -178,12 +177,12 @@ i18n
           },
           tiket:{
             judul:'Reservation Ticket',
-            nama:'Booker Name',
+            nama:'Name',
             qty:'Number of Tickets',
-            tgl:'Date of Visit',
+            tgl:'Visit Date',
             kategori:'Category',
             total:'Total Payment',
-            keterangan:'Ticket Description',
+            keterangan:'Ticket Information',
           }
         }
       },

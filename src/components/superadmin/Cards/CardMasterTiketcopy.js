@@ -5,7 +5,7 @@ import swal from "sweetalert";
 // import $ from 'jquery';
 
 
-function CardMasterTiket() {
+function CardMasterTiketcopy() {
 
 const [loading,setLoading] = useState(true)
 const [loadingHarga,setLoadingHarga] = useState(true)
@@ -503,4 +503,4 @@ else
   )
 }
 
-export default CardMasterTiket
+export default CardMasterTiketcopy

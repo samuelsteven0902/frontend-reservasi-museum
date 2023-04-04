@@ -170,8 +170,8 @@ return (
                                 <button type="button" className="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"
                                 data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                            <form  onSubmit={handleSubmit}>
-                            <div className="modal-body relative p-4">
+                            <form  onSubmit={handleSubmit} className='overflow-auto'>
+                            <div className="modal-body relative py-4">
                                 <div className='justify-around md:mt-0 mt-8'>    
                                     <div className="w-96 mb-4 mx-auto ">
                                         <label className="block text-gray-700 text-sm font-nunito font-semibold mb-2" for="username">Nama</label>
@@ -190,7 +190,7 @@ return (
                                         <div className='relative'>
                                         <input name='password'  className="shadow appearance-none border rounded-full z-10 w-72 sm:w-full mx-auto text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-gray-200" type={passwordType}
                                         onChange={handleInput}/>
-                                        <button className="  px-5 py-2.5 absolute -ml-14 -mt-1 z-40 focus:border-none active:border-none focus:outline-none focus:ring-0"  onClick={togglePassword}>
+                                        <button className=" py-2.5 absolute -ml-14 -mt-1 z-40 focus:border-none active:border-none focus:outline-none focus:ring-0"  onClick={togglePassword}>
                                             { passwordType==="password"? <AiOutlineEyeInvisible size={24} /> :<AiOutlineEye size={24} /> }
                                             </button>
                                         </div>

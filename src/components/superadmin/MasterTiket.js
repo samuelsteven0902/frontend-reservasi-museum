@@ -4,7 +4,7 @@ import DefaultFooterAdmin from "components/DefaultFooterAdmin.js";
 
 // components
 
-import CardMasterTiket from "./Cards/CardMasterTiket.js";
+import CardMasterTiketcopy from "./Cards/CardMasterTiketcopy.js";
 // import CardProfile from "./Cards/CardProfile.js";
 
 export default function MasterTiket() {
@@ -13,7 +13,7 @@ export default function MasterTiket() {
     <>
       <div className="flex flex-wrap">
         <div className="w-full px-4">
-          <CardMasterTiket />  
+          <CardMasterTiketcopy />  
         </div>
       </div>
         <DefaultFooterAdmin />

@@ -117,12 +117,12 @@ return (
     <div>
         <div className=' xl:px-32 lg:px-10 px-4  lg:flex   justify-center bg-gray-100'>
             <div className='lg:w-2/3 w-full my-2 mt-6 mx-4'>
-                <div className='container mx-auto flex bg-white   rounded-2xl py-4'>
+                <div className='container mx-auto flex bg-white rounded-2xl py-4'>
                     <div className='w-1/6 flex mx-auto justify-center'>
                     <img src={identitas} className='w-16 h-16'/>
                     </div>
                     <div className='w-5/6 justify-around '>
-                        <p className='my-5 font-merriweather font-bold text-3xl'>{t('pembayaran.judul')}</p>
+                        <p className='font-merriweather font-bold text-3xl py-3'>{t('pembayaran.judul')}</p>
                         <div className='flex'>
                             <div className='font-bold font-nunito'>
                                 <p className='my-3'>{t('pembayaran.identitas.nama')}: </p>
@@ -144,31 +144,31 @@ return (
                     </div>
                 </div>
 
-                {input.input == 0 ? "":<div className='container mx-auto flex bg-white my-6   rounded-2xl py-4'>
+                {input.input == 0 ? "":<div className='container mx-auto flex bg-white my-6 rounded-2xl py-4'>
                     <div className='w-1/6 flex mx-auto justify-center '>
                     <img src={pilih}  className='w-16 h-16'/>
                         
                     </div>
-                    <div className='w-5/6 ' >
-                        <p className='font-merriweather font-bold text-3xl py-4'>{t('pembayaran.metode.judul')}</p>
+                    <div className='w-5/6' >
+                        <p className='font-merriweather font-bold text-3xl py-3'>{t('pembayaran.metode.judul')}</p>
                         <div className='w-full mx-auto justify-center'>
-                            <label className='flex max-w-full items-center hover:bg-gray-100 p-5 mx-5 rounded-3xl my-5 transition-all duration-500 ease-in-out'>
-                                <div className='flex w-2/3 justify-around items-center'>
+                            <label className='flex max-w-full items-center hover:bg-gray-100 mx-5 rounded-3xl my-5 transition-all duration-500 ease-in-out'>
+                                <div className='flex w-2/3 justify-start items-center'>
                                     {/* <img src={tunai}  className='w-1/5'/> */}
                                     <p className='font-nunito font-bold text-center text-2xl'> {t('pembayaran.metode.cash')} </p>
                                 </div>
                                 <input  type="radio" value= {t('pembayaran.metode.cash')} checked={pembayaran === "Male"}  onChange={onValueChange}
-                                className ='form-check-input form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-1 cursor-pointer" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2'
+                                className ='ml-24 w-5 h-5 text-blue-600 bg-gray-100 border-black-500 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" value="option2'
                                 />
                             </label>
-                            <label  className='flex max-w-full items-center hover:bg-gray-100 p-5 mx-5 rounded-3xl my-5 transition-all duration-500 ease-in-out'>
-                                <div className='flex w-2/3 justify-around items-center'>
+                            <label  className='flex max-w-full items-center hover:bg-gray-100 mx-5 rounded-3xl my-5 transition-all duration-500 ease-in-out'>
+                                <div className='flex w-2/3 justify-start items-start'>
                                     {/* <img src={qris}  className='w-1/5'/> */}
                                     <p className='font-nunito font-bold text-center text-2xl'>{t('pembayaran.metode.cashless')}</p>
                                 </div>
                                 <input type="radio" value={t('pembayaran.metode.cashless')}checked={pembayaran 
                                 === "Female"} onChange={onValueChange}
-                                className ='ml-24 w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600'
+                                className ='ml-24 w-5 h-5 text-blue-600 bg-gray-100 border-black-500 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600'
                                 />
                             </label>
                         </div>
@@ -187,12 +187,12 @@ return (
             
             </div>
                 <div className='lg:w-1/3 w-full my-2 mx-4 mt-6 h-1/2'>
-                    <div className='container  mx-auto flex bg-white   rounded-2xl py-6'>
+                    <div className='container  mx-auto flex bg-white rounded-2xl py-6'>
                         <div className='w-1/6 min-w-max flex mx-auto justify-center '>
                             <img src={detail}  className='w-16 h-16'/>
                         </div>
                         <div className='lg:block  bg-white w-5/6 mx-4'>
-                            <p className='my-5 font-bold font-merriweather text-3xl w-full'>{t('pembayaran.detail.judul')}</p>
+                            <p className='font-merriweather font-bold text-3xl py-3'>{t('pembayaran.detail.judul')}</p>
                             <div className='flex flex-wrap'>
                                 <div className='lg:w-full w-1/2'>
                                     <p className='font-nunito font-bold'>{t('pembayaran.detail.museum')}</p>
@@ -226,12 +226,12 @@ return (
                             </div> */}
                         </div>
                     </div>
-                    <div className='container mx-auto flex bg-white my-6   rounded-2xl py-4'>
+                    <div className='container mx-auto flex bg-white my-6 rounded-2xl py-4'>
                         <div className='w-1/6 min-w-max flex mx-auto justify-center '>
                             <img src={total}  className='w-16 h-16'/>            
                         </div>
                         <div className='w-5/6'>
-                            <p className='my-5 font-merriweather font-bold mx-4 text-2xl'>{t('pembayaran.total.judul')}</p>
+                            <p className='mx-4 text-2xl font-merriweather font-bold py-3'>{t('pembayaran.total.judul')}</p>
                             <div className='w-full text-right pr-12'>
                                 <p className='my-5 font-nunito font-bold text-2xl'>{rupiah(input.input)} -</p>
                             </div>

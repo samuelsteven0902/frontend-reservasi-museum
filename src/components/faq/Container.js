@@ -42,7 +42,7 @@ export default function Container({  }) {
         var faq_data = "";
         faq_data = dataFaq.filter(val=>{
             if(searchTerm == "")
-            {
+            {   
                 return val
             }
             else if(val.answer.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -59,14 +59,14 @@ export default function Container({  }) {
                     id="panel2a-header"
                     >
                     <Typography>
-                        <p className='text-2xl p-3 text-black'>
-                        <span className='pr-3'>Q:</span>  {item.question}
+                        <p className='text-2xl p-3 text-black font-nunito'>
+                        <span className='pr-3'>A:</span> {item.answer}
                         </p>
                         </Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                     <Typography>
-                <p className='text-red-600'><span className='text-2xl px-3'>A:</span> {item.answer}</p>
+                <p className='text-red-600'><span className='text-2xl px-3 font-nunito'>Q:</span> {item.question} </p>
                     </Typography>
                     </AccordionDetails>
                 </Accordion>
