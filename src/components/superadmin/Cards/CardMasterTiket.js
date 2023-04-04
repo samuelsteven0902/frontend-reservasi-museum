@@ -6,12 +6,6 @@
 // import ReactLoading from 'react-loading';
 // import ReactDatatable from '@ashvin27/react-datatable'
 // import { BiTrash, BiPencil } from 'react-icons/bi';
-// // import React from 'react'
-// // import TextField from '@material-ui/core/TextField';
-// // import Autocomplete,
-// // { createFilterOptions } from '@material-ui/lab/Autocomplete';
-// // const filter = createFilterOptions();
-// // import $ from 'jquery';
 
 // class CardMasterTiket extends Component {
 //     constructor(props) {
@@ -21,7 +15,6 @@
 //             users: []
 //         };
 
-// const [loading,setLoading] = useState(true)
 // const [loadingHarga,setLoadingHarga] = useState(true)
 
 // const [semuaHarga,setSemuaHarga] = useState()
@@ -39,7 +32,6 @@
 
 // const [input,setInput] = useState({
 //     museum : museumId,
-    
 // })
 // const CloseRef = useRef();
 
@@ -228,42 +220,6 @@
 // }
 // //end
 
-// const deleteData = (e, id) => {
-//     e.preventDefault();
-    
-//     // const thisClicked = e.currentTarget;
-//     // thisClicked.innerText = "Deleting";
-    
-//     console.log(e,id);
-
-//     swal({
-//         title: "Anda Yakin menghapus Museum?",
-//         text: "Sekali Hapus, anda tidak bisa mencadangkannya lagi!",
-//         icon: "warning",
-//         buttons: true,
-//         dangerMode: true,
-//     })
-//         .then((willDelete) => {
-//         if (willDelete) {
-
-//             axios.delete(`http://localhost:8000/api/delete-data/${id}`).then(res=>{
-//                 if(res.data.status === 200)
-//                 {
-//                     // console.log('berhasil delet');
-//                     swal("Deleted!",res.data.message,"success")
-//                     fetchData();
-//                     // thisClicked.closest("tr").remove();
-//                 }
-//                 else if(res.data.status === 404)
-//                 {
-//                     swal("Error",res.data.message,"error");
-//                 }})
-//         } else {
-//             swal("Data anda aman!");
-//         }
-//     })
-// }
-
 // function getFirstLetters(str) {
 //     const firstLetters = str
 //         .split(' ')
@@ -330,6 +286,70 @@
 //         )
 //     })
 // }
+
+// const fetchPengunjung = () => 
+// {
+
+//     axios.get(`http://localhost:8000/api/konfirmasi-pengunjung`).then(res=>{
+//         if(res.status === 200)
+//         {
+//             this.componentDidMount()
+//         }
+//     });
+// }
+
+// const fetchData = async () => {
+//     const data = await fetch(`http://localhost:8000/api/me`, {
+//       headers : {
+//           'Content-Type': 'application/json',
+//           'Accept': 'application/json',
+//           Authorization: `Bearer ${this.state.token}`,
+//       }
+//     });
+//     const json = await data.json();
+//     console.log(json);
+
+//     if(json.message !== 'Unauthenticated.')
+//     {
+//       this.state.username = json.user.name;
+//     }
+// }
+
+// const handleKonfirmasi = (e,idData) =>{
+//     // e.preventDefault();
+//     const data = {
+//         idData : idData,
+//         idAdmin: this.state.username,
+//     }
+//     console.log(data);
+
+//     swal({
+//       title: "Konfirmasi kedatangan Pengunjung?",
+//       text: "Sekali Konfirmasi, anda tidak bisa mengubahnya lagi!",
+//       icon: "warning",
+//       buttons: true,
+//       dangerMode: true,
+//     })
+//     .then((update) => {
+//       if (update) {
+//         axios.put(`http://localhost:8000/api/kehadiran`,data).then(res=>{
+//               if(res.data.status === 200)
+//               {
+//                   // console.log('berhasil delet');
+//                   swal("Berhasil!",res.data.message,"success")
+//                   fetchPengunjung();
+//               }
+//               else if(res.data.status === 404)
+//               {
+//                   // swal("Error",res.data.message,"error");
+//                   // thisClicked.innerText = "Delete";
+//               }})
+//       } else {
+//         swal("Membatalkan Aksi!");
+//       }
+//   })
+// }
+
 
 // this.deleteUser = this.deleteUser.bind(this);
 //         this.columns = [ 
@@ -417,7 +437,6 @@
 //                 length_menu: "Show _MENU_ result per page",
 //                 filter: "Cari museum, kategori, harga,...",
 //                 info: "Showing _START_ to _END_ of _TOTAL_ records",
-//                 // className:"flex my-2 w-72 w-full font-nunito border-none ring-2 ring-red-300 focus:border-none focus:ring-red-500 focus:ring-2 active:border-none rounded-lg",
 //                 pagination: {
 //                     first: "First",
 //                     previous: <span>&#8676;</span>,
@@ -470,7 +489,7 @@
 //                 <div className="rounded-t mb-0 px-4 py-3 border-0">
 //                     <div className="flex flex-wrap items-center">
 //                         <div className="relative w-full px-4 max-w-full flex-grow flex-1">
-//                             <h3 className="font-semibold text-lg font-merriweather text-red-600" >Master Tiket
+//                             <h3 className="font-semibold text-lg font-merriweather text-red-600" >Master Tiket Museum
 //                             </h3>
 //                         </div>
 //                     </div>
