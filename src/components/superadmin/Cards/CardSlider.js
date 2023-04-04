@@ -130,7 +130,14 @@ const handleSubmit = (e) =>{
             status: response.data.status,
             message: response.data.message,
         });
+        if(response.data.status === "successs")
+        {
         swal("Success",response.data.message,"success")
+        }
+        else
+        {
+          swal("error",response.data.message,"error")
+        }
         CloseRef.current.click();
         showData();
         setTimeout(() => {
@@ -239,6 +246,7 @@ return (
                   <div className="bg-white p-10">
                     <div className="card-body form-group py-2">
                         <input type="file" name="image" multiple onChange={handleInput} className="rounded-xl bg-gray-200 w-full"/>
+                        <div className="font-base font-bold font-nunito">Format Gambar : jpeg,png,jpg</div>
                         <div className="font-base font-bold font-nunito">Max. Upload 2MB</div>
                     </div>
                   </div>

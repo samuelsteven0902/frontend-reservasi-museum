@@ -3,10 +3,9 @@ import { CKEditor } from '@ckeditor/ckeditor5-react'
 import axios from 'axios'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import ReactLoading from 'react-loading';
-import { Link, useHistory, useLocation, useParams } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import swal from 'sweetalert';
 import { TbArrowBackUp } from 'react-icons/tb'
-import en from '../../../../assets/img/lng/en.png'
 import id from '../../../../assets/img/lng/id.png'
 
 function EditAbout(props) {
@@ -14,7 +13,6 @@ function EditAbout(props) {
     const [loading,setLoading] = useState(true)
     const history = useHistory();
     const location = useLocation();
-    const params = useParams()
     const nama_museum = location.state;
 
     const museumId = props.match.params.id
@@ -24,7 +22,7 @@ function EditAbout(props) {
             console.log(res.data);
             if(res.data.status === 200)
             {
-                setAbout(res.data.about.about);
+                setAbout(res.data.about.about_en);
                 setLoading(false);
             }
             else if(res.data.status === 404)
@@ -89,7 +87,7 @@ function EditAbout(props) {
                 <div className='flex'>
                     <Link to={'/superadmin/about'} className="bg-red-400 p-1 rounded-full text-white"><TbArrowBackUp className='' size={30} /></Link>
                     <p className='flex items-center mx-auto text-xl'>ABOUT - {nama_museum}</p>
-                    <Link to={'/superadmin/edit-about/'+museumId+'/en'}  className="justify-center items-center hover:bg-red-300 border-b-2 py-1 m-1  flex rounded"><img src={en} className="w-8 mx-2" alt='en' /></Link>
+                    <Link to={'/superadmin/edit-about/'+museumId}  className=" justify-center items-center hover:bg-red-300  flex m-1 rounded"><img src={id} className="w-8 mx-2" alt='in'/></Link>
                 </div>
 
                 <div className='p-10 mb-5'>

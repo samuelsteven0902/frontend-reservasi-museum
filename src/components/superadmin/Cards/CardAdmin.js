@@ -36,7 +36,9 @@ function CardAdmin() {
 
     const fetchData = () =>
     {
-        axios.get(`http://localhost:8000/api/show_admin`).then(res=>{console.log(res.data.admin); setAdmin(res.data.admin); 
+        axios.get(`http://localhost:8000/api/show_admin`).then(res=>{
+        console.log(res.data.admin); 
+        setAdmin(res.data.admin); 
         setLoading(false)
     })
     }

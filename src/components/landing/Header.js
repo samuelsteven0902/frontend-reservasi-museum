@@ -162,14 +162,22 @@ export default function Header() {
                         <p className='tracking-[0.3rem] font-bold font-nunito pt-auto text-[#A70B0B]'>- UPT Museum Surakarta</p>
                     </div>
                 </div> */}
-                <div
+                { gambar.length === 0 ?
+                <div class="carousel-item active relative float-left w-full">
+                <div class="absolute bg-cover sm:bg-cover bg-landing-background bg-[#ECE3DE] bg-center w-full h-64 sm:h-[30rem] rounded-[2rem]" alt="..."   />
+                <div class="md:block absolute w-full lg:w-6/12 px-0 sm:ml-24 ml-10 mr-auto text-left mb-12 mt-36 sm:mb-0">
+                    <p className='tracking-wide text-4xl font-bold font-merriweather pt-auto text-[#A70B0B]'>{textEffect}</p>
+                    <p className='tracking-[0.3rem] font-bold font-nunito pt-auto text-[#A70B0B]'>- UPT Museum Surakarta</p>
+                </div>
+            </div>
+                : <div
                     style={{ backgroundImage: `url(${"http://localhost:8000/uploads/" +gambar[currentIndex].slider_name})` }}
                     className='w-full h-full rounded-2xl bg-center bg-cover duration-500 sm:bg-cover bg-[#ECE3DE] sm:h-[30rem] rounded-[2rem]" alt="..."'>
                     <div class="md:block absolute w-full lg:w-6/12 px-0 sm:ml-24 ml-10 mr-auto text-left mb-12 mt-36 sm:mb-0">
                         <p className='tracking-wide text-4xl font-bold font-merriweather pt-auto text-[#A70B0B]'>{textEffect}</p>
                         <p className='tracking-[0.3rem] font-bold font-nunito pt-auto text-[#A70B0B]'>- UPT Museum Surakarta</p>
                     </div>
-                </div>
+                </div>}
                 {/* Left Arrow */}
                 <div className='hidden group-hover:block absolute top-[30%] -translate-x-0 translate-y-[-30%] left-5 text-2xl rounded-full p-2 text-gray cursor-pointer'>
                     <BsChevronCompactLeft onClick={prevSlide} size={30} />
