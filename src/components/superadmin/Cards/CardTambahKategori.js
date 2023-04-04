@@ -68,13 +68,6 @@ useEffect(() => {
         .then(res=>{setSemuaHarga(res.data.harga);console.log(res); 
             setLoading(false)
         })
-    
-
-    // idkategori !== undefined &&  axios.get(`http://localhost:8000/api/edit_kategori/${idkategori}`).then(res=>{
-    //     console.log(res.data);
-    //     setNamakategori(res.data.kategori.nama_kategori)
-    //     setLoadingkategori(false);
-    // })
     }, [idkategori])
 
 const handlekategori = async(e) =>{ 
