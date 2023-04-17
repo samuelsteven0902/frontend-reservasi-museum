@@ -26,7 +26,6 @@ function InfoAbout() {
         fetchMuseum();
         
     }, [])
-  
     if(loading)
     {
         about_data = (
@@ -40,7 +39,6 @@ function InfoAbout() {
                 <Link className=' border-4 rounded-md hover:bg-red-200 transition-all duration-300 hover:text-lg flex justify-center items-center border-red-300 h-24 text-center' key={index} to={{pathname:`edit-about/${item.id}`,state:item.nama_museum}} >{item.nama_museum}</Link>
             )
         })
-       
     }
 
 

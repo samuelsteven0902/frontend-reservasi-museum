@@ -90,7 +90,8 @@ i18n
             alamat:'Jl. Bhayangkara No.2, Sriwedari, Laweyan, Surakarta, Central Java 57141',
           },
           about:{
-            desc:'Describe the UPT Museum Surakarta',
+            desc1:'UPT Museum is an Office under the supervision of the Surakarta Culture and Tourism Office. The UPT Museum was established to protect cultural heritage, especially in Solo where there are a lot of relics.',
+            desc2:'THE VISION OF UPT MUSEUM SURAKARTA The Realization of a global historical and cultural tourist destination. THE MISSION OF UPT MUSEUM SURAKARTA Realizing the museum becomes an educational place, a competitive source of knowledge and recreation. Maintaining Cultural Heritage Objects and Buildings. Preserving and publicizing the wealth of culture heritage collections to the domestic and foreign communities.',
             isi:{
               part1:'UPT Museum is an Office under the supervision of the Surakarta Culture and Tourism Office. The UPT Museum was established to protect cultural heritage,  especially in Solo where there are a lot of relics.',
               part2:'THE VISION OF UPT MUSEUM SURAKARTA The Realization of a global historical and cultural tourist destination. THE MISSION OF UPT MUSEUM SURAKARTA Realizing the museum becomes an educational place, a competitive source of knowledge and recreation. Maintaining Cultural Heritage Objects and Buildings. Preserving and publicizing the wealth of culture heritage collections to the domestic and foreign communities.',
@@ -227,7 +228,9 @@ i18n
             alamat:'Jl. Bhayangkara No.2, Sriwedari, Kec. Laweyan, Kota Surakarta, Jawa Tengah 57141',
           },
           about:{
-            desc:'Mendeskripsikan mengenai UPT Museum Surakarta',
+            desc1:'UPT Museum adalah Dinas yang berada dalam pengawasan Dinas Kebudayaan dan Pariwisata Kota Surakarta. UPT Museum berdiri untuk menjaga cagar budaya yang terlebih di dalam kota solo terdapat peninggalan yang sangat melimpah.',
+            desc2:'VISI UPT MUSEUM SURAKARTA Terwujudnya destinasi wisata sejarah dan budaya yang mendunia. MISI UPT MUSEUM SURAKARTA Mewujudkan museum menjadi tempat edukasi, sumber pengetahuan dan rekreasi yang kompetitif. Memelihara Benda dan Bangunan Cagar Budaya. Melestarikan dan mempublikasikan kekayaan koleksi warisan budaya kepada masyarakat domestik maupun mancanegara',
+
             isi:{
               part1:'UPT Museum adalah Dinas yang berada dalam pengawasan Dinas Kebudayaan dan Pariwisata Kota Surakarta. UPT Museum berdiri untuk menjaga cagar budaya yang terlebih di dalam kota solo terdapat peninggalan yang sangat melimpah.',
               part2:'VISI UPT MUSEUM SURAKARTA Terwujudnya destinasi wisata sejarah dan budaya yang mendunia. MISI UPT MUSEUM SURAKARTA Mewujudkan museum menjadi tempat edukasi, sumber pengetahuan dan rekreasi yang kompetitif. Memelihara Benda dan Bangunan Cagar Budaya. Melestarikan dan mempublikasikan kekayaan koleksi warisan budaya kepada masyarakat domestik maupun mancanegara.',
