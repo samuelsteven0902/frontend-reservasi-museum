@@ -21,7 +21,7 @@ function DataKehadiran({ color }) {
 
       
       const fetchData = async () => {
-        const data = await fetch(`http://localhost:8000/api/me`, {
+        const data = await fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/me`, {
           headers : {
               'Content-Type': 'application/json',
               'Accept': 'application/json',
@@ -42,7 +42,7 @@ function DataKehadiran({ color }) {
       const fetchPengunjung = () => 
       {
         
-      axios.get(`http://localhost:8000/api/konfirmasi-pengunjung`).then(res=>{
+      axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/konfirmasi-pengunjung`).then(res=>{
         if(res.status === 200)
           {
               setPengunjung(res.data.pengunjung)
@@ -75,7 +75,7 @@ function DataKehadiran({ color }) {
         })
         .then((update) => {
           if (update) {
-            axios.put(`http://localhost:8000/api/kehadiran`,data).then(res=>{
+            axios.put(`${process.env.REACT_APP_API_ENDPOINT}/api/kehadiran`,data).then(res=>{
                   if(res.data.status === 200)
                   {
                       // console.log('berhasil delet');

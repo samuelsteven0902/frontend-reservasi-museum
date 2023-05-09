@@ -46,7 +46,7 @@ const [namaInput, setNamaInput] = useState({
 
 
 const fetchkategori = async ()=>{
-    const reskategori = await axios.get('http://localhost:8000/api/show_kategori').then((res)=>{
+    const reskategori = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/show_kategori`).then((res)=>{
         setkategori(res.data.kategori);
         // console.log(res.data.kategori);
     }) 
@@ -64,7 +64,7 @@ const CloseRef = useRef();
 
 useEffect(() => {
 
-    axios.get('http://localhost:8000/api/show_kategori')
+    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/show_kategori`)
         .then(res=>{setSemuaHarga(res.data.harga);console.log(res); 
             setLoading(false)
         })
@@ -80,7 +80,7 @@ const handlekategori = async(e) =>{
     // e.target.reset();
     setIdkategori(e.target.id)
     
-     axios.get(`http://localhost:8000/api/edit_kategori/${e.target.id}`).then(res=>{
+     axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/edit_kategori/${e.target.id}`).then(res=>{
          setNamakategori(res.data.kategori)
          setLoadingkategori(false);
         })
@@ -115,7 +115,7 @@ const updatekategori = (e) => {
     }
     console.log(data,idkategori);
 
-    axios.put(`http://localhost:8000/api/update_kategori/${idkategori}`, data).then(res=>{
+    axios.put(`${process.env.REACT_APP_API_ENDPOINT}/api/update_kategori/${idkategori}`, data).then(res=>{
         if(res.data.status === 200)
         {
             // console.log('berhasil');
@@ -158,7 +158,7 @@ const storekategori = (e) =>{
     }
     console.log(tambahkategori)
 
-    axios.post(`http://localhost:8000/api/add_kategori`, data).then(res=>{
+    axios.post(`${process.env.REACT_APP_API_ENDPOINT}/api/add_kategori`, data).then(res=>{
         if(res.data.status === 200)
         {
             setTambahkategori({
@@ -195,7 +195,7 @@ console.log(e,id);
     })
     .then((willDelete) => {
         if (willDelete) {
-            axios.delete(`http://localhost:8000/api/delete_kategori/${id}`).then(res=>{
+            axios.delete(`${process.env.REACT_APP_API_ENDPOINT}/api/delete_kategori/${id}`).then(res=>{
                 if(res.data.status === 200)
                 {
                     // console.log('berhasil delet');

@@ -14,7 +14,7 @@ function Content({id}) {
 
 
   const fetchTicket = () =>{
-    axios.get(`http://localhost:8000/api/show-ticket/${id}`).then(res=>{
+    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/show-ticket/${id}`).then(res=>{
       console.log(res);
       if(res.data.status === 200)
           {

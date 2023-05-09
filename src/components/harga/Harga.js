@@ -24,13 +24,13 @@ function Harga() {
 
     const fetchData = () =>
     {
-    axios.get('http://localhost:8000/api/show_harga').then(res=>{
+    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/show_harga`).then(res=>{
         setDataHarga(res.data.harga)
     })
     }
 
 const fetchMuseum = async ()=>{
-    const resMuseum = await axios.get('http://localhost:8000/api/show_museum').then((res)=>{
+    const resMuseum = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/show_museum`).then((res)=>{
         setMuseum(res.data.museum);
         setLoading(false)
         console.log(res.data.museum);
@@ -131,7 +131,7 @@ else
 
 
         </div>
-        <div className='w-full flex mx-auto justify-center flex-wrap'>
+        <div className='w-full flex mx-auto justify-center flex-wrap'  data-aos="fade-up" data-aos-duration="750">
             {loading?
                                 <ReactLoading type={"spin"} color={"red"} height={'5%'} width={'5%'} className=" my-12 m-auto " />
                             :

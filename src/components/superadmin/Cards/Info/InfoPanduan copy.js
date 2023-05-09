@@ -16,7 +16,7 @@ const sumbitHandler = (e) =>
   const data = new FormData()
   data.append('file', file)
 console.log(data);
-  // axios.post("http://localhost:8000/api/files", data).then(res=>console.log(res))
+  // axios.post("${process.env.REACT_APP_API_ENDPOINT}/api/files", data).then(res=>console.log(res))
 
 }
 

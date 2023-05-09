@@ -27,7 +27,7 @@ function CardSlider() {
   
   //show data
   const showData = ()=>{
-    axios.get ('http://localhost:8000/api/show_slider').then ((res)=>{
+    axios.get (`${process.env.REACT_APP_API_ENDPOINT}/api/show_slider`).then ((res)=>{
       if(res.status === 200){
         setGambar(res.data.data)
         setJumlahGambar(res.data.count)
@@ -57,7 +57,7 @@ function CardSlider() {
     .then((willDelete) => {
         if (willDelete) {
           console.log(id);
-            axios.delete(`http://localhost:8000/api/delete-slider/${id}`).then(res=>{
+            axios.delete(`${process.env.REACT_APP_API_ENDPOINT}/api/delete-slider/${id}`).then(res=>{
                 if(res.data.status === 200)
                 {
                     // console.log('berhasil delet');
@@ -123,7 +123,7 @@ const handleSubmit = (e) =>{
   }
   console.log(gambar);
   // console.log(data);
-  axios.post("http://localhost:8000/api/upload_slider", data)
+  axios.post(`${process.env.REACT_APP_API_ENDPOINT}/api/upload_slider`, data)
     .then((response) => {
       if (response.status === 200) {
         setResponseMsg({
@@ -181,7 +181,7 @@ if(loading)
         <td className="text-center">{index + 1}</td>
         <td>
           <div className="w-full flex items-center justify-center mt-3" key={item.id}>
-            <img src={ "http://localhost:8000/uploads/" + item.slider_name } className="img-fluid img-bordered" width="300px"/>
+            <img src={ `${process.env.REACT_APP_API_ENDPOINT}/uploads/` + item.slider_name } className="img-fluid img-bordered" width="300px"/>
           </div>
         </td>
         <td className="w-1/3 text-center">

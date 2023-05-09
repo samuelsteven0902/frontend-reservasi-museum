@@ -10,7 +10,7 @@ function InfoAbout() {
     
     
     const fetchMuseum = async ()=>{
-        const resMuseum = await axios.get('http://localhost:8000/api/show_museum').then((res)=>{
+        const resMuseum = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/show_museum`).then((res)=>{
             setMuseum(res.data.museum);
                     setLoading(false)
             console.log(res.data.museum);

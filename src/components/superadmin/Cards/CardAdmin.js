@@ -36,7 +36,7 @@ function CardAdmin() {
 
     const fetchData = () =>
     {
-        axios.get(`http://localhost:8000/api/show_admin`).then(res=>{
+        axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/show_admin`).then(res=>{
         console.log(res.data.admin); 
         setAdmin(res.data.admin); 
         setLoading(false)
@@ -54,7 +54,7 @@ function CardAdmin() {
             password:input.password,
         }
         
-        axios.post(`http://localhost:8000/api/add_admin`, data).then(res=>{
+        axios.post(`${process.env.REACT_APP_API_ENDPOINT}/api/add_admin`, data).then(res=>{
             console.log(res);
             if(res.data.status === 200)
             {
@@ -84,7 +84,7 @@ function CardAdmin() {
         })
         .then((willDelete) => {
             if (willDelete) {
-                axios.delete(`http://localhost:8000/api/delete_admin/${id}`).then(res=>{
+                axios.delete(`${process.env.REACT_APP_API_ENDPOINT}/api/delete_admin/${id}`).then(res=>{
                     if(res.data.status === 200)
                     {
                         // console.log('berhasil delet');

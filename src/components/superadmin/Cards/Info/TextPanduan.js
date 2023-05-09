@@ -15,7 +15,7 @@ const [isiAbout,setIsiAbout] = useState('')
 
 
 const fetchPanduan = () =>{
-  axios.get(`http://localhost:8000/api/show_panduan/${1}`).then(res=>{setDataAbout(res.data.data.panduan_name);console.log(res);setLoading(false)})
+  axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/show_panduan/${1}`).then(res=>{setDataAbout(res.data.data.panduan_name);console.log(res);setLoading(false)})
 }
 
 const updatePanduan = (e) =>{
@@ -28,7 +28,7 @@ const updatePanduan = (e) =>{
   }
   console.log(data);
 
-axios.put(`http://localhost:8000/api/update_about/${1}`, data).then(res=>{
+axios.put(`${process.env.REACT_APP_API_ENDPOINT}/api/update_about/${1}`, data).then(res=>{
   if(res.data.status === 200)
   {
       console.log('berhasil');

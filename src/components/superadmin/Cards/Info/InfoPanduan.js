@@ -43,7 +43,7 @@ export default class ImageUpload extends Component {
       console.log(this.state.image);
     }
     console.log(data);
-    axios.post("http://localhost:8000/api/files", data)
+    axios.post(`${process.env.REACT_APP_API_ENDPOINT}/api/files`, data)
       .then((response) => {
         if (response.status === 200) {
           this.setState({

@@ -190,7 +190,7 @@ class CardDataaaa extends Component {
     }
 
     componentDidMount () {
-        axios.get(`http://localhost:8000/api/pengunjung`).then(res=>{
+        axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/pengunjung`).then(res=>{
             if(res.status === 200) {
                 this.setState ({
                     users: res.data.pengunjung

@@ -9,6 +9,7 @@ import html2canvas from 'html2canvas';
 import QRCode from "react-qr-code";
 import kosong from "../../assets/img/admin/nothing.svg"
 import { useTranslation } from 'react-i18next';
+import Tiket from 'pages/Tiket';
 
 
 function Content({id}) {
@@ -20,7 +21,7 @@ function Content({id}) {
 
 
   const fetchTicket = () =>{
-    axios.get(`http://localhost:8000/api/show-ticket/${id}`).then(res=>{
+    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/show-ticket/${id}`).then(res=>{
       console.log(res);
       if(res.data.status === 200)
           {
@@ -55,7 +56,7 @@ function Content({id}) {
     return <ReactLoading type={"spin"} color={"red"} height={'10%'} width={'10%'} className="m-auto h-screen" />
   }
 
-  console.log(document.getElementById('tiket'));
+  console.log(tiket);
 
   return (
 <>
@@ -112,7 +113,7 @@ function Content({id}) {
     </div>
       :
     <div className=' flex justify-center flex-col h-screen mx-auto'>
-      <img src={kosong} className='w-1/4 mx-auto -mt-52 md:mt-32'/>
+      <img src={kosong} className='w-1/4 mx-auto -mt-52 md:mt-32' alt=''/>
       <p className='text-3xl py-7 text-center font-nunito bg-red-200 lg:mx-40 mx-12 rounded-full mt-12 text-red-600'>Maaf, Tiket dengan kode<span className='px-2 font-bold'>"{id}"</span> Tidak dapat di temukan</p>
     </div>
   }

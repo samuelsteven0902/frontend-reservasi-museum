@@ -1,8 +1,7 @@
 import React from 'react'
-import { GrInstagram } from 'react-icons/gr';
-import { TbWorld } from 'react-icons/tb';
-import { Link } from 'react-router-dom';
-import header_bawah from '../assets/img/Landing/header_bawah.png'
+// import { GrInstagram } from 'react-icons/gr';
+// import { TbWorld } from 'react-icons/tb';
+// import { Link } from 'react-router-dom';
 import {AiFillInstagram, AiFillYoutube} from 'react-icons/ai'
 import {BsGlobe} from 'react-icons/bs'
 import WaveFooter from './WaveFooter';
@@ -11,12 +10,6 @@ import { useTranslation } from 'react-i18next';
 function FooterPengunjung() {
     
 	const { t } = useTranslation();
-
-    var sectionStyle = {
-        width: "100%",
-        height: "400px",
-        backgroundImage: "url(" + { header_bawah } + ")"
-    };
 
 return (
     <>
@@ -28,7 +21,7 @@ return (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                 <div className="w-full sm:w-5/6 h-56 z-20  sm:col-span-2 mx-auto">
                     {/* <Map /> */}
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3955.0545587044476!2d110.80861911425045!3d-7.569031194541577!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a167e29505d91%3A0x9129ae0450226c4f!2sMuseum%20Keris%20Nusantara!5e0!3m2!1sen!2sid!4v1670306257940!5m2!1sen!2sid"  className='border-0 w-full h-full ' allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
+                    <iframe title="unik" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3955.0545587044476!2d110.80861911425045!3d-7.569031194541577!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a167e29505d91%3A0x9129ae0450226c4f!2sMuseum%20Keris%20Nusantara!5e0!3m2!1sen!2sid!4v1670306257940!5m2!1sen!2sid"  className='border-0 w-full h-full ' allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
                 </div>
                 <div className="w-full">
                     <h6 className="uppercase font-merriweather font-bold text-[#A70B0B] mb-4 flex justify-center sm:justify-start mx-0 sm:mx-20 lg:mx-0 text-3xl sm:text-base">{t('landing.footer.title')}</h6>

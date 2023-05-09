@@ -3,7 +3,7 @@ import Admin from 'layout/Admin';
 import SuperAdmin from 'layout/superadmin';
 // import Kepalauptmuseum from 'layout/kepalauptmuseum';
 import React, { useEffect, useState } from 'react'
-import { Route , Redirect, NavLink } from 'react-router-dom'
+import { Route , Redirect } from 'react-router-dom'
 import ReactLoading from 'react-loading';
 import Kepalauptmuseum from 'layout/kepalauptmuseum';
 
@@ -14,7 +14,7 @@ function ProtectedRoute({role, component: Component, ...rest}) {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await fetch(`http://localhost:8000/api/me`, {
+      const data = await fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/me`, {
         headers : {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
@@ -36,7 +36,7 @@ function ProtectedRoute({role, component: Component, ...rest}) {
   }, 
 []
 );
-      if (user == 'default') {
+      if (user === 'default') {
         setLoading(true)
       }
       console.log(user);  
@@ -46,15 +46,15 @@ return (
   <Route 
     {...rest}
     render={(props) =>{
-      if(user == 'loading') return
+      if(user === 'loading') return
         <div className='h-screen flex justify-center items-center '>
           <ReactLoading type={"spinningBubbles"} color={"red"} height={'20%'} width={'20%'} className="m-auto" />
         </div>
 
       // if(user == 'admin') return <Redirect to="/admin" />
-      if(user == 'admin') return <Admin {...props}/>
-      if(user == 'superadmin') return <SuperAdmin {...props }/>
-      if(user == "kepalauptmuseum") return <Kepalauptmuseum {...props }/>
+      if(user === 'admin') return <Admin {...props}/>
+      if(user === 'superadmin') return <SuperAdmin {...props }/>
+      if(user === "kepalauptmuseum") return <Kepalauptmuseum {...props }/>
 
       // if(user == 'superadmin') return <Redirect to={{path: "/superadmin", state:{from: props.location}}}  />;
       if(user !== 'admin' || user !== 'superadmin' || user !== 'kepalauptmuseum' ) return <Redirect to={{path: "/", state:{from: props.location}}} />;

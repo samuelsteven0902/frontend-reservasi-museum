@@ -11,7 +11,7 @@ export default function HeaderStatsPembayaran() {
   const [loading,setLoading] = useState(true)
 
   const fetchData = () =>{
-    axios.get(`http://localhost:8000/api/pengunjung`).then(res=>{
+    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/pengunjung`).then(res=>{
     console.log(res);  
     if(res.status === 200)
       {

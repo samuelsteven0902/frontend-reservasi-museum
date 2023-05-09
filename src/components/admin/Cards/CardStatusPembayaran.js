@@ -21,7 +21,7 @@ class CardStatusPembayaran extends Component {
         const fetchPengunjung = () => 
         {
         
-            axios.get(`http://localhost:8000/api/status-pembayaran`).then(res=>{
+            axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/status-pembayaran`).then(res=>{
                 if(res.status === 200)
                 {
                     this.componentDidMount()
@@ -30,7 +30,7 @@ class CardStatusPembayaran extends Component {
         }
     
         const fetchData = async () => {
-            const data = await fetch(`http://localhost:8000/api/me`, {
+            const data = await fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/me`, {
             headers : {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
@@ -62,7 +62,7 @@ class CardStatusPembayaran extends Component {
             })
             .then((update) => {
                 if (update) {
-                axios.put(`http://localhost:8000/api/status`,data).then(res=>{
+                axios.put(`${process.env.REACT_APP_API_ENDPOINT}/api/status`,data).then(res=>{
                     if(res.data.status === 200)
                     {
                         // console.log('berhasil delet');
@@ -219,7 +219,7 @@ class CardStatusPembayaran extends Component {
     }
 
     componentDidMount () {
-        axios.get(`http://localhost:8000/api/pengunjung`).then(res=>{
+        axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/pengunjung`).then(res=>{
             if(res.status === 200) {
                 this.setState ({
                     users: res.data.pengunjung

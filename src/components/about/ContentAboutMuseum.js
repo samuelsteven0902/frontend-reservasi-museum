@@ -10,7 +10,7 @@ function ContentAboutMuseum(input) {
     
 
     const fetchAbout = () =>{
-        axios.get(`http://localhost:8000/api/show_about/${input.id}`).then(res=>{
+        axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/show_about/${input.id}`).then(res=>{
         // console.log(res.data.dataAbout);
         setAbout(res.data.dataAbout)
         setLoading(false)
@@ -23,7 +23,9 @@ function ContentAboutMuseum(input) {
 
     if(loading)
     {
-        return <ReactLoading type={"spin"} color={"red"} height={'10%'} width={'10%'} className="m-auto h-screen " />
+        return <div className='h-screen flex justify-center items-center'>
+          <ReactLoading type={"spin"} color={"red"} height={'10%'} width={'10%'} className="m-auto h-screen " />
+        </div>
     }
     else
     {

@@ -22,7 +22,7 @@ export default function Container({  }) {
     const [museum,setMuseum] = React.useState("")
 
     const fetchMuseum = async ()=>{
-        const resMuseum = await axios.get('http://localhost:8000/api/show_museum').then((res)=>{
+        const resMuseum = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/show_museum`).then((res)=>{
             setMuseum(res.data.museum);
             console.log(res.data.museum);
         }) 
@@ -30,7 +30,7 @@ export default function Container({  }) {
     
     useEffect(() => {
         fetchMuseum();
-        axios.get('http://localhost:8000/api/show_about').then(res=>{
+        axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/show_about`).then(res=>{
             if(res.status == 200)
             {
                 setDataAbout(res.data.dataAbout[0])

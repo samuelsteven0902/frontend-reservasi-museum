@@ -14307,10 +14307,10 @@
     "object.values" "^1.1.0"
     "prop-types" "^15.7.2"
 
-"react-paginate@^8.1.4":
-  "integrity" "sha512-c3rxjcTEqeDQa6LqXifxLeFguY2qy2CHGRphVjHLFFMGfIHyaJ+v3bOvIlLYEeohwQ1q+cQpknjsqBVrkc/SNA=="
-  "resolved" "https://registry.npmjs.org/react-paginate/-/react-paginate-8.1.4.tgz"
-  "version" "8.1.4"
+"react-paginate@^8.2.0":
+  "integrity" "sha512-sJCz1PW+9PNIjUSn919nlcRVuleN2YPoFBOvL+6TPgrH/3lwphqiSOgdrLafLdyLDxsgK+oSgviqacF4hxsDIw=="
+  "resolved" "https://registry.npmjs.org/react-paginate/-/react-paginate-8.2.0.tgz"
+  "version" "8.2.0"
   dependencies:
     "prop-types" "^15"
 

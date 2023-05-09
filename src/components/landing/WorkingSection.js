@@ -12,18 +12,21 @@ import { useEffect, useRef, useState } from 'react';
 import { Calendar } from 'react-date-range';
 import { addDays, format, isMonday, isSunday } from 'date-fns';
 import { Link,  useHistory } from 'react-router-dom';
+import ReactLoading from 'react-loading';
 // import pesan from '../../assets/img/icon/pesan.png'
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 
 
 export default function WorkingSection({setRes}) {
+    // console.log(process.env.REACT_APP_API_ENDPOINT);
     const { t } = useTranslation()
     const [museum, setMuseum] = useState("");
     const [museumId, setMuseumId] = useState("");
     const [category, setCategory] = useState("Kategori");
     const [disabledCategory , setDisabledCategory] = useState(true);
     const [disabledDate , setDisabledDate] = useState(true);
+    const [loading , setLoading] = useState(true);
     const [calendar, setCalendar] = useState(t('landing.working.tanggal'));
     const [count, setCount] = useState(0);
     const [open,setOpen] = useState(false);
@@ -90,31 +93,31 @@ export default function WorkingSection({setRes}) {
 
     useEffect(() => {
         const fetchMuseum = async ()=>{
-            const resMuseum = await axios.get('http://localhost:8000/api/show_museum').then((res)=>{
+            const resMuseum = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/show_museum`).then((res)=>{
                 setMuseum(res.data.museum);
-                console.log(res.data.museum);
+                // console.log(res.data.museum);
             }) 
         }
         // setCalendar(format(new Date(), 'MM/dd/yyyy'));
         fetchMuseum();
     }, [namaInput])
 
-    useEffect(() => {
-        const fetchCategory = async ()=>
-        {
-            // const resCategory = await axios.get(`http://localhost:8000/api/show_category/${museumId}`)
-            // .then((res)=>{  
-                // setCategory(res.data.katergori); 
-                // console.log(category);
-                // } )
-                const resCategory = await fetch(`http://localhost:8000/api/show_category/${museumId}`)
-                const resCategoryData = await resCategory.json()
+    const fetchCategory = async (option)=>
+    {
+        // const resCategory = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/show_category/${museumId}`)
+        // .then((res)=>{  
+            // setCategory(res.data.katergori); 
+            // console.log(category);
+            // } )
+            const resCategory = await fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/show_category/${option}`)
+            const resCategoryData = await resCategory.json()
             setCategory(await resCategoryData.kategori); 
-        }
+    }
 
-        fetchCategory()
+    useEffect(() => {
         
-        console.log(category);
+
+        // console.log(category);
     }, [category,museumId,namaInput])
     
     useEffect(() => {
@@ -173,6 +176,12 @@ export default function WorkingSection({setRes}) {
         redirect.push('/input-data')
     }
 
+
+    
+    var x = localStorage.getItem("i18nextLng");
+    console.log(x);
+
+
 // console.log(museum);
 // console.log(namaInput.namaCategory);
 console.log(category);
@@ -192,6 +201,7 @@ console.log(category);
                                     setNamaInput({...namaInput,namaCategory:e.target.value})
                                     console.log(e.target.value);
                                     setMuseumId(option)
+                                    fetchCategory(option)
                                     cekMuseum(e.target.value)
                                     // console.log(selectedMuseum);
                                     // console.log(e); 
@@ -204,7 +214,7 @@ console.log(category);
                                         <option className='py-6 my-6 h-32' key={index} id={item.id} value={item.nama_museum}>{item.nama_museum}</option>
                                     )})}
                                 </select>
-                                <select value={{label: namaInput.namaCategory}} id="category" className="disabled:text-gray-600 disabled:cursor-not-allowed disabled:bg-gray-300 sm:w-1/3 w-full sm:mx-5 sm:my-0 p-2.5 text-[#A70B0B] font-nunito font-semibold text-center bg-[#ECE3DE] border-none rounded-md shadow-sm  appearance-none focus:border-red-800  focus:outline-none " onChange={(e) => {
+                                <select value={{label: namaInput.namaCategory}} id="category" className="disabled:text-gray-600 disabled:cursor-not-allowed disabled:bg-gray-300 sm:w-1/3 w-full sm:mx-5 sm:my-0 p-2.5 text-[#A70B0B] font-nunito font-semibold text-center bg-[#ECE3DE] border-none rounded-md shadow-sm  appearance-none focus:border-red-800  focus:outline-none my-3" onChange={(e) => {
                                     const index = e.target.selectedIndex;
                                     const el = e.target.childNodes[index]
                                     const option =  el.getAttribute('id');
@@ -216,10 +226,9 @@ console.log(category);
                                     <option className=' text-xl '>{namaInput.namaCategory}</option>
                                     {category && typeof category !== 'string'  && category.map((itemm,indexx)=>{
                                     return(
-                                        <option  key={indexx} id={itemm.id} value={itemm.nama_kategori} >{itemm.nama_kategori}</option>
+                                        <option  key={indexx} id={itemm.id} value={x === 'id'?itemm.nama_kategori:itemm.nama_kategori_en} >{x === 'id'?itemm.nama_kategori:itemm.nama_kategori_en}</option>
                                         )})}
                                 </select>
-
                                 <input value={calendar} readOnly onClick={(e)=>{ setOpen(open => !open); 
                                 console.log(e)} } className={disabledDate?"disabled:text-gray-600 disabled:bg-gray-300 relative text-[#A70B0B] disabled:cursor-not-allowed font-nunito font-semibold text-center sm:w-1/3 w-full sm:my-0  p-2.5 rounded-md border bg-[#ECE3DE] opacity-70":"relative text-center sm:w-1/3 w-full sm:my-0 p-2.5 rounded-md text-[#A70B0B] font-semibold border bg-[#ECE3DE]"} disabled={disabledDate}/>
                                     <div ref={refOne} className="absolute right-0 mr-20 mt-8">

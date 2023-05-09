@@ -10,7 +10,7 @@ function CardAdmin() {
   const [pemasukan,setPemasukan] = useState([])
 
   useEffect(() => {
-    axios.get(`http://localhost:8000/api/pemasukan`).then(res=>{
+    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/pemasukan`).then(res=>{
     // console.log(res);  
     if(res.status === 200)
       {

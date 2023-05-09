@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import NavbarContainer from '@material-tailwind/react/NavbarContainer';
 import NavbarWrapper from '@material-tailwind/react/NavbarWrapper';
-import NavbarBrand from '@material-tailwind/react/NavbarBrand';
+// import NavbarBrand from '@material-tailwind/react/NavbarBrand';
 import NavbarToggler from '@material-tailwind/react/NavbarToggler';
 import NavbarCollapse from '@material-tailwind/react/NavbarCollapse';
 import Nav from '@material-tailwind/react/Nav';
@@ -20,13 +20,11 @@ export default function DefaultNavbar() {
     const [token, setToken] = useState(Cookies.get('token'));
     const [user,setUser] = useState('');
     const [loading, setLoading] = useState(false);
-    const [navbar, setNavbar] = useState(false)
-    const [navbarRes, setNavbarRes] = useState(false)
     const [navbarBg, setNavbarBg] = useState(false)
 
     useEffect(() => {
         const fetchData = async () => {
-            const data = await fetch(`http://localhost:8000/api/me`, {
+            const data = await fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/me`, {
                 headers : {
                         'Content-Type': 'application/json',
                         'Accept': 'application/json',
@@ -45,7 +43,7 @@ export default function DefaultNavbar() {
         fetchData ();
         }, [user]);
 
-        if (user == 'default') {
+        if (user === 'default') {
             setLoading(true)
         }
     
@@ -74,9 +72,9 @@ export default function DefaultNavbar() {
         }, [])
 
 
-        const handleLanguageChange = (e) => {
-            i18n.changeLanguage(e.target.value);
-        };
+        // const handleLanguageChange = (e) => {
+        //     i18n.changeLanguage(e.target.value);
+        // };
 
     return (
         <>
@@ -85,7 +83,7 @@ export default function DefaultNavbar() {
             <NavbarContainer>
             <NavbarWrapper>
                     <NavbarToggler onClick={() => setOpenNavbar(!openNavbar)} color="red" className=""/>
-                    <div className="collapse navbar-collapse" id="navbarNav">
+                    <div className="collapse navbar-collapse my-5" id="navbarNav" >
 				{/* <ul className="navbar-nav ml-auto">
 					<li className="nav-item">
 						<select

@@ -41,7 +41,7 @@ const [namaInput, setNamaInput] = useState({
 
 
 const fetchMuseum = async ()=>{
-    const resMuseum = await axios.get('http://localhost:8000/api/show_museum').then((res)=>{
+    const resMuseum = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/show_museum`).then((res)=>{
         setMuseum(res.data.museum);
         console.log(res.data.museum);
     }) 
@@ -59,13 +59,13 @@ const CloseRef = useRef();
 
 useEffect(() => {
 
-    axios.get('http://localhost:8000/api/show_museum')
+    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/show_museum`)
         .then(res=>{setSemuaHarga(res.data.harga);console.log(res); 
             setLoading(false)
         })
     
 
-    idMuseum !== undefined &&  axios.get(`http://localhost:8000/api/edit-museum/${idMuseum}`).then(res=>{
+    idMuseum !== undefined &&  axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/edit-museum/${idMuseum}`).then(res=>{
         console.log(res.data);
         setNamaMuseum(res.data.museum.nama_museum)
         setLoadingMuseum(false);
@@ -98,7 +98,7 @@ const updateMuseum = (e) => {
         museum: namaMuseum
     }
 
-    axios.put(`http://localhost:8000/api/update-museum/${idMuseum}`, data).then(res=>{
+    axios.put(`${process.env.REACT_APP_API_ENDPOINT}/api/update-museum/${idMuseum}`, data).then(res=>{
         if(res.data.status === 200)
         {
             // console.log('berhasil');
@@ -134,7 +134,7 @@ const storeMuseum = (e) =>{
     }
     console.log(tambahMuseum)
 
-    axios.post(`http://localhost:8000/api/add_museum`, data).then(res=>{
+    axios.post(`${process.env.REACT_APP_API_ENDPOINT}/api/add_museum`, data).then(res=>{
         if(res.data.status === 200)
         {
             swal("Success",res.data.message,"success")
@@ -166,7 +166,7 @@ console.log(e,id);
     })
     .then((willDelete) => {
         if (willDelete) {
-            axios.delete(`http://localhost:8000/api/delete_museum/${id}`).then(res=>{
+            axios.delete(`${process.env.REACT_APP_API_ENDPOINT}/api/delete_museum/${id}`).then(res=>{
                 if(res.data.status === 200)
                 {
                     // console.log('berhasil delet');

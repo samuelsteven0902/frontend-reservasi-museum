@@ -50,11 +50,11 @@
 
 
 // const fetchMuseum = async ()=>{
-//     const resMuseum = await axios.get('http://localhost:8000/api/show_museum').then((res)=>{
+//     const resMuseum = await axios.get('${process.env.REACT_APP_API_ENDPOINT}/api/show_museum').then((res)=>{
 //         setMuseum(res.data.museum);
 //         // console.log(res.data.museum);
 //     }) 
-//     const resKategori = await axios.get('http://localhost:8000/api/show_kategori').then((res)=>{
+//     const resKategori = await axios.get('${process.env.REACT_APP_API_ENDPOINT}/api/show_kategori').then((res)=>{
 //         setKategori(res.data.kategori);
 //         console.log(res.data.kategori);
 //     }) 
@@ -78,7 +78,7 @@
 // const redirect = useHistory();
 
 // const fetchData = () =>{
-//     axios.get('http://localhost:8000/api/show_harga')
+//     axios.get('${process.env.REACT_APP_API_ENDPOINT}/api/show_harga')
 //         .then(res=>{setSemuaHarga(res.data.harga);console.log(res);  
 //             setLoading(false)
 //         })
@@ -98,7 +98,7 @@
 //         hari_libur : 'loading...',
 //     })
     
-//     e.target.id ? axios.get(`http://localhost:8000/api/edit-harga/${e.target.id}`).then(res=>{
+//     e.target.id ? axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/edit-harga/${e.target.id}`).then(res=>{
 //         setHarga(res.data.harga[0]);
 //         // console.log(res.data.harga[0]);
 //         setLoadingHarga(false);})
@@ -126,7 +126,7 @@
 //         libur: harga.hari_libur,
 //     }
 
-//     axios.put(`http://localhost:8000/api/update-harga/${idHarga}`, data).then(res=>{
+//     axios.put(`${process.env.REACT_APP_API_ENDPOINT}/api/update-harga/${idHarga}`, data).then(res=>{
 //         if(res.data.status === 200)
 //         {
 //             console.log('berhasil');
@@ -166,7 +166,7 @@
 //     thisClicked.innerText = "Tambah Museum";
 //     console.log(tambahMuseum)
 
-//     axios.post(`http://localhost:8000/api/add_museum`, tambahMuseum).then(res=>{
+//     axios.post(`${process.env.REACT_APP_API_ENDPOINT}/api/add_museum`, tambahMuseum).then(res=>{
 //         if(res.data.status === 200)
 //         {
 //             console.log('berhasil');
@@ -198,7 +198,7 @@
 //     }
 //     console.log(data)
 
-//     axios.post(`http://localhost:8000/api/add_data`, data).then(res=>{
+//     axios.post(`${process.env.REACT_APP_API_ENDPOINT}/api/add_data`, data).then(res=>{
 //         console.log(res);
 //         if(res.data.status === 200)
 //         {
@@ -246,7 +246,7 @@
 //         .then((willDelete) => {
 //         if (willDelete) {
 
-//             axios.delete(`http://localhost:8000/api/delete-data/${id}`).then(res=>{
+//             axios.delete(`${process.env.REACT_APP_API_ENDPOINT}/api/delete-data/${id}`).then(res=>{
 //                 if(res.data.status === 200)
 //                 {
 //                     // console.log('berhasil delet');
@@ -437,7 +437,7 @@
 //     }
 
 //     componentDidMount () {
-//         axios.get(`http://localhost:8000/api/pengunjung`).then(res=>{
+//         axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/pengunjung`).then(res=>{
 //             if(res.status === 200) {
 //                 this.setState ({
 //                     users: res.data.pengunjung

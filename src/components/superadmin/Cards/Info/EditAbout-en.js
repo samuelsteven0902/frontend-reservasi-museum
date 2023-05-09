@@ -18,7 +18,7 @@ function EditAbout(props) {
     const museumId = props.match.params.id
 
     const fetchAbout = () => {
-        axios.get(`http://localhost:8000/api/edit_about/${museumId}`).then( res => {
+        axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/edit_about/${museumId}`).then( res => {
             console.log(res.data);
             if(res.data.status === 200)
             {
@@ -47,7 +47,7 @@ function EditAbout(props) {
             about : about
         }
 
-        axios.put(`http://localhost:8000/api/update_about/${museumId}`, data).then(res=>{
+        axios.put(`${process.env.REACT_APP_API_ENDPOINT}/api/update_about/${museumId}`, data).then(res=>{
             if(res.data.status === 200)
             {
                 swal("Success",res.data.message,"success");

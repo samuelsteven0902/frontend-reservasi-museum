@@ -22,7 +22,7 @@ export default function CardTable({ color }) {
 
   const handleDownload = () => {
     axios({
-      url: 'http://localhost:8000/api/pengunjungExport',
+      url: `${process.env.REACT_APP_API_ENDPOINT}/api/pengunjungExport`,
       method: 'GET',
       responseType: 'blob', // important`
     }).then((response) => {
@@ -45,7 +45,7 @@ const handleTiket = (e) =>{
 }
 
   useEffect(() => {
-    axios.get(`http://localhost:8000/api/pengunjung`).then(res=>{
+    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/pengunjung`).then(res=>{
     console.log(res);  
     if(res.status === 200)
       {

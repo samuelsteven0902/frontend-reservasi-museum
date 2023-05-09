@@ -10,7 +10,7 @@
 //     // and proxy them to /api/auth/callback on our Laravel API
 //     useEffect(() => {
 
-//         fetch(`http://localhost:8000/api/auth/callback${location.search}`, {
+//         fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/auth/callback${location.search}`, {
 //             headers : {
 //                 'Content-Type': 'application/json',
 //                 'Accept': 'application/json'
@@ -30,7 +30,7 @@
 //     // Helper method to fetch User data for authenticated user
 //     // Watch out for "Authorization" header that is added to this call
 //     function fetchUserData() {
-//         fetch(`http://localhost:8000/api/user`, {
+//         fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/user`, {
 //             headers : {
 //                 'Content-Type': 'application/json',
 //                 'Accept': 'application/json',

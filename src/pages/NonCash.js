@@ -11,7 +11,7 @@ function NonCash() {
 
 
   useEffect(() => {
-    axios.get('http://localhost:8000/api/metode').then((res)=>
+    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/metode`).then((res)=>
     {
       console.log(res);
     })

@@ -1,21 +1,17 @@
-import { data } from 'autoprefixer';
+// import { data } from 'autoprefixer';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next';
-import { Link, useHistory } from 'react-router-dom';
+import {  useHistory } from 'react-router-dom';
 import swal from 'sweetalert';
 import $ from 'jquery';
 
 function FormInput({dataAwal,dataa}) {
     const { t } = useTranslation()
 
-    const [pengunjung,setPengunjung] = useState(null);
     
     const [checked, setChecked] = useState(false);
     const [text, setText] = useState("");
-
-    // console.log(pengunjung);
-    const [imageUrl, setImageUrl] = useState(null);
     const [dataPengunjung,setDataPengunjung] = useState({
         nama :'',
         kota :'',
@@ -28,17 +24,11 @@ function FormInput({dataAwal,dataa}) {
 
     var dayOfWeek = new Date (dataAwal.calendar).getDay();
     var isWeekend = (dayOfWeek === 6) || (dayOfWeek  === 0);
-    console.log(isWeekend);
     
-    console.log(typeof(dataAwal.calendar));
-
-    const [errorInput, setError] = useState([]);
 
     const [kartu,setKartu] = useState('')
 
-console.log(dataa);
     const history = useHistory();
-    const [namaFoto,setNamaFoto] = useState('')
     const [totalOrang,setTotalOrang] = useState(0)
     const [harga,setHarga] = useState()
     const [orang,setOrang] = useState(null)
@@ -57,8 +47,8 @@ console.log(dataa);
         setDataPengunjung({...dataPengunjung, [e.target.name]: e.target.value })
         e.persist();
     }
+    // console.log({isWeekend,dataa,dataPengunjung,harga});
 
-    console.log(dataPengunjung);
 
     const validasiDataPengunjung = (e) => {
         e.preventDefault();
@@ -69,7 +59,7 @@ console.log(dataa);
         }
         else if(checked === true)
         {
-            if(+dataPengunjung.jumlah <= +dataa.min)
+            if(+dataPengunjung.jumlah <= +dataa.min - 1)
             {
                 swal("Gagal!","Jumlah Pengunjung tidak sesuai batas minimum","warning");
             }
@@ -85,7 +75,7 @@ console.log(dataa);
                     kategori:dataa.nama_kategori,
                     tanggal:dataAwal.calendar,  
                 }
-                axios.post(`http://localhost:8000/api/validasi-pengunjung`, dataInput,{
+                axios.post(`${process.env.REACT_APP_API_ENDPOINT}/api/validasi-pengunjung`, dataInput,{
                     headers:{
                         "Content-Type":"multipart/form-data",
                     }
@@ -116,7 +106,7 @@ console.log(dataa);
                     kategori:dataa.nama_kategori,
                     tanggal:dataAwal.calendar,  
                 }
-                axios.post(`http://localhost:8000/api/validasi-pengunjung`, dataInput,{
+                axios.post(`${process.env.REACT_APP_API_ENDPOINT}/api/validasi-pengunjung`, dataInput,{
                     headers:{
                         "Content-Type":"multipart/form-data",
                     }
@@ -150,7 +140,7 @@ console.log(dataa);
 
     if(dataa)
     {
-        if(isWeekend == false )
+        if(isWeekend === false )
         {
             setHarga(dataa.hari_biasa)
         }
@@ -160,7 +150,6 @@ console.log(dataa);
         }
     }
 
-    console.log(harga);
     setTotalOrang(orang * harga);
     // if (dataPengunjung.foto) {
     //     setImageUrl(URL.createObjectURL(dataPengunjung.foto));
@@ -170,6 +159,8 @@ console.log(dataa);
     $('input[type=number]').on('mousewheel', function(e) {
         $(e.target).blur();
       });
+
+     
     
     return (
     <div className='pt-36 py- mx-auto'>

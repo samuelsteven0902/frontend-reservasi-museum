@@ -23,12 +23,12 @@ const CloseRef = useRef();
 
 
     const fetchFaq = () =>{
-        axios.get('http://localhost:8000/api/show_faq').then(res=>{setDataFAQ(res.data.dataFAQ);console.log(res);setLoading(false)})
+        axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/show_faq`).then(res=>{setDataFAQ(res.data.dataFAQ);console.log(res);setLoading(false)})
     }
 
 useEffect(() => {
     fetchFaq();
-    idFAQ !== undefined &&  axios.get(`http://localhost:8000/api/edit_faq/${idFAQ}`).then(res=>{
+    idFAQ !== undefined &&  axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/edit_faq/${idFAQ}`).then(res=>{
         setFAQ(res.data.faq);console.log(res);setLoadingFAQ(false);
     })
 }, [idFAQ])
@@ -86,7 +86,7 @@ const updateFAQ = (e) =>{
         answer: faq.answer,
     }
 
-axios.put(`http://localhost:8000/api/update_faq/${idFAQ}`, data).then(res=>{
+axios.put(`${process.env.REACT_APP_API_ENDPOINT}/api/update_faq/${idFAQ}`, data).then(res=>{
     if(res.data.status === 200)
     {
         swal("Success",res.data.message,"success")
@@ -114,7 +114,7 @@ const addFAQ = (e) =>{
         answer:tambahFAQ.answer,
     }
     // console.log(data);
-    axios.post(`http://localhost:8000/api/add_faq`, data).then(res => {
+    axios.post(`${process.env.REACT_APP_API_ENDPOINT}/api/add_faq`, data).then(res => {
         if(res.data.status === 200)
         {
             swal("Success!",res.data.message,"success")
@@ -142,7 +142,7 @@ const deleteFAQ = (e, id) => {
     })
     .then((willDelete) => {
         if (willDelete) {
-            axios.delete(`http://localhost:8000/api/delete_faq/${id}`).then(res=>{
+            axios.delete(`${process.env.REACT_APP_API_ENDPOINT}/api/delete_faq/${id}`).then(res=>{
                 if(res.data.status === 200)
                 {
                     swal("Deleted!",res.data.message,"success")

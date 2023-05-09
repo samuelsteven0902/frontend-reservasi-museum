@@ -21,7 +21,7 @@ export default function Container({  }) {
 
 
     useEffect(() => {
-        axios.get('http://localhost:8000/api/show_faq').then(res=>{
+        axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/show_faq`).then(res=>{
             if(res.status == 200)
             {
                 setDataFaq(res.data.dataFAQ)
@@ -76,7 +76,7 @@ export default function Container({  }) {
     
 
     return (
-        <div className data-aos="fade-down" data-aos-duration="750">
+        <div className>
             <div className='flex justify-center flex-wrap flex-col my-24 '>
                 <p className='text-5xl font-merriweather  font-bold p-4 pb- w-full text-center'>Frequently Asked Questions</p>
                 <hr className='h-1 bg-red-300 w-1/3 flex mx-auto' />
@@ -85,7 +85,7 @@ export default function Container({  }) {
                 </p>
                 <input type='text' className="w-1/2  mx-auto border-none ring-2 ring-red-300 focus:border-none focus:ring-red-500 focus:ring-2 active:border-none  rounded-lg"  placeholder="Cari pertanyaan atau jawaban disini..." onChange={e=>{setSearchTerm(e.target.value)}} /> 
             </div>
-            <div className=' py-6 pb-12 mt-12'>
+            <div className=' py-6 pb-12 mt-12'  data-aos="fade-up" data-aos-duration="750">
                 <div className='w-11/12 mx-auto'>
                 {faq_data}
                 </div>             

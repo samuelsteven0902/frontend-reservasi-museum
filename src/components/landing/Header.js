@@ -10,10 +10,11 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs';
-import { RxDotFilled } from 'react-icons/rx';
+// import { RxDotFilled } from 'react-icons/rx';
 import axios from 'axios';
 
 export default function Header() {
+    const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT
     const { t } = useTranslation()
     const [ textEffect ] = useWindupString(t('landing.judul'), {
         pace: (char) => (char === " " ? 200 : 100),
@@ -23,10 +24,10 @@ export default function Header() {
 
     //show data
   const showData = ()=>{
-    axios.get('http://localhost:8000/api/show_slider').then ((res)=>{
+    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/show_slider`).then ((res)=>{
       if(res.status === 200){
         setGambar(res.data.data)
-        console.log(res.data)
+        // console.log(res.data)
         setLoading(false)
       }
     })
@@ -34,7 +35,6 @@ export default function Header() {
       console.error(error);
     });
   }
-  console.log(gambar); 
 
   useEffect(() => {
     showData();
@@ -65,12 +65,6 @@ export default function Header() {
   
   if(loading)
   {
-    return(
-    <tr className="bg-white border-b" >
-        <td colspan={5} className="text-xl text-center justify-center font-semibold py-5">
-            <ReactLoading type={"spin"} color={"red"} height={'5%'} width={'5%'} className="m-auto" />
-        </td>
-    </tr>)
 
   }
   else
@@ -78,14 +72,14 @@ export default function Header() {
 
     var SLIDER_HTMLTABLE = ""
     SLIDER_HTMLTABLE = gambar.map((item,index)=>{
-        var link = "http://localhost:8000/uploads/" +gambar[currentIndex].slider_name ;
+        var link = `${process.env.REACT_APP_API_ENDPOINT}/uploads/` +gambar[currentIndex].slider_name ;
         console.log(link)
         return(
             
             <div class="carousel-item relative float-left w-full">
                 <div style={{
                      backgroundImage: `url(${link} )` }}
-                    //  backgroundImage: `url(http://localhost:8000/uploads/uF452AzUDmP1l0NhmqcinCvFbFRsnxxn.png)` }} 
+                    //  backgroundImage: `url(${process.env.REACT_APP_API_ENDPOINT}/uploads/uF452AzUDmP1l0NhmqcinCvFbFRsnxxn.png)` }} 
                       class="absolute bg-cover sm:bg-cover bg-[#ECE3DE] bg-center w-full h-64 sm:h-[30rem] rounded-[2rem]" alt="..." />
             </div>
         )
@@ -152,7 +146,7 @@ export default function Header() {
         </div> */}
         <div class="carousel-inner relative bg-center bg-cover overflow-hidden justify-center items-center mx-auto w-11/12 h-[26rem] mb-40 rounded-[2rem]">
 
-            <div className='max-w-[1400px] h-[780px] w-full m-auto py-16 px-4 relative group'>
+            <div className='max-w-[1400px] h-[780px] w-full m-auto py-20 px-4 relative group'>
 
                 {/* {SLIDER_HTMLTABLE} */}
                 {/* <div class="carousel-item active relative float-left w-full">
@@ -162,17 +156,18 @@ export default function Header() {
                         <p className='tracking-[0.3rem] font-bold font-nunito pt-auto text-[#A70B0B]'>- UPT Museum Surakarta</p>
                     </div>
                 </div> */}
+                
                 { gambar.length === 0 ?
                 <div class="carousel-item active relative float-left w-full">
-                <div class="absolute bg-cover sm:bg-cover bg-landing-background bg-[#ECE3DE] bg-center w-full h-64 sm:h-[30rem] rounded-[2rem]" alt="..."   />
+                <div class="absolute bg-cover sm:bg-cover bg-landing-background bg-[#ECE3DE] bg-center w-full h-72 sm:h-[20rem] rounded-[2rem]" alt="..."   />
                 <div class="md:block absolute w-full lg:w-6/12 px-0 sm:ml-24 ml-10 mr-auto text-left mb-12 mt-36 sm:mb-0">
                     <p className='tracking-wide text-4xl font-bold font-merriweather pt-auto text-[#A70B0B]'>{textEffect}</p>
                     <p className='tracking-[0.3rem] font-bold font-nunito pt-auto text-[#A70B0B]'>- UPT Museum Surakarta</p>
                 </div>
             </div>
                 : <div
-                    style={{ backgroundImage: `url(${"http://localhost:8000/uploads/" +gambar[currentIndex].slider_name})` }}
-                    className='w-full h-full rounded-2xl bg-center bg-cover duration-500 sm:bg-cover bg-[#ECE3DE] sm:h-[30rem] rounded-[2rem]" alt="..."'>
+                    style={{ backgroundImage: `url(${`${process.env.REACT_APP_API_ENDPOINT}/uploads/` +gambar[currentIndex].slider_name})` }}
+                    className='w-full rounded-2xl bg-center bg-cover duration-500 sm:bg-cover bg-[#ECE3DE] h-72 sm:h-[20rem] rounded-[2rem]" alt="..."'>
                     <div class="md:block absolute w-full lg:w-6/12 px-0 sm:ml-24 ml-10 mr-auto text-left mb-12 mt-36 sm:mb-0">
                         <p className='tracking-wide text-4xl font-bold font-merriweather pt-auto text-[#A70B0B]'>{textEffect}</p>
                         <p className='tracking-[0.3rem] font-bold font-nunito pt-auto text-[#A70B0B]'>- UPT Museum Surakarta</p>

@@ -26,6 +26,7 @@ import CariTiket from 'pages/CariTiket';
 import Kepalauptmuseum from 'layout/kepalauptmuseum';
 import NonCash from 'pages/NonCash';
 import AboutMusuem from 'pages/AboutMusuem';
+import MetodePembayaran from 'pages/MetodePembayaran';
 
 
 function App() {
@@ -38,7 +39,7 @@ function App() {
             <Route exact path="/register" component={Register}  />
             <Route path="/input-data" component={InputData}/>
             <Route path="/pembayaran" component={Pembayaran}/>
-            <Route path="/pembayaran-noncash" component={NonCash}/>
+            <Route path="/checkout" component={MetodePembayaran}/>
             <Route path="/tikets" component={CariTiket}/>
             <Route path="/tiket/:id" component={Tiket}/>
             <Route path="/about" component={About}/>

@@ -49,7 +49,7 @@ export default function Login() {
         }
 
         console.log(data);
-            axios.post(`http://localhost:8000/api/login`, data).then(res=>{
+            axios.post(`${process.env.REACT_APP_API_ENDPOINT}/api/login`, data).then(res=>{
             console.log(res);
             if(res.data.status === 200){
                 // console.log(res.data.user.access_token);
@@ -119,16 +119,16 @@ export default function Login() {
                                         onChange={handleEmail}/>
                                     </div>
                                     {/* <!-- Password input --> */}
-                                    <div class="mb-6 flex relative">
+                                    <div class="mb-6 flex relative w-3/4 mx-auto">
                                         <input
                                         name='Pwd'
                                         type={passwordType}
-                                        class="w-3/4 mx-auto form-control block px-4 py-2 text-lg font-normal font-nunito text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition z-10 ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-red-600 focus:outline-none focus:ring-0"
+                                        class="w-full mx-auto form-control block px-4 py-2 text-lg font-normal font-nunito text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition z-10 ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-red-600 focus:outline-none focus:ring-0"
                                         id="exampleFormControlInput2"
                                         placeholder="Password"
                                         value={pwd}
                                         onChange={e=>setPwd(e.currentTarget.value)}/>
-                                    <button className="  px-5 py-2.5 absolute right-0 mr-24 z-20 focus:border-none active:border-none focus:outline-none focus:ring-0"  onClick={togglePassword}>
+                                    <button className="  px-5 py-2.5 absolute right-0 z-20 focus:border-none active:border-none focus:outline-none focus:ring-0"  onClick={togglePassword}>
                                         { passwordType==="password"? <AiOutlineEyeInvisible size={24} /> :<AiOutlineEye size={24} /> }
                                         </button>
                                     </div>

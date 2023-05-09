@@ -27,7 +27,7 @@ export default class Images extends Component {
       .then((willDelete) => {
       if (willDelete) {
 
-          axios.delete(`http://localhost:8000/api/delete-image/${id}`).then(res=>{
+          axios.delete(`${process.env.REACT_APP_API_ENDPOINT}/api/delete-image/${id}`).then(res=>{
               if(res.data.status === 200)
               {
                   // console.log('berhasil delet');
@@ -50,7 +50,7 @@ export default class Images extends Component {
 
   getImages = () => {
     axios
-      .get("http://localhost:8000/api/show_files")
+      .get(`${process.env.REACT_APP_API_ENDPOINT}/api/show_files`)
       .then((response) => {
         if (response.status === 200) {
           this.setState({
@@ -79,7 +79,7 @@ export default class Images extends Component {
                     this.state.images && this.state.images.length > 0 ? (
                         this.state.images.map((image) => (
                         <div className="w-1/3 flex items-start mt-3" key={image.id}>
-                            <img src={ "http://localhost:8000/uploads/" + image.panduan_name } className="img-fluid img-bordered" width="200px"/>
+                            <img src={ `${process.env.REACT_APP_API_ENDPOINT}/uploads/` + image.panduan_name } className="img-fluid img-bordered" width="200px"/>
                             <button className="bg-red-500 w-7 h-7 rounded-full text-white hover:bg-red-300" onClick={e=>this.deleteFile(image.id,e)}>X</button>
                         </div>
                         ))

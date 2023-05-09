@@ -19,52 +19,35 @@ function WorkingSection(input) {
     const [danger,setDanger] = useState('')
     const history = useHistory();
 
-    // tambahan dari form input
-    // const [input,setInput] = useState({
-    //     museum : '',
-    //     category : '',
-    //     calender : '',
-    //     nama : '',
-    //     kota : '',
-    //     phone : '',
-    //     jumlah : '',
-    //     tanggal : '',
-    //     harga_awal : '',
-    //     pembayaran : '',
-    //     status : ''
-        
-    // })
-    // end tambahan dari form input
-    
     const redirect = useHistory();
 
-    // const handleInput =(e) =>{
-    //     setInput({...input,[e.target.name]:e.target.value}) 
-    //     console.log(e);
-    // }
 
-    console.log(input);
+
+    // console.log(input);
     const handleCash = () =>{
         // console.log(input.data);
+        console.log(pembayaran);
         if(pembayaran == t('pembayaran.metode.cash') || input.input == 0){
             setPembayaran (t('pembayaran.metode.cash'))
-        console.log(pembayaran);
+            // console.log(pembayaran);
 
-        const data = {
-            nama:input.data.nama,
-            kota:input.data.kota,
-            phone:input.data.phone,
-            jumlah:input.data.jumlah,
-            museum:input.data.museum,
-            kategori:input.data.kategori,
-            tanggal:input.data.tanggal,
-            foto:input.data.foto,
-            harga_awal:input.input,  
-            pembayaran: 'cash',
-            // tiket: input.data.kode_tiket,
-            status: 'belum lunas',
-        }
-        axios.post(`http://localhost:8000/api/add-pengunjung`, data).then(res => {
+            const data = {
+                nama:input.data.nama,
+                kota:input.data.kota,
+                phone:input.data.phone,
+                jumlah:input.data.jumlah,
+                museum:input.data.museum,
+                kategori:input.data.kategori,
+                tanggal:input.data.tanggal,
+                foto:input.data.foto,
+                harga_awal:input.input,  
+                pembayaran: 'cash',
+                // tiket: input.data.kode_tiket,
+                status: input.input === 0?'Lunas':'Belum Lunas' ,
+            }
+            // console.log(data);
+            
+            axios.post(`${process.env.REACT_APP_API_ENDPOINT}/api/add-pengunjung`, data).then(res => {
                     console.log(res);
                     if(res.data.status === 200)
                     {
@@ -92,13 +75,15 @@ function WorkingSection(input) {
                 // tiket: input.data.kode_tiket,
                 status: 'belum lunas',
             }
-            history.push({ pathname:"/pembayaran-noncash",state: {data} });
+            history.push({ pathname:"/checkout",state: {data} });
         }else{
             setDanger("Silahkan pilih pembayaran terlebih dahulu")
         }
     }
 
     useEffect(() => {
+        
+
     }, [pembayaran])
 
     const rupiah = (number)=>{
@@ -109,7 +94,6 @@ function WorkingSection(input) {
     }
 
     const onValueChange = (e) => {
-        // setPembayaran(e)
         setPembayaran(e.target.value)
     }
     
@@ -146,7 +130,7 @@ return (
 
                 {input.input == 0 ? "":<div className='container mx-auto flex bg-white my-6 rounded-2xl py-4'>
                     <div className='w-1/6 flex mx-auto justify-center '>
-                    <img src={pilih}  className='w-16 h-16'/>
+                    <img src={pilih}  className='w-16 h-16' alt=''/>
                         
                     </div>
                     <div className='w-5/6' >
@@ -189,7 +173,7 @@ return (
                 <div className='lg:w-1/3 w-full my-2 mx-4 mt-6 h-1/2'>
                     <div className='container  mx-auto flex bg-white rounded-2xl py-6'>
                         <div className='w-1/6 min-w-max flex mx-auto justify-center '>
-                            <img src={detail}  className='w-16 h-16'/>
+                            <img src={detail}  className='w-16 h-16' alt=''/>
                         </div>
                         <div className='lg:block  bg-white w-5/6 mx-4'>
                             <p className='font-merriweather font-bold text-3xl py-3'>{t('pembayaran.detail.judul')}</p>
@@ -217,18 +201,12 @@ return (
                                     </div>
                                 </div>
                             </div>
-                            {/* <div className='flex'>
-                                <img />
-                                <div>
-                                    <p>Harga satuan</p>
-                                    <p>{input.data.tanggal}</p>
-                                </div>
-                            </div> */}
+                            
                         </div>
                     </div>
                     <div className='container mx-auto flex bg-white my-6 rounded-2xl py-4'>
                         <div className='w-1/6 min-w-max flex mx-auto justify-center '>
-                            <img src={total}  className='w-16 h-16'/>            
+                            <img src={total}  className='w-16 h-16' alt=''/>            
                         </div>
                         <div className='w-5/6'>
                             <p className='mx-4 text-2xl font-merriweather font-bold py-3'>{t('pembayaran.total.judul')}</p>
