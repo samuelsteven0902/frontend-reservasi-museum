@@ -45,6 +45,7 @@ class CardDataKehadiran extends Component {
               this.state.username = json.user.name;
             }
         }
+
         const handleKonfirmasi = (e,idData) =>{
             // e.preventDefault();
             const data = {
@@ -122,14 +123,6 @@ class CardDataKehadiran extends Component {
                 align: "left",
                 sortable: true
             },
-            // {
-            //     key: "harga",
-            //     text: "Harga Awal",
-            //     className: "border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4",
-            //     TrOnlyClassName:"border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-red-200",
-            //     align: "left",
-            //     sortable: true
-            // },
             {
                 key: "pembayaran",
                 text: "Pembayaran",
@@ -166,15 +159,6 @@ class CardDataKehadiran extends Component {
             }
         ];
         this.config = {
-            // key_column: '_id', 
-            // filename: "Users",
-            // no_data_text: 'No data available!',
-            // button: {
-            //     excel: true,
-            //     print: true,
-            //     csv: true,
-            //     extra: false,
-            // },
             language: {
                 length_menu: "Show _MENU_ result per page",
                 filter: "Cari nama, kategori, kota,...",

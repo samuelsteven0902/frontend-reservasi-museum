@@ -67,8 +67,8 @@ export default function Container() {
             <div className='flex justify-center flex-wrap flex-col my-24 '>
                 <p className='text-5xl font-merriweather  font-bold p-4 pb- w-full text-center'>About</p>
                 <hr className='h-1 bg-red-300 w-1/3 flex mx-auto' />
-                <p className='font-nunito tracking-wider w-3/5 mx-auto pt-6 pb-3 text-center'>
-                    {t('about.desc')}
+                <p className='tracking-wider w-full mx-auto pt-6 text-base font-medium font-nunito pt-auto text-black text-center'>
+                    {t('about.desc1')} {t('about.desc2')}
                 </p>
             </div>
             {/* <div className="w-11/12 mx-auto min-h-full">
@@ -88,7 +88,7 @@ export default function Container() {
                         {t('about.isi.part7')}</p>
                     </div>
                 </div> */}
-            <div className=' py-6 pb-12 mt-12'>
+            <div className='py-6 pb-12 mt-12'>
                 <div className='w-11/12 mx-auto '>
                 <div className='grid grid-cols-1 sm:grid-cols-4 gap-4 '  data-aos="fade-down" data-aos-duration="750">
                     {about_data}

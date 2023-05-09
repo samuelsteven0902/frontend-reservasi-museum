@@ -60,7 +60,10 @@ export default function Container({  }) {
                 <p className='text-5xl font-merriweather  font-bold p-4 pb- w-full text-center'>About</p>
                 <hr className='h-1 bg-red-300 w-1/3 flex mx-auto' />
                 <p className='font-nunito tracking-wider w-3/5 mx-auto pt-6 pb-3 text-center'>
-                    {t('about.desc')}
+                    {t('about.desc1')}
+                </p>
+                <p className='font-nunito tracking-wider w-3/5 mx-auto pt-6 pb-3 text-center'>
+                    {t('about.desc2')}
                 </p>
             </div>
             {/* <div className="w-11/12 mx-auto min-h-full">

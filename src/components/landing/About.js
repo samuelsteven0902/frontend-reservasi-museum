@@ -1,8 +1,9 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom'
-import about1 from '../../assets/img/about1.jpeg'
-import about2 from '../../assets/img/about2.jpg'
+// import about1 from '../../assets/img/about1.jpeg'
+// import about2 from '../../assets/img/about2.jpg'
+import about5 from '../../assets/img/about5.JPG'
 
 
 export default function About() {
@@ -16,7 +17,7 @@ export default function About() {
                     </div>
                     <div className='w-full px-3 md:px-12 lg:px-24  text-left mt-14 pb-20'>
                         <div className='pb-5'  >
-                        <img className="float-right w-36  mx-5 my-2 rounded-xl " src={about1} data-aos="fade-down" data-aos-delay="600" data-aos-duration="1000" />
+                        <img className="float-right object-contain h-48 w-72 rounded-xl" src={about5} data-aos="fade-down" data-aos-delay="600" data-aos-duration="1000" />
                         <p className='text-base font-medium font-nunito pt-auto text-black ' data-aos="fade-up" data-aos-delay="300" data-aos-duration="750">{t('landing.about.part1')}
                         </p>
                         </div>

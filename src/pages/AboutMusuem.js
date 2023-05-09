@@ -16,10 +16,10 @@ function AboutMusuem() {
         <DefaultNavbar />
       </div>
     <div>
-      <main>
+      <main className='mb-32'>
         <ContentAboutMuseum code={code} id={stateParamVal} />
       </main>
-      {/* <FooterPengunju ng /> */}
+      <FooterPengunjung />
     </div>
     </>
   )

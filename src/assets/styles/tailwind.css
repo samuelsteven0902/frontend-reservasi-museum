@@ -1003,10 +1003,6 @@ input[type="range"]::-ms-fill-lower{
 	margin-top: 3rem;
 	margin-bottom: 3rem;
 } 
-.mx-5{
-	margin-left: 1.25rem;
-	margin-right: 1.25rem;
-} 
 .my-2{
 	margin-top: 0.5rem;
 	margin-bottom: 0.5rem;
@@ -1018,6 +1014,10 @@ input[type="range"]::-ms-fill-lower{
 .mx-4{
 	margin-left: 1rem;
 	margin-right: 1rem;
+} 
+.mx-5{
+	margin-left: 1.25rem;
+	margin-right: 1.25rem;
 } 
 .mx-24{
 	margin-left: 6rem;
@@ -1078,6 +1078,9 @@ input[type="range"]::-ms-fill-lower{
 } 
 .mb-3{
 	margin-bottom: 0.75rem;
+} 
+.mb-32{
+	margin-bottom: 8rem;
 } 
 .mt-44{
 	margin-top: 11rem;
@@ -1268,6 +1271,9 @@ input[type="range"]::-ms-fill-lower{
 .h-1\/2{
 	height: 50%;
 } 
+.h-48{
+	height: 12rem;
+} 
 .h-12{
 	height: 3rem;
 } 
@@ -1379,9 +1385,6 @@ input[type="range"]::-ms-fill-lower{
 .w-\[80\%\]{
 	width: 80%;
 } 
-.w-36{
-	width: 9rem;
-} 
 .w-12{
 	width: 3rem;
 } 
@@ -1417,6 +1420,9 @@ input[type="range"]::-ms-fill-lower{
 } 
 .w-6\/12{
 	width: 50%;
+} 
+.w-36{
+	width: 9rem;
 } 
 .w-48{
 	width: 12rem;
@@ -1923,6 +1929,9 @@ input[type="range"]::-ms-fill-lower{
 } 
 .fill-current{
 	fill: currentColor;
+} 
+.object-contain{
+	object-fit: contain;
 } 
 .p-4{
 	padding: 1rem;
