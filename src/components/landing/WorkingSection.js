@@ -37,7 +37,7 @@ export default function WorkingSection({setRes}) {
         calendar : 'Pilih Tanggal'
     })
     const [namaInput, setNamaInput] = useState({
-        bebas : 'asdsa',
+        bebas : 'data',
         namaMuseumm : t('landing.working'),
         namaCategory : t('landing.working.kategori'),
         namaCalendar : t('landing.working.tanggal'),
@@ -47,11 +47,7 @@ export default function WorkingSection({setRes}) {
     const redirect = useHistory();
 
     const refOne = useRef(null)
-    // kayaknya ditambhkan di ws pembayaran
-    // const handleInput =(e) =>{
-    //     setInput({...input,[e.target.name]:e.target.value}) 
-    //     console.log(e);
-    // }
+    
 
     const cekMuseum = (e) =>{
         if(input.museum === "museum_keris" || "museum_radya_pustaka") {
@@ -116,7 +112,6 @@ export default function WorkingSection({setRes}) {
 
     useEffect(() => {
         
-
         // console.log(category);
     }, [category,museumId,namaInput])
     
@@ -125,7 +120,6 @@ export default function WorkingSection({setRes}) {
     //   setRes(input); 
     document.addEventListener("keydown", hidenOnEscape , true);
     document.addEventListener("click", hideOnClickOutside , true    );
-
       //  setInput({...input,museum:museum}) 
         // setInput({...input,calendar:calendar}) 
     }, [input,museum,namaInput])
@@ -180,11 +174,11 @@ export default function WorkingSection({setRes}) {
     
     var x = localStorage.getItem("i18nextLng");
     console.log(x);
+    console.log(category);
 
 
 // console.log(museum);
 // console.log(namaInput.namaCategory);
-console.log(category);
     return (
         <section className="pb-20 -mt-80 sm:-mt-56 left-1/2 mx-auto z-10 w-5/6" data-aos="fade-down" data-aos-duration="750">
             <div className="container text-center max-w-5xl mx-auto sm:px-10 ">

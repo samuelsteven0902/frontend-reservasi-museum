@@ -174,7 +174,8 @@ i18n
               judul:'Total Payment',
               total:'',
             },
-            tombol:'Next'
+            tombol:'Order',
+            danger:'Please Choose the Payment Method'
           },
           tiket:{
             judul:'Reservation Ticket',
@@ -313,7 +314,8 @@ i18n
               judul:'Total Pembayaran',
               total:'',
             },
-            tombol:'Selanjutnya'
+            tombol:'Pesan',
+            danger:'Silahkan pilih metode pembayaran'
           },
           tiket:{
             judul:'Tiket Reservasi',

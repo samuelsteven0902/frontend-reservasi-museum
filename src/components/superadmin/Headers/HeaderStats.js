@@ -5,6 +5,7 @@ import { useState , useEffect } from "react";
 // components
 
 import CardStats from "../Cards/CardStats.js";
+import Cookies from "js-cookie";
 
 export default function HeaderStats() {
 
@@ -12,7 +13,12 @@ export default function HeaderStats() {
   const [loading,setLoading] = useState(true)
 
   const fetchData = () =>{
-    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/pengunjung`).then(res=>{
+    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/pengunjung`, {
+      headers : {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        Authorization: `Bearer ${Cookies.get('token')}`,
+      }}).then(res=>{
     console.log(res);  
     if(res.status === 200)
       {
@@ -21,6 +27,7 @@ export default function HeaderStats() {
       }
   });
   }
+  
   
   useEffect(() => {
     fetchData()

@@ -61,3 +61,18 @@
     font-size:24px;
   }
 }
+
+.loader-input {
+  margin:auto;
+  width:120px;
+  height:120px;
+  border-radius: 50%;
+  -webkit-mask:linear-gradient(0deg,#000 55%,#0000 0) bottom/100% 18.18%;
+  background:
+   linear-gradient(#F40000 0 0) bottom/100% 0% no-repeat
+   #E4E4ED;
+  animation:p8 3s infinite steps(7);
+}
+@keyframes p8 {
+    100% {background-size:100% 115%}
+}

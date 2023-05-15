@@ -2,10 +2,11 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import NavbarContainer from '@material-tailwind/react/NavbarContainer';
 import NavbarWrapper from '@material-tailwind/react/NavbarWrapper';
-// import NavbarBrand from '@material-tailwind/react/NavbarBrand';
 import NavbarToggler from '@material-tailwind/react/NavbarToggler';
 import NavbarCollapse from '@material-tailwind/react/NavbarCollapse';
+import { Navbar } from '@material-tailwind/react';
 import Nav from '@material-tailwind/react/Nav';
+// import NavbarBrand from '@material-tailwind/react/NavbarBrand';
 import 'flowbite';
 import 'tw-elements';
 import Cookies from 'js-cookie';
@@ -13,7 +14,6 @@ import NavbarDropdown from './NavbarDropdown';
 import i18next from 'i18next';
 import { useTranslation } from 'react-i18next';
 import LanguageDropdownn from './LanguageDropdown';
-import { Navbar } from '@material-tailwind/react';
 
 export default function DefaultNavbar() {
     const [openNavbar, setOpenNavbar] = useState(false);

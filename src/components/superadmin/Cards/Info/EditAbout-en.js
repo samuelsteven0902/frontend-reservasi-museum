@@ -27,11 +27,12 @@ function EditAbout(props) {
             }
             else if(res.data.status === 404)
             {
-                // swal("Error",res.data.message,"error");
+                swal("Error","Terdapat Error","error");
                 // history.push('/students');
             }
         });
 
+        console.log(location.state);
         
     }
 
@@ -74,6 +75,8 @@ function EditAbout(props) {
           
         }, [])
   
+
+    console.log(about);
 
     if(loading)
     {

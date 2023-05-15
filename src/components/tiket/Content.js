@@ -10,6 +10,7 @@ import QRCode from "react-qr-code";
 import kosong from "../../assets/img/admin/nothing.svg"
 import { useTranslation } from 'react-i18next';
 import Tiket from 'pages/Tiket';
+import Cookies from 'js-cookie';
 
 
 function Content({id}) {
@@ -20,8 +21,14 @@ function Content({id}) {
   const [loading,setLoading] = useState(true);
 
 
+
   const fetchTicket = () =>{
-    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/show-ticket/${id}`).then(res=>{
+    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/show-ticket/${id}`, {
+      headers : {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        Authorization: `Bearer ${Cookies.get('token')}`,
+      }}).then(res=>{
       console.log(res);
       if(res.data.status === 200)
           {
@@ -51,9 +58,12 @@ function Content({id}) {
     fetchTicket();
   }, [])
 
+
   if(loading)
   {
-    return <ReactLoading type={"spin"} color={"red"} height={'10%'} width={'10%'} className="m-auto h-screen" />
+    return <div className='h-screen m-auto flex justify-center items-center'>
+              <ReactLoading type={"spin"} color={"red"} height={'10%'} width={'10%'} className="m-auto " />
+          </div>
   }
 
   console.log(tiket);

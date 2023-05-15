@@ -16,6 +16,7 @@ function FormInput({dataAwal,dataa}) {
         nama :'',
         kota :'',
         phone:'',
+        email:'',
         jumlah:'',
         foto: null,
         attachment: null,
@@ -70,6 +71,7 @@ function FormInput({dataAwal,dataa}) {
                     kota:dataPengunjung.kota,
                     phone:dataPengunjung.phone,
                     jumlah:dataa.max,
+                    email:dataPengunjung.email,
                     foto:dataPengunjung.foto,
                     museum:dataa.nama_museum,
                     kategori:dataa.nama_kategori,
@@ -102,10 +104,12 @@ function FormInput({dataAwal,dataa}) {
                     phone:dataPengunjung.phone,
                     jumlah:dataPengunjung.jumlah,
                     foto:dataPengunjung.foto,
+                    email:dataPengunjung.email,
                     museum:dataa.nama_museum,
                     kategori:dataa.nama_kategori,
                     tanggal:dataAwal.calendar,  
                 }
+
                 axios.post(`${process.env.REACT_APP_API_ENDPOINT}/api/validasi-pengunjung`, dataInput,{
                     headers:{
                         "Content-Type":"multipart/form-data",
@@ -189,12 +193,19 @@ function FormInput({dataAwal,dataa}) {
                     </div>
                     <div className="w-96 mb-4 md:mx-6 mx-auto md:mt-0 mt-8">
                         <label className="block text-gray-700 text-sm font-bold mb-2 font-nunito" for="jumlah">{t('formInput.input.jumlah')}</label>
-                        <input type="text" inputmode="numeric" pattern="[0-9]*" name='jumlah' onChange={(e)=>{ handleJummlah(e);  }} value={orang} className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder={dataa && "contoh : " + dataa.min + " orang"}></input>
+                        <input type="number" inputmode="numeric" pattern="[0-9]*" name='jumlah' onChange={(e)=>{ handleJummlah(e);  }} value={orang} className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder={dataa && "contoh : " + dataa.min + " orang"}></input>
                         <div className='flex justify-end pr-2'>
                             <span className="text-sm pr-6">min : {dataa && dataa.min}</span>
                             <span className="text-sm ">max : {dataa && dataa.max}</span>
                         </div>
                         <span className="text-sm text-red-500">{dataPengunjung.error_list.jumlah}</span>
+                    </div>
+                </div>
+                <div className='md:flex justify-around md:mt-0 mt-8'>    
+                    <div className="w-96 mb-4 mx-auto md:mx-0">
+                        <label className="block text-gray-700 text-sm font-bold mb-2 font-nunito" for="email">Email</label>
+                        <input name='email' onChange={handleInput} value={dataPengunjung.email} className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="text" placeholder="Contoh : pengunjung@Gmail.com" />
+                        <span className="text-sm text-red-500">{dataPengunjung.error_list.email}</span>
                     </div>
                 </div>
                 {/* INPUTAN FILE */}

@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Images from "./Images";
-import CKEditorComponent from "./CKEditorComponent";
-import TextEditor from "./TextEditor";
+import Cookies from "js-cookie";
 // import Images from "./Image";
 export default class ImageUpload extends Component {
   constructor(props) {
@@ -43,7 +42,12 @@ export default class ImageUpload extends Component {
       console.log(this.state.image);
     }
     console.log(data);
-    axios.post(`${process.env.REACT_APP_API_ENDPOINT}/api/files`, data)
+    axios.post(`${process.env.REACT_APP_API_ENDPOINT}/api/files`, data, {
+      headers : {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        Authorization: `Bearer ${Cookies.get('token')}`,
+      }})
       .then((response) => {
         if (response.status === 200) {
           this.setState({
@@ -116,7 +120,7 @@ export default class ImageUpload extends Component {
                 <div className="card-body">
                   <div className="form-group py-2 "> 
                     <div className='flex justify-center flex-wrap flex-col'>
-                      <p className='text-3xl sm:text-4xl font-merriweather font-bold pb- w-full  text-red-400'>Panduan Tiket</p>
+                      <p className='text-3xl sm:text-4xl font-merriweather font-bold pb- w-full  text-red-400'>Panduan Gambar</p>
                       <hr className='h-1 bg-red-300 flex'/>
                     </div>
                     <input type="file" name="image" multiple onChange={this.handleChange} className="rounded-xl bg-gray-200 mt-10 w-full"/>
@@ -129,7 +133,7 @@ export default class ImageUpload extends Component {
 
                 {/* <TextEditor /> */}
                 <div className="card-footer">
-                  <button type="submit" className="bg-green-500 rounded-xl px-4 py-2 text-xl text-white">Upload File</button>
+                  <button type="submit" className="bg-green-600 rounded-xl px-4 py-2 text-xl text-white hover:bg-green-500 focus:bg-green-400 active:bg-green-400 focus:outline-none transition-all">Upload File</button>
                 </div>
               </div>
             </form>

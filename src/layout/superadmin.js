@@ -24,6 +24,7 @@ import EditAbout from "components/superadmin/Cards/Info/EditAbout";
 import EditAboutEn from "components/superadmin/Cards/Info/EditAbout-en";
 import Slider from "components/superadmin/Slider";
 
+
 export default function SuperAdmin() {
   return (
     <>

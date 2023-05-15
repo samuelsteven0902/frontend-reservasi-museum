@@ -31,7 +31,7 @@ function Items(props) {
   return (
     <>
     {dataTiket.map((item,index)=>{
-      // console.log(item)
+      console.log(item)
         return(
             <tr className="bg-white border-b text-center " key={index}>
                     <td className=" text-gray-900 px-6 py-4 whitespace-nowrap">
@@ -52,10 +52,20 @@ function Items(props) {
                     <td className=" text-gray-900  px-6 py-4 whitespace-nowrap">
                         {rupiah(item.hari_libur)}
                     </td>
+                    <td className=" text-gray-900  px-6 py-4 whitespace-nowrap">
+                        {item.min}
+                    </td>
+                    <td className=" text-gray-900  px-6 py-4 whitespace-nowrap">
+                        {item.max}
+                    </td>
                     <td className=" text-gray-900 px-6 py-4 whitespace-nowrap ">
                      
                     
-                    <button type="button" className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" data-bs-toggle="modal" id={item.id_kategori} data-bs-target="#exampleModalCenteredScrollable" onClick={props.updateHarga}>
+                    <button type="button" className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" 
+                    data-te-toggle="modal" 
+                    id={item.id} 
+                    data-te-target="#exampleModalCenteredScrollable" 
+                    onClick={props.updateHarga}>
                         Edit
                     </button>
 
@@ -80,32 +90,8 @@ function PagginationTiket(props) {
   const itemsPerPage = 6 ;
 
   const endOffset = itemOffset + itemsPerPage;
-  const currentItems = dataTiket[0][1]
-      .filter(val=>{
-        if(searchTerm == "")
-        {
-            return val
-        }
-        else if(val.nama_museum.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                val.nama_kategori.toLowerCase().includes(searchTerm.toLowerCase()))
-        {
-            return val
-        }
-        })
-      .slice(itemOffset, endOffset);
-  const pageCount = Math.ceil(dataTiket[0][1]
-    .filter(val=>{
-      if(searchTerm === "")
-      {
-          return val
-      }
-      else if(val.nama_museum.toLowerCase().includes(searchTerm.toLowerCase()) ||
-              val.nama_kategori.toLowerCase().includes(searchTerm.toLowerCase()))
-      {
-          return val
-      }
-      })
-    .length / itemsPerPage);
+  const currentItems = dataTiket[0][1].slice(itemOffset, endOffset);
+  const pageCount = Math.ceil(dataTiket[0][1].length / itemsPerPage);
   console.log(currentItems)
 
   const handlePageClick = (event) => {
@@ -130,10 +116,10 @@ function PagginationTiket(props) {
 
   return (
     <>
-      <Items data={currentItems} updateHarga={(data)=>props.updateHarga(data)} />
+      <Items data={currentItems} updateHarga={(data)=>{props.updateHarga(data);console.log(data.target)}} />
       
       <tr className='w-full  py-2' >
-        <th colSpan={6}>
+        <th colSpan={9}>
           <ReactPaginate
             breakLabel="..."
             nextLabel="Next ⇒"
@@ -143,10 +129,10 @@ function PagginationTiket(props) {
             previousLabel="⇐ Previous"
             renderOnZeroPageCount={null}
             containerClassName='isolate inline-flex -space-x-px rounded-md shadow-sm my-2'
-            pageLinkClassName='relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-indigo-200 hover:bg-indigo-500 focus:z-20 focus:outline-offset-0 h-full'
-            previousLinkClassName='relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-900 ring-1 ring-inset ring-indigo-200 hover:bg-indigo-500 hover:text-white focus:z-20 focus:outline-offset-0 bg-indigo-100'
-            nextLinkClassName='relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-900 ring-1 ring-inset ring-indigo-200 hover:bg-indigo-500 hover:text-white focus:z-20 focus:outline-offset-0 bg-indigo-100'
-            activeLinkClassName='relative z-10 inline-flex items-center bg-indigo-600 px-5 py-2 text-sm font-semibold text-white focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 h-full'
+            pageLinkClassName='relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-red-200 hover:bg-red-500 focus:z-20 focus:outline-offset-0 h-full'
+            previousLinkClassName='relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-900 ring-1 ring-inset ring-red-200 hover:bg-red-500 hover:text-white focus:z-20 focus:outline-offset-0 bg-red-100'
+            nextLinkClassName='relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-900 ring-1 ring-inset ring-red-200 hover:bg-red-500 hover:text-white focus:z-20 focus:outline-offset-0 bg-red-100'
+            activeLinkClassName='relative z-10 inline-flex items-center bg-red-600 px-5 py-2 text-sm font-semibold text-white focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600 h-full'
           />
         </th>
       </tr>

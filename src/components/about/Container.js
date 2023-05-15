@@ -32,11 +32,14 @@ export default function Container() {
         }) 
     }
     
+    var x= localStorage.getItem("i18nextLng")
+    console.log(x);
+    
     useEffect(() => {
         fetchMuseum();
         
     }, [])
-    console.log(dataAbout);
+    // console.log(dataAbout);
     
     const handleMuseum = (e) =>{
         history.push({ pathname:"/about-museum/" + e.target.value,
@@ -47,14 +50,32 @@ export default function Container() {
     if(loading)
     {
         about_data = (
-            <ReactLoading type={"spin"} color={"red"} height={'10%'} width={'10%'} className="m-auto" />
+            <div className='w-full flex '>
+            {/* <ReactLoading type={"spin"} color={"red"} height={'10%'} width={'10%'} className="m-auto" /> */}
+                <div role="status" class="animate-pulse flex w-full mr-4 relative">
+                {/* <ReactLoading type={"spin"} color={"red"} height={'10%'} width={'10%'} className="absolute top-1/3 left-[47%]" /> */}
+                     <div class="h-24 bg-gray-500 bg-opacity-80 rounded-md dark:bg-gray-700 w-60 mb-4 "></div>
+                </div>
+                <div role="status" class="animate-pulse flex w-full mr-4 relative">
+                {/* <ReactLoading type={"spin"} color={"red"} height={'10%'} width={'10%'} className="absolute top-1/3 left-[47%]" /> */}
+                     <div class="h-24 bg-gray-500 bg-opacity-80 rounded-md dark:bg-gray-700 w-60 mb-4 "></div>
+                </div>
+                <div role="status" class="animate-pulse flex w-full mr-4 relative">
+                {/* <ReactLoading type={"spin"} color={"red"} height={'10%'} width={'10%'} className="absolute top-1/3 left-[47%]" /> */}
+                     <div class="h-24 bg-gray-500 bg-opacity-80 rounded-md dark:bg-gray-700 w-60 mb-4 "></div>
+                </div>
+                <div role="status" class="animate-pulse flex w-full relative">
+                {/* <ReactLoading type={"spin"} color={"red"} height={'10%'} width={'10%'} className="absolute top-1/3 left-[47%]" /> */}
+                     <div class="h-24 bg-gray-500 bg-opacity-80 rounded-md dark:bg-gray-700 w-60 mb-4 "></div>
+                </div>
+            </div>
         )
     }
     else
     {
         var about_data = museum.map((item,index)=>{
             return (
-                <button className='border-4 rounded-md hover:bg-red-200 transition-all duration-300 hover:text-lg flex justify-center items-center border-red-200 h-24' value={item.nama_museum} onClick={handleMuseum} key={index} id={item.id}>{item.nama_museum}</button>
+                <button  data-aos="fade-down" data-aos-duration="750" data-aos-delay={index*200} className='border-4 rounded-md hover:bg-red-200 transition-all duration-500 ease-in-out hover:text-lg flex justify-center items-center border-red-200 h-24 ' value={item.nama_museum} onClick={handleMuseum} key={index} id={item.id}>{item.nama_museum}</button>
             )
         })
        
@@ -90,7 +111,7 @@ export default function Container() {
                 </div> */}
             <div className='py-6 pb-12 mt-12'>
                 <div className='w-11/12 mx-auto '>
-                <div className='grid grid-cols-1 sm:grid-cols-4 gap-4 '  data-aos="fade-down" data-aos-duration="750">
+                <div className='grid grid-cols-1 sm:grid-cols-4 gap-4 ' >
                     {about_data}
                 </div>
 

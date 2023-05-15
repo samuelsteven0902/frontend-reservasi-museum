@@ -16,11 +16,6 @@ function InfoAbout() {
             console.log(res.data.museum);
         }) 
     }
-    const myData = {
-        name: 'Some thing',
-        price: 123
-      }
-
     
     useEffect(() => {
         fetchMuseum();

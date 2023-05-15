@@ -4,6 +4,12 @@ import swal from 'sweetalert'
 import $ from 'jquery';
 import ReactLoading from 'react-loading';
 import { AiOutlineEyeInvisible,AiOutlineEye } from 'react-icons/ai';
+import Cookies from 'js-cookie';
+import {
+    Modal,
+    Ripple,
+    initTE,
+  } from "tw-elements";
 
 function CardAdmin() {
 
@@ -54,7 +60,12 @@ function CardAdmin() {
             password:input.password,
         }
         
-        axios.post(`${process.env.REACT_APP_API_ENDPOINT}/api/add_admin`, data).then(res=>{
+        axios.post(`${process.env.REACT_APP_API_ENDPOINT}/api/add_admin`, data, {
+            headers : {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json',
+              Authorization: `Bearer ${Cookies.get('token')}`,
+            }}).then(res=>{
             console.log(res);
             if(res.data.status === 200)
             {
@@ -84,7 +95,12 @@ function CardAdmin() {
         })
         .then((willDelete) => {
             if (willDelete) {
-                axios.delete(`${process.env.REACT_APP_API_ENDPOINT}/api/delete_admin/${id}`).then(res=>{
+                axios.delete(`${process.env.REACT_APP_API_ENDPOINT}/api/delete_admin/${id}`, {
+                    headers : {
+                      'Content-Type': 'application/json',
+                      'Accept': 'application/json',
+                      Authorization: `Bearer ${Cookies.get('token')}`,
+                    }}).then(res=>{
                     if(res.data.status === 200)
                     {
                         // console.log('berhasil delet');
@@ -110,7 +126,7 @@ function CardAdmin() {
     {
         var ADMIN_HTMLTABLE =   
             <tr className="bg-white border-b" >
-                <td colspan={5} className="text-xl text-center justify-center font-semibold py-5">
+                <td colspan={6} className="text-xl text-center justify-center font-semibold py-5">
                     <ReactLoading type={"spin"} color={"red"} height={'5%'} width={'5%'} className="m-auto" />
                 </td>
             </tr>
@@ -138,8 +154,11 @@ function CardAdmin() {
     }
 
 return (
-    <div className='container px-12 relative flex flex-col min-w-0 break-words w-full mb-6  rounded '>
-        <button type="button" class="w-36 inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out" data-bs-toggle="modal" data-bs-target="#tambahFAQ">Tambah Admin</button>
+    <div 
+    className='container px-12 relative flex flex-col min-w-0 break-words w-full mb-6 rounded'>
+        <button type="button" class="w-36 inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out"
+        data-te-toggle="modal"
+        data-te-target="#tambahAdmin">Tambah Admin</button>
             <div class="flex flex-col " >
                 <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
@@ -161,16 +180,28 @@ return (
                             </table>
                         </div>
                     </div>
-            <div>
-                <div className="modal fade fixed bg-gray-300    py-12   mx-auto items-center m-auto w-screen bg-opacity-60 top-0 left-0 hidden h-screen outline-none overflow-x-hidden overflow-y-auto" id="tambahFAQ" tabIndex="-1" aria-labelledby="tambahFAQ" aria-modal="true" role="dialog">
+                
+            </div>
+            </div>
+        
+            <div 
+                data-te-modal-init
+                className="modal fade fixed bg-gray-300  z-[5000]  py-12   mx-auto items-center m-auto w-screen bg-opacity-60 top-0 left-0 hidden h-screen outline-none overflow-x-hidden overflow-y-auto"
+                id="tambahAdmin" 
+                tabIndex="-1" 
+                aria-labelledby="tambahAdminLabel" 
+                aria-modal="true">
                 <div className="modal-dialog w-11/12 justify-center md:w-1/2  px-0 sm:px-12 mx-auto  h-full  my-auto modal-dialog-centered modal-dialog-scrollable relative items-center pointer-events-none lg:w-1/3" >
-                        <div className="modal-content border-none shadow-lg relative flex flex-col sm:w-full sm:min-w-max pointer-events-auto my-auto bg-white  bg-clip-padding rounded-md outline-none text-current">
+                        <div 
+                        data-te-modal-dialog-ref 
+                        className="modal-content border-none shadow-lg relative flex flex-col sm:w-full sm:min-w-max pointer-events-auto my-auto bg-white  bg-clip-padding rounded-md outline-none text-current"  id="tambahAdminlabel">
                             <div className="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
-                                <h5 className="text-xl font-nunito font-semibold leading-normal text-gray-800" id="TambahFAQlabel"> Tambah Admin Baru</h5>
+                                <h5 className="text-xl font-nunito font-semibold leading-normal text-gray-800"> Tambah Admin Baru</h5>
                                 <button type="button" className="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"
-                                data-bs-dismiss="modal" aria-label="Close"></button>
+                                data-te-modal-dismiss="modal" aria-label="Close"></button>
                             </div>
-                            <form  onSubmit={handleSubmit} className='overflow-auto'>
+                            <div  data-te-modal-body-ref>
+                            <form  onSubmit={handleSubmit} className='overflow-auto' data-te-modal-body-ref>
                             <div className="modal-body relative py-4">
                                 <div className='justify-around md:mt-0 mt-8'>    
                                     <div className="w-96 mb-4 mx-auto ">
@@ -201,19 +232,18 @@ return (
                                     </div>
                                 </div>
                             </div>
-                            <div
+                            <div 
                                 className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
                                 <button type="button" className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
-                                data-bs-dismiss="modal" ref={CloseRef}>Tutup</button>
+                                data-te-modal-dismiss="modal" ref={CloseRef}>Tutup</button>
                                 <button id='tambahAdmin' type="submit" className="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out ml-1">Tambah Admin</button>
                             </div>
-                        </form>
+                            </form>
+                        </div>
                         </div>
                     </div>
                 </div>
-            </div>
-                </div>
-            </div>
+
     </div>
 )
 }

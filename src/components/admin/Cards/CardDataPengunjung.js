@@ -10,6 +10,7 @@ import Datatable from 'react-data-table-component';
 import styled from 'styled-components'
 import FontAwesome from 'font-awesome/css/font-awesome.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Cookies from 'js-cookie';
 
 export default function CardTable({ color }) {
 
@@ -76,9 +77,17 @@ export default function CardTable({ color }) {
   const [pengunjung,setPengunjung] = useState([])
   const [searchTerm, setSearchTerm] = useState("")
   
+  const [token, setToken] = useState(Cookies.get('token'));
+  
   const history = useHistory()
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/pengunjung`).then(res=>{
+    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/pengunjung`, {
+      headers : {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        Authorization: 'Bearer'+token,
+      }
+    }).then(res=>{
     if(res.status === 200)
       {
         setPengunjung(res.data.pengunjung)

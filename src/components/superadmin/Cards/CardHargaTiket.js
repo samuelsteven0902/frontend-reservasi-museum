@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 
 import TableDropdown from "../Dropdowns/TableDropdown.js";
 import axios from "axios";
+import Cookies from "js-cookie";
 
 export default function CardAdmin({ color }) {
   
@@ -12,7 +13,12 @@ export default function CardAdmin({ color }) {
   const [pengunjung,setPengunjung] = useState([])
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/pengunjung`).then(res=>{
+    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/pengunjung`, {
+      headers : {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        Authorization: `Bearer ${Cookies.get('token')}`,
+      }}).then(res=>{
     console.log(res);  
     if(res.status === 200)
       {

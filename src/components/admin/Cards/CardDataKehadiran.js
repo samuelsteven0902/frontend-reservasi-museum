@@ -63,7 +63,12 @@ class CardDataKehadiran extends Component {
             })
             .then((update) => {
               if (update) {
-                axios.put(`${process.env.REACT_APP_API_ENDPOINT}/api/kehadiran`,data).then(res=>{
+                axios.put(`${process.env.REACT_APP_API_ENDPOINT}/api/kehadiran`,data, {
+                    headers : {
+                      'Content-Type': 'application/json',
+                      'Accept': 'application/json',
+                      Authorization: `Bearer ${Cookies.get('token')}`,
+                    }}).then(res=>{
                       if(res.data.status === 200)
                       {
                           // console.log('berhasil delet');
@@ -212,7 +217,12 @@ class CardDataKehadiran extends Component {
     }
 
     componentDidMount () {
-        axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/pengunjung`).then(res=>{
+        axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/pengunjung`, {
+            headers : {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json',
+              Authorization: `Bearer ${Cookies.get('token')}`,
+            }}).then(res=>{
             if(res.status === 200) {
                 this.setState ({
                     users: res.data.pengunjung

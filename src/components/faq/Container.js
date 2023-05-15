@@ -66,7 +66,7 @@ export default function Container({  }) {
                     </AccordionSummary>
                     <AccordionDetails>
                     <Typography>
-                <p className='text-red-600'><span className='text-2xl px-3 font-nunito'>Q:</span> {item.question} </p>
+                        <p className='text-red-600'><span className='text-2xl px-3 font-nunito'>Q:</span> {item.question} </p>
                     </Typography>
                     </AccordionDetails>
                 </Accordion>

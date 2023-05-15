@@ -5,6 +5,7 @@ import swal from 'sweetalert'
 import 'tw-elements';
 import ReactLoading from 'react-loading';
 import { useRef } from 'react';
+import Cookies from 'js-cookie';
 
 function InfoFAQ() {
 
@@ -86,7 +87,12 @@ const updateFAQ = (e) =>{
         answer: faq.answer,
     }
 
-axios.put(`${process.env.REACT_APP_API_ENDPOINT}/api/update_faq/${idFAQ}`, data).then(res=>{
+axios.put(`${process.env.REACT_APP_API_ENDPOINT}/api/update_faq/${idFAQ}`, data, {
+    headers : {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      Authorization: `Bearer ${Cookies.get('token')}`,
+    }}).then(res=>{
     if(res.data.status === 200)
     {
         swal("Success",res.data.message,"success")
@@ -114,7 +120,12 @@ const addFAQ = (e) =>{
         answer:tambahFAQ.answer,
     }
     // console.log(data);
-    axios.post(`${process.env.REACT_APP_API_ENDPOINT}/api/add_faq`, data).then(res => {
+    axios.post(`${process.env.REACT_APP_API_ENDPOINT}/api/add_faq`, data, {
+        headers : {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          Authorization: `Bearer ${Cookies.get('token')}`,
+        }}).then(res => {
         if(res.data.status === 200)
         {
             swal("Success!",res.data.message,"success")
@@ -142,7 +153,12 @@ const deleteFAQ = (e, id) => {
     })
     .then((willDelete) => {
         if (willDelete) {
-            axios.delete(`${process.env.REACT_APP_API_ENDPOINT}/api/delete_faq/${id}`).then(res=>{
+            axios.delete(`${process.env.REACT_APP_API_ENDPOINT}/api/delete_faq/${id}`, {
+                headers : {
+                  'Content-Type': 'application/json',
+                  'Accept': 'application/json',
+                  Authorization: `Bearer ${Cookies.get('token')}`,
+                }}).then(res=>{
                 if(res.data.status === 200)
                 {
                     swal("Deleted!",res.data.message,"success")

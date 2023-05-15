@@ -5,6 +5,7 @@ import App from 'App';
 import reportWebVitals from 'reportWebVitals';
 import "./i18n";
 import 'aos/dist/aos.css';
+// import 'tw-elements';
 import { Suspense } from 'react';
 
 ReactDOM.render(

@@ -5,6 +5,7 @@ import swal from "sweetalert";
 import { BiTrash, BiPencil } from 'react-icons/bi';
 import ReactLoading from 'react-loading';
 import { min } from "date-fns";
+import Cookies from "js-cookie";
 // import React from 'react'
 // import TextField from '@material-ui/core/TextField';
 // import Autocomplete,
@@ -46,7 +47,7 @@ const [namaInput, setNamaInput] = useState({
 
 
 const fetchkategori = async ()=>{
-    const reskategori = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/show_kategori`).then((res)=>{
+    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/show_kategori`).then((res)=>{
         setkategori(res.data.kategori);
         // console.log(res.data.kategori);
     }) 
@@ -115,7 +116,12 @@ const updatekategori = (e) => {
     }
     console.log(data,idkategori);
 
-    axios.put(`${process.env.REACT_APP_API_ENDPOINT}/api/update_kategori/${idkategori}`, data).then(res=>{
+    axios.put(`${process.env.REACT_APP_API_ENDPOINT}/api/update_kategori/${idkategori}`, data, {
+        headers : {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          Authorization: `Bearer ${Cookies.get('token')}`,
+        }}).then(res=>{
         if(res.data.status === 200)
         {
             // console.log('berhasil');
@@ -158,7 +164,12 @@ const storekategori = (e) =>{
     }
     console.log(tambahkategori)
 
-    axios.post(`${process.env.REACT_APP_API_ENDPOINT}/api/add_kategori`, data).then(res=>{
+    axios.post(`${process.env.REACT_APP_API_ENDPOINT}/api/add_kategori`, data, {
+        headers : {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          Authorization: `Bearer ${Cookies.get('token')}`,
+        }}).then(res=>{
         if(res.data.status === 200)
         {
             setTambahkategori({
@@ -166,8 +177,8 @@ const storekategori = (e) =>{
                 min: '',
                 max: '',
             })
-            swal("Success",res.data.message,"success")
             fetchkategori();
+            swal("Success",res.data.message,"success")
             CloseRef.current.click();
             
         }
@@ -195,7 +206,12 @@ console.log(e,id);
     })
     .then((willDelete) => {
         if (willDelete) {
-            axios.delete(`${process.env.REACT_APP_API_ENDPOINT}/api/delete_kategori/${id}`).then(res=>{
+            axios.delete(`${process.env.REACT_APP_API_ENDPOINT}/api/delete_kategori/${id}`, {
+                headers : {
+                  'Content-Type': 'application/json',
+                  'Accept': 'application/json',
+                  Authorization: `Bearer ${Cookies.get('token')}`,
+                }}).then(res=>{
                 if(res.data.status === 200)
                 {
                     // console.log('berhasil delet');

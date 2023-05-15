@@ -4,6 +4,7 @@ import Chart from "chart.js";
 import { useState } from "react";
 import { useEffect } from "react";
 import ReactLoading from 'react-loading';
+import Cookies from "js-cookie";
 
 export default function CardLineChart() {
 
@@ -11,7 +12,12 @@ export default function CardLineChart() {
   const [loading,setLoading] = useState(true)
 
   const fetchData = () =>{
-    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/pengunjung`).then(res=>{
+    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/pengunjung`, {
+      headers : {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        Authorization: `Bearer ${Cookies.get('token')}`,
+      }}).then(res=>{
     console.log(res);  
     if(res.status === 200)
       {

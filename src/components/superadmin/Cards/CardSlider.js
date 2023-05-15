@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import ReactLoading from 'react-loading';
 import swal from "sweetalert";
 import Images from "./Info/Images";
+import Cookies from "js-cookie";
 
 
 function CardSlider() {
@@ -57,7 +58,12 @@ function CardSlider() {
     .then((willDelete) => {
         if (willDelete) {
           console.log(id);
-            axios.delete(`${process.env.REACT_APP_API_ENDPOINT}/api/delete-slider/${id}`).then(res=>{
+            axios.delete(`${process.env.REACT_APP_API_ENDPOINT}/api/delete-slider/${id}`, {
+              headers : {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                Authorization: `Bearer ${Cookies.get('token')}`,
+              }}).then(res=>{
                 if(res.data.status === 200)
                 {
                     // console.log('berhasil delet');
@@ -123,7 +129,12 @@ const handleSubmit = (e) =>{
   }
   console.log(gambar);
   // console.log(data);
-  axios.post(`${process.env.REACT_APP_API_ENDPOINT}/api/upload_slider`, data)
+  axios.post(`${process.env.REACT_APP_API_ENDPOINT}/api/upload_slider`, data, {
+    headers : {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      Authorization: `Bearer ${Cookies.get('token')}`,
+    }})
     .then((response) => {
       if (response.status === 200) {
         setResponseMsg({

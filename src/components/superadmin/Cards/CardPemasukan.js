@@ -20,6 +20,7 @@ function CardAdmin() {
   });
   }, [])
 
+  console.log(pemasukan);
 
   const rupiah = (number)=>{
     return new Intl.NumberFormat("id-ID", {
@@ -95,9 +96,9 @@ function CardAdmin() {
         <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
             <div class="overflow-hidden shadow-lg rounded-xl m-2">
-            <th scope="col" class="text-xl font-nunito font-semibold text-[#A70B0B] px-6 py-4 text-center">
+            <th scope="col" class="text-xl font-nunito font-semibold text-[#A70B0B] px-6 py-4 text-center flex">
               Total = {
-                loading?<p>Loading</p>:
+                loading?<p> Loading...</p>:
                 pemasukan.map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
                   return accumulator + value;
                 }, 0)
