@@ -4,7 +4,6 @@ import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
 import ReactLoading from 'react-loading';
-import Cookies from "js-cookie";
 
 export default function CardLineChart() {
  
@@ -12,8 +11,23 @@ export default function CardLineChart() {
   const [loading,setLoading] = useState(true)
 
   const [unit, setUnit] = useState()
+  const [result, setResult] = useState()
 
-  const month = {
+  const timeFrame = (period) => {
+    console.log(period.target.value);
+    if(period.target.value == 'month') {
+      setUnit(period.target.value)
+      setResult(month)
+
+    }
+    if(period.target.value == 'year') {
+      setUnit(period.target.value)
+      setResult(year)
+    }
+    window.myLine.update()
+  }
+
+const month = {
     labels: [
       "January",
       "February",
@@ -39,16 +53,27 @@ export default function CardLineChart() {
     ],
   };
 
-
-  const [result, setResult] = useState('month')
+const year = {
+    labels: [
+        new Date().getFullYear() - 4,
+        new Date().getFullYear() - 3,
+        new Date().getFullYear() - 2,
+        new Date().getFullYear() - 1,
+        new Date().getFullYear(),
+    ],
+    datasets: [
+      {
+        label: new Date().getFullYear(),
+        backgroundColor: "#4c51bf",
+        borderColor: "#4c51bf",
+        data: [dataYear4, dataYear3, dataYear2, dataYear1, dataCurrYear],
+        fill: false,
+      },
+    ],
+  };
 
   const fetchData = () =>{
-    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/pengunjung`, {
-      headers : {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        Authorization: `Bearer ${Cookies.get('token')}`,
-      }}).then(res=>{
+    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/pengunjung`).then(res=>{
     console.log(res);  
     if(res.status === 200)
       {
@@ -57,7 +82,6 @@ export default function CardLineChart() {
       }
   });
   }
-  console.log(result);
   
   useEffect(() => {
     fetchData()
@@ -173,82 +197,15 @@ export default function CardLineChart() {
   return accumulator + value;
 }, 0);
   }
-  console.log(result);
-
-  
-
-const year = {
-    labels: [
-        new Date().getFullYear() - 4,
-        new Date().getFullYear() - 3,
-        new Date().getFullYear() - 2,
-        new Date().getFullYear() - 1,
-        new Date().getFullYear(),
-    ],
-    datasets: [
-      {
-        label: new Date().getFullYear(),
-        backgroundColor: "#4c51bf",
-        borderColor: "#4c51bf",
-        data: [dataYear4, dataYear3, dataYear2, dataYear1, dataCurrYear],
-        fill: false,
-      },
-    ],
-  };
-
-  const timeFrame = (period) => {
-    // if(period.target.value == 'month') {
-    //   setResult(month)
-    //   setUnit(period.target.value)
-
-    // }
-    // if(period.target.value == 'year') {
-    //   setUnit(period.target.value)
-    //   setResult(year)
-
-    // }
-    // window.myLine.update()
-    if(result === 'month')
-    {
-      setResult('year')
-    }else if(result === 'year')
-    {
-      setResult('bulan')
-    }
-  
-  }
 
   React.useEffect(() => {
-    
+
     const timeoutID = window.setTimeout(() => {
-
-      let configPemasukanBulanan = {
+      console.log(unit);
+      console.log(result);
+    let configPemasukan = {
       type: "line",
-      data: {
-        labels: [
-          "January",
-          "February",
-          "March",
-          "April",
-          "May",
-          "June",
-          "July",
-          "August",
-          "Sept",
-          "Oct",
-          "Nov",
-          "Dec",
-        ],
-        datasets: [
-          {
-            label: new Date().getFullYear(),
-            backgroundColor: "#4c51bf",
-            borderColor: "#4c51bf",
-            data: [2, dataPengunjungFeb, dataPengunjungMar , dataPengunjungApril, dataPengunjungMei, dataPengunjungJuni, dataPengunjungJuli, dataPengunjungAgus, dataPengunjungSept, dataPengunjungOkt, dataPengunjungNov,dataPengunjungDes],
-            fill: false,
-          },
-        ],
-      },
+      data: year,
       options: {
         maintainAspectRatio: false,
         responsive: true,
@@ -273,6 +230,15 @@ const year = {
           intersect: true,
         },
         scales: {
+          x : {
+            type: 'time',
+            time: {
+              unit:'year'
+            }
+          },
+          y: {
+            beginAtZero: true
+          },
           xAxes: [
             {
               ticks: {
@@ -320,99 +286,6 @@ const year = {
         },
       },
     };
-      let configPemasukanTahunan = {
-      type: "line",
-      data: {
-        labels: [
-            new Date().getFullYear() - 4,
-            new Date().getFullYear() - 3,
-            new Date().getFullYear() - 2,
-            new Date().getFullYear() - 1,
-            new Date().getFullYear(),
-        ],
-        datasets: [
-          {
-            label: new Date().getFullYear(),
-            backgroundColor: "#4c51bf",
-            borderColor: "#4c51bf",
-            data: [dataYear4, dataYear3, dataYear2, dataYear1, dataCurrYear],
-            fill: false,
-          },
-        ],
-      },
-      options: {
-        maintainAspectRatio: false,
-        responsive: true,
-        title: {
-          display: false,
-          text: "Sales Charts",
-          fontColor: "white",
-        },
-        legend: {
-          labels: {
-            fontColor: "white",
-          },
-          align: "end",
-          position: "bottom",
-        },
-        tooltips: {
-          mode: "index",
-          intersect: false,
-        },
-        hover: {
-          mode: "nearest",
-          intersect: true,
-        },
-        scales: {
-          xAxes: [
-            {
-              ticks: {
-                fontColor: "rgba(255,255,255,.7)",
-              },
-              display: true,
-              scaleLabel: {
-                display: false,
-                labelString: "Month",
-                fontColor: "white",
-              },
-              gridLines: {
-                display: false,
-                borderDash: [2],
-                borderDashOffset: [2],
-                color: "rgba(33, 37, 41, 0.3)",
-                zeroLineColor: "rgba(0, 0, 0, 0)",
-                zeroLineBorderDash: [2],
-                zeroLineBorderDashOffset: [2],
-              },
-            },
-          ],
-          yAxes: [
-            {
-              ticks: {
-                fontColor: "rgba(255,255,255,.7)",
-              },
-              display: true,
-              scaleLabel: {
-                display: false,
-                labelString: "Value",
-                fontColor: "white",
-              },
-              gridLines: {
-                borderDash: [3],
-                borderDashOffset: [3],
-                drawBorder: false,
-                color: "rgba(255, 255, 255, 0.15)",
-                zeroLineColor: "rgba(33, 37, 41, 0)",
-                zeroLineBorderDash: [2],
-                zeroLineBorderDashOffset: [2],
-              },
-            },
-          ],
-        },
-      },
-    };
-
-
     
 
       if(loading)
@@ -421,22 +294,10 @@ const year = {
       }
       else
       {
-        var ctxPemasukanBulanan = document.getElementById("line-chart-bulanan").getContext("2d");
-        window.myLine = new Chart(ctxPemasukanBulanan,configPemasukanBulanan);
-        // window.myLine = new Chart(ctxPemasukanBulanan).Line(configPemasukanBulanan,{
-        //   responsive:true
-        // });
-        
-        var ctxPemasukanTahunan = document.getElementById("line-chart-tahunan").getContext("2d");
+        var ctxPemasukan = document.getElementById("line-chart").getContext("2d");
       // console.log(dataPengunjungJan);
-      window.myLine = new Chart(ctxPemasukanTahunan,configPemasukanTahunan);
-      // window.myLine = new Chart(ctxPemasukanTahunan).Line(configPemasukanTahunan,{
-      //   responsive:true
-      // });
-        
-      
-    
-    }
+      window.myLine = new Chart(ctxPemasukan, configPemasukan);
+      }
       
   }, 1);
   return () => window.clearTimeout(timeoutID );
@@ -454,27 +315,20 @@ const year = {
 <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-blueGray-700">
     <div className="rounded-t mb-0 px-4 py-3 bg-transparent">
       <div className="flex flex-wrap items-center">
-        <div className="relative w-full max-w-full flex-grow flex-1">  
-        <div className="w-full lg:order-3 flex mt-10 lg:justify-end lg:mt-0">
-          <button onClick={e=>setResult('year')} value="month">Monthly</button>
-        </div>
-        <div className="w-full lg:order-3 flex mt-10 lg:justify-end lg:mt-0">
-          <button onClick={e=>setResult('month')} value="year">Yearly</button>   
-        </div>
-          <h6 className="uppercase text-blueGray-100 mb-1 text-xs font-semibold">Overview</h6>
+        <div className="relative w-full max-w-full flex-grow flex-1">
+          <button onClick={timeFrame} value="month">Monthly</button>
+          <button onClick={timeFrame} value="year">Yearly</button>
+          <h6 className="uppercase text-blueGray-100 mb-1 text-xs font-semibold">
+            Overview
+          </h6>
           <h2 className="text-white text-xl font-semibold">Grafik Pemasukan</h2>
         </div>
       </div>
     </div>
     <div className="p-4 flex-auto">
       {/* Chart */}
-      <div className={`${result === 'month'?'':'hidden'} relative h-350-px`}> 
-      
-      <canvas id="line-chart-tahunan" width="500" height="500"></canvas>
-      </div>
-      <div className={`${result === 'month'?'hidden':''} relative h-350-px`}> 
-      
-      <canvas id="line-chart-bulanan" width="500" height="500"></canvas>
+      <div className="relative h-350-px"> 
+      <canvas id="line-chart" width="500" height="500"></canvas>
       </div>
     </div>
     

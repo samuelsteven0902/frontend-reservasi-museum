@@ -176,19 +176,19 @@ function FormInput({dataAwal,dataa}) {
             <div className='md:flex justify-around'>    
                 <div className="w-96 mb-4 mx-auto md:mx-0">
                     <label className="block text-gray-700 text-sm font-bold mb-2 font-nunito" for="username">{t('formInput.input.nama')}</label>
-                    <input name='nama' onChange={handleInput} value={dataPengunjung.nama} className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="contoh : Kirana" />
+                    <input name='nama' onChange={handleInput} value={dataPengunjung.nama} className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder={t('formInput.input.contohnama')} />
                     <span className="text-sm text-red-500">{dataPengunjung.error_list.nama}</span>
                 </div>
                 <div className="w-96 mb-4 mx-auto md:mx-6 md:mt-0 mt-8">
                     <label className="block text-gray-700 text-sm font-bold mb-2 font-nunito" for="kota">{t('formInput.input.kota')}</label>
-                    <input name='kota' onChange={handleInput} value={dataPengunjung.kota} className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Contoh :  Surakarta" />
+                    <input name='kota' onChange={handleInput} value={dataPengunjung.kota} className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder={t('formInput.input.contohkota')} />
                     <span className="text-sm text-red-500">{dataPengunjung.error_list.kota}</span>
                 </div>
             </div>
                 <div className='md:flex justify-around md:mt-0 mt-8'>    
                     <div className="w-96 mb-4 mx-auto md:mx-0">
                         <label className="block text-gray-700 text-sm font-bold mb-2 font-nunito" for="hp">{t('formInput.input.no')}</label>
-                        <input name='phone' onChange={handleInput} value={dataPengunjung.phone} className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Contoh : 081234567890" />
+                        <input name='phone' onChange={handleInput} value={dataPengunjung.phone} className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder={t('formInput.input.contohno')} />
                         <span className="text-sm text-red-500">{dataPengunjung.error_list.phone}</span>
                     </div>
                     <div className="w-96 mb-4 md:mx-6 mx-auto md:mt-0 mt-8">
@@ -243,7 +243,7 @@ function FormInput({dataAwal,dataa}) {
                         console.log(checked);
                         setChecked(!checked)
                     }
-                    } id="checkbox-2" aria-describedby="checkbox-2" className="bg-gray-50 border-gray-300 focus:ring-3 focus:ring-blue-300 h-4 w-4 rounded" />
+                    } id="checkbox-2" aria-describedby="checkbox-2" className="bg-gray-50 border-gray-800 focus:ring-3 focus:ring-blue-300 h-4 w-4 rounded" />
                     <label for="checkbox-2" className="text-sm ml-3 font-medium text-black font-nunito">{t('formInput.syarat.checkbox')}</label>
                 </div>
                 <div className="flex flex-wrap justify-end">

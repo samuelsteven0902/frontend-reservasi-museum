@@ -45,6 +45,7 @@ function WorkingSection(input) {
                 foto:input.data.foto,
                 harga_awal:input.input,  
                 pembayaran: pembayaran,
+                kehadiran:'Tidak Hadir',
                 // tiket: input.data.kode_tiket,
                 status: input.input === 0?'Lunas':'Belum Lunas' ,
             }
@@ -83,6 +84,7 @@ function WorkingSection(input) {
                     foto:input.data.foto,
                     harga_awal:input.input,  
                     pembayaran: pembayaran,
+                    kehadiran:'Tidak Hadir',
                     // tiket: input.data.kode_tiket,
                     status: 'belum lunas',
                 }
@@ -132,7 +134,7 @@ return (
                             </div>
                             <div className='md:pl-24 font-bold'>
                                 {/* <p>NIK</p> */}
-                                <p className='my-3 font-nunito'>{t('pembayaran.identitas.kota')} : </p>
+                                <p className='my-3 font-nunito'>{t('pembayaran.identitas.kota')}: </p>
                             </div>
                             <div className='pl-3 '>
                                 {/* <p>NIK</p> */}
@@ -189,7 +191,7 @@ return (
                             <img src={detail}  className='ml-6 w-16 h-16' alt=''/>
                         </div>
                         <div className='lg:block  bg-white w-5/6 mx-4'>
-                            <p className='font-merriweather font-bold text-3xl py-3'>{t('pembayaran.detail.judul')}</p>
+                            <p className='font-merriweather font-bold text-3xl py-3 mb-1'>{t('pembayaran.detail.judul')}</p>
                             <div className='flex flex-wrap'>
                                 <div className='lg:w-full w-1/2'>
                                     <p className='font-nunito font-bold'>{t('pembayaran.detail.museum')}</p>
@@ -225,10 +227,10 @@ return (
                     </div>
                     <div className='container mx-auto flex bg-white my-6 rounded-2xl py-4'>
                         <div className='w-1/6 min-w-max flex mx-auto justify-center '>
-                            <img src={total}  className='ml-6 w-16 h-16' alt=''/>            
+                            <img src={total}  className='ml-4 w-16 h-16' alt=''/>            
                         </div>
                         <div className='w-5/6'>
-                            <p className='mx-4 text-2xl font-merriweather font-bold py-3'>{t('pembayaran.total.judul')}</p>
+                            <p className='mx-4 text-3xl font-merriweather font-bold py-3'>{t('pembayaran.total.judul')}</p>
                             <div className='w-full text-right pr-12'>
                                 <p className='my-5 font-nunito font-bold text-2xl'>{rupiah(input.input)} -</p>
                             </div>
@@ -237,7 +239,6 @@ return (
                 </div>
             </div>
                 <div className='bg-gray-100 flex justify-center items-end '>
-                    
                     <button className='bg-[#A70B0B] rounded-full w-full py-4 lg:mx-72 mx-24 text-white tracking-wider font-semibold' onClick={handleCash}>{t('pembayaran.tombol')}</button>
                 </div>
             </div>

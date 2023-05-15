@@ -39,6 +39,7 @@ function DataKehadiran ({ color }) {
 
         setUser(result);
       }
+      console.log();
 
       const fetchPengunjung = () => 
       {

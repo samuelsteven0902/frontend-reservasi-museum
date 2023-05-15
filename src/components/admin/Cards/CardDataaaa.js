@@ -15,6 +15,9 @@ class CardDataaaa extends Component {
             users: []
         };
 
+        const current = new Date();
+        const date = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`;
+
         this.deleteUser = this.deleteUser.bind(this);
         this.columns = [ 
             {
@@ -103,7 +106,7 @@ class CardDataaaa extends Component {
                 className: "border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4",
                 TrOnlyClassName:"border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-red-200",
                 align: "left",
-                sortable: false,
+                sortable: true
             },
             {
                 key: "kode_tiket",
@@ -130,12 +133,12 @@ class CardDataaaa extends Component {
         ];
         this.config = {
             key_column: '_id', 
-            filename: "Users",
+            filename: date,
             no_data_text: 'No data available!',
             button: {
                 excel: true,
-                print: true,
-                csv: true,
+                print: false,
+                csv: false,
                 extra: false,
             },
             language: {
@@ -158,36 +161,6 @@ class CardDataaaa extends Component {
             show_className: true,
 
         };
-
-        this.extraButtons =[
-            {
-                className:"btn btn-primary buttons-pdf",
-                title:"Export TEst",
-                children:[
-                    <span>
-                        <i className="glyphicon glyphicon-print fa fa-print" aria-hidden="true"></i>
-                    </span>
-                ], 
-                onClick:(event)=>{
-                    console.log(event);
-                },
-            },
-            {
-                className:"btn btn-primary buttons-pdf",
-                title:"Export TEst",
-                children:[
-                    <span>
-                        <i className="glyphicon glyphicon-print fa fa-print" aria-hidden="true"></i>
-                    </span>
-                ],
-                onClick:(event)=>{
-                    console.log(event);
-                },
-                onDoubleClick:(event)=>{
-                    console.log("doubleClick")
-                }
-            },
-        ]
     }
 
     componentDidMount () {
@@ -243,7 +216,6 @@ class CardDataaaa extends Component {
                     records={this.state.users}
                     columns={this.columns}
                     onPageChange={this.pageChange.bind(this)}
-                    extraButtons={this.extraButtons}
                     loading={this.state.loading}
                 />
                 </div>

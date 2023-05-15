@@ -72,6 +72,9 @@ function Content({id}) {
 <>
   {tiket !== null ? 
     <div className='container mx-auto pt-32'>
+                      <div className="flex flex-wrap justify-center mt-10 p-4 mb-4 mx-16 text-base text-center text-red-700 bg-red-100 rounded-lg dark:bg-gray-800 dark:text-red-400 font-nunito" role="alert">
+                    <span className="font-bold">{t('tiket.perhatian')}</span> {t('tiket.alert')}
+                </div>
       <div className='flex justify-center'>
         <button className="mb-10 bg-[#A70B0B] hover:bg-[#A70B0B] text-white font-bold py-4 px-8 rounded-full focus:outline-none focus:shadow-outline" onClick={handleCaptureClick}>Download</button>
       </div>
@@ -124,7 +127,7 @@ function Content({id}) {
       :
     <div className=' flex justify-center flex-col h-screen mx-auto'>
       <img src={kosong} className='w-1/4 mx-auto -mt-52 md:mt-32' alt=''/>
-      <p className='text-3xl py-7 text-center font-nunito bg-red-200 lg:mx-40 mx-12 rounded-full mt-12 text-red-600'>Maaf, Tiket dengan kode<span className='px-2 font-bold'>"{id}"</span> Tidak dapat di temukan</p>
+      <p className='text-3xl py-7 text-center font-nunito bg-red-200 lg:mx-40 mx-12 rounded-full mt-12 text-red-600'>Maaf, Tiket dengan kode<span className='px-2 font-bold'>"{id}"</span>Tidak dapat di temukan</p>
     </div>
   }
 </>

@@ -87,7 +87,7 @@ export default function HeaderStats() {
   return (
     <>
       {/* Header */}
-      <div className="relative md:pt-10 pb-20 pt-12">
+      <div className="relative md:pt-10 pb-12 pt-12">
         <div className="px-4 md:px-10 mx-auto w-full">
           <div>
             {/* Card stats */}
