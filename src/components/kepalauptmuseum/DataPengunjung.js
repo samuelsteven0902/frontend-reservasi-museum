@@ -1,5 +1,5 @@
 import axios from 'axios'
-import CardTable from './Cards/CardDataSanggahan'
+import CardTable from './Cards/CardDataPengunjung'
 import React, { useEffect, useState } from 'react'
 import DefaultFooterAdmin from "components/DefaultFooterAdmin.js";
 

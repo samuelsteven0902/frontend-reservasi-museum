@@ -33,7 +33,7 @@ function InputData() {
       headers : {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
-        Authorization: `Bearer ${Cookies.get('token')}`,
+        // Authorization: `Bearer ${Cookies.get('token')}`,
       }})
                               .then(res=>{ console.log(res); 
                                           setData(res.data.data[0]); 

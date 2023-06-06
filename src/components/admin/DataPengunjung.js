@@ -1,8 +1,7 @@
 // import axios from 'axios'
-// import CardTable from './Cards/CardDataSanggahan'
+import CardDataPengunjung from './Cards/CardDataPengunjung';
 // import CardDataPengunjung from './Cards/CardDataPengunjung'
-// import CardDataSanggahan from './Cards/CardDataSanggahan'
-import CardDataaaa from './Cards/CardDataaaa'
+// import CardDataaaa from './Cards/CardDataaaa'
 import DefaultFooterAdmin from "components/DefaultFooterAdmin.js";
 
 // const $ = require('jquery')
@@ -16,10 +15,9 @@ function DataPengunjung() {
     <>
       <div className="flex flex-wrap">
         <div className="w-full px-4">
-          {/* <CardTable /> */}
+          <CardDataPengunjung/>
           {/* <CardDataPengunjung/> */}
-          {/* <CardDataSanggahan/> */}
-          <CardDataaaa/>
+          {/* <CardDataaaa/> */}
         </div>
       </div>
       <DefaultFooterAdmin/>

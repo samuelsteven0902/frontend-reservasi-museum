@@ -1,4 +1,5 @@
 import React from "react";
+import ReactLoading from "react-loading";
 import DefaultFooterAdmin from "components/DefaultFooterAdmin.js";
 
 // components

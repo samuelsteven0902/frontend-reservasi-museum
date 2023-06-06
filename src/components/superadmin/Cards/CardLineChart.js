@@ -33,7 +33,7 @@ export default function CardLineChart() {
         label: new Date().getFullYear(),
         backgroundColor: "#4c51bf",
         borderColor: "#4c51bf",
-        data: [2, dataPengunjungFeb, dataPengunjungMar , dataPengunjungApril, dataPengunjungMei, dataPengunjungJuni, dataPengunjungJuli, dataPengunjungAgus, dataPengunjungSept, dataPengunjungOkt, dataPengunjungNov,dataPengunjungDes],
+        data: [2, dataPemasukanFeb, dataPemasukanMar , dataPemasukanApril, dataPemasukanMei, dataPemasukanJuni, dataPemasukanJuli, dataPemasukanAgus, dataPemasukanSept, dataPemasukanOkt, dataPemasukanNov,dataPemasukanDes],
         fill: false,
       },
     ],
@@ -43,7 +43,7 @@ export default function CardLineChart() {
   const [result, setResult] = useState('month')
 
   const fetchData = () =>{
-    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/pengunjung`, {
+    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/pemasukan`, {
       headers : {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
@@ -52,7 +52,7 @@ export default function CardLineChart() {
     console.log(res);  
     if(res.status === 200)
       {
-          setData(res.data.pengunjung)
+          setData(res.data.pemasukan)
           setLoading(false);
       }
   });
@@ -74,101 +74,101 @@ export default function CardLineChart() {
   { 
     //annually
     var dataCurrYear = data.filter(val=>{
-      return val.tanggal.slice(val.tanggal.lastIndexOf('-') + 1) == new Date().getFullYear();
+      return val.updated_at.slice(0, val.updated_at.indexOf('-')) == new Date().getFullYear();
     }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
       return accumulator + value;
     }, 0);
     var dataYear1 = data.filter(val=>{
-      return val.tanggal.slice(val.tanggal.lastIndexOf('-') + 1) == new Date().getFullYear() - 1;
+      return val.updated_at.slice(0, val.updated_at.indexOf('-')) == new Date().getFullYear() - 1;
     }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
       return accumulator + value;
     }, 0);
     var dataYear2 = data.filter(val=>{
-      return val.tanggal.slice(val.tanggal.lastIndexOf('-') + 1) == new Date().getFullYear() - 2;
+      return val.updated_at.slice(0, val.updated_at.indexOf('-')) == new Date().getFullYear() - 2;
     }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
       return accumulator + value;
     }, 0);
     var dataYear3 = data.filter(val=>{
-      return val.tanggal.slice(val.tanggal.lastIndexOf('-') + 1) == new Date().getFullYear() - 3;
+      return val.updated_at.slice(0, val.updated_at.indexOf('-')) == new Date().getFullYear() - 3;
     }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
       return accumulator + value;
     }, 0);
     var dataYear4 = data.filter(val=>{
-      return val.tanggal.slice(val.tanggal.lastIndexOf('-') + 1) == new Date().getFullYear() - 4;
+      return val.updated_at.slice(0, val.updated_at.indexOf('-')) == new Date().getFullYear() - 4;
     }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
       return accumulator + value;
     }, 0);
 
     
     //monthly
-    var dataPengunjungJan = data.filter(val=>{
-        return val.tanggal.slice(val.tanggal.indexOf('-') + 1,val.tanggal.lastIndexOf('-')) === '01';
+    var dataPemasukanJan = data.filter(val=>{
+        return val.updated_at.slice(val.updated_at.indexOf('-') + 1,val.updated_at.lastIndexOf('-')) === '01';
       }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
         return accumulator + value;
       }, 0);
 
-      var dataPengunjungFeb = data.filter(val=>{
-        return val.tanggal.slice(val.tanggal.indexOf('-') + 1,val.tanggal.lastIndexOf('-')) === '02'
+      var dataPemasukanFeb = data.filter(val=>{
+        return val.updated_at.slice(val.updated_at.indexOf('-') + 1,val.updated_at.lastIndexOf('-')) === '02'
        }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
         return accumulator + value;
       }, 0);
 
-       var dataPengunjungMar =  data.filter(val=>{
-        return val.tanggal.slice(val.tanggal.indexOf('-') + 1,val.tanggal.lastIndexOf('-')) === '03'
+       var dataPemasukanMar =  data.filter(val=>{
+        return val.updated_at.slice(val.updated_at.indexOf('-') + 1,val.updated_at.lastIndexOf('-')) === '03'
        }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
         return accumulator + value;
       }, 0);
 
-       var dataPengunjungApril = data.filter(val=>{
-        return val.tanggal.slice(val.tanggal.indexOf('-') + 1,val.tanggal.lastIndexOf('-')) === '04'
+       var dataPemasukanApril = data.filter(val=>{
+        return val.updated_at.slice(val.updated_at.indexOf('-') + 1,val.updated_at.lastIndexOf('-')) === '04'
        }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
   return accumulator + value;
 }, 0);
 
-       var dataPengunjungMei = data.filter(val=>{
-        return val.tanggal.slice(val.tanggal.indexOf('-') + 1,val.tanggal.lastIndexOf('-')) === '05'
+       var dataPemasukanMei = data.filter(val=>{
+        return val.updated_at.slice(val.updated_at.indexOf('-') + 1,val.updated_at.lastIndexOf('-')) === '05'
        }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
   return accumulator + value;
 }, 0);
 
-       var dataPengunjungJuni = data.filter(val=>{
-        return val.tanggal.slice(val.tanggal.indexOf('-') + 1,val.tanggal.lastIndexOf('-')) === '06'
+       var dataPemasukanJuni = data.filter(val=>{
+        return val.updated_at.slice(val.updated_at.indexOf('-') + 1,val.updated_at.lastIndexOf('-')) === '06'
        }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
   return accumulator + value;
 }, 0);
 
-       var dataPengunjungJuli = data.filter(val=>{
-        return val.tanggal.slice(val.tanggal.indexOf('-') + 1,val.tanggal.lastIndexOf('-')) === '07'
+       var dataPemasukanJuli = data.filter(val=>{
+        return val.updated_at.slice(val.updated_at.indexOf('-') + 1,val.updated_at.lastIndexOf('-')) === '07'
        }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
   return accumulator + value;
 }, 0);
 
-       var dataPengunjungAgus = data.filter(val=>{
-        return val.tanggal.slice(val.tanggal.indexOf('-') + 1,val.tanggal.lastIndexOf('-')) === '08'
+       var dataPemasukanAgus = data.filter(val=>{
+        return val.updated_at.slice(val.updated_at.indexOf('-') + 1,val.updated_at.lastIndexOf('-')) === '08'
        }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
   return accumulator + value;
 }, 0);
 
-       var dataPengunjungSept = data.filter(val=>{
-        return val.tanggal.slice(val.tanggal.indexOf('-') + 1,val.tanggal.lastIndexOf('-')) === '09'
+       var dataPemasukanSept = data.filter(val=>{
+        return val.updated_at.slice(val.updated_at.indexOf('-') + 1,val.updated_at.lastIndexOf('-')) === '09'
        }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
   return accumulator + value;
 }, 0);
 
-       var dataPengunjungOkt = data.filter(val=>{
-        return val.tanggal.slice(val.tanggal.indexOf('-') + 1,val.tanggal.lastIndexOf('-')) === '10'
+       var dataPemasukanOkt = data.filter(val=>{
+        return val.updated_at.slice(val.updated_at.indexOf('-') + 1,val.updated_at.lastIndexOf('-')) === '10'
        }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
   return accumulator + value;
 }, 0);
 
-       var dataPengunjungNov = data.filter(val=>{
-        return val.tanggal.slice(val.tanggal.indexOf('-') + 1,val.tanggal.lastIndexOf('-')) === '11'
+       var dataPemasukanNov = data.filter(val=>{
+        return val.updated_at.slice(val.updated_at.indexOf('-') + 1,val.updated_at.lastIndexOf('-')) === '11'
        }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
   return accumulator + value;
 }, 0);
 
-       var dataPengunjungDes = data.filter(val=>{
-        return val.tanggal.slice(val.tanggal.indexOf('-') + 1,val.tanggal.lastIndexOf('-')) === '12'
+       var dataPemasukanDes = data.filter(val=>{
+        return val.updated_at.slice(val.updated_at.indexOf('-') + 1,val.updated_at.lastIndexOf('-')) === '12'
        }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
   return accumulator + value;
 }, 0);
@@ -244,7 +244,7 @@ const year = {
             label: new Date().getFullYear(),
             backgroundColor: "#4c51bf",
             borderColor: "#4c51bf",
-            data: [2, dataPengunjungFeb, dataPengunjungMar , dataPengunjungApril, dataPengunjungMei, dataPengunjungJuni, dataPengunjungJuli, dataPengunjungAgus, dataPengunjungSept, dataPengunjungOkt, dataPengunjungNov,dataPengunjungDes],
+            data: [2, dataPemasukanFeb, dataPemasukanMar , dataPemasukanApril, dataPemasukanMei, dataPemasukanJuni, dataPemasukanJuli, dataPemasukanAgus, dataPemasukanSept, dataPemasukanOkt, dataPemasukanNov,dataPemasukanDes],
             fill: false,
           },
         ],
@@ -428,7 +428,7 @@ const year = {
         // });
         
         var ctxPemasukanTahunan = document.getElementById("line-chart-tahunan").getContext("2d");
-      // console.log(dataPengunjungJan);
+      // console.log(dataPemasukanJan);
       window.myLine = new Chart(ctxPemasukanTahunan,configPemasukanTahunan);
       // window.myLine = new Chart(ctxPemasukanTahunan).Line(configPemasukanTahunan,{
       //   responsive:true
@@ -440,51 +440,44 @@ const year = {
       
   }, 1);
   return () => window.clearTimeout(timeoutID );
-  }, [dataPengunjungDes]);
+  }, [dataPemasukanDes]);
 
-// console.log(dataPengunjungNov);
+// console.log(dataPemasukanNov);
   return (
     <>
-{loading?<div className="z-50 absolute -mt-12    ">   
-  {/* <ReactLoading type={"spin"} color={"red"} height={'5%'} width={'5%'} className=""/> */}
-<p>Loading Data...</p>
-</div> 
+    {loading?
+    <div className="" >
+      <div colspan={3} className="text-xl text-center justify-center font-semibold py-5">
+        <ReactLoading type={"spin"} color={"red"} height={'5%'} width={'5%'} className="m-auto" />
+      </div>
+    </div>
 
 :
-<div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-blueGray-700">
-    <div className="rounded-t mb-0 px-4 py-3 bg-transparent">
+<div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-red-400">
+    <div className="rounded-t mb-0 px-4 py-3">
       <div className="flex flex-wrap items-center">
-        <div className="relative w-full max-w-full flex-grow flex-1">  
-        <div className="w-full lg:order-3 flex mt-10 lg:justify-end lg:mt-0">
-          <button onClick={e=>setResult('year')} value="month">Monthly</button>
-        </div>
-        <div className="w-full lg:order-3 flex mt-10 lg:justify-end lg:mt-0">
-          <button onClick={e=>setResult('month')} value="year">Yearly</button>   
-        </div>
-          <h6 className="uppercase text-blueGray-100 mb-1 text-xs font-semibold">Overview</h6>
-          <h2 className="text-white text-xl font-semibold">Grafik Pemasukan</h2>
+        <div className="relative w-full max-w-full flex-grow flex-1">
+          <div className="container relative flex min-w-0 break-words w-full">
+            <h6 className="uppercase text-gray-800 text-xs font-semibold py-2 lg:mt-0">Overview</h6>
+            <div className="w-full lg:order-3 flex lg:justify-end lg:mt-0">
+              <button onClick={e=>setResult('year')} value="month" className="bg-[#A70B0B] hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-300 px-4 mr-2 rounded-sm font-nunito font-bold text-white">Monthly</button>
+              <button onClick={e=>setResult('month')} value="year" className=" bg-[#A70B0B] hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-300 px-4 mr-2 rounded-sm font-nunito font-bold text-white">Yearly</button>
+            </div>
+          </div>
+          <h2 className="text-gray-800 text-xl font-semibold">Grafik Pemasukan</h2>
         </div>
       </div>
     </div>
     <div className="p-4 flex-auto">
       {/* Chart */}
       <div className={`${result === 'month'?'':'hidden'} relative h-350-px`}> 
-      
-      <canvas id="line-chart-tahunan" width="500" height="500"></canvas>
+        <canvas id="line-chart-tahunan" width="500" height="500" color="black"></canvas>
       </div>
       <div className={`${result === 'month'?'hidden':''} relative h-350-px`}> 
-      
-      <canvas id="line-chart-bulanan" width="500" height="500"></canvas>
+        <canvas id="line-chart-bulanan" width="500" height="500"></canvas>
       </div>
     </div>
-    
   </div> }
-  
-  {/* <div className="text-3xl z-40">
-    asd
-      </div> */}
-    
-
 
     </>
   );

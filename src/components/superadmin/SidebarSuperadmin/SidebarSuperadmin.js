@@ -200,7 +200,7 @@ export default function SidebarSuperadmin() {
                         : "text-blueGray-500")
                     }
                   ></i>{" "}
-                  Admin
+                  Users
                 </Link>
               </li>
 

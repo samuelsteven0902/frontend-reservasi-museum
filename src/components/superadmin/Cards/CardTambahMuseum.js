@@ -264,8 +264,7 @@ else
 }
 
 return (
-    <div
-    className='container relative flex flex-col min-w-0 break-words w-full mb-6  rounded '>
+    <div className='container relative flex flex-col min-w-0 break-words w-full mb-6  rounded '>
         <div className="flex justify-between ">
         <input type='text' className="w-1/3 border-none ring-2 font-nunito ring-red-300 focus:border-none focus:ring-red-500 focus:ring-2 active:border-none  rounded-lg"  placeholder="Cari nama museum, kategori, harga, ..." onChange={e=>{setSearchTerm(e.target.value)}} /> 
         <button type="button" className="inline-block  px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out" data-te-toggle="modal" data-te-target="#modalTambahMuseum">Tambah Museum</button>

@@ -45,32 +45,32 @@ export default function HeaderStats() {
   let kemarin = new Date().getDate() - 1
 
     // var dataPengunjungBulanIni = data.filter(val=>{
-    //   return val.tanggal.slice(val.tanggal.indexOf('-') + 1,val.tanggal.lastIndexOf('-')) == '01';
+    //   return val.updated_at.slice(val.updated_at.indexOf('-') + 1,val.updated_at.lastIndexOf('-')) == '01';
     // }).map((item,index)=>Math.floor(item.jumlah)).reduce((accumulator, value) => {
     //   return accumulator + value;
     // }, 0);
 
     var dataPengunjungHariIni = data.filter(val=>{
-      return val.tanggal.slice(0,2) == hariIni
+      return val.updated_at.slice(val.updated_at.lastIndexOf('-') + 1,val.updated_at.lastIndexOf('-') + 3) == hariIni
     }).map((item,index)=>Math.floor(item.jumlah)).reduce((accumulator, value) => {
       return accumulator + value;
     }, 0);
 
     var dataPengunjungkemarin = data.filter(val=>{
-      return val.tanggal.slice(0,2) == kemarin
+      return val.updated_at.slice(val.updated_at.lastIndexOf('-') + 1,val.updated_at.lastIndexOf('-') + 3) == kemarin
     }).map((item,index)=>Math.floor(item.jumlah)).reduce((accumulator, value) => {
       return accumulator + value;
     }, 0);
 
     var dataPengunjungBulanLalu = data.filter(val=>{
-      return val.tanggal.slice(val.tanggal.indexOf('-') + 1,val.tanggal.lastIndexOf('-')) == bulanLalu
+      return val.updated_at.slice(val.updated_at.indexOf('-') + 1,val.updated_at.lastIndexOf('-')) == bulanLalu
     }).map((item,index)=>Math.floor(item.jumlah)).reduce((accumulator, value) => {
       return accumulator + value;
     }, 0);
 
 
     var dataPengunjungBulanIni = data.filter(val=>{
-      return val.tanggal.slice(val.tanggal.indexOf('-') + 1,val.tanggal.lastIndexOf('-')) == bulanIni
+      return val.updated_at.slice(val.updated_at.indexOf('-') + 1,val.updated_at.lastIndexOf('-')) == bulanIni
     }).map((item,index)=>Math.floor(item.jumlah)).reduce((accumulator, value) => {
       return accumulator + value;
     }, 0);
