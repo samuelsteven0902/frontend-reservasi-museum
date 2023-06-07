@@ -2,14 +2,9 @@ import React from 'react'
 import { useState } from 'react';
 import ReactPaginate from 'react-paginate';
 
-
-
 function Items(props) {
-
-
-  
   const dataTiket = props.data
-
+  const searchTerm = props.searchTerm
   console.log(props);
   
     function getFirstLetters(str) {
@@ -17,11 +12,10 @@ function Items(props) {
         .split(' ')
         .map(word => word[0])
         .join('');
-
       return firstLetters;
     }
 
-    const rupiah = (number)=>{
+  const rupiah = (number)=>{
       return new Intl.NumberFormat("id-ID", {
       //   style: "currency",
         currency: "IDR"
@@ -30,95 +24,81 @@ function Items(props) {
 
   return (
     <>
-    {dataTiket.map((item,index)=>{
-      console.log(item)
+    {dataTiket.filter(val=>{
+      if(searchTerm == "") {
+        return val
+        }
+      else if(
+        val.nama_kategori.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        val.nama_museum.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        val.nama_kategori.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        val.nama_kategori_en.toLowerCase().includes(searchTerm.toLowerCase()) 
+      ) {
+        return val
+      }
+        // return pageCount = Math.ceil(dataTiket.length / 6)
+    }).map((item,index)=>{
+      // console.log(item)
         return(
-            <tr className="bg-white border-b text-center " key={index}>
-                    <td className=" text-gray-900 px-6 py-4 whitespace-nowrap">
-                        {item.id}
-                    </td>
-                    <td className=" text-gray-900  px-6 py-4 whitespace-nowrap">
-                        {getFirstLetters(item.nama_museum)}
-                    </td>
-                    <td className=" text-gray-900  px-6 py-4 whitespace-nowrap">
-                        {item.nama_kategori}
-                    </td>
-                    <td className=" text-gray-900  px-6 py-4 whitespace-nowrap">
-                        {item.nama_kategori_en}
-                    </td>
-                    <td className=" text-gray-900  px-6 py-4 whitespace-nowrap">
-                        {rupiah(item.hari_biasa)}
-                    </td>
-                    <td className=" text-gray-900  px-6 py-4 whitespace-nowrap">
-                        {rupiah(item.hari_libur)}
-                    </td>
-                    <td className=" text-gray-900  px-6 py-4 whitespace-nowrap">
-                        {item.min}
-                    </td>
-                    <td className=" text-gray-900  px-6 py-4 whitespace-nowrap">
-                        {item.max}
-                    </td>
-                    <td className=" text-gray-900 px-6 py-4 whitespace-nowrap ">
-                     
-                    
-                    <button type="button" className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" 
-                    data-te-toggle="modal" 
-                    id={item.id} 
-                    data-te-target="#exampleModalCenteredScrollable" 
-                    onClick={props.updateHarga}>
-                        Edit
-                    </button>
-
-
-                    {/* <button type="button" className="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900" onClick={(e) => deleteStudent(e, item.id)}>Hapus</button> */}
-                    
-                    </td>
-                    </tr>
-        )
-    })}
+            <tr className="bg-white border-b text-center" key={index}>
+              <td className=" text-gray-900 px-6 py-4 whitespace-nowrap">{item.id}</td>
+              <td className=" text-gray-900 px-6 py-4 whitespace-nowrap">{getFirstLetters(item.nama_museum)}</td>
+              <td className=" text-gray-900 px-6 py-4 whitespace-nowrap">{item.nama_kategori}</td>
+              <td className=" text-gray-900 px-6 py-4 whitespace-nowrap">{item.nama_kategori_en}</td>
+              <td className=" text-gray-900 px-6 py-4 whitespace-nowrap">{rupiah(item.hari_biasa)}</td>
+              <td className=" text-gray-900 px-6 py-4 whitespace-nowrap">{rupiah(item.hari_libur)}</td>
+              <td className=" text-gray-900 px-6 py-4 whitespace-nowrap">{item.min}</td>
+              <td className=" text-gray-900 px-6 py-4 whitespace-nowrap">{item.max}</td>
+              <td className=" text-gray-900 px-6 py-4 whitespace-nowrap">
+                <button type="button" className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" data-te-toggle="modal" id={item.id} data-te-target="#exampleModalCenteredScrollable" onClick={props.updateHarga}>Edit</button>
+                {/* <button type="button" className="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900" onClick={(e) => deleteStudent(e, item.id)}>Hapus</button> */}
+              </td>
+            </tr>
+          )
+        })}
     </>
   );
 }
 
-function PagginationTiket(props) {
-
-  const dataTiket  = Object.entries(props);
+function PaginationTiket(props) {
+  const dataTiket = Object.entries(props);
   const searchTerm = props.searchTerm
-  console.log(props);
+  console.log(dataTiket);
 
   const [itemOffset, setItemOffset] = useState(0);
-  const itemsPerPage = 6 ;
-
+  const itemsPerPage = 5 ;
+  
   const endOffset = itemOffset + itemsPerPage;
   const currentItems = dataTiket[0][1].slice(itemOffset, endOffset);
-  const pageCount = Math.ceil(dataTiket[0][1].length / itemsPerPage);
-  console.log(currentItems)
-
+  const [pageCount, setpageCount] = useState(Math.ceil(dataTiket[0][1].length / itemsPerPage));
+  
+  
   const handlePageClick = (event) => {
     const newOffset = (event.selected * itemsPerPage) % dataTiket[0][1]
     .filter(val=>{
-      if(searchTerm === "")
-      {
+      if(searchTerm === ""){
           return val
       }
       else if(val.nama_museum.toLowerCase().includes(searchTerm.toLowerCase()) ||
-              val.nama_kategori.toLowerCase().includes(searchTerm.toLowerCase()))
-      {
-          return val
+              val.nama_kategori.toLowerCase().includes(searchTerm.toLowerCase()) ||
+              val.nama_kategori_en.toLowerCase().includes(searchTerm.toLowerCase()) 
+              ) {
+          return val 
       }
-      })
-    .length;
+    console.log(val)
+    }).length;
+
     console.log(
       `User requested page number ${event.selected}, which is offset ${newOffset}`
     );
     setItemOffset(newOffset);
   };
+  console.log(itemOffset);
 
   return (
     <>
-      <Items data={currentItems} updateHarga={(data)=>{props.updateHarga(data);console.log(data.target)}} />
-      
-      <tr className='w-full  py-2' >
+      <Items data={currentItems} searchTerm={searchTerm} updateHarga={(data)=>{props.updateHarga(data);console.log(data.target)}}/>
+      <tr className='w-full py-2'>
         <th colSpan={9}>
           <ReactPaginate
             breakLabel="..."
@@ -140,5 +120,4 @@ function PagginationTiket(props) {
   );
 }
 
-
-export default PagginationTiket
+export default PaginationTiket

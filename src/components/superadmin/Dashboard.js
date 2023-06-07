@@ -16,8 +16,9 @@ export default function Home() {
           <CardLineChart />
         </div> 
       </div>
+      <DefaultFooterAdmin />
     </div>
-        <DefaultFooterAdmin />
+        
     </>
   );
 }

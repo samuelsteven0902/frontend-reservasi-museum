@@ -1,8 +1,5 @@
 import React, { Component, Fragment } from 'react';
-// import ReactDatatable from '../../lib/1`index.js';
-// import ReactDatatable from '../../src/index.js';
 import ReactDatatable from '@ashvin27/react-datatable'
-// import users from '@ashvin27/react-datatable';
 import { useHistory, Link } from 'react-router-dom';
 import axios from 'axios'
 import swal from 'sweetalert';

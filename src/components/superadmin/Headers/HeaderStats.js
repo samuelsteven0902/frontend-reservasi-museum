@@ -43,7 +43,7 @@ export default function HeaderStats() {
 
   if(loading) 
   {
-    var dataPengunjungFeb = <h1>Loading</h1>
+    var dataPemasukanFeb = <h1>Loading</h1>
   }
   else
   { 
@@ -56,34 +56,34 @@ export default function HeaderStats() {
 
 
 
-    var dataPengunjungHariIni = data.filter(val=>{
-      return val.tanggal.slice(0,2) == hariIni
+    var dataPemasukanHariIni = data.filter(val=>{
+      return val.updated_at.slice(val.updated_at.lastIndexOf('-') + 1,val.updated_at.lastIndexOf('-') + 3) == hariIni
     }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
       return accumulator + value;
     }, 0);
 
-    var dataPengunjungkemarin = data.filter(val=>{
-      return val.tanggal.slice(0,2) == kemarin
+    var dataPemasukankemarin = data.filter(val=>{
+      return val.updated_at.slice(val.updated_at.lastIndexOf('-') + 1,val.updated_at.lastIndexOf('-') + 3) == kemarin
     }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
       return accumulator + value;
     }, 0);
 
-    var dataPengunjungBulanLalu = data.filter(val=>{
-      return val.tanggal.slice(val.tanggal.indexOf('-') + 1,val.tanggal.lastIndexOf('-')) == bulanLalu
+    var dataPemasukanBulanLalu = data.filter(val=>{
+      return val.updated_at.slice(val.updated_at.indexOf('-') + 1,val.updated_at.lastIndexOf('-')) == bulanLalu
     }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
       return accumulator + value;
     }, 0);
 
-    var dataPengunjungBulanIni = ''
-    dataPengunjungBulanIni = data.filter(val=>{
-      return val.tanggal.slice(val.tanggal.indexOf('-') + 1,val.tanggal.lastIndexOf('-')) == bulanIni
+    var dataPemasukanBulanIni = ''
+    dataPemasukanBulanIni = data.filter(val=>{
+      return val.updated_at.slice(val.updated_at.indexOf('-') + 1,val.tanggal.lastIndexOf('-')) == bulanIni
     }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
       return accumulator + value;
     }, 0);
 
     
   }
-  console.log(dataPengunjungBulanLalu);
+  console.log(dataPemasukanBulanLalu);
   return (
     <>
       {/* Header */}
@@ -95,7 +95,7 @@ export default function HeaderStats() {
               <div className="w-full lg:w-6/12 xl:w-3/12 px-2 font-merriweather">
                 <CardStats
                   statSubtitle="Total Pemasukan Bulan Lalu"
-                  statTitle={dataPengunjungBulanIni !== undefined ?  rupiah(dataPengunjungBulanLalu) : "Loading..." }
+                  statTitle={dataPemasukanBulanIni !== undefined ?  rupiah(dataPemasukanBulanLalu) : "Loading..." }
                   statIconName="far fa-chart-bar"
                   statIconColor="bg-[#A70B0B]"
                 />
@@ -103,7 +103,7 @@ export default function HeaderStats() {
               <div className="w-full lg:w-6/12 xl:w-3/12 px-2 font-merriweather">
                 <CardStats
                   statSubtitle="Total Pemasukan Bulan Ini"
-                  statTitle={dataPengunjungBulanIni !== undefined ? rupiah(dataPengunjungBulanIni) : "Loading..."}
+                  statTitle={dataPemasukanBulanIni !== undefined ? rupiah(dataPemasukanBulanIni) : "Loading..."}
                   statIconName="far fa-chart-bar"
                   statIconColor="bg-[#A70B0B]"
                 />
@@ -111,7 +111,7 @@ export default function HeaderStats() {
               <div className="w-full lg:w-6/12 xl:w-3/12 px-2 font-merriweather">
                 <CardStats
                   statSubtitle="Total Pemasukan Kemarin"
-                  statTitle={dataPengunjungBulanIni !== undefined ?  rupiah(dataPengunjungkemarin): "Loading..."}
+                  statTitle={dataPemasukanBulanIni !== undefined ?  rupiah(dataPemasukankemarin): "Loading..."}
                   statIconName="far fa-chart-bar"
                   statIconColor="bg-[#A70B0B]"
                 />
@@ -119,7 +119,7 @@ export default function HeaderStats() {
               <div className="w-full lg:w-6/12 xl:w-3/12 px-2 -ml font-merriweather">
                 <CardStats
                   statSubtitle="Total Pemasukan Hari Ini"
-                  statTitle={dataPengunjungBulanIni !== undefined ? rupiah(dataPengunjungHariIni):"Loading...  "}
+                  statTitle={dataPemasukanBulanIni !== undefined ? rupiah(dataPemasukanHariIni):"Loading...  "}
                   statIconName="far fa-chart-bar"
                   statIconColor="bg-[#A70B0B]"
                 />
