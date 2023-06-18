@@ -27,12 +27,16 @@ const [museum, setMuseum] = useState("");
 const [museumId, setMuseumId] = useState("");
 
 // close
-const CloseRef = useRef();
+const CloseRef = useRef(null);
 
 const [input,setInput] = useState({
     museum : museumId,
     
 })
+
+const tutupModal = () => {
+    CloseRef.current.style.display = 'none';
+  };
 
 const [namaInput, setNamaInput] = useState({
     namaMuseum : 'Pilih Museum',
@@ -188,7 +192,7 @@ if(loading) {
                     </tr>
 }
 else {
-    htmlKategori = <PaginationTiketNew data={semuaHarga} searchTerm={searchTerm} updateHarga={(data)=>handleHarga(data)}  />
+    htmlKategori = <PaginationTiketNew data={semuaHarga} searchTerm={searchTerm} fetchHarga={fetchHarga} updateHarga={(data)=>handleHarga(data)}  />
 }
 console.log(harga)
 
@@ -281,7 +285,9 @@ return (
                                         </div>
                                     </div>
                                     <div className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
-                                        <button type="button" className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" data-te-modal-dismiss="modal" aria-label="Close" ref={CloseRef}>Tutup</button>
+                                        <button ref={CloseRef} type="button" className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" data-te-modal-dismiss="modal" aria-label="Close" 
+                                        
+                                        >Tutup</button>
                                         <button type="submit" className="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out ml-1" id="idSave">Simpan Perubahan</button>
                                     </div>
                                 </form>
@@ -333,7 +339,7 @@ return (
                                     </div>
                                 </div>
                                 <div className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
-                                    <button type="button" className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" data-te-modal-dismiss="modal" aria-label="Close"  ref={CloseRef}>Close</button>
+                                    <button type="button" ref={CloseRef} className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" data-te-modal-dismiss="modal" aria-label="Close"  >Close</button>
                                     <button type="submit" className="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out ml-1">Save changes</button>
                                 </div>
                                 </form>}
@@ -356,7 +362,7 @@ return (
                         <div className="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md"
                         id="Tambahmuseumlabel">
                             <h5 className="text-xl font-medium leading-normal text-gray-800">Tambah Kategori</h5>
-                            <button type="button" className="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline" data-te-modal-dismiss="modal" aria-label="Close" ref={CloseRef}></button>
+                            <button type="button" ref={CloseRef} className="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline" data-te-modal-dismiss="modal" aria-label="Close" ></button>
                         </div>
 
                         {/* tabel master tiket */}

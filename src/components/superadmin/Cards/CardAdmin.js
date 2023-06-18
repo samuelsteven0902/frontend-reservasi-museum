@@ -41,8 +41,8 @@ function CardAdmin() {
 
     const fetchData = () => {
         axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/show_admin`).then(res=>{
-        console.log(res.data.admin); 
-        setAdmin(res.data.admin); 
+        console.log(res.data.admin);
+        setAdmin(res.data.admin);
         setLoading(false)
         })
     }
@@ -93,8 +93,9 @@ function CardAdmin() {
                         Authorization: `Bearer ${Cookies.get('token')}`,
                     }}).then(res=>{
                     if(res.data.status === 200) {
-                        swal("Deleted!",res.data.message,"success")
+                        console.log(res);
                         fetchData();
+                        swal("Deleted!",res.data.message,"success")
                     }
                     else if(res.data.status === 404) {
                         // swal("Error",res.data.message,"error");
@@ -120,12 +121,20 @@ function CardAdmin() {
             </tr>
     }
     else {
-        ADMIN_HTMLTABLE = <PaginationCardAdmin data={admin} deleteAdmin={deleteAdmin} searchTerm={searchTerm}/>
+        ADMIN_HTMLTABLE = <PaginationCardAdmin data={admin} deleteAdmin={deleteAdmin} fetchData={fetchData} searchTerm={searchTerm}/>
     }
 
 return (
     <div className='container px-12 relative flex flex-col min-w-0 break-words w-full mb-6 rounded'>
-        <button type="button" class="w-36 inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out" data-te-toggle="modal"  data-te-target="#tambahAdmin">Tambah Admin</button>
+        <button type="button" class="w-36 inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out" data-te-toggle="modal"  data-te-target="#tambahAdmin" onClick={()=>{setInput({
+        nama: '',
+        email: '',
+        password: '',
+        err_msg:[]
+    });
+    console.log(input);
+}
+    }>Tambah Admin</button>
             <div class="flex flex-col">
                 <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div class="py-2 inline-block min-w-full sm:px-6 lg:px-6">
@@ -160,21 +169,21 @@ return (
                             <form onSubmit={handleSubmit} >
                             <div className='overflow-auto' data-te-modal-body-ref>
                             <div className="modal-body relative py-4">
-                                <div className='justify-around md:mt-0 mt-8'>    
+                                <div className='w-full mx-auto md:mt-0 mt-8'>    
                                     <div className="w-96 mb-4 mx-auto">
                                         <label className="block text-gray-700 text-sm font-nunito font-semibold mb-2" for="username">Nama</label>
-                                        <input name='nama' className="shadow appearance-none border rounded-full w-72 mx-auto text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" onChange={handleInput}/>
+                                        <input name='nama' className="shadow appearance-none border rounded-full w-72 mx-auto text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" value={input.nama} onChange={handleInput}/>
                                         <span className="text-sm text-red-500"></span>
                                     </div>
                                     <div className="w-96 mb-4 mx-auto">
                                         <label className="block text-gray-700 text-sm font-nunito font-semibold mb-2" for="email">Email</label>
-                                        <input name='email' className="shadow appearance-none border rounded-full w-72 mx-auto text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="email" onChange={handleInput}/>
+                                        <input name='email' className="shadow appearance-none border rounded-full w-72 mx-auto text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="email" value={input.email} onChange={handleInput}/>
                                         <span className="text-sm text-red-500"></span>
                                     </div>
                                     <div className="w-96 mb-4 mx-auto">
                                         <label className="block text-gray-700 text-sm font-nunito font-semibold mb-2" for="password">Password</label>
                                         <div className='relative'>
-                                            <input name='password' className="shadow appearance-none border rounded-full z-10 w-72 mx-auto text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type={passwordType} onChange={handleInput}/>
+                                            <input name='password' className="shadow appearance-none border rounded-full z-10 w-72 mx-auto text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type={passwordType} value={input.password} onChange={handleInput}/>
                                             <button className=" py-2.5 absolute -ml-14 -mt-1 z-40 focus:border-none active:border-none focus:outline-none focus:ring-0"  onClick={togglePassword}>{ passwordType==="password"? <AiOutlineEyeInvisible size={24} /> :<AiOutlineEye size={24}/>}</button>
                                         </div>
                                         <span className="text-xs text-red-500"><ul>{input.err_msg.map((item,index) => {return (<li>{index+1 }. {item}</li>)})}</ul></span>

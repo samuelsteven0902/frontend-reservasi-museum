@@ -22,7 +22,7 @@ function Header({state,data}) {
   return (
     <div className='absolute'>
         <div className=" pt-24 pb-8 flex content-center items-center justify-center w-full  h-1/3">
-            <div className="bg-gray-100 bg-center absolute h-1/2 top-0 w-[80%] bg-inputdata-background"/>
+            <div className="bg-gray-100 bg-center absolute h-1/2 top-0 w-[80%]   bg-inputdata-backgroung  " />
             
             <div className=" mx-auto z-10 w-[80%]">
                 
@@ -30,7 +30,7 @@ function Header({state,data}) {
                 <div className="items-center flex flex-wrap bg-[#A70B0B] mt-9 rounded-b-xl pb-7">
                     <div className="w-full  px-4 ml-auto mr-auto text-center">
                         <div className="text-gray-200">
-                            <p className='sm:text-lg font-light leading-relaxed mt-6 mb-4 text-sm font-nunito'>
+                            <p className='sm:text-lg font-light leading-relaxed mt-6 mb-4 text-sm '>
                             {t('formInput.desc.isi')}
                            </p>
                         </div>
@@ -54,8 +54,9 @@ function Header({state,data}) {
                 </div>
             </div>
         </div>
-        </div>
-    )
+
+    </div>
+  )
 }
 
 export default Header

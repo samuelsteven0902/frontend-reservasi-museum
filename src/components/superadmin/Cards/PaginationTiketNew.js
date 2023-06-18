@@ -6,6 +6,7 @@ import swal from "sweetalert";
 import Cookies from 'js-cookie';
 import { data } from 'jquery';
 import { BiTrash, BiPencil } from 'react-icons/bi';
+import { useEffect } from 'react';
 
 
 function PaginationTiketNew(props) {
@@ -14,6 +15,10 @@ function PaginationTiketNew(props) {
   const searchTerm = props.searchTerm
   const [idHarga,setIdHarga] = useState()
   // console.log(props);
+
+  useEffect(() =>
+  setDataTiket(Object.entries(props))
+  ,[props] )
 
 const deleteKategori = (e, id) => {
   e.preventDefault();
@@ -36,14 +41,7 @@ const deleteKategori = (e, id) => {
               if(res.data.status === 200)
               {
                   swal("Deleted!",res.data.message,"success")
-                  axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/show_kategori` , {
-                    headers : {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json',
-                        Authorization: `Bearer ${Cookies.get('token')}`,
-                          }}).then(res=>{setDataTiket(res.data.kategori);
-                      console.log(res); 
-                  })
+                  props.fetchHarga()
               }
               else if(res.data.status === 404)
               {
@@ -117,7 +115,7 @@ const rupiah = (number)=>{
               <td className=" text-gray-900 px-6 py-4 whitespace-nowrap">{item.min}</td>
               <td className=" text-gray-900 px-6 py-4 whitespace-nowrap">{item.max}</td>
               <td className=" text-gray-900 px-6 py-4 whitespace-nowrap">
-                <button type="button" className="text-white ml-4 bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded text-sm px-6 py-1.5 flex text-center mr-2 mb-2 align-middle items-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900" data-te-toggle="modal" id={item.id} data-te-target="#exampleModalCenteredScrollable" onClick={props.updateHarga} ref={CloseRef}> <BiPencil className="mr-1"/>Edit</button>
+                <button type="button" className="text-white ml-4 bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded text-sm px-6 py-1.5 flex text-center mr-2 mb-2 align-middle items-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900" data-te-toggle="modal" id={item.id} data-te-target="#exampleModalCenteredScrollable" onClick={props.updateHarga}> <BiPencil className="mr-1"/>Edit</button>
                 <button type="button" className="text-white ml-4 bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded text-sm px-4 py-1.5 flex text-center mr-2 mb-2 items-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"onClick={(e) => deleteKategori(e, item.id)}> <BiTrash className="mr-1"/>Hapus</button>
               </td>
             </tr>

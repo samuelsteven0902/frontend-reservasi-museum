@@ -1,12 +1,17 @@
 import React from 'react'
+import { useEffect } from 'react';
 import { useState } from 'react';
 import ReactPaginate from 'react-paginate';
 
 function PaginationPemasukan(props) {
 
-  const dataTiket = Object.entries(props);
+  const [dataTiket,setDataTiket] = useState(Object.entries(props));
   const searchTerm = props.searchTerm
   // console.log(props);
+
+  useEffect(() =>
+  setDataTiket(Object.entries(props))
+  ,[props] )
 
   const rupiah = (number)=>{
     return new Intl.NumberFormat("id-ID", {
