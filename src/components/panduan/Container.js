@@ -45,7 +45,7 @@ if(!loading && !loadingGambar)
 {
     htmlLoad =  <>
                     <p className='font-nunito tracking-wider w-3/5 mx-auto py-6 text-center'>
-                                        {lang === 'id'?ReactHtmlParser(panduanText.panduan_name):ReactHtmlParser(panduanText.panduan_name_en)}
+                                        {lang === 'id' && panduanText ?ReactHtmlParser(panduanText.panduan_name):ReactHtmlParser(panduanText.panduan_name_en)}
 
                                     </p>
                                 <div className="w-5/6 mx-auto bg-gray-100 mt-12 flex justify-center flex-wrap" data-aos="fade-up" data-aos-duration="750">
