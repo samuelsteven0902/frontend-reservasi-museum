@@ -24,14 +24,13 @@ function WorkingSection(input) {
 
 
 
-    console.log(input);
+    console.log();
     const handleCash = () =>{
         // console.log(input.data);
         // console.log(pembayaran);
 
         if(pembayaran === 'tunai' || input.input == 0){
                  (t('pembayaran.metode.cash'))
-            // console.log(pembayaran);
 
             const data = {
                 nama:input.data.nama,
@@ -44,11 +43,13 @@ function WorkingSection(input) {
                 email:input.data.email,
                 foto:input.data.foto,
                 harga_awal:input.input,  
-                pembayaran: pembayaran,
+                pembayaran: "tunai",
                 kehadiran:'Tidak Hadir',
                 // tiket: input.data.kode_tiket,
                 status: input.input === 0?'Lunas':'Belum Lunas' ,
             }
+            console.log(data);
+
             // console.log(data);
             
             axios.post(`${process.env.REACT_APP_API_ENDPOINT}/api/add-pengunjung`, data, {
