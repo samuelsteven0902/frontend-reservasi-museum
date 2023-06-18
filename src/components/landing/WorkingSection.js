@@ -1,36 +1,22 @@
-// import Card from '@material-tailwind/react/Card';
-// import CardImage from '@material-tailwind/react/CardImage';
-// import CardBody from '@material-tailwind/react/CardBody';
-// import Icon from '@material-tailwind/react/Icon';
-// import H4 from '@material-tailwind/react/Heading4';
-// import H6 from '@material-tailwind/react/Heading6';
-// import LeadText from '@material-tailwind/react/LeadText';
-// import Paragraph from '@material-tailwind/react/Paragraph';
-// import museumKeris from 'assets/img/MuseumKeris.jpg';
 import StatusCard from 'components/landing/StatusCard';
 import { useEffect, useRef, useState } from 'react';
 import { Calendar } from 'react-date-range';
 import { addDays, format, isMonday, isSunday } from 'date-fns';
 import { Link,  useHistory } from 'react-router-dom';
 import ReactLoading from 'react-loading';
-// import pesan from '../../assets/img/icon/pesan.png'
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 
 
 export default function WorkingSection({setRes}) {
-    // console.log(process.env.REACT_APP_API_ENDPOINT);
     const { t } = useTranslation()
     const [museum, setMuseum] = useState("");
-    const [museumId, setMuseumId] = useState("");
     const [category, setCategory] = useState("Kategori");
     const [disabledCategory , setDisabledCategory] = useState(true);
     const [disabledDate , setDisabledDate] = useState(true);
-    const [loading , setLoading] = useState(true);
     const [calendar, setCalendar] = useState(t('landing.working.tanggal'));
     const [count, setCount] = useState(0);
     const [open,setOpen] = useState(false);
-    // const [libur, setLibur] = useState('')
     const [input,setInput] = useState({
         museum : t('landing.working'),
         category : 'Pilih Kategori',
@@ -91,42 +77,24 @@ export default function WorkingSection({setRes}) {
         const fetchMuseum = async ()=>{
             const resMuseum = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/show_museum`).then((res)=>{
                 setMuseum(res.data.museum);
-                // console.log(res.data.museum);
             }) 
         }
-        // setCalendar(format(new Date(), 'MM/dd/yyyy'));
         fetchMuseum();
     }, [namaInput])
 
     const fetchCategory = async (option)=>
-    {
-        // const resCategory = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/show_category/${museumId}`)
-        // .then((res)=>{  
-            // setCategory(res.data.katergori); 
-            // console.log(category);
-            // } )
+    { 
             const resCategory = await fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/show_category/${option}`)
             const resCategoryData = await resCategory.json()
             setCategory(await resCategoryData.kategori); 
     }
 
     useEffect(() => {
-        
-        // console.log(category);
-    }, [category,museumId,namaInput])
-    
-    useEffect(() => {
-
-    //   setRes(input); 
     document.addEventListener("keydown", hidenOnEscape , true);
     document.addEventListener("click", hideOnClickOutside , true    );
-      //  setInput({...input,museum:museum}) 
-        // setInput({...input,calendar:calendar}) 
     }, [input,museum,namaInput])
 
-    // console.log(museumClass);
     const hidenOnEscape = (e) =>{
-        // console.log(e.key);
         if( e.key === "Escape"){
             setOpen(false)
         }
@@ -162,23 +130,18 @@ export default function WorkingSection({setRes}) {
         )
     }
 
-    //   const hariLibur = (day) =>{
-    //     setLibur(isMonday(day));
-    //   }
     const saveData = () => {
-        // setRes({input});
         redirect.push('/input-data')
     }
 
 
     
+console.log(museum)
     var x = localStorage.getItem("i18nextLng");
+    
     console.log(x);
     console.log(category);
 
-
-// console.log(museum);
-// console.log(namaInput.namaCategory);
     return (
         <section className="pb-20 -mt-80 sm:-mt-56 left-1/2 mx-auto z-10 w-5/6" data-aos="fade-down" data-aos-duration="750">
             <div className="container text-center max-w-5xl mx-auto sm:px-10 ">
@@ -186,27 +149,23 @@ export default function WorkingSection({setRes}) {
                     <div className="flex flex-wrap relative z-20">
                         <StatusCard color="none" icon="stars" title="Pesan Tiket">
                             <div className="sm:flex justify-center block z-10">
-                                <select value={{ label : input.museum}} id='museum' className="block appearance-none sm:w-1/3 w-full sm:my-0  p-2.5 bg-[#ECE3DE] text-[#A70B0B] font-nunito font-semibold text-center border-none px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline " onChange={(e) => {
+                                <select value={{ label : input.museum}} id='museum' className="block appearance-none sm:w-1/3 w-full sm:my-0  p-2.5 bg-[#ECE3DE] text-[#A70B0B] font-nunito font-semibold text-center border-none px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline" 
+                                onChange={(e) => {
                                     const index = e.target.selectedIndex;
                                     const el = e.target.childNodes[index]
-                                    const option =  el.getAttribute('id'); 
-                                    // const selectedMuseum = e.target.id;
+                                    const option =  el.getAttribute('id');
                                     setInput({...input,museum:option})
                                     setNamaInput({...namaInput,namaCategory:e.target.value})
                                     console.log(e.target.value);
-                                    setMuseumId(option)
                                     fetchCategory(option)
                                     cekMuseum(e.target.value)
-                                    // console.log(selectedMuseum);
-                                    // console.log(e); 
-                                    // setMuseum(selectedMuseum);
                                     }}>
-                                    <option  className='p-7 m-5 text-xl'>{namaInput.namaMuseumBanget}</option>
+                                    <option className='p-7 m-5 text-xl'>{namaInput.namaMuseumBanget}</option>
                                     {museum && museum.map((item,index) =>{
-                                    // console.log(item.id);
                                     return(
-                                        <option className='py-6 my-6 h-32' key={index} id={item.id} value={item.nama_museum}>{item.nama_museum}</option>
+                                    <option className='py-6 my-6 h-32' key={index} id={item.id} value={item.nama_museum}>{item.nama_museum}</option>
                                     )})}
+                                    
                                 </select>
                                 <select value={{label: namaInput.namaCategory}} id="category" className="disabled:text-gray-600 disabled:cursor-not-allowed disabled:bg-gray-300 sm:w-1/3 w-full sm:mx-5 sm:my-0 p-2.5 text-[#A70B0B] font-nunito font-semibold text-center bg-[#ECE3DE] border-none rounded-md shadow-sm  appearance-none focus:border-red-800  focus:outline-none my-3" onChange={(e) => {
                                     const index = e.target.selectedIndex;
@@ -220,7 +179,7 @@ export default function WorkingSection({setRes}) {
                                     <option className=' text-xl '>{namaInput.namaCategory}</option>
                                     {category && typeof category !== 'string'  && category.map((itemm,indexx)=>{
                                     return(
-                                        <option  key={indexx} id={itemm.id} value={x === 'id'?itemm.nama_kategori:itemm.nama_kategori_en} >{x === 'id'?itemm.nama_kategori:itemm.nama_kategori_en}</option>
+                                        <option key={indexx} id={itemm.id} value={x === 'id'?itemm.nama_kategori:itemm.nama_kategori_en} >{x === 'id'?itemm.nama_kategori:itemm.nama_kategori_en}</option>
                                         )})}
                                 </select>
                                 <input value={calendar} readOnly onClick={(e)=>{ setOpen(open => !open); 

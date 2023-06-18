@@ -62,8 +62,12 @@ const [tambahMuseum,setTambahMuseum] = useState({
 const [searchTerm, setSearchTerm] = useState("")
 
 const fetchHarga = () =>{
-    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/show_harga`)
-    .then(res=>{setSemuaHarga(res.data.harga);
+    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/show_kategori` , {
+        headers : {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            Authorization: `Bearer ${Cookies.get('token')}`,
+        }}).then(res=>{setSemuaHarga(res.data.kategori);
     console.log(res); 
     setLoading(false) 
 })
@@ -73,9 +77,9 @@ useEffect(() => {
     fetchHarga();
     if (loadingHarga === true)
     {
-        idHarga !== undefined &&  axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/edit-harga/${idHarga}`).then(res=>{
-            setHarga(res.data.harga[0]);
-            console.log(res.data.harga[0]);
+        idHarga !== undefined &&  axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/edit_kategori/${idHarga}`).then(res=>{
+            setHarga(res.data.kategori[0]);
+            console.log(res.data.kategori[0]);
             setLoadingHarga(false);
         })
     }
@@ -100,13 +104,13 @@ const updateHarga = (e) => {
     const data = {
         nama_kategori:harga.nama_kategori,
         nama_kategori_en:harga.nama_kategori_en,
-        biasa: harga.hari_biasa,
-        libur: harga.hari_libur,
+        hari_biasa: harga.hari_biasa,
+        hari_libur: harga.hari_libur,
         min: harga.min,
         max: harga.max,
     }
 
-    axios.put(`${process.env.REACT_APP_API_ENDPOINT}/api/update-harga/${idHarga}`, data, {
+    axios.put(`${process.env.REACT_APP_API_ENDPOINT}/api/update_kategori/${idHarga}`, data, {
         headers : {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
@@ -137,7 +141,7 @@ console.log(tambahMuseum);
 //send to api
 const storeMuseum = (e) => {
     e.preventDefault();
-
+    console.log(e.currentTarget);
     const thisClicked = e.currentTarget[5];
     thisClicked.innerText = "Storing";
     const data = {
@@ -160,7 +164,9 @@ const storeMuseum = (e) => {
         if(res.data.status === 200) {
             console.log('berhasil');
             swal("Success",res.data.message,"success")
+            thisClicked.innerText = "Close";
             CloseRef.current.click();
+            fetchHarga();
         }
         else if(res.data.status === 422) {
             swal("All fields are mandetory",res.data.message    ,"error");
@@ -172,38 +178,6 @@ const storeMuseum = (e) => {
 }
 //end
 
-const deleteStudent = (e, id) => {
-    e.preventDefault();
-    
-    const thisClicked = e.currentTarget;
-    thisClicked.innerText = "Deleting";
-
-    axios.delete(`${process.env.REACT_APP_API_ENDPOINT}/api/hapus-harga/${idHarga}`).then(res=>{
-        if(res.data.status === 200) {
-            swal("Deleted!",res.data.message,"success");
-            thisClicked.closest("tr").remove();
-        }
-        else if(res.data.status === 404) {
-            swal("Error",res.data.message,"error");
-            thisClicked.innerText = "Delete";
-        }
-    });
-}
-
-function getFirstLetters(str) {
-    const firstLetters = str
-        .split(' ')
-        .map(word => word[0])
-        .join('');
-    return firstLetters;
-}
-
-const rupiah = (number)=>{
-    return new Intl.NumberFormat("id-ID", {
-    //   style: "currency",
-    currency: "IDR"
-    }).format(number);
-}
 
 var htmlKategori = ''
 if(loading) {
@@ -307,8 +281,8 @@ return (
                                         </div>
                                     </div>
                                     <div className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
-                                        <button type="button" className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" data-te-modal-dismiss="modal" ref={CloseRef}>Close</button>
-                                        <button type="submit" className="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out ml-1" id="idSave">Save changes</button>
+                                        <button type="button" className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" data-te-modal-dismiss="modal" aria-label="Close" ref={CloseRef}>Tutup</button>
+                                        <button type="submit" className="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out ml-1" id="idSave">Simpan Perubahan</button>
                                     </div>
                                 </form>
                                 :
@@ -359,7 +333,7 @@ return (
                                     </div>
                                 </div>
                                 <div className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
-                                    <button type="button" className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" data-te-modal-dismiss="modal"  ref={CloseRef}>Close</button>
+                                    <button type="button" className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" data-te-modal-dismiss="modal" aria-label="Close"  ref={CloseRef}>Close</button>
                                     <button type="submit" className="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out ml-1">Save changes</button>
                                 </div>
                                 </form>}
@@ -446,7 +420,7 @@ return (
                                 </div>
                                 <div className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
                                     <button type="button" className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
-                                    data-te-modal-dismiss="modal" ref={CloseRef}>Close</button>
+                                    data-te-modal-dismiss="modal" aria-label="Close" ref={CloseRef}>Close</button>
                                     <button type="submit"className="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out ml-1">Save Changes</button>
                                 </div>
                             </form> 

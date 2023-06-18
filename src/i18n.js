@@ -1,48 +1,14 @@
 import i18n from 'i18next';
 import Backend from 'i18next-http-backend';
 import LanguageDetector from 'i18next-browser-languagedetector';
-// import { reactI18nextModule } from 'react-i18next';
 import { initReactI18next } from 'react-i18next';
-// import {  } from "react-i18next";
-
-// import translationEN from './assets/locales/en/translation.json';
-// import translationID from './assets/locales/id/translation.json';
-// import translationID from '../public/locales/id/translation.json';
-
-// const resources = {Ppem
-//   en: {
-//     translation: translationEN
-//   },
-//   id: {
-//     translation: translationID
-//   }
-// };
-
-// i18n
-// .use(LanguageDetector)
-// // .use(reactI18nextModule) // passes i18n down to react-i18next
-// .init({
-//   resources,
-//   fallbackLng: "en", // use en if detected lng is not available
-
-//   keySeparator: false, // we do not use keys in form messages.welcome
-
-//   interpolation: {
-//     escapeValue: false // react already safes from xss
-//   },
-//   useSuspense: true,
-// });
 
 i18n
 .use(Backend)
-  // detect user language
-  // learn more: https://github.com/i18next/i18next-browser-languageDetector
   .use(LanguageDetector)
-  // pass the i18n instance to react-i18next.
   .use(initReactI18next)
-  // init i18next 
-  // for all options read: https://www.i18next.com/overview/configuration-options
   .init({
+    returnObjects: true,
     debug: true,
     fallbackLng: 'id',
     interpolation: {

@@ -10,8 +10,6 @@ export default function Faq() {
     useEffect(()=>{
         window.scrollTo(0,0)
     },[pathname])
-
-
     
     return (
         <div className='bg-gray-50'>

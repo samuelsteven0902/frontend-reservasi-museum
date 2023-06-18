@@ -1,16 +1,28 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import ReactLoading from 'react-loading';
+import Cookies from 'js-cookie';
+import PaginationPemasukan from './PaginationPemasukan';
+import Pemasukan from '../Pemasukan';
 
 
-function CardAdmin() {
+function CardPemasukan() {
 
   const [searchTerm, setSearchTerm] = useState("")
-    const [loading,setLoading] = useState(true)
+  const [loading,setLoading] = useState(true)
   const [pemasukan,setPemasukan] = useState([])
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/pemasukan`).then(res=>{
+    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/pemasukan` , {
+      headers : {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          Authorization: `Bearer ${Cookies.get('token')}`,
+      }})
+    
+    
+    .then(res=>{
+
     // console.log(res);  
     if(res.status === 200)
       {
@@ -29,19 +41,6 @@ function CardAdmin() {
     }).format(number);
   }
 
-  //menjumlah tabel pemasukan
-  
-  // var table = document.getElementById("pemasukann"), sumVal = 0;
-  
-  // for(var i = 1; i < table.rows.length; i++)
-  // {
-  //     sumVal = sumVal + parseInt(table.rows[i].cells[3].innerHTML);
-  // }
-  
-  // document.getElementById("totall").innerHTML = "Total = " + sumVal;
-  // console.log(sumVal);
- 
-
   if(loading)
   {
     var pemasukan_HTMLTABLE =   
@@ -52,40 +51,7 @@ function CardAdmin() {
       </tr>
   }
   else
-  {
-    var pemasukan_HTMLTABLE = "";
-    pemasukan_HTMLTABLE = pemasukan.filter(val=>{
-      if(searchTerm == "")
-      {
-          return val
-      }
-      else if(val.tanggal.toLowerCase().includes(searchTerm.toLowerCase())||
-              val.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-              val.nama.toLowerCase().includes(searchTerm.toLowerCase()) 
-              )
-      {
-          return val
-      }
-  }).map((item,index)=>{
-      return(
-<tr class="border-b bg-white ">
-                <td className=" text-gray-900  px-6 py-4 whitespace-nowrap">
-                  {item.tanggal}
-                </td>
-                <td className=" text-gray-900  px-6 py-4 whitespace-nowrap">
-                  {item.id_admin}
-                </td>
-                <td className=" text-gray-900  px-6 py-4 whitespace-nowrap">
-                  {item.nama}
-                </td>
-                <td className=" text-gray-900  px-6 py-4 whitespace-nowrap">
-                  {rupiah(item.harga_awal)}
-                  
-                </td>
-                
-              </tr>
-      )
-    })
+  {     pemasukan_HTMLTABLE = <PaginationPemasukan data={pemasukan} searchTerm={searchTerm} />
   }
   return (
   <div className='container  relative flex flex-col min-w-0 break-words w-full mb-6'>
@@ -145,4 +111,4 @@ function CardAdmin() {
   )
 }
 
-export default CardAdmin
+export default CardPemasukan

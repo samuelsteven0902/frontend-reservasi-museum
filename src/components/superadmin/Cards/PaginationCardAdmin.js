@@ -37,7 +37,7 @@ function Items(props) {
         e.preventDefault();
         
         swal({
-            title: "Anda Yakin menghapus Id Admin "+ id+ " ?",
+            title: "Anda Yakin menghapus Id User tersebut ?",
             text: "Sekali Hapus, anda tidak bisa mencadangkannya lagi!",
             icon: "warning",
             buttons: true,
@@ -72,7 +72,7 @@ function Items(props) {
       console.log(item)
         return(
           <tr class="border-b bg-white" key={index}>
-            <td class=" text-gray-900 px-6 py-4 whitespace-nowrap text-center">{item.id}</td>
+            <td class=" text-gray-900 px-6 py-4 whitespace-nowrap text-center">{index + 1}</td>
             <td class=" text-gray-900 px-6 py-4 whitespace-nowrap text-center">{item.name}</td>
             <td class=" text-gray-900 px-6 py-4 whitespace-nowrap text-center">{item.roles[0].name}</td>
             <td class=" text-gray-900 px-6 py-4 whitespace-nowrap text-center">{item.email}</td>

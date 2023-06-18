@@ -39,6 +39,8 @@ const [input,setInput] = useState({
     
 })
 
+const CloseRef = useRef();
+
 const [namaInput, setNamaInput] = useState({
     namaMuseum : 'Pilih Museum',
 })
@@ -47,6 +49,7 @@ const [namaInput, setNamaInput] = useState({
 const fetchMuseum =  ()=>{
     axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/show_museum`).then((res)=>{
         setMuseum(res.data.museum);
+        setTambahMuseum("");
         console.log(res.data.museum);
     }) 
 }
@@ -60,7 +63,6 @@ useEffect(() => {
 
 const [searchTerm, setSearchTerm] = useState("")
 
-const CloseRef = useRef();
 
 
 
@@ -81,8 +83,8 @@ useEffect(() => {
 
 const handleMuseum = (e) =>{
     setNamaMuseum('loading data...');
-    setIdMuseum(...e.target.id)
-    console.log(e.target);
+    setNamaMuseum(e.currentTarget.value)
+    setIdMuseum(e.target.id)
 
 }
 
@@ -93,8 +95,8 @@ const handleEdit = (e) => {
 }
 
 const updateMuseum = (e) => {
-    // console.log(e.currentTarget[5]);
     e.preventDefault();
+    console.log(e.currentTarget);
     
     // const idMuseum = idMuseum;
     // const data = studentInput;
@@ -113,19 +115,14 @@ const updateMuseum = (e) => {
         }}).then(res=>{
         if(res.data.status === 200)
         {
-            // console.log('berhasil');
-            swal("Success",res.data.message,"success")
             fetchMuseum();
+            swal("Success",res.data.message,"success")
             CloseRef.current.click();
+            
         }
-        else if(res.data.status === 422)
+        else if(res.data.status === 205)
         {
-            // swal("All fields are mandetory","","error");
-        }
-        else if(res.data.status === 404)
-        {
-            // swal("Error",res.data.message,"error");
-            // history.push('/students');
+            swal("Tidak bisa menambahkan Museum",res.data.message,"info");
         }
     });
 }
@@ -247,16 +244,16 @@ else
         return(
             <tr className="bg-white border-b" key={index}>
                 <td  className=" text-gray-900 px-6 py-4 whitespace-nowrap">
-                    {item.id}
+                    {index + 1}
                 </td>
                 <td className=" text-gray-900 px-6 py-4 whitespace-nowrap">
                     {item.nama_museum}
                 </td>
                 <td className=" text-gray-900 flex px-6 py-4 whitespace-nowrap">
-                    <button type="button" className=" text-white ml-4 bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded text-sm px-4 py-1.5 flex text-center mr-2 mb-2 align-middle items-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 " data-te-toggle="modal" id={item.id} data-te-target="#EditMuseum" onClick={handleMuseum}>
+                    <button type="button" className="text-white ml-4 bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded text-sm px-4 py-1.5 flex text-center mr-2 mb-2 align-middle items-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 " data-te-toggle="modal" id={item.id} data-te-target="#EditMuseum" onClick={handleMuseum}>
                     <BiPencil className="mr-1"/>Edit</button>
-                    <button type="button" className="text-white ml-4 bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded text-sm px-4 py-1.5 flex text-center mr-2 mb-2 items-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"  onClick={e=>deleteMuseum(e,item.id)}>
-                    <BiTrash  className="mr-1"/>Hapus</button>
+                    <button type="button" className="text-white ml-4 bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded text-sm px-4 py-1.5 flex text-center mr-2 mb-2 items-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900" onClick={e=>deleteMuseum(e,item.id)}>
+                    <BiTrash className="mr-1"/>Hapus</button>
                 </td>
             </tr>
         )
@@ -323,10 +320,8 @@ return (
                                     </div>
                                 </div>
         
-                                <div
-                                    className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
-                                    <button type="button"
-                                    className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+                                <div className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
+                                    <button type="button" className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
                                     data-te-modal-dismiss="modal" ref={CloseRef}>
                                     Tutup
                                     </button>
@@ -357,7 +352,7 @@ return (
                                     className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
                                     <button type="button"
                                     className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
-                                    data-te-modal-dismiss="modal"
+                                    data-te-modal-dismiss="modal" aria-label="Close"
                                     ref={CloseRef} >
                                     Tutup
                                     </button>

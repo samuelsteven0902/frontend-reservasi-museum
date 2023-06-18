@@ -22,7 +22,7 @@ function Header({state,data}) {
   return (
     <div className='absolute'>
         <div className=" pt-24 pb-8 flex content-center items-center justify-center w-full  h-1/3">
-            <div className="bg-gray-100 bg-center absolute h-1/2 top-0 w-[80%]   bg-inputdata-backgroung  " />
+            <div className="bg-gray-100 bg-center absolute h-1/2 top-0 w-[80%] bg-inputdata-background"/>
             
             <div className=" mx-auto z-10 w-[80%]">
                 

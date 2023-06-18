@@ -49,7 +49,7 @@ function CardAdmin() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const thisClicked = document.getElementById('tambahAdmin')
+        const thisClicked = document.getElementById('btnTambah')
         thisClicked.innerText = "Menambahkan..."
         const data = {
             nama:input.nama,
@@ -74,7 +74,7 @@ function CardAdmin() {
         }) 
     }
 
-    const deleteFAQ = (e, id) => {
+    const deleteAdmin = (e, id) => {
         e.preventDefault();
         
         swal({
@@ -120,7 +120,7 @@ function CardAdmin() {
             </tr>
     }
     else {
-        ADMIN_HTMLTABLE = <PaginationCardAdmin data={admin} deleteFAQ={deleteFAQ}/>
+        ADMIN_HTMLTABLE = <PaginationCardAdmin data={admin} deleteAdmin={deleteAdmin} searchTerm={searchTerm}/>
     }
 
 return (
@@ -128,10 +128,10 @@ return (
         <button type="button" class="w-36 inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out" data-te-toggle="modal"  data-te-target="#tambahAdmin">Tambah Admin</button>
             <div class="flex flex-col">
                 <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-                    <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+                    <div class="py-2 inline-block min-w-full sm:px-6 lg:px-6">
                         <div class="overflow-hidden shadow-lg rounded-xl m-2">
                             <table class="min-w-full ">
-                                <thead class="border-b bg-white ">
+                                <thead class="border-b bg-white">
                                     <tr className=''>
                                         <th scope="col" class="text-xl font-nunito font-semibold text-[#A70B0B] px-6 py-4 text-center ">Admin ID</th>
                                         <th scope="col" class="text-xl font-nunito font-semibold text-[#A70B0B] px-6 py-4 text-center">Nama User</th>
@@ -153,27 +153,28 @@ return (
                 <div className="modal-dialog w-11/12 justify-center md:w-1/2  px-0 sm:px-12 mx-auto  h-full  my-auto modal-dialog-centered modal-dialog-scrollable relative items-center pointer-events-none lg:w-1/3" >
                     <div data-te-modal-dialog-ref className="modal-content border-none shadow-lg relative flex flex-col sm:w-full sm:min-w-max pointer-events-auto my-auto bg-white  bg-clip-padding rounded-md outline-none text-current"  id="tambahAdminlabel">
                         <div className="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
-                            <h5 className="text-xl font-nunito font-semibold leading-normal text-gray-800"> Tambah Admin Baru</h5>
+                            <h5 className="text-xl font-nunito font-semibold leading-normal text-gray-800">Tambah Admin Baru</h5>
                             <button type="button" className="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline" data-te-modal-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div data-te-modal-body-ref>
-                            <form onSubmit={handleSubmit} className='overflow-auto' data-te-modal-body-ref>
+                            <form onSubmit={handleSubmit} >
+                            <div className='overflow-auto' data-te-modal-body-ref>
                             <div className="modal-body relative py-4">
                                 <div className='justify-around md:mt-0 mt-8'>    
                                     <div className="w-96 mb-4 mx-auto">
                                         <label className="block text-gray-700 text-sm font-nunito font-semibold mb-2" for="username">Nama</label>
-                                        <input name='nama' className="shadow appearance-none border rounded-full w-72 sm:w-full mx-auto text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-gray-200" type="text" onChange={handleInput}/>
+                                        <input name='nama' className="shadow appearance-none border rounded-full w-72 mx-auto text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" onChange={handleInput}/>
                                         <span className="text-sm text-red-500"></span>
                                     </div>
                                     <div className="w-96 mb-4 mx-auto">
-                                        <label className="block text-gray-700 text-sm font-nunito font-semibold mb-2" for="username">Email</label>
-                                        <input name='email' className="shadow appearance-none border rounded-full w-72 sm:w-full mx-auto text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-gray-200" type="text" onChange={handleInput}/>
+                                        <label className="block text-gray-700 text-sm font-nunito font-semibold mb-2" for="email">Email</label>
+                                        <input name='email' className="shadow appearance-none border rounded-full w-72 mx-auto text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="email" onChange={handleInput}/>
                                         <span className="text-sm text-red-500"></span>
                                     </div>
                                     <div className="w-96 mb-4 mx-auto">
-                                        <label className="block text-gray-700 text-sm font-nunito font-semibold mb-2" for="username">Password</label>
+                                        <label className="block text-gray-700 text-sm font-nunito font-semibold mb-2" for="password">Password</label>
                                         <div className='relative'>
-                                            <input name='password' className="shadow appearance-none border rounded-full z-10 w-72 sm:w-full mx-auto text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-gray-200" type={passwordType} onChange={handleInput}/>
+                                            <input name='password' className="shadow appearance-none border rounded-full z-10 w-72 mx-auto text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type={passwordType} onChange={handleInput}/>
                                             <button className=" py-2.5 absolute -ml-14 -mt-1 z-40 focus:border-none active:border-none focus:outline-none focus:ring-0"  onClick={togglePassword}>{ passwordType==="password"? <AiOutlineEyeInvisible size={24} /> :<AiOutlineEye size={24}/>}</button>
                                         </div>
                                         <span className="text-xs text-red-500"><ul>{input.err_msg.map((item,index) => {return (<li>{index+1 }. {item}</li>)})}</ul></span>
@@ -183,9 +184,11 @@ return (
                             <div className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
                                 <button type="button" className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
                                 data-te-modal-dismiss="modal" ref={CloseRef}>Tutup</button>
-                                <button id='tambahAdmin' type="submit" className="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out ml-1">Tambah Admin</button>
+                                <button id='btnTambah' type="submit" className="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out ml-1">Tambah Admin</button>
+                            </div>
                             </div>
                             </form>
+                            
                         </div>
                     </div>
                 </div>

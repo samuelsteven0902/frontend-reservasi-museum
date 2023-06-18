@@ -4,15 +4,14 @@ import ReactLoading from 'react-loading';
 import swal from "sweetalert";
 import Images from "./Info/Images";
 import Cookies from "js-cookie";
+import {Modal, Ripple, initTE,} from "tw-elements";
+
 
 
 function CardSlider() {
 
   //manage data
   const [loading, setLoading] = useState(true)
-  const [loadingGambar,setLoadingGambar] = useState(true)
-  const [idGambar, setIdGambar] = useState()
-  const [namaGambar, setNamaGambar] = useState("loading ...")
 
   //add data gambar
   const [gambar, setGambar] = useState("")
@@ -24,6 +23,7 @@ function CardSlider() {
   const [jumlahGambar, setJumlahGambar] = useState("")
   const [gambarId, seGambarId] = useState("")
 
+  initTE({ Modal, Ripple });
   const CloseRef = useRef();
   
   //show data
@@ -87,16 +87,14 @@ const handleInput = (e) =>{
 
     for (let i = 0; i < e.target.files.length; i++) {
       isValid = fileValidate(e.target.files[i]);
-      imagesArray.push(e.target.files[i]);
+      if(isValid) {
+        imagesArray.push(e.target.files[i]);
+      }
     }
     setGambar(
       imagesArray,
     );
-    
-    console.log(e);
-    // console.log(gambar);
 }
-console.log(gambar);
 
 const fileValidate = (file) => {
   console.log(file.type);
@@ -149,6 +147,7 @@ const handleSubmit = (e) =>{
         {
           swal("error",response.data.message,"error")
         }
+
         CloseRef.current.click();
         showData();
         setTimeout(() => {
@@ -192,7 +191,8 @@ if(loading)
         <td className="text-center">{index + 1}</td>
         <td>
           <div className="w-full flex items-center justify-center mt-3" key={item.id}>
-            <img src={ `${process.env.REACT_APP_API_ENDPOINT}/uploads/` + item.slider_name } className="img-fluid img-bordered" width="300px"/>
+            <img src={ `${process.env.REACT_APP_API_ENDPOINT}/uploads/` + item.slider_name } 
+            className="img-fluid img-bordered" width="300px"/>
           </div>
         </td>
         <td className="w-1/3 text-center">
@@ -209,7 +209,7 @@ if(loading)
 return (
   <div className='container relative flex flex-col min-w-0 break-words w-full mb-6  rounded '>
     <div className="flex justify-between ">
-      <button type="button" className="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out" data-bs-toggle="modal" data-bs-target="#modalTambahGambar">Tambah Gambar</button>  
+      <button type="button" className="inline-block  px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out" data-te-toggle="modal" data-te-target="#modalTambahSlider">Tambah Slider</button>
       <p>Maksimal Gambar Slider &#40; 6 &#41;  Gambar</p>
     </div>
 
@@ -232,7 +232,7 @@ return (
                 <div className="modal-content border-none shadow-lg relative flex flex-col sm:w-full sm:min-w-max pointer-events-auto my-auto bg-white  bg-clip-padding rounded-md outline-none text-current">
                   <div className="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
                     <h5 className="text-xl font-nunito font-semibold leading-normal text-gray-800" id="EditGambarLabel">Edit Gambar</h5>
-                    <button type="button" className="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" className="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"data-te-dismiss="modal" aria-label="Close"></button>
                   </div>
                 </div>
               </div>
@@ -243,37 +243,39 @@ return (
       </div>
     </div>
   </div>
-    <div className="modal fade fixed bg-gray-300    py-24   mx-auto items-center m-auto w-screen bg-opacity-60 top-0 left-0 hidden h-screen outline-none overflow-x-hidden overflow-y-auto" id="modalTambahGambar" tabIndex="-1" aria-labelledby="modalTambahGambar" aria-modal="true" role="dialog">
-      <div className="modal-dialog w-11/12 justify-center md:w-1/2  px-0 sm:px-12 mx-auto  h-full  my-auto modal-dialog-centered modal-dialog-scrollable relative items-center pointer-events-none lg:w-1/3" >
-        <div className="modal-content border-none shadow-lg relative flex flex-col sm:w-full sm:min-w-max pointer-events-auto my-auto bg-white  bg-clip-padding rounded-md outline-none text-current">
-          <div className="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
-            <h5 className="text-xl font-nunito font-semibold leading-normal text-gray-800" id="TambahGambarlabel">Tambah Gambar</h5>
-            <button type="button" className="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div className="container">
-            <div className="row">
-              <div className="">
-                <form onSubmit={handleSubmit} encType="multipart/form-data" id="imageForm">
-                  <div className="bg-white p-10">
-                    <div className="card-body form-group py-2">
-                        <input type="file" name="image" multiple onChange={handleInput} className="rounded-xl bg-gray-200 w-full"/>
-                        <div className="font-base font-bold font-nunito">Format Gambar : jpeg,png,jpg</div>
-                        <div className="font-base font-bold font-nunito">Max. Upload 2MB</div>
-                    </div>
-                  </div>
-                  <div className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200">
-                    <button type="button" className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
-                    data-bs-dismiss="modal" ref={CloseRef}>Tutup</button>
-                    <button id='tambahGambar' type="submit" className="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out ml-1">Tambah Gambar</button>
-                  </div>
-                </form>
+    
+  <div  className="modal fade fixed bg-gray-300   z-[5000] py-12   mx-auto items-center m-auto w-screen bg-opacity-60 top-0 left-0 hidden h-screen outline-none overflow-x-hidden overflow-y-auto" id="modalTambahSlider" tabIndex="-1" aria-labelledby="modalTambahSlider" aria-modal="true" role="dialog">
+    <div 
+    data-te-modal-dialog-ref
+    className="modal-dialog w-11/12 justify-center md:w-1/2  px-0 sm:px-12 mx-auto  h-full  my-auto modal-dialog-centered modal-dialog-scrollable relative items-center pointer-events-none lg:w-1/3" >
+        <div className="modal-content  border-none shadow-lg relative flex flex-col sm:w-full sm:min-w-max pointer-events-auto my-auto bg-white  bg-clip-padding rounded-md outline-none text-current">
+        <div className="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
+            <h5 className="text-xl font-nunito font-semibold leading-normal text-gray-800" id="Tambahmuseumlabel">
+            Tambah Slider
+            </h5>
+            {/* <button type="button"
+            className="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"
+            data-te-modal-dismiss="modal" aria-label="Close" ref={CloseRef}></button> */}
+        </div>
+        
+          <form onSubmit={handleSubmit} encType="multipart/form-data" id="imageForm">
+            <div className="bg-white p-10">
+              <div className="card-body form-group py-2">
+                  <input type="file" name="image" multiple onChange={handleInput} className="rounded-xl bg-gray-200 w-full"/>
+                  <div className="font-base font-bold font-nunito">Format Gambar : jpeg,png,jpg</div>
+                  <div className="font-base font-bold font-nunito">Max. Upload 2MB</div>
               </div>
             </div>
-          {/* <Images ref="child"/> */}
-          </div>
+            <div className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200">
+              <button type="button" className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+              data-te-modal-dismiss="modal" aria-label="Close" ref={CloseRef}>Tutup</button>
+              <button id='tambahGambar' type="submit" className="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out ml-1">Tambah Gambar</button>
+            </div>
+          </form>
         </div>
-      </div>
     </div>
+    </div>
+
   </div>
   )
 }

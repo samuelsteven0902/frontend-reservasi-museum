@@ -1,16 +1,10 @@
-// import H2 from '@material-tailwind/react/Heading2';
-// import LeadText from '@material-tailwind/react/LeadText';
-// import foto1 from '../../assets/img/Landing/Museumlandingpage.png'
 import ReactLoading from 'react-loading';
-
 import 'flowbite';
 import { useTranslation } from 'react-i18next';
 import { useWindupString } from 'windups';
 import { useState } from 'react';
 import { useEffect } from 'react';
-// import 'bootstrap/dist/css/bootstrap.min.css';
 import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs';
-// import { RxDotFilled } from 'react-icons/rx';
 import axios from 'axios';
 
 export default function Header() {
