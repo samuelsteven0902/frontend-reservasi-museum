@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react';
 import ReactPaginate from 'react-paginate';
 import { useHistory } from 'react-router-dom';
@@ -10,8 +10,12 @@ import Loading from 'react-loading';
 
 
 function Items(props) {
-  const paginationAdmin = props.data
+  const [paginationAdmin,setPaginationAdmin] = useState(props.data)
   console.log(props);
+
+  useEffect(() =>
+  setPaginationAdmin(props.data)
+  ,[props] )
 
   const history = useHistory();
 
@@ -28,7 +32,7 @@ function Items(props) {
     const fetchData = () => {
       axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/show_admin`).then(res=>{
       console.log(res.data.admin); 
-      setAdmin(res.data.admin); 
+      setPaginationAdmin(res.data.admin); 
       setLoading(false)
       })
   }
