@@ -48,7 +48,7 @@ const fetchChannel = () =>{
   })
 }
 
-console.log(metode);
+console.log(dataDiri);
 
 const handleCheckout = () =>{
 
@@ -60,6 +60,9 @@ const handleCheckout = () =>{
       "kategori":dataDiri.kategori,
       "phone":dataDiri.phone,
       "kota":dataDiri.kota,
+      "harga":dataDiri.harga_awal,
+      "jumlah":dataDiri.jumlah,
+      "tanggal":dataDiri.tanggal,
       "harga_awal":dataDiri.harga_awal + metode.fee ,
       "metode":metode.name
     }

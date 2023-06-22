@@ -93,7 +93,7 @@ function ContentAboutMuseum(input) {
                 </p>
                 <div className=' justify-center' data-aos="fade-up" data-aos-duration="750">
                   {html_about}
-                  {images && images.length > 0 ? (
+                  {/* {images && images.length > 0 ? (
                         images.map((image) => (
                         <div className="w-1/3 flex items-start mt-3" key={image.id}>
                             <img
@@ -101,17 +101,11 @@ function ContentAboutMuseum(input) {
                             className="img-fluid img-bordered"
                             width="200px" alt=''
                             />
-                            {/* <button
-                            className="bg-red-500 w-7 h-7 rounded-full text-white hover:bg-red-300"
-                            onClick={(e) => deleteFile(image.id, e)}
-                            >
-                            X
-                            </button> */}
                         </div>
                         ))
                     ) : (
                         <h6 className="text-danger text-center">No Image Found </h6>
-                    )}
+                    )} */}
                   <> 
                       <div class="carousel-inner relative bg-center bg-cover overflow-hidden justify-center items-center mx-auto w-11/12 h-[26rem] mb-40 rounded-[2rem]">
 

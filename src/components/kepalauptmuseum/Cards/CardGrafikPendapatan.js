@@ -453,7 +453,7 @@ const year = {
     </div>
 
 :
-<div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-red-400">
+<div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-red-100">
     <div className="rounded-t mb-0 px-4 py-3">
       <div className="flex flex-wrap items-center">
         <div className="relative w-full max-w-full flex-grow flex-1">

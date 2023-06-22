@@ -50,7 +50,7 @@ function InputData() {
 
 if(loading)
 {
-  var loadingData = <div className="modal fade fixed bg-gray-300 z-50  px-52 justify-center items-center align-middle flex m-auto w-screen bg-opacity-80 top-0 left-0 h-screen outline-none overflow-x-hidden overflow-y-auto item " id="exampleModalCenteredScrollable" tabIndex="-1" aria-labelledby="exampleModalCenteredScrollable" aria-modal="true" role="dialog">
+  var loadingData =  <div className="modal fade   fixed bg-gray-300 z-50  px-52 justify-center items-center align-middle flex m-auto w-screen bg-opacity-80 top-0 left-0 h-screen outline-none overflow-x-hidden overflow-y-auto item " id="exampleModalCenteredScrollable" tabIndex="-1" aria-labelledby="exampleModalCenteredScrollable" aria-modal="true" role="dialog">
       <ReactLoading type={"spin"} color={"red"} height={'20%'} width={'20%'} className="m-auto" />
       {/* <div className='loader-input mx-auto'></div> */}
       </div>
@@ -69,7 +69,7 @@ return (
   <main className='bg-gray-100 relative'>
     <Header state={stateParamVal} data={data} />
     <FormInput dataAwal={stateParamVal} dataa={data}/>
-    {/* {loadingData} */}
+    {loadingData}
   </main>
     <DefaultFooter />
   </>
