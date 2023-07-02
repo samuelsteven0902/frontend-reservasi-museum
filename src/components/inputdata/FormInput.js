@@ -8,8 +8,7 @@ import $ from 'jquery';
 
 function FormInput({dataAwal,dataa}) {
     const { t } = useTranslation()
-
-    
+ 
     const [checked, setChecked] = useState(false);
     const [text, setText] = useState("");
     const [dataPengunjung,setDataPengunjung] = useState({
@@ -155,9 +154,6 @@ function FormInput({dataAwal,dataa}) {
     }
 
     setTotalOrang(orang * harga);
-    // if (dataPengunjung.foto) {
-    //     setImageUrl(URL.createObjectURL(dataPengunjung.foto));
-    //   }
     }, [orang,dataPengunjung,kartu,dataa,harga])
 
     $('input[type=number]').on('mousewheel', function(e) {
@@ -193,7 +189,7 @@ function FormInput({dataAwal,dataa}) {
                     </div>
                     <div className="w-96 mb-4 md:mx-6 mx-auto md:mt-0 mt-8">
                         <label className="block text-gray-700 text-sm font-bold mb-2 font-nunito" for="jumlah">{t('formInput.input.jumlah')}</label>
-                        <input type="number" inputmode="numeric" pattern="[0-9]*" name='jumlah' onChange={(e)=>{ handleJummlah(e);  }} value={orang} className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder={dataa && "contoh : " + dataa.min + " orang"}></input>
+                        <input type="number" inputmode="numeric" pattern="[0-9]*" name='jumlah' onChange={(e)=>{ handleJummlah(e);  }} value={orang} className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder={dataa && "Contoh : " + dataa.min + " orang"}></input>
                         <div className='flex justify-end pr-2'>
                             <span className="text-sm pr-6">min : {dataa && dataa.min}</span>
                             <span className="text-sm ">max : {dataa && dataa.max}</span>
@@ -208,25 +204,6 @@ function FormInput({dataAwal,dataa}) {
                         <span className="text-sm text-red-500">{dataPengunjung.error_list.email}</span>
                     </div>
                 </div>
-                {/* INPUTAN FILE */}
-                {/* {dataa && dataa.min >= 50 ?
-                <div id='attach' className='flex justify-around'>
-                    <div id='umum' className="max-w-96 mb-4 mx-12 ">
-                        <div className="flex justify-center">
-                            <div className="mb-3 w-96">
-                            <label for="formFile" className="form-label inline-block mb-2 text-gray-700">Attachment </label>
-                            <input name='foto' onChange={handleFoto
-                                // (e)=> {
-                                // // setDataPengunjung({...dataPengunjung, [e.target.name]: e.target.files[0] });
-                                // setKartu(e.target.files[0])
-                                // setDataPengunjung({...dataPengunjung, foto: fotoKartu })}
-                                } className="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" type="file" id="formFile" />
-                            <span className="text-sm text-red-500">{dataPengunjung.error_list.foto}</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                :""} */}
                 <div className='mt-16 w-11/12 mx-auto font-nunito'>
                     <p>{t('formInput.syarat.judul')}</p>
                     <p>{t('formInput.syarat.part1')}</p>
@@ -252,9 +229,6 @@ function FormInput({dataAwal,dataa}) {
                             <p className='text-2xl font-bold'>Rp {totalOrang.toLocaleString()}</p>
                         </div>
                         <button className=" bg-[#A70B0B] text-white font-bold py-4 w-52 rounded-full focus:outline-none focus:shadow-outline hover:bg-red-900 focus:bg-red-700 font-nunito" type="submit">{t('formInput.tombol')}
-                            {/* <Link to={{ pathname:"/Pembayaran",
-                            state : {dataPengunjung,harga}
-                            }}>Lanjut Pmebayaran</Link>  */}
                         </button>
                         <p className='text-sm text-red-400'>{text}</p>
                     </div>

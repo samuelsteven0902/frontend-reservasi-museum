@@ -9,12 +9,16 @@ import { TbArrowBackUp } from 'react-icons/tb'
 import en from '../../../../assets/img/lng/en.png'
 import id from '../../../../assets/img/lng/id.png'
 import Cookies from 'js-cookie';
+import { useRef } from 'react';
 
 function EditAbout(props) {
     const [about,setAbout] = useState('')
     const [namaMuseum,setNamaMuseum] = useState('')
     const [lang,setLang] = useState('id')
     const [loading,setLoading] = useState(true)
+    const [jumlahGambar,setJumlahGambar] = useState('')
+    const [gambar,setGambar] = useState('')
+    const CloseRef = useRef();
     const history = useHistory();
     const location = useLocation();
     const params = useParams()
@@ -97,13 +101,79 @@ function EditAbout(props) {
       }
     };
 
+    // const handleSubmit = (e) =>{
+    //   e.preventDefault();
+    //   if(jumlahGambar <= 2 )
+    //   {
+    //     const data = new FormData();
+    //   for (let i = 0; i < gambar.length; i++) {
+    //     data.append("images[]", gambar[i]);
+    //   }
+    //   console.log(gambar);
+    //   // console.log(data);
+    //   axios.post(`${process.env.REACT_APP_API_ENDPOINT}/api/upload_slider`, data, {
+    //     headers : {
+    //       'Content-Type': 'application/json',
+    //       'Accept': 'application/json',
+    //       Authorization: `Bearer ${Cookies.get('token')}`,
+    //     }})
+    //     .then((response) => {
+    //       if (response.status === 200) {
+    //         setResponseMsg({
+    //             status: response.data.status,
+    //             message: response.data.message,
+    //         });
+    //         if(response.data.status === "successs")
+    //         {
+    //         swal("Success",response.data.message,"success")
+    //         }
+    //         else
+    //         {
+    //           swal("error",response.data.message,"error")
+    //         }
+    
+    //         CloseRef.current.click();
+    //         setTimeout(() => {
+    //           setGambar("");
+    //           setResponseMsg("");
+    //         }, 100000);
+    //         document.querySelector("#imageForm").reset();
+    //       }
+    //     })
+    //     .catch((error) => {
+    //       console.error(error);
+    //     });
+    //   }
+    //   else
+    //   {
+    //     swal("Maksimal (3) Gambar","Hapus Gambar terlebih dahulu","error")
+    //     CloseRef.current.click();
+    //   }
+    // }
+
         const [images, setImages] = useState([]);
       
         useEffect(() => {
           getImages();
         }, []);
-      
-        const deleteFile = (id, e) => {
+        
+        const getImages = () => {
+          axios
+            .post(`${process.env.REACT_APP_API_ENDPOINT}/api/show_gambar_museum/${museumId}`)
+            .then((response) => {
+              if (response.status === 200) {
+                setImages(response.data.data);
+                console.log(response.data);
+              }
+            })
+            .catch((error) => {
+              console.error(error);
+            });
+        };
+
+        const deleteFile = (e, id) => {
+          // e.preventDefault();
+
           swal({
             title: "Anda Yakin menghapus Gambar ini ?",
             text: "Sekali Hapus, anda tidak bisa mencadangkannya lagi!",
@@ -128,19 +198,6 @@ function EditAbout(props) {
           });
         };
       
-        const getImages = () => {
-          axios
-            .post(`${process.env.REACT_APP_API_ENDPOINT}/api/show_gambar_museum/${museumId}`)
-            .then((response) => {
-              if (response.status === 200) {
-                setImages(response.data.data);
-                console.log(response.data);
-              }
-            })
-            .catch((error) => {
-              console.error(error);
-            });
-        };
       
   
     
@@ -222,50 +279,39 @@ function EditAbout(props) {
     {
         return (
             <div className='shadow bg-white rounded-xl p-10 mb-5'>
-
                 <div className='flex'>
                     <Link to={'/superadmin/about'} className="bg-red-400 p-1 rounded-full text-white w-10 h-10"><TbArrowBackUp className='' size={30} /></Link>
                     <p className='flex items-center mx-auto text-xl'>{lang === 'id'?'Tentang Museum (Indonesia)':'About Museum (Inggris)'} - {namaMuseum}</p>
                     <button onClick={(e)=>handleLang(e)} className="justify-center items-center shadow focus:ring-0 focus:border-0 focus:outline-none hover:bg-red-300 border-b-2 py-1 m-1  flex rounded"><img src={lang === 'id'?en:id} className="w-8 mx-2" alt='en' name={lang === 'id'?'en':'id'} /></button>
                 </div>
-
                 <div className='p-10 mb-5'>
-                   <div className={`${lang === 'id' ? '': 'hidden'  }`}>
+                  <div className={`${lang === 'id' ? '': 'hidden'  }`}>
                         <CKEditor
-
                         config={{         
                             toolbar: ['heading', '|', 'bold', 'italic', 'blockQuote', 'link','|', 'undo', 'redo']
                         }}  
                         editor={ ClassicEditor }
-
                         data={about.about}
-
                         onChange={ ( e, editor ) => {
                             // handleChange(e,editor)
                             setAbout({...about,about:editor.getData()})
                         } } 
-
                         />
-
-                   </div>
-                   <div className={`${lang === 'en' ? '': 'hidden'  }`}>
+                  </div>
+                  <div className={`${lang === 'en' ? '': 'hidden'  }`}>
                         <CKEditor
-                        
                         editor={ ClassicEditor }
-
                         data={about.about_en}
-
                         onChange={ ( e, editor ) => {
                             // handleChange(e,editor)
                             setAbout({...about,about_en:editor.getData()})
                         } }
-
                         config={{         
                             toolbar: ['heading', '|', 'bold', 'italic', 'blockQuote', 'link','|', 'undo', 'redo']
                           }}  
                         />
 
-                   </div>
+                  </div>
 
 
                     <button className='py-2 px-4 bg-green-600 my-5 text-white flex justify-end mx-auto rounded ' onClick={updateAbout}>Simpan Perubahan</button>
@@ -285,8 +331,10 @@ function EditAbout(props) {
                   ) : (
                     ""
                   )}
-  
+
+
                   <div className="card-body">
+                    
                     <div className="form-group py-2 ">
                       <div className="flex justify-center flex-wrap flex-col">
                         <p className="text-3xl sm:text-4xl font-merriweather font-bold pb- w-full  text-red-400">
@@ -302,10 +350,9 @@ function EditAbout(props) {
                         className="rounded-xl bg-gray-200 mt-10 w-full"
                       />
                       <span className="text-danger">{responseMsg.error}</span>
-                        <div className="font-base font-bold font-nunito">Max. Upload 2MB</div>
+                        <div className="font-base font-bold font-nunito">Max. Upload 3 Gambar dan Max. Ukuran 2MB</div>
                         </div>
-                        </div>
-
+                  </div>
                            {/* <TextEditor /> */}
                         <div className="card-footer">
                         <button
@@ -360,11 +407,6 @@ function EditAbout(props) {
             </div>
         </div>
         </>
-
-
-
-
-
             </div>
         )
     }

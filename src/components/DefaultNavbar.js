@@ -6,7 +6,6 @@ import NavbarToggler from '@material-tailwind/react/NavbarToggler';
 import NavbarCollapse from '@material-tailwind/react/NavbarCollapse';
 import { Navbar } from '@material-tailwind/react';
 import Nav from '@material-tailwind/react/Nav';
-// import NavbarBrand from '@material-tailwind/react/NavbarBrand';
 import 'flowbite';
 import 'tw-elements';
 import Cookies from 'js-cookie';
@@ -34,11 +33,10 @@ export default function DefaultNavbar() {
         const json = await data.json();
             console.log(json);
             var result =''
-            if(json.message !== 'Unauthenticated.')
-            {
+            if(json.message !== 'Unauthenticated.') {
                 result = json.user.roles[0].name;
             }
-        setUser(result);
+            setUser(result);
     }
         fetchData ();
         }, [user]);
@@ -53,7 +51,6 @@ export default function DefaultNavbar() {
         })
     
         const changeBackground = () => {
-            // console.log(window.scrollY);
             if (window.scrollY >= 50) {
             setNavbarBg(true)
         } else {
@@ -68,39 +65,25 @@ export default function DefaultNavbar() {
         {
             i18next.changeLanguage("id")
         }
-            
         }, [])
 
     return (
         <>
-        
-        <Navbar className={navbarBg?'fixed bg-white w-full  shadow opacity-100 transition-all duration-500 ease-in-out z-30 top-0 ':'-top-16 fixed opacity-0 w-full  transition-all duration-1000 z-30'} color='none'  navbar>
+        <Navbar className={navbarBg?'fixed bg-white w-full  shadow opacity-100 transition-all duration-500 ease-in-out z-30 top-0 ':'-top-16 fixed opacity-0 w-full  transition-all duration-1000 z-30'} color='none' navbar>
             <NavbarContainer>
             <NavbarWrapper>
-                    <NavbarToggler onClick={() => setOpenNavbar(!openNavbar)} color="red" className=""/>
-                    <div className="collapse navbar-collapse my-5" id="navbarNav" >
-				{/* <ul className="navbar-nav ml-auto">
-					<li className="nav-item">
-						<select
-							className=" border-2 ml-1 mr-2 w-28"
-							value={localStorage.getItem("i18nextLng")}
-							onChange={handleLanguageChange}
-						>
-							<option value="en">English</option>
-							<option value="id">Indonesia</option>
-						</select>
-					</li>
-				</ul> */}
-                {/* <LanguageDropdownn /> */}
-			</div>
-                </NavbarWrapper>
+                <NavbarToggler onClick={() => setOpenNavbar(!openNavbar)} color="red" className=""/>
+                    <div className="collapse navbar-collapse my-5" id="navbarNav"></div>
+            </NavbarWrapper>
                 <NavbarCollapse open={openNavbar}>
-                 <LanguageDropdownn />
+                    <div className='px-4 py-2  text-black font-nunito font-bold hover:bg-red-200 rounded-xl transition-all duration-300 ease-in-out active:bg-red-400'>{t('navbar_header')}</div>
                     <Nav>
                         <div className="flex flex-col z-50 py-2 pr-2 lg:flex-row lg:items-center">
+                            
                             <Link to="/" className='px-4 py-2  text-black font-nunito font-bold hover:bg-red-200 rounded-xl transition-all duration-300 ease-in-out active:bg-red-400'>{t('home')}</Link>
                             <Link to="/about" className='px-4 py-2 text-black font-nunito font-bold hover:bg-red-200 rounded-xl transition-all duration-300 ease-in-out active:bg-red-400 focus:bg-red-400'>{t('aboutt')}</Link>
                             <NavbarDropdown />
+                            <LanguageDropdownn />
                         </div>
                     </Nav>
                 </NavbarCollapse>
@@ -110,15 +93,16 @@ export default function DefaultNavbar() {
         <Navbar className={navbarBg?'hidden':'absolute bg-gray-50 w-full bg-opacity- transition-all duration-500 z-50 '   } color='none'  navbar>
             <NavbarContainer>
             <NavbarWrapper>
-                    <NavbarToggler onClick={() => setOpenNavbar(!openNavbar)} color="red" className=""/>
-                <LanguageDropdownn />
-                </NavbarWrapper>
+                <NavbarToggler onClick={() => setOpenNavbar(!openNavbar)} color="red" className=""/>
+                <div className='px-4 py-2  text-black font-nunito font-bold hover:bg-red-200 rounded-xl transition-all duration-300 ease-in-out active:bg-red-400'>{t('navbar_header')}</div>
+            </NavbarWrapper>
                 <NavbarCollapse open={openNavbar}>
                     <Nav>
                         <div className="flex flex-col z-50 py-2 pr-2 lg:flex-row lg:items-center">
                             <Link to="/" className='px-4 py-2  text-black font-nunito font-bold hover:bg-red-200 rounded-xl transition-all duration-300 ease-in-out active:bg-red-400 '>{t('home')}</Link>
                             <Link to="/about" className='px-4 py-2 text-black font-nunito font-bold hover:bg-red-200 rounded-xl transition-all duration-300 ease-in-out active:bg-red-400 focus:bg-red-400'>{t('aboutt')}</Link>
-                            <NavbarDropdown />
+                            <NavbarDropdown/>
+                            <LanguageDropdownn />
                         </div>
                     </Nav>
                 </NavbarCollapse>

@@ -1,7 +1,3 @@
-// import DefaultFooter from 'components/DefaultFooter';
-// import TeamSection from 'components/landing/TeamSection';
-// import ContactSection from 'components/landing/ContactSection';
-// import HargaTiket from 'info/HargaTiket';
 import DefaultNavbar from 'components/DefaultNavbar';
 import Header from 'components/landing/Header';
 import WorkingSection from 'components/landing/WorkingSection';

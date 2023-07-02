@@ -15,9 +15,7 @@ class CardDataKehadiran extends Component {
             token: Cookies.get('token')
         };
 
-        const fetchPengunjung = () => 
-        {
-        
+        const fetchPengunjung = () => { 
             axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/konfirmasi-pengunjung`).then(res=>{
                 if(res.status === 200)
                 {
@@ -28,18 +26,17 @@ class CardDataKehadiran extends Component {
     
         const fetchData = async () => {
             const data = await fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/me`, {
-              headers : {
-                  'Content-Type': 'application/json',
-                  'Accept': 'application/json',
-                  Authorization: `Bearer ${this.state.token}`,
-              }
+                headers : {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    Authorization: `Bearer ${this.state.token}`,
+            }
             });
             const json = await data.json();
             console.log(json);
 
-            if(json.message !== 'Unauthenticated.')
-            {
-              this.state.username = json.user.name;
+            if(json.message !== 'Unauthenticated.') {
+                this.state.username = json.user.name;
             }
         }
 
@@ -52,14 +49,14 @@ class CardDataKehadiran extends Component {
             console.log(data);
     
             swal({
-              title: "Konfirmasi kedatangan Pengunjung?",
-              text: "Sekali Konfirmasi, anda tidak bisa mengubahnya lagi!",
-              icon: "warning",
-              buttons: true,
-              dangerMode: true,
+                title: "Konfirmasi kedatangan Pengunjung?",
+                text: "Sekali Konfirmasi, anda tidak bisa mengubahnya lagi!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
             })
             .then((update) => {
-              if (update) {
+            if (update) {
                 axios.put(`${process.env.REACT_APP_API_ENDPOINT}/api/kehadiran`,data, {
                     headers : {
                       'Content-Type': 'application/json',

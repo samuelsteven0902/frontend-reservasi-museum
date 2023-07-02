@@ -49,14 +49,14 @@ function DataKehadiran ({ color }) {
     axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/konfirmasi-pengunjung`).then(res=>{
       if(res.status === 200) {
         setPengunjung(res.data.pengunjung)
-          setLoading(false);
+        setLoading(false);
       }
     });
   }
     
   useEffect(() => {
     fetchData ();
-      fetchPengunjung();
+    fetchPengunjung();
   }, 
   []);
   console.log(user);
@@ -137,7 +137,7 @@ function DataKehadiran ({ color }) {
                     <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-nunito font-semibold text-left">Museum</th>
                     <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-nunito font-semibold text-left">Kategori</th>
                     <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-nunito font-semibold text-left">Jumlah</th>
-                    <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-nunito font-semibold text-left">Pembayaran</th>
+                    <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-nunito font-semibold text-left">Harga</th>
                     <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-nunito font-semibold text-left">Kehadiran</th>
                     <th className='sticky right-0 bg-gray-50 text-red-600'>Konfirmasi Kehadiran</th>
                   </tr>

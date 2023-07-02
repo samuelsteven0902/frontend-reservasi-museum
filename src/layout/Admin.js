@@ -17,6 +17,7 @@ import DataKehadiran from "components/admin/DataKehadiran";
 import StatusPembayaran from "components/admin/StatusPembayaran";
 import Jadwal from "components/admin/Jadwal";
 import CardDataPengunjung from "components/admin/Cards/CardDataPengunjung";
+import Pemasukan from "components/admin/Pemasukan";
 
 export default function Admin() {
   return (
@@ -36,6 +37,7 @@ export default function Admin() {
             {/* <Route path="/admin/data-sanggahan" exact component={DataSanggahan} /> */}
             <Route path="/admin/data-kehadiran" exact component={DataKehadiran} />
             <Route path="/admin/status-pembayaran" exact component={StatusPembayaran} />
+            <Route path="/admin/pemasukan" exact component={Pemasukan} />
             <Redirect from="/admin" to="/admin/dashboard" />
             <Redirect from="/superadmin" to="/admin/dashboard" />
           </Switch>

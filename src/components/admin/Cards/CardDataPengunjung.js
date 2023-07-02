@@ -27,14 +27,14 @@ const handleDownload = () => {
     responseType: 'blob', // important`
   }).then((response) => {
     console.log(response);
-    const url = window.URL.createObjectURL(new Blob([response.data]));
-    const link = document.createElement('a');
-    link.href = url;
-    const tanggal = new Date(Date.now()).toLocaleString().split(',')[0];
-    let filename = 'file-' + tanggal + '.xlsx';
-    link.setAttribute('download', filename); //or any other extension
-    document.body.appendChild(link);
-    link.click();
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement('a');
+      link.href = url;
+      const tanggal = new Date(Date.now()).toLocaleString().split(',')[0];
+      let filename = 'Data Pengunjung Museum_' + tanggal + '.xlsx';
+      link.setAttribute('download', filename); //or any other extension
+      document.body.appendChild(link);
+      link.click();
 });
 }
 
@@ -59,7 +59,6 @@ useEffect(() => {
   });
 }, [])
 
-
 if(loading) {
   var pengunjung_HTMLTABLE =   
     <tr className="bg-white border-b">
@@ -77,7 +76,7 @@ else {
     <div className="flex">
       {/* search bar */}
       <div className="my-2 w-80 px-6">
-        <input type='text' className="w-full font-nunito border-none ring-2 ring-red-300 focus:border-none focus:ring-red-500 focus:ring-2 active:border-none rounded-lg"  placeholder="Cari nama, kategori, kota,..." onChange={e=>{setSearchTerm(e.target.value)}} /> 
+        <input type='text' className="w-full font-nunito border-none ring-2 ring-red-300 focus:border-none focus:ring-red-500 focus:ring-2 active:border-none rounded-lg"  placeholder="Cari kode tiket, nama, kategori, kota,..." onChange={e=>{setSearchTerm(e.target.value)}} /> 
       </div>
       {/* export excel  */}
       <div className=" flex justify-end items-center w-full px-6">
@@ -104,14 +103,14 @@ else {
                 <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-nunito font-semibold text-left">Kode Tiket</th>
                 <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-nunito font-semibold text-left">Nama</th>
                 <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-nunito font-semibold text-left">Museum</th>
+                <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-nunito font-semibold text-left">Status</th>
+                <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-nunito font-semibold text-left">Kehadiran</th>
                 <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-nunito font-semibold text-left">Kategori</th>
                 <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-nunito font-semibold text-left">Phone</th>
                 <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-nunito font-semibold text-left">Kota</th>
                 <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-nunito font-semibold text-left">Jumlah</th>
                 <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-nunito font-semibold text-left">Harga</th>
                 <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-nunito font-semibold text-left">Pembayaran</th>
-                <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-nunito font-semibold text-left">Status</th>
-                <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-nunito font-semibold text-left">Kehadiran</th>
                 <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-nunito font-semibold text-left">Tanggal Pembayaran</th>
                 <th className="sticky right-0 bg-white text-red-700 px-2">Tiket</th>
               </tr>

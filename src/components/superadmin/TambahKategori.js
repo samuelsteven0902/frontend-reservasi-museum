@@ -17,4 +17,4 @@ function MasterKategori() {
   );
 }
 
-export default MasterTiket
+export default MasterKategori

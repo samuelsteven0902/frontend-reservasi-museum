@@ -10,10 +10,10 @@ export default function Home() {
   return (
     <>
     <div className="px-4 md:px-10 mx-auto w-full -m-20">
-        <HeaderStats />
+        <HeaderStats/>
       <div className="flex flex-wrap">
         <div className="w-full mb-10 xl:mb-0 px-4">
-          <CardLineChart />
+          <CardLineChart/>
         </div> 
       </div>
       <DefaultFooterAdmin />

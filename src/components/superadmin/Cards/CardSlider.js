@@ -191,8 +191,7 @@ if(loading)
         <td className="text-center">{index + 1}</td>
         <td>
           <div className="w-full flex items-center justify-center mt-3" key={item.id}>
-            <img src={ `${process.env.REACT_APP_API_ENDPOINT}/uploads/` + item.slider_name } 
-            className="img-fluid img-bordered" width="300px"/>
+            <img src={ `${process.env.REACT_APP_API_ENDPOINT}/uploads/` + item.slider_name } className="img-fluid img-bordered" width="300px"/>
           </div>
         </td>
         <td className="w-1/3 text-center">

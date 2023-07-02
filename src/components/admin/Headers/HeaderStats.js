@@ -1,13 +1,13 @@
 import axios from "axios";
 import React from "react";
 import { useState , useEffect } from "react";
+
 // components
 
 import CardStats from "../Cards/CardStats.js";
 import Cookies from "js-cookie";
 
 export default function HeaderStats() {
-
   const [data,setData] = useState()
   const [loading,setLoading] = useState(true)
 
@@ -32,52 +32,56 @@ export default function HeaderStats() {
   }, [])
   console.log(data);
 
-  if(loading)
-  {
+  const rupiah = (number)=>{
+    return new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR"
+    }).format(number);
+  }
+
+  if(loading){
     <h1>Loading</h1>
   }
-  else
-  {
-    
-  let bulanLalu = new Date().getMonth() 
-  let bulanIni = new Date().getMonth() + 1
-  let hariIni = new Date().getDate()
-  let kemarin = new Date().getDate() - 1
+  else { 
+  let bulanLalu = new Date().getFullYear() + '-' + String(new Date().getMonth()).padStart(2, '0')
+  let bulanIni = new Date().getFullYear() + '-' + String(new Date().getMonth() + 1).padStart(2, '0')
+  const hari = new Date();
 
-    // var dataPengunjungBulanIni = data.filter(val=>{
-    //   return val.updated_at.slice(val.updated_at.indexOf('-') + 1,val.updated_at.lastIndexOf('-')) == '01';
-    // }).map((item,index)=>Math.floor(item.jumlah)).reduce((accumulator, value) => {
-    //   return accumulator + value;
-    // }, 0);
+  hari.setDate(hari.getDate());
+  let hariIni = hari.toISOString().slice(0, 10);
+  hari.setDate(hari.getDate() - 1);
+  let kemarin = hari.toISOString().slice(0, 10);
+
+  console.log(bulanLalu)
+  console.log(bulanIni)
+  console.log(hariIni)
+  console.log(kemarin)
 
     var dataPengunjungHariIni = data.filter(val=>{
-      return val.updated_at.slice(val.updated_at.lastIndexOf('-') + 1,val.updated_at.lastIndexOf('-') + 3) == hariIni
+      return val.updated_at.slice(0, val.updated_at.lastIndexOf('-') + 3) === hariIni
     }).map((item,index)=>Math.floor(item.jumlah)).reduce((accumulator, value) => {
       return accumulator + value;
     }, 0);
 
-    var dataPengunjungkemarin = data.filter(val=>{
-      return val.updated_at.slice(val.updated_at.lastIndexOf('-') + 1,val.updated_at.lastIndexOf('-') + 3) == kemarin
+    var dataPengunjungKemarin = data.filter(val=>{
+      return val.updated_at.slice(0, val.updated_at.lastIndexOf('-') + 3) === kemarin
     }).map((item,index)=>Math.floor(item.jumlah)).reduce((accumulator, value) => {
       return accumulator + value;
     }, 0);
 
     var dataPengunjungBulanLalu = data.filter(val=>{
-      return val.updated_at.slice(val.updated_at.indexOf('-') + 1,val.updated_at.lastIndexOf('-')) == bulanLalu
+      return val.updated_at.slice(0,val.updated_at.lastIndexOf('-')) === bulanLalu
     }).map((item,index)=>Math.floor(item.jumlah)).reduce((accumulator, value) => {
       return accumulator + value;
     }, 0);
-
 
     var dataPengunjungBulanIni = data.filter(val=>{
-      return val.updated_at.slice(val.updated_at.indexOf('-') + 1,val.updated_at.lastIndexOf('-')) == bulanIni
+      return val.updated_at.slice(0,val.updated_at.lastIndexOf('-')) === bulanIni
     }).map((item,index)=>Math.floor(item.jumlah)).reduce((accumulator, value) => {
       return accumulator + value;
     }, 0);
-
   }
-
-
+  console.log(dataPengunjungBulanLalu);
   return (
     <>
       {/* Header */}
@@ -88,34 +92,33 @@ export default function HeaderStats() {
             <div className="flex flex-wrap">
               <div className="w-full lg:w-6/12 xl:w-3/12 px-2 font-merriweather">
                 <CardStats
-                  statSubtitle="Total Pengunjung Bulan Lalu"
-                  statTitle={dataPengunjungBulanIni !== undefined ? dataPengunjungBulanLalu : "Loading..."}
-                  statIconName="fas fa-solid fa-user"
+                  statSubtitle="Total Pemasukan Bulan Lalu"
+                  statTitle={dataPengunjungBulanIni !== undefined ?  (dataPengunjungBulanLalu) : "Loading..." }
+                  statIconName="far fa-chart-bar"
                   statIconColor="bg-[#A70B0B]"
                 />
               </div>
               <div className="w-full lg:w-6/12 xl:w-3/12 px-2 font-merriweather">
                 <CardStats
-                  statSubtitle="Total Pengunjung Bulan Ini"
-                  statTitle={dataPengunjungBulanIni !== undefined ? dataPengunjungBulanIni:"Loading..."}
-                  statDescripiron="Bulan Kemarin"
-                  statIconName="fas fa-solid fa-user"
+                  statSubtitle="Total Pemasukan Bulan Ini"
+                  statTitle={dataPengunjungBulanIni !== undefined ? (dataPengunjungBulanIni) : "Loading..."}
+                  statIconName="far fa-chart-bar"
                   statIconColor="bg-[#A70B0B]"
                 />
               </div>
               <div className="w-full lg:w-6/12 xl:w-3/12 px-2 font-merriweather">
                 <CardStats
-                  statSubtitle="Total Pengunjung Kemarin"
-                  statTitle={dataPengunjungBulanIni !== undefined ? dataPengunjungkemarin : "Loading..."}
-                  statIconName="fas fa-solid fa-user"
+                  statSubtitle="Total Pemasukan Kemarin"
+                  statTitle={dataPengunjungBulanIni !== undefined ?  (dataPengunjungKemarin): "Loading..."}
+                  statIconName="far fa-chart-bar"
                   statIconColor="bg-[#A70B0B]"
                 />
               </div>
               <div className="w-full lg:w-6/12 xl:w-3/12 px-2 font-merriweather">
                 <CardStats
-                  statSubtitle="Total Pengunjung Hari Ini"
-                  statTitle={dataPengunjungBulanIni !== undefined ? dataPengunjungHariIni:"Loading..."}
-                  statIconName="fas fa-solid fa-user"
+                  statSubtitle="Total Pemasukan Hari Ini"
+                  statTitle={dataPengunjungBulanIni !== undefined ? (dataPengunjungHariIni):"Loading..."}
+                  statIconName="far fa-chart-bar"
                   statIconColor="bg-[#A70B0B]"
                 />
               </div>

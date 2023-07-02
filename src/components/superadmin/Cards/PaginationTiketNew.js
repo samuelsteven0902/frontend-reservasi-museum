@@ -54,13 +54,14 @@ const deleteKategori = (e, id) => {
 }
 
 
-  function getFirstLetters(str) {
-    const firstLetters = str
-      .split(' ')
-      .map(word => word[0])
-      .join('');
-    return firstLetters;
-  }
+  // function getFirstLetters(str) {
+  //   const firstLetters = str
+  //     .split(' ')
+  //     .map(word => word[0])
+  //     .join('');
+  //   return firstLetters;
+  // }
+
   const CloseRef = useRef();
 const rupiah = (number)=>{
     return new Intl.NumberFormat("id-ID", {
@@ -84,8 +85,11 @@ const rupiah = (number)=>{
       if(searchTerm === ""){
           return val
       }
-      else if(val.id_museum.toLowerCase().includes(searchTerm.toLowerCase()) ||
-              val.nama_kategori.toLowerCase().includes(searchTerm.toLowerCase())) {
+      else if(val.nama_museum.toLowerCase().includes(searchTerm.toLowerCase()) ||
+              val.nama_kategori.toLowerCase().includes(searchTerm.toLowerCase()) ||
+              val.nama_kategori_en.toLowerCase().includes(searchTerm.toLowerCase()) ||
+              val.hari_biasa.toLowerCase().includes(searchTerm.toLowerCase()) ||
+              val.hari_libur.toLowerCase().includes(searchTerm.toLowerCase())) {
           
           return val
       }
@@ -107,7 +111,7 @@ const rupiah = (number)=>{
         return(
             <tr className="bg-white border-b text-center" key={index}>
               <td className=" text-gray-900 px-6 py-4 whitespace-nowrap">{item.id}</td>
-              <td className=" text-gray-900 px-6 py-4 whitespace-nowrap">{getFirstLetters(item.nama_museum)}</td>
+              <td className=" text-gray-900 px-6 py-4 whitespace-nowrap">{item.nama_museum}</td>
               <td className=" text-gray-900 px-6 py-4 whitespace-nowrap">{item.nama_kategori}</td>
               <td className=" text-gray-900 px-6 py-4 whitespace-nowrap">{item.nama_kategori_en}</td>
               <td className=" text-gray-900 px-6 py-4 whitespace-nowrap">{rupiah(item.hari_biasa)}</td>
@@ -124,11 +128,11 @@ const rupiah = (number)=>{
       :
       dataTiket[0][1].filter(val=>{
         if(
-          val.nama_kategori.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          val.id_museum.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          val.nama_kategori.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          val.nama_kategori_en.toLowerCase().includes(searchTerm.toLowerCase()) 
-        ) {
+              val.nama_museum.toLowerCase().includes(searchTerm.toLowerCase()) ||
+              val.nama_kategori.toLowerCase().includes(searchTerm.toLowerCase()) ||
+              val.nama_kategori_en.toLowerCase().includes(searchTerm.toLowerCase()) ||
+              val.hari_biasa.toLowerCase().includes(searchTerm.toLowerCase()) ||
+              val.hari_libur.toLowerCase().includes(searchTerm.toLowerCase())) {
           return val
         }
       }).map((item,index)=>{
@@ -139,7 +143,7 @@ const rupiah = (number)=>{
           return(
               <tr className="bg-white border-b text-center" key={index}>
               <td className=" text-gray-900 px-6 py-4 whitespace-nowrap">{item.id}</td>
-              <td className=" text-gray-900 px-6 py-4 whitespace-nowrap">{getFirstLetters(item.nama_museum)}</td>
+              <td className=" text-gray-900 px-6 py-4 whitespace-nowrap">{item.nama_museum}</td>
               <td className=" text-gray-900 px-6 py-4 whitespace-nowrap">{item.nama_kategori}</td>
               <td className=" text-gray-900 px-6 py-4 whitespace-nowrap">{item.nama_kategori_en}</td>
               <td className=" text-gray-900 px-6 py-4 whitespace-nowrap">{rupiah(item.hari_biasa)}</td>

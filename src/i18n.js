@@ -22,6 +22,7 @@ i18n
           aboutt:"About",
           navbar:'Reservation Information',
           navbar_lg:'Language',
+          navbar_header:'Museum Ticketing System',
           landing: {
             judul:'TICKET RESERVATION',
             working:{
@@ -85,6 +86,7 @@ i18n
           cari:{
             judul:'Find Ticket',
             desc1:'Search Tickets using Ticket Code or Phone Number here...',
+            desc2:'Search for tickets based on the ticket code or telephone number that you registered',
           },
           formInput:{
             desc:{
@@ -168,6 +170,7 @@ i18n
           aboutt:"Tentang",
           navbar:'Informasi Reservasi',
           navbar_lg:'Bahasa',
+          navbar_header:'Sistem Tiket Museum',
           landing: {
             judul:'RESERVASI TIKET',
             working:{
@@ -232,6 +235,7 @@ i18n
           cari:{
             judul:'Cari Tiket',
             desc1:'Cari Tiket menggunakan Kode Tiket atau Nomor Handphone disini...',
+            desc2:'Cari tiket berdasarkan kode tiket atau nomor telepon yang anda daftarkan',
           },
           formInput:{
             desc:{

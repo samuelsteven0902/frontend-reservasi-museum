@@ -61,8 +61,6 @@ const [searchTerm, setSearchTerm] = useState("")
 
 const CloseRef = useRef();
 
-
-
 useEffect(() => {
 
     axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/show_kategori`)
