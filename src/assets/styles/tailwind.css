@@ -1265,9 +1265,6 @@ input[type="range"]::-ms-fill-lower{
 .h-16{
 	height: 4rem;
 } 
-.h-7{
-	height: 1.75rem;
-} 
 .h-\[26rem\]{
 	height: 26rem;
 } 
@@ -1303,6 +1300,9 @@ input[type="range"]::-ms-fill-lower{
 } 
 .h-px{
 	height: 1px;
+} 
+.h-7{
+	height: 1.75rem;
 } 
 .h-3\/4{
 	height: 75%;
@@ -1382,9 +1382,6 @@ input[type="range"]::-ms-fill-lower{
 .w-60{
 	width: 15rem;
 } 
-.w-7{
-	width: 1.75rem;
-} 
 .w-max{
 	width: max-content;
 } 
@@ -1411,6 +1408,9 @@ input[type="range"]::-ms-fill-lower{
 } 
 .w-16{
 	width: 4rem;
+} 
+.w-7{
+	width: 1.75rem;
 } 
 .w-2\/3{
 	width: 66.666667%;
@@ -1779,13 +1779,17 @@ input[type="range"]::-ms-fill-lower{
 .border-transparent{
 	border-color: transparent;
 } 
-.border-gray-400{
+.border-gray-50{
 	--tw-border-opacity: 1;
-	border-color: rgba(156, 163, 175, var(--tw-border-opacity));
+	border-color: rgba(249, 250, 251, var(--tw-border-opacity));
 } 
 .border-red-300{
 	--tw-border-opacity: 1;
 	border-color: rgba(248, 180, 180, var(--tw-border-opacity));
+} 
+.border-gray-400{
+	--tw-border-opacity: 1;
+	border-color: rgba(156, 163, 175, var(--tw-border-opacity));
 } 
 .bg-gray-100{
 	--tw-bg-opacity: 1;
@@ -1835,10 +1839,6 @@ input[type="range"]::-ms-fill-lower{
 	--tw-bg-opacity: 1;
 	background-color: rgba(63, 131, 248, var(--tw-bg-opacity));
 } 
-.bg-red-500{
-	--tw-bg-opacity: 1;
-	background-color: rgba(240, 82, 82, var(--tw-bg-opacity));
-} 
 .bg-green-400{
 	--tw-bg-opacity: 1;
 	background-color: rgba(49, 196, 141, var(--tw-bg-opacity));
@@ -1886,6 +1886,10 @@ input[type="range"]::-ms-fill-lower{
 	--tw-bg-opacity: 1;
 	background-color: rgba(231, 70, 148, var(--tw-bg-opacity));
 } 
+.bg-red-500{
+	--tw-bg-opacity: 1;
+	background-color: rgba(240, 82, 82, var(--tw-bg-opacity));
+} 
 .bg-gray-200{
 	--tw-bg-opacity: 1;
 	background-color: rgba(229, 231, 235, var(--tw-bg-opacity));
@@ -1905,6 +1909,10 @@ input[type="range"]::-ms-fill-lower{
 .bg-blue-600{
 	--tw-bg-opacity: 1;
 	background-color: rgba(28, 100, 242, var(--tw-bg-opacity));
+} 
+.bg-red-900{
+	--tw-bg-opacity: 1;
+	background-color: rgba(119, 29, 29, var(--tw-bg-opacity));
 } 
 .bg-purple-600{
 	--tw-bg-opacity: 1;
@@ -2091,10 +2099,6 @@ input[type="range"]::-ms-fill-lower{
 	padding-left: 3rem;
 	padding-right: 3rem;
 } 
-.py-8{
-	padding-top: 2rem;
-	padding-bottom: 2rem;
-} 
 .py-7{
 	padding-top: 1.75rem;
 	padding-bottom: 1.75rem;
@@ -2106,6 +2110,10 @@ input[type="range"]::-ms-fill-lower{
 .py-0{
 	padding-top: 0px;
 	padding-bottom: 0px;
+} 
+.py-8{
+	padding-top: 2rem;
+	padding-bottom: 2rem;
 } 
 .px-40{
 	padding-left: 10rem;
@@ -2448,6 +2456,10 @@ input[type="range"]::-ms-fill-lower{
 .text-gray-300{
 	--tw-text-opacity: 1;
 	color: rgba(209, 213, 219, var(--tw-text-opacity));
+} 
+.text-gray-500{
+	--tw-text-opacity: 1;
+	color: rgba(107, 114, 128, var(--tw-text-opacity));
 } 
 .text-green-800{
 	--tw-text-opacity: 1;
@@ -4940,6 +4952,11 @@ video {
 .active\:shadow-lg:active{
 	--tw-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 	box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+} 
+.active\:ring-0:active{
+	--tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+	--tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(0px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+	box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
 } 
 .disabled\:cursor-not-allowed:disabled{
 	cursor: not-allowed;

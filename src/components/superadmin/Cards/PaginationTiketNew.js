@@ -124,6 +124,7 @@ const rupiah = (number)=>{
         })
       :
       dataTiket[0][1].filter(val=>{
+        console.log(val);
         if(
           val.nama_kategori.toLowerCase().includes(searchTerm.toLowerCase()) ||
           val.id_museum.toLowerCase().includes(searchTerm.toLowerCase()) ||

@@ -16,15 +16,32 @@ const [loading,setLoading] = useState(true)
 const [pengunjung,setPengunjung] = useState([])
 //for search bar
 const [searchTerm, setSearchTerm] = useState("")
+const [namaMuseum, setNamaMuseum] = useState('');
+const [startDate, setStartDate] = useState('');
+const [endDate, setEndDate] = useState('');
+
 
 const history = useHistory()
 
 //export excel
 const handleDownload = () => {
+  const queryParams = new URLSearchParams();
+  if (namaMuseum) {
+    queryParams.append('nama_museum', namaMuseum);
+  }
+  if (startDate) {
+    queryParams.append('start_date', startDate);
+  }
+  if (endDate) {
+    queryParams.append('end_date', endDate);
+  }
+
+  const url = `${process.env.REACT_APP_API_ENDPOINT}/api/pengunjungExport?${queryParams.toString()}`;
+
   axios({
-    url: `${process.env.REACT_APP_API_ENDPOINT}/api/pengunjungExport`,
+    url,
     method: 'GET',
-    responseType: 'blob', // important`
+    responseType: 'blob',
   }).then((response) => {
     console.log(response);
     const url = window.URL.createObjectURL(new Blob([response.data]));
@@ -32,11 +49,14 @@ const handleDownload = () => {
     link.href = url;
     const tanggal = new Date(Date.now()).toLocaleString().split(',')[0];
     let filename = 'file-' + tanggal + '.xlsx';
-    link.setAttribute('download', filename); //or any other extension
+    link.setAttribute('download', filename);
     document.body.appendChild(link);
     link.click();
-});
-}
+  }).catch(error => {
+    console.error('Error exporting pengunjung:', error);
+  });
+};
+
 
 //go page tiket
 const handleTiket = (e) =>{
@@ -93,6 +113,34 @@ else {
             <div className="relative w-full px-4 max-w-full flex-grow flex-1">
               <h3 className="font-semibold text-lg font-merriweather text-red-600">Data Pengunjung</h3>
             </div>
+          </div>
+          <div className="text-black">
+            <h3>Export Data Pengunjung</h3>
+            <div>
+              <label>Nama Museum:</label>
+              <input
+                type="text"
+                value={namaMuseum}
+                onChange={e => setNamaMuseum(e.target.value)}
+              />
+            </div>
+            <div>
+              <label>Tanggal Mulai:</label>
+              <input
+                type="date"
+                value={startDate}
+                onChange={e => setStartDate(e.target.value)}
+              />
+            </div>
+            <div>
+              <label>Tanggal Akhir:</label>
+              <input
+                type="date"
+                value={endDate}
+                onChange={e => setEndDate(e.target.value)}
+              />
+            </div>
+            <button className="" onClick={handleDownload}>Export</button>
           </div>
         </div>
 

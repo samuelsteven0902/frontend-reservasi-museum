@@ -11,7 +11,9 @@ import PaginationCardAdmin from "./PaginationCardAdmin";
 
 function CardAdmin() {
     const [admin,setAdmin] = useState()
+    const [selectedAdmin,setSelectedAdmin] = useState('')
     const [loading,setLoading] = useState(true)
+    const [loadingStatus,setLoadingStatus] = useState(false)
     const [input,setInput] = useState({
         nama: '',
         email: '',
@@ -29,6 +31,13 @@ function CardAdmin() {
     }
     const CloseRef = useRef();
 
+    const handleAdmin = (e) =>{
+        e.preventDefault();
+        setSelectedAdmin(e.target.value)
+        console.log(e.target.value);
+
+    }
+
     initTE({ Modal, Ripple });
 
     const [searchTerm, setSearchTerm] = useState("")
@@ -37,15 +46,18 @@ function CardAdmin() {
         e.persist();
         setInput({...input, [e.target.name]: e.target.value })
     }
-    console.log(input);
 
     const fetchData = () => {
         axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/show_admin`).then(res=>{
         console.log(res.data.admin);
         setAdmin(res.data.admin);
         setLoading(false)
+        handleLoadingStatus(false)
+
         })
     }
+
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -108,9 +120,23 @@ function CardAdmin() {
         })
     }
 
+    const handleLoadingStatus = (newState) =>{
+        setLoadingStatus(newState)
+    }
+
     useEffect(() => {
         fetchData()
     }, [])
+
+      var LOADING_ADMIN = ''
+
+    if(loadingStatus)
+    {
+      LOADING_ADMIN = 
+      <div className='absolute w-full h-full flex justify-center items-center  m-auto bg-gray-100 z-[5000] opacity-50'>
+        <ReactLoading type={"spin"} color={"red"} height={'5%'} width={'5%'} className="m-auto" />
+      </div>
+    }
     
     if(loading) {
         var ADMIN_HTMLTABLE =   
@@ -121,7 +147,13 @@ function CardAdmin() {
             </tr>
     }
     else {
-        ADMIN_HTMLTABLE = <PaginationCardAdmin data={admin} deleteAdmin={deleteAdmin} fetchData={fetchData} searchTerm={searchTerm}/>
+        ADMIN_HTMLTABLE = <PaginationCardAdmin data={admin.filter((item) => {
+            if (selectedAdmin === '') {
+              return true;
+            } else {
+              return item.status == selectedAdmin;
+            }
+          })} deleteAdmin={deleteAdmin} fetchData={fetchData} searchTerm={searchTerm} handleLoadingStatus={handleLoadingStatus}/>
     }
 
 return (
@@ -132,13 +164,17 @@ return (
         password: '',
         err_msg:[]
     });
-    console.log(input);
 }
     }>Tambah Admin</button>
             <div class="flex flex-col">
                 <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div class="py-2 inline-block min-w-full sm:px-6 lg:px-6">
                         <div class="overflow-hidden shadow-lg rounded-xl m-2">
+                            <div className='bg-white p-5 border-b-2 border-gray-50'>
+                                <button onClick={handleAdmin} value='' className={`${selectedAdmin === ''?'bg-red-300':''} border-red-300 active:ring-0 focus:ring-0 rounded px-4 py-2 hover:bg-red-100 border-2`}>All</button>
+                                <button onClick={handleAdmin} value='1' className={`${selectedAdmin === '1'?'bg-red-300':''} border-red-300 active:ring-0 focus:ring-0 rounded px-4 py-2 hover:bg-red-100 mx-5 border-2`}>Aktif</button>
+                                <button onClick={handleAdmin} value='0' className={`${selectedAdmin === '0' ?'bg-red-300':''} border-red-300 active:ring-0 focus:ring-0 rounded px-4 py-2 hover:bg-red-100 border-2 `}>Tidak Aktif</button>
+                            </div>
                             <table class="min-w-full ">
                                 <thead class="border-b bg-white">
                                     <tr className=''>
@@ -150,7 +186,8 @@ return (
                                         <th scope="col" class="text-xl font-nunito font-semibold text-[#A70B0B] px-6 py-4 text-center">Aksi</th>
                                     </tr>
                                 </thead>
-                                <tbody className=''>
+                                <tbody className='relative'>
+                                    {LOADING_ADMIN}
                                     {ADMIN_HTMLTABLE}
                                 </tbody>
                             </table>

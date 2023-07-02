@@ -115,11 +115,12 @@ function EditAbout(props) {
               axios
                 .delete(`${process.env.REACT_APP_API_ENDPOINT}/api/delete-image/${id}`)
                 .then((res) => {
+                  console.log(res);
                   if (res.data.status === 200) {
-                    swal("Deleted!", res.data.message, "success");
+                    swal("Deleted!", res.data.msg, "success");
                     getImages();
                   } else if (res.data.status === 404) {
-                    swal("Error", res.data.message, "error");
+                    swal("Error", res.data.msg, "error");
                   }
                 });
             } else {

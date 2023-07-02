@@ -114,12 +114,14 @@ const updateHarga = (e) => {
         max: harga.max,
     }
 
+
     axios.put(`${process.env.REACT_APP_API_ENDPOINT}/api/update_kategori/${idHarga}`, data, {
         headers : {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
             Authorization: `Bearer ${Cookies.get('token')}`,
         }}).then(res=>{
+            console.log(res);
         if(res.data.status === 200){
             fetchHarga();
             thisClicked.innerText = "Close"

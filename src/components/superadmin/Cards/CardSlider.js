@@ -81,96 +81,59 @@ function CardSlider() {
     })
 }
 
-const handleInput = (e) =>{
-    const imagesArray = [];
-    let isValid = "";
-
-    for (let i = 0; i < e.target.files.length; i++) {
-      isValid = fileValidate(e.target.files[i]);
-      if(isValid) {
-        imagesArray.push(e.target.files[i]);
-      }
-    }
-    setGambar(
-      imagesArray,
-    );
-}
-
-const fileValidate = (file) => {
-  console.log(file.type);
-  if (
-    file.type === "image/png" ||
-    file.type === "image/jpg" ||
-    file.type === "image/jpeg"||
-    file.type === "image/pdf"
-  ) {
-    setResponseMsg({
-        error: "",
-      
-    });
-    return true;
-  } else {
-    setResponseMsg({
-      error: "",
-  });
-    return false;
-  }
+const handleInput = (e) => {
+  const image = e.target.files[e.target.files.length - 1];
+  setGambar([image]);
 };
 
-const handleSubmit = (e) =>{
+
+
+
+const handleSubmit = (e) => {
   e.preventDefault();
-  if(jumlahGambar <= 5 )
-  {
+  if (jumlahGambar <= 5) {
     const data = new FormData();
-  for (let i = 0; i < gambar.length; i++) {
-    data.append("images[]", gambar[i]);
-  }
-  console.log(gambar);
-  // console.log(data);
-  axios.post(`${process.env.REACT_APP_API_ENDPOINT}/api/upload_slider`, data, {
-    headers : {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-      Authorization: `Bearer ${Cookies.get('token')}`,
-    }})
-    .then((response) => {
-      if (response.status === 200) {
-        setResponseMsg({
+    data.append("image", gambar[0]);
+    console.log(gambar);
+    axios
+      .post(`${process.env.REACT_APP_API_ENDPOINT}/api/upload_slider`, data, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          'Accept': 'application/json',
+          Authorization: `Bearer ${Cookies.get('token')}`,
+        },
+      })
+      .then((response) => {
+        if (response.status === 200) {
+          setResponseMsg({
             status: response.data.status,
             message: response.data.message,
-        });
-        if(response.data.status === "successs")
-        {
-        swal("Success",response.data.message,"success")
-        }
-        else
-        {
-          swal("error",response.data.message,"error")
-        }
+          });
+          if (response.data.status === "success") {
+            swal("Success", response.data.message, "success");
+          } else {
+            swal("error", response.data.message, "error");
+          }
 
-        CloseRef.current.click();
-        showData();
-        setTimeout(() => {
-          setGambar("");
-          setResponseMsg("");
-          // console.log(gambar);
-        }, 100000);
-        document.querySelector("#imageForm").reset();
-        // getting uploaded images
-        // refs.child.getImages();
-      }
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-  }
-  else
-  {
-    swal("Maksimal ( 6 ) Gambar","Hapus Gambar terlebih dahulu","error")
+          CloseRef.current.click();
+          showData();
+          setTimeout(() => {
+            setGambar("");
+            setResponseMsg("");
+          }, 100000);
+          document.querySelector("#imageForm").reset();
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  } else {
+    swal("Maksimal ( 6 ) Gambar", "Hapus Gambar terlebih dahulu", "error");
     CloseRef.current.click();
     showData();
   }
-}
+};
+
 
 
 if(loading)
@@ -184,7 +147,7 @@ if(loading)
 }else{
 
   var SLIDER_HTMLTABLE =  "";
-  SLIDER_HTMLTABLE = gambar.map((item,index)=>{
+  SLIDER_HTMLTABLE = gambar && gambar.map((item,index)=>{
     return (
       <>
       <tr key={index}>
@@ -261,7 +224,7 @@ return (
           <form onSubmit={handleSubmit} encType="multipart/form-data" id="imageForm">
             <div className="bg-white p-10">
               <div className="card-body form-group py-2">
-                  <input type="file" name="image" multiple onChange={handleInput} className="rounded-xl bg-gray-200 w-full"/>
+                  <input type="file" name="image" onChange={handleInput} className="rounded-xl bg-gray-200 w-full"/>
                   <div className="font-base font-bold font-nunito">Format Gambar : jpeg,png,jpg</div>
                   <div className="font-base font-bold font-nunito">Max. Upload 2MB</div>
               </div>
