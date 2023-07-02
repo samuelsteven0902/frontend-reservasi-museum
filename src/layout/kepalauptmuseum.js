@@ -11,6 +11,7 @@ import FooterAdmin from "components/kepalauptmuseum/Footers/FooterAdmin.js";
 import Dashboard from "components/kepalauptmuseum/Dashboard.js";
 import DataPengunjung from "components/kepalauptmuseum/DataPengunjung";
 import GrafikPendapatan from "components/kepalauptmuseum/GrafikPendapatan";
+import Pemasukan from "components/superadmin/Pemasukan";
 
 export default function Kepalauptmuseum() {
   return (
@@ -25,6 +26,7 @@ export default function Kepalauptmuseum() {
             <Route path="/kepalauptmuseum/dashboard" exact component={Dashboard} />
             <Route path="/kepalauptmuseum/grafikpendapatan" exact component={GrafikPendapatan} />
             <Route path="/kepalauptmuseum/data-pengunjung" exact component={DataPengunjung} />
+            <Route path="/kepalauptmuseum/pemasukan" exact component={Pemasukan} />
             <Redirect from="/kepalauptmuseum" to="/kepalauptmuseum/dashboard" />
           </Switch>
           <FooterAdmin />

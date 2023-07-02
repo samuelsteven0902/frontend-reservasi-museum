@@ -1,8 +1,5 @@
 import React, { Component, Fragment } from 'react';
 import Cookies from 'js-cookie';
-// import ReactDatatable from '../../lib/1`index.js';
-// import ReactDatatable from '../../src/index.js';
-// import ReactDatatable from '../../../asset   s/@ashvin27/react-datatable'
 import ReactDatatable from '@ashvin27/react-datatable';
 import { useHistory, Link } from 'react-router-dom';
 import axios from 'axios'
@@ -166,11 +163,11 @@ class CardDataaaa extends Component {
     componentDidMount () {
         axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/pengunjung`, {
             headers : {
-              'Content-Type': 'application/json',
-              'Accept': 'application/json',
-              Authorization: `Bearer ${Cookies.get('token')}`,
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                Authorization: `Bearer ${Cookies.get('token')}`,
             }
-          }).then(res=>{
+        }).then(res=>{
             if(res.status === 200) {
                 this.setState ({
                     users: res.data.pengunjung
@@ -224,5 +221,3 @@ class CardDataaaa extends Component {
     }
 }
 export default CardDataaaa;
-
-// table table-bordered table-striped custom-class

@@ -3,9 +3,9 @@ import React, { useEffect, useState } from "react";
 import 'flowbite';
 import swal from "sweetalert";
 import PaginationTiketNew from "./PaginationTiketNew";
-import { useRef } from "react";
-import ReactLoading from 'react-loading';
-import Cookies from "js-cookie";
+import { useRef } from "react"; 
+import ReactLoading from 'react-loading'; 
+import Cookies from "js-cookie"; 
 import {Modal, Ripple, initTE,} from "tw-elements";
 
 function CardMasterTiketcopy() {
@@ -212,15 +212,15 @@ return (
                     {/* table header */}
                     <thead className="border-b bg-white ">
                         <tr className=''>
-                        <th scope="col" className="text-xl font-medium text-[#A70B0B] px-6 py-4 text-center">No</th>
-                        <th scope="col" className="text-xl font-medium text-[#A70B0B] px-6 py-4 text-center">Museum</th>
-                        <th scope="col" className="text-xl font-medium text-[#A70B0B] px-6 py-4 text-center">Kategori</th>
-                        <th scope="col" className="text-xl font-medium text-[#A70B0B] px-6 py-4 text-center">Category (Inggris)</th>
-                        <th scope="col" className="text-xl font-medium text-[#A70B0B] px-6 py-4 text-center">Harga Hari Biasa</th>
-                        <th scope="col" className="text-xl font-medium text-[#A70B0B] px-6 py-4 text-center">Harga Hari Libur</th>
-                        <th scope="col" className="text-xl font-medium text-[#A70B0B] px-6 py-4 text-center">Min</th>
-                        <th scope="col" className="text-xl font-medium text-[#A70B0B] px-6 py-4 text-center">Max</th>
-                        <th scope="col" className="text-xl font-medium text-[#A70B0B] px-6 py-4 text-center">Aksi</th>
+                        <th scope="col" className="text-xl font-nunito text-[#A70B0B] px-6 py-4 text-center">No</th>
+                        <th scope="col" className="text-xl font-nunito text-[#A70B0B] px-6 py-4 text-center">Museum</th>
+                        <th scope="col" className="text-xl font-nunito text-[#A70B0B] px-6 py-4 text-center">Kategori</th>
+                        <th scope="col" className="text-xl font-nunito text-[#A70B0B] px-6 py-4 text-center">Category (Inggris)</th>
+                        <th scope="col" className="text-xl font-nunito text-[#A70B0B] px-6 py-4 text-center">Harga Hari Biasa</th>
+                        <th scope="col" className="text-xl font-nunito text-[#A70B0B] px-6 py-4 text-center">Harga Hari Libur</th>
+                        <th scope="col" className="text-xl font-nunito text-[#A70B0B] px-6 py-4 text-center">Min</th>
+                        <th scope="col" className="text-xl font-nunito text-[#A70B0B] px-6 py-4 text-center">Max</th>
+                        <th scope="col" className="text-xl font-nunito text-[#A70B0B] px-6 py-4 text-center">Aksi</th>
                         </tr>
                     </thead>
                     <tbody className=''>

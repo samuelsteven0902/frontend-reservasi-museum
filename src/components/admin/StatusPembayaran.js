@@ -114,7 +114,7 @@ else {
       <div className="w-full flex flex-wrap flex-col justify-center mb-6">
         <p className='text-center text-2xl font-merriweather mb-'>Data Pembayaran Pengunjung</p>
         <hr className='h-1 w-1/3 bg-red-300 mx-auto mb-5'/>
-        <input type='text' className="w-72 mx-auto font-nunito order-none ring-2 ring-red-300 focus:border-none focus:ring-red-500 focus:ring-2 active:border-none rounded-lg"  placeholder="Cari nama, kategori, kota, ..." onChange={e=>{setSearchTerm(e.target.value)}} /> 
+        <input type='text' className="w-72 mx-auto font-nunito order-none ring-2 ring-red-300 focus:border-none focus:ring-red-500 focus:ring-2 active:border-none rounded-lg"  placeholder="Cari kode tiket, nama, museum, kategori..." onChange={e=>{setSearchTerm(e.target.value)}} /> 
       </div>
       <div className={"relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded" + (color === "light" ? "bg-white" : "bg-lightBlue-900 text-white")}>
         <div className="rounded-t mb-0 px-4 py-3 border-0">

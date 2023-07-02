@@ -85,8 +85,11 @@ const rupiah = (number)=>{
       if(searchTerm === ""){
           return val
       }
-      else if(val.id_museum.toLowerCase().includes(searchTerm.toLowerCase()) ||
-              val.nama_kategori.toLowerCase().includes(searchTerm.toLowerCase())) {
+      else if(val.nama_museum.toLowerCase().includes(searchTerm.toLowerCase()) ||
+              val.nama_kategori.toLowerCase().includes(searchTerm.toLowerCase()) ||
+              val.nama_kategori_en.toLowerCase().includes(searchTerm.toLowerCase()) ||
+              val.hari_biasa.toLowerCase().includes(searchTerm.toLowerCase()) ||
+              val.hari_libur.toLowerCase().includes(searchTerm.toLowerCase())) {
           
           return val
       }
@@ -126,11 +129,11 @@ const rupiah = (number)=>{
       dataTiket[0][1].filter(val=>{
         console.log(val);
         if(
-          val.nama_kategori.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          val.id_museum.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          val.nama_kategori.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          val.nama_kategori_en.toLowerCase().includes(searchTerm.toLowerCase()) 
-        ) {
+              val.nama_museum.toLowerCase().includes(searchTerm.toLowerCase()) ||
+              val.nama_kategori.toLowerCase().includes(searchTerm.toLowerCase()) ||
+              val.nama_kategori_en.toLowerCase().includes(searchTerm.toLowerCase()) ||
+              val.hari_biasa.toLowerCase().includes(searchTerm.toLowerCase()) ||
+              val.hari_libur.toLowerCase().includes(searchTerm.toLowerCase())) {
           return val
         }
       }).map((item,index)=>{

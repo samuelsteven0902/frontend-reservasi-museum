@@ -154,7 +154,7 @@ export default function SidebarSuperadmin() {
                         : "text-blueGray-500")
                     }
                   ></i>{" "}
-                Kategori
+                Pengaturan Tiket
                 </Link>
               </li>
 

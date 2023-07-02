@@ -1,12 +1,18 @@
 import React from 'react'
-import { useState } from 'react';
+import { useState , useEffect } from 'react';
 import ReactPaginate from 'react-paginate';
 import { useHistory } from 'react-router-dom';
 import { GrFormView } from 'react-icons/gr';
 
-function Items(props) {
-  const dataPengunjung = props.data
+function PaginationDataPengunjung(props) {
+  const searchTerm = props.searchTerm
   console.log(props);
+  const [dataPengunjung, setDataPengunjung] = useState(Object.entries(props));
+  console.log(props);
+
+  useEffect(() =>
+  setDataPengunjung(Object.entries(props))
+  ,[props] )
 
   const history = useHistory();
 
@@ -16,13 +22,80 @@ function Items(props) {
     return handleTiket;
     }
 
+  const [itemOffset, setItemOffset] = useState(0);
+  const itemsPerPage = 6 ;
+
+  const endOffset = itemOffset + itemsPerPage;
+  const currentItems = dataPengunjung[0][1].slice(itemOffset, endOffset);
+  var pageCount = 0;
+  console.log(currentItems)
+
+  const handlePageClick = (event) => {
+    const newOffset = (event.selected * itemsPerPage) % dataPengunjung[0][1]
+    .filter(val=>{
+      if(searchTerm === ""){
+          return val
+      }
+      else if(
+        val.kode_tiket.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        val.nama.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        val.kategori.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        val.kota.toLowerCase().includes(searchTerm.toLowerCase())) {
+          return val
+      }
+    })
+    .length;
+    console.log(
+      `User requested page number ${event.selected}, which is offset ${newOffset}`
+    );
+    setItemOffset(newOffset);
+  };
+
+
   return (
     <>
-    {dataPengunjung.map((item,index)=>{
-      console.log(item)
+    {searchTerm === "" ? currentItems.map((item,index)=>{
+        //jumlah halaman tanpa search
+        pageCount = Math.ceil(dataPengunjung[0][1].length / itemsPerPage);
+   
         return(
             <tr className="bg-white text-gray-900" key={index}>
-              {/* <td className=" text-gray-900 px-6 py-4 whitespace-nowrap">{item.id}</td> */}
+              <td className=" border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.kode_tiket}</td>
+              <td className=" border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.nama}</td>
+              <td className=" border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.museum}</td>
+              <td className=" border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.status === "Lunas" ? "Lunas" : "Belum Lunas"}</td>
+              <td className=" border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.kehadiran != null ? "Hadir" : "Tidak Hadir"}</td>
+              <td className=" border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.kategori}</td>
+              <td className=" border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.phone}</td>
+              <td className=" border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.kota}</td>
+              <td className=" border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.jumlah}</td>
+              <td className=" border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.harga_awal}</td>
+              <td className=" border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.pembayaran}</td>
+              <td className=" border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.tanggal_pembayaran}</td>
+              <td className="sticky right-0 bg-gray-50 px-2">
+                <button className="bg-gray-500 hover:bg-gray-600 rounded shadow-inner drop-shadow-2xl py-0.5 px-1" onClick={e=>handleTiket(item.kode_tiket,e)}>
+                <GrFormView className=""/>
+              </button>
+              </td>
+            </tr>
+          )
+        })
+:
+        dataPengunjung[0][1].filter(val=>{
+        if(
+          val.kode_tiket.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          val.nama.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          val.kategori.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          val.kota.toLowerCase().includes(searchTerm.toLowerCase()))  {
+            return val
+        }
+      }).map((item,index)=>{
+
+          //jumlah halaman dengan search
+          pageCount = Math.ceil(currentItems.length / itemsPerPage);
+
+          return(
+              <tr className="bg-white text-gray-900" key={index}>
               <td className=" border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.kode_tiket}</td>
               <td className=" border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.nama}</td>
               <td className=" border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.museum}</td>
@@ -35,53 +108,16 @@ function Items(props) {
               <td className=" border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.status === "Lunas" ? "Lunas" : "Belum Lunas"}</td>
               <td className=" border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.kehadiran != null ? "Hadir" : "Tidak Hadir"}</td>
               <td className=" border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.tanggal_pembayaran}</td>
-              <td className="sticky right-0 bg-gray-50 px-2">
-                <button className="bg-gray-500 hover:bg-gray-600 rounded shadow-inner drop-shadow-2xl py-0.5 px-1" onClick={e=>handleTiket(item.kode_tiket,e)}>
+              <td className=" border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.tanggal_pembayaran}</td>
+              
+              <td className=" text-gray-900 px-6 py-4 whitespace-nowrap"><button className="bg-gray-500 hover:bg-gray-600 rounded shadow-inner drop-shadow-2xl py-0.5 px-1" onClick={e=>handleTiket(item.kode_tiket,e)}>
                 <GrFormView className=""/>
-              </button>
-              </td>
-            </tr>
-          )
-        })}
-    </>
-  );
-}
-
-function PaginationDataPengunjung(props) {
-
-  const dataPengunjung = Object.entries(props);
-  const searchTerm = props.searchTerm
-  console.log(props);
-
-  const [itemOffset, setItemOffset] = useState(0);
-  const itemsPerPage = 6 ;
-
-  const endOffset = itemOffset + itemsPerPage;
-  const currentItems = dataPengunjung[0][1].slice(itemOffset, endOffset);
-  const pageCount = Math.ceil(dataPengunjung[0][1].length / itemsPerPage);
-  console.log(currentItems)
-
-  const handlePageClick = (event) => {
-    const newOffset = (event.selected * itemsPerPage) % dataPengunjung[0][1]
-    .filter(val=>{
-      if(searchTerm === ""){
-          return val
-      }
-      else if(val.nama_museum.toLowerCase().includes(searchTerm.toLowerCase()) ||
-              val.nama_kategori.toLowerCase().includes(searchTerm.toLowerCase())) {
-          return val
-      }
-    })
-    .length;
-    console.log(
-      `User requested page number ${event.selected}, which is offset ${newOffset}`
-    );
-    setItemOffset(newOffset);
-  };
-
-  return (
-    <>
-      <Items data={currentItems}/>
+                </button>
+                </td>
+              </tr>
+            )
+          })
+    }
       <tr className='w-full py-2'>
         <th colSpan={9}>
           <ReactPaginate

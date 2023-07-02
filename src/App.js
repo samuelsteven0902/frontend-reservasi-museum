@@ -45,7 +45,6 @@ function App() {
             <Route path="/about" component={About}/>
             <Route path="/about-museum/:code" component={AboutMusuem}/>
             <Route path="/authuser" component={AuthUser}/>
-            {/* <Route path="/admin" component={Admin}/> */}
             <Route path="/panduan" component={Panduan}/>
             <Route path="/faq" component={Faq}/>
             <Route path="/harga-tiket" component={harga}/>

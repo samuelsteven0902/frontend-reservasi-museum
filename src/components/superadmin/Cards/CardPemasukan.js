@@ -98,7 +98,7 @@ const handleDownload = () => {
   if(loading)
   {
     var pemasukan_HTMLTABLE =   
-      <tr className="bg-white border-b" >
+      <tr className="bg-white border-b">
         <td colspan={6} className="text-xl text-center justify-center font-semibold py-5">
           <ReactLoading type={"spin"} color={"red"} height={'5%'} width={'5%'} className="m-auto" />
         </td>
@@ -117,7 +117,7 @@ const handleDownload = () => {
   return (
   <div className='container  relative flex flex-col min-w-0 break-words w-full mb-6'>
     <div className="my-2  w-72">
-        <input type='text' className="w-full font-nunito border-none ring-2 ring-red-300 focus:border-none focus:ring-red-500 focus:ring-2 active:border-none rounded-lg"  placeholder="Cari tanggal..." onChange={e=>{setSearchTerm(e.target.value)}} /> 
+        <input type='text' className="w-full font-nunito border-none ring-2 ring-red-300 focus:border-none focus:ring-red-500 focus:ring-2 active:border-none rounded-lg"  placeholder="Cari berdasarkan tanggal, nama admin, pengunjung, dan pemasukan..." onChange={e=>{setSearchTerm(e.target.value)}} /> 
       </div>
     <div class="flex flex-col " >
         <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -209,16 +209,7 @@ const handleDownload = () => {
                     </th>
                     </tr>
                 </thead>
-                <tbody className='text-center '>
-                    {/* <td class=" text-gray-900 px-6 py-4 whitespace-nowrap">
-                        10-09-2022
-                    </td>
-                    <td class=" text-gray-900 px-6 py-4 whitespace-nowrap">
-                        Sabila Wibu
-                    </td>
-                    <td class=" text-gray-900  px-6 py-4 whitespace-nowrap">
-                        22.000
-                    </td> */}
+                <tbody className='text-center'>
                     {pemasukan_HTMLTABLE}
                     
                     
