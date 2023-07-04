@@ -21,7 +21,7 @@ export default function HeaderStats() {
     console.log(res);  
     if(res.status === 200)
       {
-          setData(res.data.pengunjung)
+          setData(res.data.pemasukan)
           setLoading(false);
       }
   });

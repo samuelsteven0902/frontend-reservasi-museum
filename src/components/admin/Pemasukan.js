@@ -9,7 +9,7 @@ function Pemasukan() {
     <>
       <div className="flex flex-wrap">
         <div className="w-full px-4">
-          <CardPemasukan />
+          <CardPemasukan/>
         </div>
       </div>
         <DefaultFooterAdmin/>

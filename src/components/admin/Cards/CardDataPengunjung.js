@@ -95,53 +95,49 @@ else {
     <>
     <div className="flex">
       {/* search bar */}
-      <div className="my-2 w-80 px-6">
-        <input type='text' className="w-full font-nunito border-none ring-2 ring-red-300 focus:border-none focus:ring-red-500 focus:ring-2 active:border-none rounded-lg"  placeholder="Cari kode tiket, nama, kategori, kota,..." onChange={e=>{setSearchTerm(e.target.value)}} /> 
-      </div>
+
       {/* export excel  */}
-      <div className=" flex justify-end items-center w-full px-6">
+      <div className="flex justify-end items-center w-full px-6 pb-2">
         <button className="bg-green-400 rounded-xl h-7 px-5 text-sm font-nunito text-green-800" onClick={handleDownload}><p className="flex">Unduh Laporan<img src={excel} className='w-4 ml-2' alt="excel"/></p></button>
       </div>
-    </div>
+    </div>   
+    <div className="flex w-full">    
+      <div className="flex my-2 w-80 px-6 pt-4">
+        <input type='text' className="w-full font-nunito border-none ring-2 ring-red-300 focus:border-none focus:ring-red-500 focus:ring-2 active:border-none rounded-lg"  placeholder="Cari kode tiket, nama, kategori, kota,..." onChange={e=>{setSearchTerm(e.target.value)}} /> 
+      </div>
+      <div className="flex w-full justify-end"> 
+        {/* <h3>Export Data Pengunjung</h3> */}
+        <div className='justify-end items-center mx-2'>
+          <label className='block font-nunito font-bold'>Museum:</label>
+            <input className="block font-nunito py-2 px-4 w-28 text-black font-bold hover:bg-red-200 transition-all duration-300 ease-in-out active:bg-red-400 focus:bg-red-400 bg-white text-base z-50 float-left list-none text-left rounded-xl  shadow-none border-red-300 min-w-0 border-2" type="text" value={namaMuseum} onChange={e => setNamaMuseum(e.target.value)}/>
+        </div>
+        <div className='justify-end items-center mx-2'>
+          <label className='block font-nunito font-bold'>Tanggal Mulai:</label>
+          <input className="block font-nunito py-2 px-4 w-28 text-black font-bold hover:bg-red-200 transition-all duration-300 ease-in-out active:bg-red-400 focus:bg-red-400 bg-white text-base z-50 float-left list-none text-left rounded-xl  shadow-none border-red-300 min-w-0 border-2" type="date" value={startDate} onChange={e => setStartDate(e.target.value)}/>
+        </div>
+        <div className='justify-end items-center mx-2'>
+          <label className='block font-nunito font-bold'>Tanggal Akhir:</label>
+          <input className="block font-nunito py-2 px-4 w-28 text-black font-bold hover:bg-red-200 transition-all duration-300 ease-in-out active:bg-red-400 focus:bg-red-400 bg-white text-base z-50 float-left list-none text-left rounded-xl  shadow-none border-red-300 min-w-0 border-2" type="date" value={endDate} onChange={e => setEndDate(e.target.value)}/>
+        </div>
+        <div className="flex justify-end items-center px-6 pt-5">
+          <button className="bg-green-400 rounded-xl h-7 px-5 text-sm font-nunito text-green-800" onClick={handleDownload}><p className='flex'>Export<img src={excel} className='w-4 ml-2' alt="excel"/></p></button>
+        </div>
+      </div>
+      </div>
+
+    
 
     {/* header */}
-    <div className=
-      {"relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded" + (color === "light" ? "bg-white" : "bg-lightBlue-900 text-white")}>
+    <div className= {"relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded" + (color === "light" ? "bg-white" : "bg-lightBlue-900 text-white")}>
         <div className="rounded-t mb-0 px-4 py-3 border-0">
           <div className="flex flex-wrap items-center">
             <div className="relative w-full px-4 max-w-full flex-grow flex-1">
               <h3 className="font-semibold text-lg font-merriweather text-red-600">Data Pengunjung</h3>
             </div>
           </div>
-          <div className="text-black">
-            <h3>Export Data Pengunjung</h3>
-            <div>
-              <label>Nama Museum:</label>
-              <input
-                type="text"
-                value={namaMuseum}
-                onChange={e => setNamaMuseum(e.target.value)}
-              />
-            </div>
-            <div>
-              <label>Tanggal Mulai:</label>
-              <input
-                type="date"
-                value={startDate}
-                onChange={e => setStartDate(e.target.value)}
-              />
-            </div>
-            <div>
-              <label>Tanggal Akhir:</label>
-              <input
-                type="date"
-                value={endDate}
-                onChange={e => setEndDate(e.target.value)}
-              />
-            </div>
-            <button className="" onClick={handleDownload}>Export</button>
-          </div>
+ 
         </div>
+
 
         <div className="block w-full overflow-x-auto">
           {/* Projects table */}

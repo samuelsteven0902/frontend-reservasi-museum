@@ -1764,16 +1764,16 @@ input[type="range"]::-ms-fill-lower{
 	--tw-border-opacity: 1;
 	border-color: rgba(229, 231, 235, var(--tw-border-opacity));
 } 
+.border-red-300{
+	--tw-border-opacity: 1;
+	border-color: rgba(248, 180, 180, var(--tw-border-opacity));
+} 
 .border-transparent{
 	border-color: transparent;
 } 
 .border-gray-50{
 	--tw-border-opacity: 1;
 	border-color: rgba(249, 250, 251, var(--tw-border-opacity));
-} 
-.border-red-300{
-	--tw-border-opacity: 1;
-	border-color: rgba(248, 180, 180, var(--tw-border-opacity));
 } 
 .border-gray-400{
 	--tw-border-opacity: 1;
@@ -2233,6 +2233,9 @@ input[type="range"]::-ms-fill-lower{
 } 
 .pt-1{
 	padding-top: 0.25rem;
+} 
+.pt-4{
+	padding-top: 1rem;
 } 
 .text-left{
 	text-align: left;
