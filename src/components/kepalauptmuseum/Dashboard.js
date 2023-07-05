@@ -13,7 +13,7 @@ export default function Home() {
         <HeaderStats />
       <div className="flex flex-wrap">
         <div className="w-full mb-10 xl:mb-0 px-4">
-          <CardLineChart />
+          <CardLineChart/>
         </div> 
       </div>
         <DefaultFooterAdmin/>

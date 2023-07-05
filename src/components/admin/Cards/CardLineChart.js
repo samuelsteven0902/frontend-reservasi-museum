@@ -377,19 +377,19 @@ export default function CardLineChart() {
     </div>
 
 :
-<div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-red-400">
+<div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-red-900">
     <div className="rounded-t mb-0 px-4 py-3">
       <div className="flex flex-wrap items-center">
         <div className="relative w-full max-w-full flex-grow flex-1">
           <div className="container relative flex min-w-0 break-words w-full">
-            <h6 className="uppercase text-gray-800 text-xs font-semibold py-2 lg:mt-0">Overview</h6>
+            <h6 className="uppercase text-white text-xs font-semibold py-2 lg:mt-0">UPT Museum Surakarta</h6>
             <div className="w-full lg:order-3 flex lg:justify-end lg:mt-0">
               <button onClick={e=>setResult('day') + console.log(thisDay7)} value="day" className="bg-[#A70B0B] hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-300 px-4 mr-2 rounded-sm font-nunito font-bold text-white">Daily</button>
               <button onClick={e=>setResult('month')} value="month" className="bg-[#A70B0B] hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-300 px-4 mr-2 rounded-sm font-nunito font-bold text-white">Monthly</button>
               <button onClick={e=>setResult('year')} value="year" className=" bg-[#A70B0B] hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-300 px-4 mr-2 rounded-sm font-nunito font-bold text-white">Yearly</button>
             </div>
           </div>
-          <h2 className="text-gray-800 text-xl font-semibold">Grafik Pengunjung</h2>
+          <h2 className="text-white text-xl font-semibold">Grafik Pengunjung</h2>
         </div>
       </div>
     </div>

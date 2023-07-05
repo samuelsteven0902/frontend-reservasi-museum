@@ -13,11 +13,11 @@ export default function Home() {
         <HeaderStatsPembayaran />
       <div className="flex flex-wrap">
         <div className="w-full mb-10 xl:mb-0 px-4">
-          <CardGrafikPendapatan />
+          <CardGrafikPendapatan/>
         </div> 
       </div>
     </div>
-        <DefaultFooterAdmin />
+        <DefaultFooterAdmin/>
     </>
   );
 }

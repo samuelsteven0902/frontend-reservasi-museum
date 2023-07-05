@@ -16,15 +16,32 @@ const [loading,setLoading] = useState(true)
 const [pengunjung,setPengunjung] = useState([])
 //for search bar
 const [searchTerm, setSearchTerm] = useState("")
+const [namaMuseum, setNamaMuseum] = useState('');
+const [startDate, setStartDate] = useState('');
+const [endDate, setEndDate] = useState('');
+
 
 const history = useHistory()
 
 //export excel
 const handleDownload = () => {
+  const queryParams = new URLSearchParams();
+  if (namaMuseum) {
+    queryParams.append('nama_museum', namaMuseum);
+  }
+  if (startDate) {
+    queryParams.append('start_date', startDate);
+  }
+  if (endDate) {
+    queryParams.append('end_date', endDate);
+  }
+
+  const url = `${process.env.REACT_APP_API_ENDPOINT}/api/pengunjungExport?${queryParams.toString()}`;
+
   axios({
-    url: `${process.env.REACT_APP_API_ENDPOINT}/api/pengunjungExport`,
+    url,
     method: 'GET',
-    responseType: 'blob', // important`
+    responseType: 'blob',
   }).then((response) => {
     console.log(response);
     const url = window.URL.createObjectURL(new Blob([response.data]));
@@ -32,11 +49,14 @@ const handleDownload = () => {
     link.href = url;
     const tanggal = new Date(Date.now()).toLocaleString().split(',')[0];
     let filename = 'file-' + tanggal + '.xlsx';
-    link.setAttribute('download', filename); //or any other extension
+    link.setAttribute('download', filename);
     document.body.appendChild(link);
     link.click();
-});
-}
+  }).catch(error => {
+    console.error('Error exporting pengunjung:', error);
+  });
+};
+
 
 //go page tiket
 const handleTiket = (e) =>{
@@ -59,7 +79,6 @@ useEffect(() => {
   });
 }, [])
 
-
 if(loading) {
   var pengunjung_HTMLTABLE =   
     <tr className="bg-white border-b">
@@ -76,25 +95,49 @@ else {
     <>
     <div className="flex">
       {/* search bar */}
-      <div className="my-2 w-80 px-6">
-        <input type='text' className="w-full font-nunito border-none ring-2 ring-red-300 focus:border-none focus:ring-red-500 focus:ring-2 active:border-none rounded-lg"  placeholder="Cari nama, kategori, kota,..." onChange={e=>{setSearchTerm(e.target.value)}} /> 
-      </div>
+
       {/* export excel  */}
-      <div className=" flex justify-end items-center w-full px-6">
+      <div className="flex justify-end items-center w-full px-6 pb-2">
         <button className="bg-green-400 rounded-xl h-7 px-5 text-sm font-nunito text-green-800" onClick={handleDownload}><p className="flex">Unduh Laporan<img src={excel} className='w-4 ml-2' alt="excel"/></p></button>
       </div>
-    </div>
+    </div>   
+    <div className="flex w-full">    
+      <div className="flex my-2 w-80 px-6 pt-4">
+        <input type='text' className="w-full font-nunito border-none ring-2 ring-red-300 focus:border-none focus:ring-red-500 focus:ring-2 active:border-none rounded-lg"  placeholder="Cari kode tiket, nama, kategori, kota,..." onChange={e=>{setSearchTerm(e.target.value)}} /> 
+      </div>
+      <div className="flex w-full justify-end"> 
+        {/* <h3>Export Data Pengunjung</h3> */}
+        <div className='justify-end items-center mx-2'>
+          <label className='block font-nunito font-bold'>Museum:</label>
+            <input className="block font-nunito py-2 px-4 w-28 text-black font-bold hover:bg-red-200 transition-all duration-300 ease-in-out active:bg-red-400 focus:bg-red-400 bg-white text-base z-50 float-left list-none text-left rounded-xl  shadow-none border-red-300 min-w-0 border-2" type="text" value={namaMuseum} onChange={e => setNamaMuseum(e.target.value)}/>
+        </div>
+        <div className='justify-end items-center mx-2'>
+          <label className='block font-nunito font-bold'>Tanggal Mulai:</label>
+          <input className="block font-nunito py-2 px-4 w-28 text-black font-bold hover:bg-red-200 transition-all duration-300 ease-in-out active:bg-red-400 focus:bg-red-400 bg-white text-base z-50 float-left list-none text-left rounded-xl  shadow-none border-red-300 min-w-0 border-2" type="date" value={startDate} onChange={e => setStartDate(e.target.value)}/>
+        </div>
+        <div className='justify-end items-center mx-2'>
+          <label className='block font-nunito font-bold'>Tanggal Akhir:</label>
+          <input className="block font-nunito py-2 px-4 w-28 text-black font-bold hover:bg-red-200 transition-all duration-300 ease-in-out active:bg-red-400 focus:bg-red-400 bg-white text-base z-50 float-left list-none text-left rounded-xl  shadow-none border-red-300 min-w-0 border-2" type="date" value={endDate} onChange={e => setEndDate(e.target.value)}/>
+        </div>
+        <div className="flex justify-end items-center px-6 pt-5">
+          <button className="bg-green-400 rounded-xl h-7 px-5 text-sm font-nunito text-green-800" onClick={handleDownload}><p className='flex'>Export<img src={excel} className='w-4 ml-2' alt="excel"/></p></button>
+        </div>
+      </div>
+      </div>
+
+    
 
     {/* header */}
-    <div className=
-      {"relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded" + (color === "light" ? "bg-white" : "bg-lightBlue-900 text-white")}>
+    <div className= {"relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded" + (color === "light" ? "bg-white" : "bg-lightBlue-900 text-white")}>
         <div className="rounded-t mb-0 px-4 py-3 border-0">
           <div className="flex flex-wrap items-center">
             <div className="relative w-full px-4 max-w-full flex-grow flex-1">
               <h3 className="font-semibold text-lg font-merriweather text-red-600">Data Pengunjung</h3>
             </div>
           </div>
+ 
         </div>
+
 
         <div className="block w-full overflow-x-auto">
           {/* Projects table */}
@@ -104,14 +147,14 @@ else {
                 <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-nunito font-semibold text-left">Kode Tiket</th>
                 <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-nunito font-semibold text-left">Nama</th>
                 <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-nunito font-semibold text-left">Museum</th>
+                <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-nunito font-semibold text-left">Status</th>
+                <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-nunito font-semibold text-left">Kehadiran</th>
                 <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-nunito font-semibold text-left">Kategori</th>
                 <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-nunito font-semibold text-left">Phone</th>
                 <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-nunito font-semibold text-left">Kota</th>
                 <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-nunito font-semibold text-left">Jumlah</th>
                 <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-nunito font-semibold text-left">Harga</th>
                 <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-nunito font-semibold text-left">Pembayaran</th>
-                <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-nunito font-semibold text-left">Status</th>
-                <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-nunito font-semibold text-left">Kehadiran</th>
                 <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-nunito font-semibold text-left">Tanggal Pembayaran</th>
                 <th className="sticky right-0 bg-white text-red-700 px-2">Tiket</th>
               </tr>

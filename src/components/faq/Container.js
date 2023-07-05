@@ -48,7 +48,7 @@ export default function Container({  }) {
                 return val
             }
             else if(val.answer.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            val.question    .toLowerCase().includes(searchTerm.toLowerCase()) )
+            val.question.toLowerCase().includes(searchTerm.toLowerCase()) )
             {
                 return val
             }
