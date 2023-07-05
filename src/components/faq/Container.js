@@ -19,6 +19,8 @@ export default function Container({  }) {
     const [dataFaq,setDataFaq] = React.useState([])
     const [searchTerm, setSearchTerm] = React.useState("")
 
+    var lang = localStorage.getItem("i18nextLng");
+
 
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/show_faq`).then(res=>{
@@ -58,16 +60,21 @@ export default function Container({  }) {
                     aria-controls="panel2a-content"
                     id="panel2a-header"
                     >
-                    <Typography>
-                        <p className='text-2xl p-3 text-black font-nunito'>
-                        <span className='pr-3'>A:</span> {item.answer}
-                        </p>
-                        </Typography>
+                        <Typography>
+                        <p className='text-red-600'><span className='text-2xl px-3 font-nunito'>
+                            Q:</span> 
+                            {lang === 'id' && dataFaq ?item.question:item.question_en}
+                                         </p>
+                    </Typography>
+                   
                     </AccordionSummary>
                     <AccordionDetails>
                     <Typography>
-                        <p className='text-red-600'><span className='text-2xl px-3 font-nunito'>Q:</span> {item.question} </p>
-                    </Typography>
+                        <p className='text-2xl p-3 text-black font-nunito'>
+                        <span className='pr-3'>A:</span>
+                        {lang === 'id' && dataFaq ?item.answer:item.answer_en}
+                        </p>
+                        </Typography>
                     </AccordionDetails>
                 </Accordion>
             )

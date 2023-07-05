@@ -43,6 +43,9 @@ export default function HeaderStats() {
     <h1>Loading</h1>
   }
   else { 
+  if(data === undefined){
+    return ''
+  }
   let bulanLalu = new Date().getFullYear() + '-' + String(new Date().getMonth()).padStart(2, '0')
   let bulanIni = new Date().getFullYear() + '-' + String(new Date().getMonth() + 1).padStart(2, '0')
   const hari = new Date();

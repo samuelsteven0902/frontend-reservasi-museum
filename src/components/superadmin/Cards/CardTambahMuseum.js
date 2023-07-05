@@ -18,38 +18,24 @@ import {Modal, Ripple, initTE,} from "tw-elements";
 function CardTambahMuseum() {
 
 const [loading,setLoading] = useState(true)
-const [loadingMuseum,setLoadingMuseum] = useState(true)
-
-const [semuaHarga,setSemuaHarga] = useState()
 const [idMuseum,setIdMuseum] = useState()
-const [hargaUpdate,sethargaUpdate] = useState([])
-
-const [harga,setHarga] = useState()
-const [namaMuseum, setNamaMuseum] = useState("loading...")
-
 initTE({ Modal, Ripple });
 // select and add new museum
 const [museum, setMuseum] = useState("");
 const [tambahMuseum, setTambahMuseum] = useState("");
-const [museumId, setMuseumId] = useState("");
 
+const [searchTerm, setSearchTerm] = useState("")
 
-const [input,setInput] = useState({
-    museum : museumId,
-    
-})
+const CloseRef = useRef(null);
+const CloseEdit = useRef(null);
 
-const CloseRef = useRef();
-
-const [namaInput, setNamaInput] = useState({
-    namaMuseum : 'Pilih Museum',
-})
 
 
 const fetchMuseum =  ()=>{
     axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/show_museum`).then((res)=>{
         setMuseum(res.data.museum);
         setTambahMuseum("");
+        setLoading(false)
         console.log(res.data.museum);
     }) 
 }
@@ -61,37 +47,16 @@ useEffect(() => {
 
 
 
-const [searchTerm, setSearchTerm] = useState("")
-
-
-
-
-useEffect(() => {
-
-    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/show_museum`)
-        .then(res=>{setSemuaHarga(res.data.harga);console.log(res); 
-            setLoading(false)
-        })
-    
-
-    idMuseum !== undefined &&  axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/edit-museum/${idMuseum}`).then(res=>{
-        console.log(res.data);
-        setNamaMuseum(res.data.museum.nama_museum)
-        setLoadingMuseum(false);
-    })
-    }, [idMuseum])
-
-const handleMuseum = (e) =>{
-    setNamaMuseum('loading data...');
-    setNamaMuseum(e.currentTarget.value)
+const handleMuseum = (e,item) =>{
+    setTambahMuseum(item.nama_museum)
     setIdMuseum(e.target.id)
+    console.log(item);
 
 }
 
 const handleEdit = (e) => {
     e.persist();
-    setNamaMuseum(e.target.value)
-    setHarga({...harga, [e.target.name]: e.target.value });
+    setTambahMuseum(e.target.value)
 }
 
 const updateMuseum = (e) => {
@@ -104,7 +69,7 @@ const updateMuseum = (e) => {
     // const thisClicked = e.currentTarget[5];
     // thisClicked.innerText = "Updating";
     const data = {
-        museum: namaMuseum
+        museum: tambahMuseum
     }
 
     axios.put(`${process.env.REACT_APP_API_ENDPOINT}/api/update-museum/${idMuseum}`, data, {
@@ -117,19 +82,14 @@ const updateMuseum = (e) => {
         {
             fetchMuseum();
             swal("Success",res.data.message,"success")
-            CloseRef.current.click();
-            
+            setTambahMuseum("")
+            CloseEdit.current.click();   
         }
         else if(res.data.status === 205)
         {
             swal("Tidak bisa menambahkan Museum",res.data.message,"info");
         }
     });
-}
-
-// store museum data
-const handleNamaMuseum = (e) =>{
-    console.log(e.currentTarget.value)
 }
 
 
@@ -153,6 +113,7 @@ const storeMuseum = (e) =>{
         {
             fetchMuseum();
             swal("Success",res.data.message,"success")
+            setTambahMuseum("");
             CloseRef.current.click();
             
         }
@@ -203,21 +164,6 @@ console.log(e,id);
     })
 }
 
-function getFirstLetters(str) {
-    const firstLetters = str
-    .split(' ')
-    .map(word => word[0])
-    .join('');
-    return firstLetters;
-}
-
-const rupiah = (number)=>{
-    return new Intl.NumberFormat("id-ID", {
-    //   style: "currency",
-    currency: "IDR"
-    }).format(number);
-}
-
 if(loading)
 {
     var harga_HTMLTABLE = 
@@ -229,7 +175,6 @@ if(loading)
 }
 else
 {
-    var harga_HTMLTABLE = ''
 
     harga_HTMLTABLE = museum.filter(val=>{
         if(searchTerm == "")
@@ -250,7 +195,7 @@ else
                     {item.nama_museum}
                 </td>
                 <td className=" text-gray-900 flex px-6 py-4 whitespace-nowrap">
-                    <button type="button" className="text-white ml-4 bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded text-sm px-4 py-1.5 flex text-center mr-2 mb-2 align-middle items-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 " data-te-toggle="modal" id={item.id} data-te-target="#EditMuseum" onClick={handleMuseum}>
+                    <button type="button" className="text-white ml-4 bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded text-sm px-4 py-1.5 flex text-center mr-2 mb-2 align-middle items-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 " data-te-toggle="modal" id={item.id} data-te-target="#EditMuseum" onClick={(e)=>handleMuseum(e,item)}>
                     <BiPencil className="mr-1"/>Edit</button>
                     <button type="button" className="text-white ml-4 bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded text-sm px-4 py-1.5 flex text-center mr-2 mb-2 items-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900" onClick={e=>deleteMuseum(e,item.id)}>
                     <BiTrash className="mr-1"/>Hapus</button>
@@ -299,39 +244,14 @@ return (
                             <h5 className="text-xl font-nunito font-semibold leading-normal text-gray-800" id="EditMuseumLabel">
                             Edit Museum
                             </h5>
-                            <button type="button"
+                            <button 
+                            type="button"
                             className="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"
-                            data-te-modal-dismiss="modal" aria-label="Close" ref={CloseRef}></button>
+                            data-te-modal-dismiss="modal" 
+                            ref={CloseEdit}
+                            ></button>
                         </div>
-                        {loadingMuseum?
-                        
-                        <form onSubmit={updateMuseum} >
-                                <div className="modal-body relative p-4">
-                                    <div className='justify-around md:mt-0 mt-8'>    
-                                        <div className="w-96 mb-4 mx-auto md:mt-0 mt-8">
-                                            <label className="block text-gray-700 text-sm font-nunito font-semibold mb-2" htmlFor="nama_kategori">
-                                                Nama Museum
-                                            </label>
-                                            <input 
-                                            value="loading data..."
-                                            name='nama_kategori'  className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="nama_kategori" type="text" onChange={e=>setTambahMuseum(e.target.value)}/>
-                                            <span className="text-sm text-red-500"></span>
-                                        </div>
-                                    </div>
-                                </div>
-        
-                                <div className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
-                                    <button type="button" className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
-                                    data-te-modal-dismiss="modal" ref={CloseRef}>
-                                    Tutup
-                                    </button>
-                                    <button type="submit"
-                                    className="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out ml-1">
-                                    Edit Museum
-                                    </button>
-                                </div>
-                        </form> 
-                        :
+                       
                         
                         <form onSubmit={updateMuseum} >
                                 <div className="modal-body relative p-4">
@@ -342,7 +262,7 @@ return (
                                             </label>
                                             <input  onChange={handleEdit}
                                             name='nama_kategori'  className="shadow appearance-none border rounded-full w-72 sm:w-full mx-auto py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="nama_kategori" type="text" 
-                                            value={namaMuseum}/>
+                                            value={tambahMuseum}/>
                                             <span className="text-sm text-red-500"></span>
                                         </div>
                                     </div>
@@ -352,8 +272,8 @@ return (
                                     className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
                                     <button type="button"
                                     className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
-                                    data-te-modal-dismiss="modal" aria-label="Close"
-                                    ref={CloseRef} >
+                                    data-te-modal-dismiss="modal" 
+                                    ref={CloseEdit} >
                                     Tutup
                                     </button>
                                     <button type="submit"
@@ -361,7 +281,7 @@ return (
                                     Edit Museum
                                     </button>
                                 </div>
-                        </form> }
+                        </form> 
                         </div>
                     </div>
                     </div>

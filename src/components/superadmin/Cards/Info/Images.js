@@ -27,7 +27,7 @@ export default class Images extends Component {
       .then((willDelete) => {
       if (willDelete) {
 
-          axios.delete(`${process.env.REACT_APP_API_ENDPOINT}/api/delete-image/${id}`).then(res=>{
+          axios.delete(`${process.env.REACT_APP_API_ENDPOINT}/api/delete_files/${id}`).then(res=>{
               if(res.data.status === 200)
               {
                   // console.log('berhasil delet');

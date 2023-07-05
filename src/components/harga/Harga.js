@@ -24,8 +24,9 @@ function Harga() {
 
     const fetchData = () =>
     {
-    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/show_harga`).then(res=>{
-        setDataHarga(res.data.harga)
+    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/show_kategori`).then(res=>{
+        setDataHarga(res.data.kategori)
+        console.log(res);
     })
     }
 

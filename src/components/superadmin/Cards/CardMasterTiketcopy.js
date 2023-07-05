@@ -12,14 +12,9 @@ function CardMasterTiketcopy() {
 
 // loading harga
 const [loading,setLoading] = useState(true)
-const [loadingHarga,setLoadingHarga] = useState(true)
 
 //modal
 const [semuaHarga,setSemuaHarga] = useState([])
-const [idHarga,setIdHarga] = useState()
-const [hargaUpdate,sethargaUpdate] = useState([])
-const [harga,setHarga] = useState()
-const [itemOffset, setItemOffset] = useState(0);
 
 initTE({ Modal, Ripple });
 // select and add new museum
@@ -28,15 +23,13 @@ const [museumId, setMuseumId] = useState("");
 
 // close
 const CloseRef = useRef(null);
+const CloseEdit = useRef(null);
 
 const [input,setInput] = useState({
     museum : museumId,
     
 })
 
-const tutupModal = () => {
-    CloseRef.current.style.display = 'none';
-  };
 
 const [namaInput, setNamaInput] = useState({
     namaMuseum : 'Pilih Museum',
@@ -79,26 +72,17 @@ const fetchHarga = () =>{
 
 useEffect(() => {
     fetchHarga();
-    if (loadingHarga === true)
-    {
-        idHarga !== undefined &&  axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/edit_kategori/${idHarga}`).then(res=>{
-            setHarga(res.data.kategori[0]);
-            console.log(res.data.kategori[0]);
-            setLoadingHarga(false);
-        })
-    }
-    }, [loadingHarga,idHarga,harga])
+    }, [])
 
-const handleHarga = (e) =>{
-    setLoadingHarga(true)
-    setIdHarga(e.target.id)
-    console.log(harga);
+const handleHarga = (e,item) =>{
+    setTambahMuseum(item)
+    console.log(item);
 }
 
 const handleInput = (e) => {
     e.persist();
     console.log(e.target.value);
-    setHarga({...harga, [e.target.name]: e.target.value });
+    setTambahMuseum({...tambahMuseum, [e.target.name]: e.target.value });
 }
 
 const updateHarga = (e) => {
@@ -106,16 +90,16 @@ const updateHarga = (e) => {
     const thisClicked = e.currentTarget[5];
     thisClicked.innerText = "Updating";
     const data = {
-        nama_kategori:harga.nama_kategori,
-        nama_kategori_en:harga.nama_kategori_en,
-        hari_biasa: harga.hari_biasa,
-        hari_libur: harga.hari_libur,
-        min: harga.min,
-        max: harga.max,
+        nama_kategori:tambahMuseum.nama_kategori,
+        nama_kategori_en:tambahMuseum.nama_kategori_en,
+        hari_biasa: tambahMuseum.hari_biasa,
+        hari_libur: tambahMuseum.hari_libur,
+        min: tambahMuseum.min,
+        max: tambahMuseum.max,
     }
 
 
-    axios.put(`${process.env.REACT_APP_API_ENDPOINT}/api/update_kategori/${idHarga}`, data, {
+    axios.put(`${process.env.REACT_APP_API_ENDPOINT}/api/update_kategori/${tambahMuseum.id}`, data, {
         headers : {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
@@ -125,7 +109,16 @@ const updateHarga = (e) => {
         if(res.data.status === 200){
             fetchHarga();
             thisClicked.innerText = "Close"
-            CloseRef.current.click();
+            CloseEdit.current.click();
+            setTambahMuseum({
+                id_museum : '',
+                nama_kategori : '',
+                nama_kategori_en : '',
+                hari_biasa : '',
+                hari_libur : '',
+                min : '',
+                max : '',
+            })
             swal("Success",res.data.message,"success")
         }
         else if(res.data.status === 422){
@@ -171,6 +164,15 @@ const storeMuseum = (e) => {
             console.log('berhasil');
             swal("Success",res.data.message,"success")
             thisClicked.innerText = "Close";
+            setTambahMuseum({
+                id_museum : '',
+                nama_kategori : '',
+                nama_kategori_en : '',
+                hari_biasa : '',
+                hari_libur : '',
+                min : '',
+                max : '',
+            })
             CloseRef.current.click();
             fetchHarga();
         }
@@ -194,9 +196,8 @@ if(loading) {
                     </tr>
 }
 else {
-    htmlKategori = <PaginationTiketNew data={semuaHarga} searchTerm={searchTerm} fetchHarga={fetchHarga} updateHarga={(data)=>handleHarga(data)}  />
+    htmlKategori = <PaginationTiketNew data={semuaHarga} searchTerm={searchTerm} fetchHarga={fetchHarga} updateHarga={(e,item)=>handleHarga(e,item)}  />
 }
-console.log(harga)
 
 return (
     <div className='container relative flex flex-col min-w-0 break-words w-full mb-6 rounded'>
@@ -231,69 +232,11 @@ return (
                             <div className="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto my-auto bg-white bg-clip-padding rounded-md outline-none text-current">
                                 <div className="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
                                     <h5 className="text-xl font-medium leading-normal text-gray-800" id="exampleModalCenteredScrollableLabel">Update Kategori</h5>
-                                    <button type="button" className="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline" data-te-modal-dismiss="modal" aria-label="Close" ref={CloseRef}></button>
+                                    <button type="button" className="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline" data-te-modal-dismiss="modal" aria-label="Close" ref={CloseEdit}></button>
                                 </div>
                                 {/* loading modal update*/}
                                 <div data-te-modal-body-ref>
-                                {loadingHarga?
-                                <form onSubmit={updateHarga}>
-                                    <div className="modal-body relative p-4">
-                                        <div className='justify-around md:mt-0 mt-8'>    
-                                            <div className="w-96 mb-4 mx-auto">
-                                                <div role="status" class="max-w-sm animate-pulse">
-                                                    <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
-                                                    <input name='id_museum' className="shadow appearance-none cursor-not-allowed border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="id_museum" type="text" value="Loading Nama Museum..." disabled={true}/>
-                                                    <span className="text-sm text-red-500"></span>
-                                                </div>
-                                            </div>
-                                            <div className="w-96 mb-4 mx-auto md:mt-0 mt-8 flex">
-                                                <div role="status" class="max-w-sm animate-pulse w-1/2 pr-3">
-                                                    <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
-                                                    <input name='nama_kategori' className="shadow appearance-none cursor-not-allowed border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="nama_kategori" type="text" value="Loading Nama Kategori..." disabled={true}/>
-                                                    <span className="text-sm text-red-500"></span>
-                                                </div>
-                                                <div role="status" class="max-w-sm animate-pulse w-1/2 pr-3">
-                                                    <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
-                                                    <input name='nama_kategori_en' className="shadow appearance-none cursor-not-allowed border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="nama_kategori_en" type="text" value="Loading Category Name (English)..." disabled={true}/>
-                                                    <span className="text-sm text-red-500"></span>
-                                                </div>
-                                            </div>
-                                            <div className="w-96 mb-4 mx-auto md:mt-0 mt-8">
-                                                <div role="status" class="max-w-sm animate-pulse">
-                                                    <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
-                                                    <input name='hari_biasa' className="shadow appearance-none cursor-not-allowed border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="hari_biasa" type="text" value="Loading Hari Biasa..." />
-                                                    <span className="text-sm text-red-500"></span>
-                                                </div>
-                                            </div>
-                                            <div className="w-96 mb-4 mx-auto md:mt-0 mt-8">
-                                                <div role="status" class="max-w-sm animate-pulse">
-                                                    <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
-                                                    <input name='hari_libur' className="shadow appearance-none cursor-not-allowed border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="hari_libur" type="text" value="Loading Hari Libur..." />
-                                                    <span className="text-sm text-red-500"></span>
-                                                </div>
-                                            </div>
-                                            <div className="w-96 mb-4 mx-auto md:mt-0 mt-8 flex">
-                                                <div role="status" class="max-w-sm animate-pulse w-1/2 pr-3">
-                                                    <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
-                                                    <input name='min' className="shadow appearance-none cursor-not-allowed border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="min" type="text" value="Loading Min..." disabled={true}/>
-                                                    <span className="text-sm text-red-500"></span>
-                                                </div>
-                                                <div role="status" class="max-w-sm animate-pulse w-1/2 pr-3">
-                                                    <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
-                                                    <input name='max' className="shadow appearance-none cursor-not-allowed border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="max" type="text" value="Loading Max..." disabled={true}/>
-                                                    <span className="text-sm text-red-500"></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
-                                        <button ref={CloseRef} type="button" className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" data-te-modal-dismiss="modal" aria-label="Close" 
-                                        
-                                        >Tutup</button>
-                                        <button type="submit" className="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out ml-1" id="idSave">Simpan Perubahan</button>
-                                    </div>
-                                </form>
-                                :
+                               
 
                                 <form onSubmit={updateHarga}>
                                 {/* modal update kategori */}
@@ -301,50 +244,50 @@ return (
                                     <div className='justify-around md:mt-z0 mt-8'>    
                                         <div className="w-96 mb-4 mx-auto">
                                             <label className="block text-gray-700 text-sm font-bold mb-2" for="id_museum">Nama Museum</label>
-                                            <input name='id_museum' className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline cursor-not-allowed bg-gray-200" id="id_museum" type="text" value={harga.nama_museum} disabled={true}/>
+                                            <input name='id_museum' className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline cursor-not-allowed bg-gray-200" id="id_museum" type="text" value={tambahMuseum.nama_museum} disabled={true}/>
                                             <span className="text-sm text-red-500"></span>
                                         </div>
                                         <div className="w-96 mb-4 mx-auto md:mt-0 mt-8 flex">
                                             <div className="w-1/2 pr-3">
                                                 <label className="block text-gray-700 text-sm font-bold mb-2" for="nama_kategori">Nama Kategori</label>
-                                                <input name='nama_kategori' onChange={handleInput} className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="nama_kategori" type="text" value={harga.nama_kategori}/>
+                                                <input name='nama_kategori' onChange={handleInput} className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="nama_kategori" type="text" value={tambahMuseum.nama_kategori}/>
                                                 <span className="text-sm text-red-500"></span>
                                             </div>
                                             <div className="w-1/2">
                                                 <label className="block text-gray-700 text-sm font-bold mb-2" for="nama_kategori_en">Category Name (Inggris)</label>
-                                                <input name='nama_kategori_en' onChange={handleInput} className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="nama_kategori_en" type="text" value={harga.nama_kategori_en}/>
+                                                <input name='nama_kategori_en' onChange={handleInput} className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="nama_kategori_en" type="text" value={tambahMuseum.nama_kategori_en}/>
                                                 <span className="text-sm text-red-500"></span>
                                             </div>
                                         </div>
                                         <div className="w-96 mb-4 mx-auto md:mt-0 mt-8">
-                                            <label className="block text-gray-700 text-sm font-bold mb-2" for="hari_biasa">Harga Hari Biasa</label>
-                                            <input name='hari_biasa' onChange={handleInput} className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="hari_biasa" type="number" value={harga.hari_biasa} />
+                                            <label className="block text-gray-700 text-sm font-bold mb-2" for="hari_biasa"> Hari Biasa</label>
+                                            <input name='hari_biasa' onChange={handleInput} className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="hari_biasa" type="number" value={tambahMuseum.hari_biasa} />
                                             <span className="text-sm text-red-500"></span>
                                         </div>
                                         <div className="w-96 mb-4  mx-auto md:mt-0 mt-8">
                                             <label className="block text-gray-700 text-sm font-bold mb-2" for="hari_libur">Hari Libur</label>
-                                            <input name='hari_libur' onChange={handleInput} className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="hari_libur" type="number" value={harga.hari_libur} />
+                                            <input name='hari_libur' onChange={handleInput} className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="hari_libur" type="number" value={tambahMuseum.hari_libur} />
                                             <span className="text-sm text-red-500"></span>
                                         </div>
                                         <div className="w-96 mb-4 flex justify-around mx-auto md:mt-0 mt-8">
                                             <div className="w-2/5">
                                             <label className="w-3/4 block text-gray-700 text-sm font-bold mb-2" for="min">Minimal</label>
-                                                <input name='min' className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="min" type="number" onChange={handleInput} value={harga.min}/>
+                                                <input name='min' className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="min" type="number" onChange={handleInput} value={tambahMuseum.min}/>
                                                 <span className="text-sm text-red-500"></span>
                                             </div>
                                             <div className="w-2/5">
                                                 <label className="block text-gray-700 text-sm font-bold mb-2" for="max">Maksimal</label>
-                                                <input name='max' className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="max" type="number" onChange={handleInput} value={harga.max}/>
+                                                <input name='max' className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="max" type="number" onChange={handleInput} value={tambahMuseum.max}/>
                                                 <span className="text-sm text-red-500"></span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
-                                    <button type="button" ref={CloseRef} className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" data-te-modal-dismiss="modal" aria-label="Close"  >Close</button>
+                                    <button type="button" ref={CloseEdit} className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" data-te-modal-dismiss="modal" aria-label="Close"  >Close</button>
                                     <button type="submit" className="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out ml-1">Save changes</button>
                                 </div>
-                                </form>}
+                                </form>
                                 </div>
                             </div>
                         </div>
@@ -358,13 +301,14 @@ return (
 
         {/* button tambah kategori */}
         <button type="button" class="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out"  data-te-toggle="modal" data-te-target="#modaltambahMuseum">Tambah Kategori</button>
+        
             <div data-te-modal-init className="modal fade fixed bg-gray-300 sm:p-32 sm:px-52 items-center m-auto w-screen bg-opacity-60 top-0 left-0 hidden h-screen outline-none overflow-x-hidden overflow-y-auto z-[1055]" id="modaltambahMuseum" tabIndex="-1" aria-labelledby="Tambahmuseumlabel" aria-hidden="true" >
                 <div data-te-modal-dialog-ref className="modal-dialog w-full h-full my-auto modal-dialog-centered modal-dialog-scrollable relative items-center pointer-events-none px-40">
                     <div className="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto my-auto bg-white bg-clip-padding rounded-md outline-none text-current">
                         <div className="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md"
                         id="Tambahmuseumlabel">
                             <h5 className="text-xl font-medium leading-normal text-gray-800">Tambah Kategori</h5>
-                            <button type="button" ref={CloseRef} className="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline" data-te-modal-dismiss="modal" aria-label="Close" ></button>
+                            <button type="button" className="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline" data-te-modal-dismiss="modal" ref={CloseRef} ></button>
                         </div>
 
                         {/* tabel master tiket */}
@@ -428,7 +372,7 @@ return (
                                 </div>
                                 <div className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
                                     <button type="button" className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
-                                    data-te-modal-dismiss="modal" aria-label="Close" ref={CloseRef}>Close</button>
+                                    data-te-modal-dismiss="modal" ref={CloseRef} >Close</button>
                                     <button type="submit"className="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out ml-1">Save Changes</button>
                                 </div>
                             </form> 

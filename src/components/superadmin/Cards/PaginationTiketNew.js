@@ -71,16 +71,16 @@ const rupiah = (number)=>{
   }
 
   const [itemOffset, setItemOffset] = useState(0);
-  const itemsPerPage = 6 ;
+    const itemsPerPage = 6 ;
 
-  const endOffset = itemOffset + itemsPerPage;
-  const currentItems = dataTiket[0][1].slice(itemOffset, endOffset);
+    const endOffset = itemOffset + itemsPerPage;
+    const currentItems = dataTiket[0][1].slice(itemOffset, endOffset);
 
-  //jumlah halaman tanpa search
-  var pageCount = 0;
+    //jumlah halaman tanpa search
+    var pageCount = 0;
 
-  const handlePageClick = (event) => {
-    const newOffset = (event.selected * itemsPerPage) % dataTiket[0][1]
+    const handlePageClick = (event) => {
+      const newOffset = (event.selected * itemsPerPage) % dataTiket[0][1]
     .filter(val=>{
       if(searchTerm === ""){
           return val
@@ -119,7 +119,7 @@ const rupiah = (number)=>{
               <td className=" text-gray-900 px-6 py-4 whitespace-nowrap">{item.min}</td>
               <td className=" text-gray-900 px-6 py-4 whitespace-nowrap">{item.max}</td>
               <td className=" text-gray-900 px-6 py-4 whitespace-nowrap">
-                <button type="button" className="text-white ml-4 bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded text-sm px-6 py-1.5 flex text-center mr-2 mb-2 align-middle items-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900" data-te-toggle="modal" id={item.id} data-te-target="#exampleModalCenteredScrollable" onClick={props.updateHarga}> <BiPencil className="mr-1"/>Edit</button>
+                <button type="button" className="text-white ml-4 bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded text-sm px-6 py-1.5 flex text-center mr-2 mb-2 align-middle items-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900" data-te-toggle="modal" id={item.id} data-te-target="#exampleModalCenteredScrollable" onClick={(e)=>props.updateHarga(e,item)}> <BiPencil className="mr-1"/>Edit</button>
                 <button type="button" className="text-white ml-4 bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded text-sm px-4 py-1.5 flex text-center mr-2 mb-2 items-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"onClick={(e) => deleteKategori(e, item.id)}> <BiTrash className="mr-1"/>Hapus</button>
               </td>
             </tr>
@@ -152,7 +152,7 @@ const rupiah = (number)=>{
               <td className=" text-gray-900 px-6 py-4 whitespace-nowrap">{item.min}</td>
               <td className=" text-gray-900 px-6 py-4 whitespace-nowrap">{item.max}</td>
                 <td className=" text-gray-900 px-6 py-4 whitespace-nowrap">
-                  <button type="button" className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" data-te-toggle="modal" id={item.id} data-te-target="#exampleModalCenteredScrollable" onClick={props.updateHarga}>Edit</button>
+                  <button type="button" className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" data-te-toggle="modal" id={item.id} data-te-target="#4" onClick={(e)=>props.updateHarga(e,item)}>Edit</button>
                   <button type="button" className="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-ou" onClick={(e) => deleteKategori(e, item.id)}>Hapus</button>
                 </td>
               </tr>
