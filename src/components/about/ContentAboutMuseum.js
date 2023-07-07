@@ -83,15 +83,6 @@ function ContentAboutMuseum(input) {
           <hr className='h-1 bg-red-300 w-1/3 flex mx-auto'/>
             <div className=' justify-center' data-aos="fade-up" data-aos-duration="750">
               {html_about}
-              {images && images.length > 0 ? (
-                images.map((image) => (
-                <div className="w-1/3 flex items-start mt-3" key={image.id}>
-                  <img src={`${process.env.REACT_APP_API_ENDPOINT}/uploads/` + image.nama_gambar} className="img-fluid img-bordered"  width="200px" alt=''/>
-                </div>
-                ))
-              ) 
-              : 
-              (<h6 className="text-danger text-center">No Image Found</h6>)}
               <> 
               <div class="carousel-inner relative bg-center bg-cover overflow-hidden justify-center items-center mx-auto w-11/12 h-[26rem] mb-40 rounded-[2rem]">
                 <div className='max-w-[1400px] h-[780px] w-full m-auto py-20 px-4 relative group'>

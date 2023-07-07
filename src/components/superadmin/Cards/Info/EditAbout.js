@@ -33,54 +33,59 @@ function EditAbout(props) {
     });
   
     const handleChange = (e) => {
-      const imagesArray = [];
-      let isValid = "";
-  
-      for (let i = 0; i < e.target.files.length; i++) {
-        isValid = fileValidate(e.target.files[i]);
-        imagesArray.push(e.target.files[i]);
+      const file = e.target.files[0];
+      const isValid = fileValidate(file);
+      if (isValid) {
+        setImage(file);
+        console.log(file);
       }
-      setImage(imagesArray);
-      console.log(image);
     };
+    
   
     const submitHandler = (e) => {
       e.preventDefault();
-      const data = new FormData();
-      for (let i = 0; i < image.length; i++) {
-        data.append("images[]", image[i]);
-        console.log(image);
+      if(images.length >= 3 ){
+        return  swal({
+          title: "Gagal Menambahkan!",
+          text: "Maksimal gambar hanya 3!",
+          icon: "warning",
+          dangerMode: true,
+        })
       }
-      console.log(data);
-      axios
-        .post(`${process.env.REACT_APP_API_ENDPOINT}/api/upload_gambar_museum/${museumId}`, data, {
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-            Authorization: `Bearer ${Cookies.get("token")}`,
-          },
-        })
-        .then((response) => {
-          if (response.status === 200) {
-            setResponseMsg({
-              status: response.data.status,
-              message: response.data.message,
-            });
-          getImages();
-            setTimeout(() => {
-              setImage("");
-              setResponseMsg("");
-              console.log(image);
-            }, 100000);
-            document.querySelector("#imageForm").reset();
-            // getting uploaded images
-            // childRef.getImages();
-          }
-        })
-        .catch((error) => {
-          console.error(error);
-        });
+
+      if (image) {
+        const data = new FormData();
+        data.append("image", image);
+        console.log(data);
+        axios
+          .post(`${process.env.REACT_APP_API_ENDPOINT}/api/upload_gambar_museum/${museumId}`, data, {
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+              Authorization: `Bearer ${Cookies.get("token")}`,
+            },
+          })
+          .then((response) => {
+            if (response.status === 200) {
+              setResponseMsg({
+                status: response.data.status,
+                message: response.data.message,
+              });
+              getImages();
+              setTimeout(() => {
+                setImage("");
+                setResponseMsg("");
+                console.log(image);
+              }, 100000);
+              document.querySelector("#imageForm").reset();
+            }
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      }
     };
+    
   
     const fileValidate = (file) => {
       if (
@@ -101,56 +106,6 @@ function EditAbout(props) {
       }
     };
 
-    // const handleSubmit = (e) =>{
-    //   e.preventDefault();
-    //   if(jumlahGambar <= 2 )
-    //   {
-    //     const data = new FormData();
-    //   for (let i = 0; i < gambar.length; i++) {
-    //     data.append("images[]", gambar[i]);
-    //   }
-    //   console.log(gambar);
-    //   // console.log(data);
-    //   axios.post(`${process.env.REACT_APP_API_ENDPOINT}/api/upload_slider`, data, {
-    //     headers : {
-    //       'Content-Type': 'application/json',
-    //       'Accept': 'application/json',
-    //       Authorization: `Bearer ${Cookies.get('token')}`,
-    //     }})
-    //     .then((response) => {
-    //       if (response.status === 200) {
-    //         setResponseMsg({
-    //             status: response.data.status,
-    //             message: response.data.message,
-    //         });
-    //         if(response.data.status === "successs")
-    //         {
-    //         swal("Success",response.data.message,"success")
-    //         }
-    //         else
-    //         {
-    //           swal("error",response.data.message,"error")
-    //         }
-    
-    //         CloseRef.current.click();
-    //         setTimeout(() => {
-    //           setGambar("");
-    //           setResponseMsg("");
-    //         }, 100000);
-    //         document.querySelector("#imageForm").reset();
-    //       }
-    //     })
-    //     .catch((error) => {
-    //       console.error(error);
-    //     });
-    //   }
-    //   else
-    //   {
-    //     swal("Maksimal (3) Gambar","Hapus Gambar terlebih dahulu","error")
-    //     CloseRef.current.click();
-    //   }
-    // }
-
         const [images, setImages] = useState([]);
       
         useEffect(() => {
@@ -162,14 +117,15 @@ function EditAbout(props) {
             .post(`${process.env.REACT_APP_API_ENDPOINT}/api/show_gambar_museum/${museumId}`)
             .then((response) => {
               if (response.status === 200) {
-                setImages(response.data.data);
-                console.log(response.data);
+                setImages(response.data.data); // Assuming the array of images is stored in the 'images' property of the response data
+                console.log(response.data.data.length);
               }
             })
             .catch((error) => {
               console.error(error);
             });
         };
+        
 
         const deleteFile = (e, id) => {
           // e.preventDefault();
@@ -346,7 +302,6 @@ function EditAbout(props) {
                       <input
                         type="file"
                         name="image"
-                        multiple
                         onChange={handleChange}
                         className="rounded-xl bg-gray-200 mt-10 w-full"
                       />
@@ -393,7 +348,7 @@ function EditAbout(props) {
                             />
                             <button
                             className="bg-red-500 w-7 h-7 rounded-full text-white hover:bg-red-300"
-                            onClick={(e) => deleteFile(image.id, e)}
+                            onClick={(e) => deleteFile(e,image.id)}
                             >
                             X
                             </button>

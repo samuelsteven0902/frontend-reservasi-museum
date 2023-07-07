@@ -6,7 +6,6 @@ import { GrFormView } from 'react-icons/gr';
 
 function PaginationDataPengunjung(props) {
   const searchTerm = props.searchTerm
-  console.log(props);
   const [dataPengunjung, setDataPengunjung] = useState(Object.entries(props));
   console.log(props);
 

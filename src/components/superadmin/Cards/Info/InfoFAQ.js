@@ -34,6 +34,7 @@ const [loading,setLoading] = useState(true)
 const [loadingFAQ,setLoadingFAQ] = useState(true)
 
 const CloseRef = useRef();
+const CloseEdit = useRef();
 
 
     const fetchFaq = () =>{
@@ -56,12 +57,17 @@ const handleInput = (e) => {
     setFAQ({...faq, [e.target.name]: e.target.value });
 }
 
+const handleInputEdit = (e) => {
+    e.persist();
+    setEditFAQ({...editFAQ, [e.target.name]: e.target.value });
+}
+
 const handleInputTambahFAQ = (e) =>{
     e.persist();
     setTambahFAQ({...tambahFAQ, [e.target.name]: e.target.value });
 }
 
-console.log(tambahFAQ);
+console.log(editFAQ);
 
 if(loading){
     var faq_HTMLTABLE =   
@@ -103,11 +109,13 @@ const updateFAQ = (e) =>{
     const thisClicked = e.target[3];
     thisClicked.innerText = "Updating";
     const data = {
-        question: faq.question,
-        answer: faq.answer,
+        question: editFAQ.question,
+        answer: editFAQ.answer,
+        question_en: editFAQ.question_en,
+        answer_en: editFAQ.answer_en,
     }
 
-axios.put(`${process.env.REACT_APP_API_ENDPOINT}/api/update_faq/${idFAQ}`, data, {
+axios.put(`${process.env.REACT_APP_API_ENDPOINT}/api/update_faq/${editFAQ.id}`, data, {
     headers : {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
@@ -117,7 +125,7 @@ axios.put(`${process.env.REACT_APP_API_ENDPOINT}/api/update_faq/${idFAQ}`, data,
     {
         swal("Success",res.data.message,"success")
         fetchFaq();
-        CloseRef.current.click();
+        CloseEdit.current.click();
         thisClicked.innerText = "Simpan Perubahan";
 
         }
@@ -231,12 +239,12 @@ return (
           <div className='justify-around md:mt-0 mt-8'>
             <div className="w-96 mb-4 mx-auto">
               <label className="block text-gray-700 text-sm font-nunito font-semibold mb-2" for="username">Pertanyaan</label>
-              <textarea name='question' onChange={handleInput} className="shadow appearance-none border rounded w-72 sm:w-full mx-auto text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-gray-100" type="text" value={editFAQ.question} />
+              <textarea name='question' onChange={handleInputEdit} className="shadow appearance-none border rounded w-72 sm:w-full mx-auto text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-gray-100" type="text" value={editFAQ.question} />
               <span className="text-sm text-red-500"></span>
             </div>
             <div className="w-96 mb-4  mx-auto md:mt-0 mt-8">
               <label className="block text-gray-700 text-sm font-nunito font-semibold mb-2" for="username">Jawaban</label>
-              <textarea name='answer' onChange={handleInput} className="shadow appearance-none bg-gray-100 border rounded w-72 sm:w-full mx-auto text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" value={editFAQ.answer} />
+              <textarea name='answer' onChange={handleInputEdit} className="shadow appearance-none bg-gray-100 border rounded w-72 sm:w-full mx-auto text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" value={editFAQ.answer} />
               <span className="text-sm text-red-500"></span>
             </div>
           </div>
@@ -244,18 +252,18 @@ return (
           <div className='justify-around md:mt-0 mt-8'>
             <div className="w-96 mb-4 mx-auto">
               <label className="block text-gray-700 text-sm font-nunito font-semibold mb-2" for="username">Questions</label>
-              <textarea name='question' onChange={handleInput} className="shadow appearance-none border rounded w-72 sm:w-full mx-auto text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-gray-100" type="text" value={editFAQ.question_en} />
+              <textarea name='question_en' onChange={handleInputEdit} className="shadow appearance-none border rounded w-72 sm:w-full mx-auto text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-gray-100" type="text" value={editFAQ.question_en} />
               <span className="text-sm text-red-500"></span>
             </div>
             <div className="w-96 mb-4  mx-auto md:mt-0 mt-8">
               <label className="block text-gray-700 text-sm font-nunito font-semibold mb-2" for="username">Answer</label>
-              <textarea name='answer' onChange={handleInput} className="shadow appearance-none bg-gray-100 border rounded w-72 sm:w-full mx-auto text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" value={editFAQ.answer_en} />
+              <textarea name='answer_en' onChange={handleInputEdit} className="shadow appearance-none bg-gray-100 border rounded w-72 sm:w-full mx-auto text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" value={editFAQ.answer_en} />
               <span className="text-sm text-red-500"></span>
             </div>
           </div>
         </div>
         <div className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
-          <button type="button" className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" data-te-modal-dismiss="modal" ref={CloseRef}>Tutup</button>
+          <button type="button" className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" data-te-modal-dismiss="modal" ref={CloseEdit}>Tutup</button>
           <button type="submit" className="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out ml-1" id="idSave">Simpan Perubahan</button>
         </div>
       </form>
