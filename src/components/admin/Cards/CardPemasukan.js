@@ -132,8 +132,6 @@ const handleDownload = () => {
       <div className="my-2 w-72 pt-4">
         <input type='text' className="w-full font-nunito border-none ring-2 ring-red-300 focus:border-none focus:ring-red-500 focus:ring-2 active:border-none rounded-lg"  placeholder="Cari berdasarkan tanggal, nama admin, pengunjung, dan pemasukan..." onChange={e=>{setSearchTerm(e.target.value)}} /> 
       </div>              
-       
-        
         <button
           type="button"
           class="bg-green-400 rounded-xl px-6 py-3 h-modal text-sm font-nunito text-white flex items-center"
@@ -222,7 +220,7 @@ const handleDownload = () => {
         <h5
           class="text-xl font-medium leading-normal text-red-800 dark:text-red-200"
           id="exampleModalScrollableLabel">
-          Export Data Pengunjung
+          Export Data Pemasukan
         </h5>
         <button
           type="button"

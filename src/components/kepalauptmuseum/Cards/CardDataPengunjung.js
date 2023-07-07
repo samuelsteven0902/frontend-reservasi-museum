@@ -1,13 +1,24 @@
 import React, { useEffect, useState, } from "react";
 import ReactLoading from 'react-loading';
-import { GrFormView } from 'react-icons/gr';
 import PaginationDataPengunjung from './PaginationDataPengunjung';
+import Box from '@mui/material/Box';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import { createPopper } from "@popperjs/core";
+import {BiDownArrow} from 'react-icons/bi'
 
 // components
 import axios from "axios";
 import excel from "../../../assets/img/admin/excel.png"
 import { useHistory } from 'react-router-dom';
 import Cookies from 'js-cookie';
+import {
+  Modal,
+  Ripple,
+  initTE,
+} from "tw-elements";
 
 export default function CardDataPengunjung ({ color }) {
 
@@ -16,10 +27,12 @@ const [loading,setLoading] = useState(true)
 const [pengunjung,setPengunjung] = useState([])
 //for search bar
 const [searchTerm, setSearchTerm] = useState("")
-const [namaMuseum, setNamaMuseum] = useState('');
+const [semuaMuseum, setSemuaMuseum] = useState('');
+const [namaMuseum,setNamaMuseum] = useState([])
+const [namaMuseumSelected,setNamaMuseumSelected] = useState('Semua Museum')
+
 const [startDate, setStartDate] = useState('');
 const [endDate, setEndDate] = useState('');
-
 
 const history = useHistory()
 
@@ -73,11 +86,38 @@ useEffect(() => {
     }}).then(res=>{
     console.log(res);  
     if(res.status === 200) {
-        setPengunjung(res.data.pengunjung)
+        const dataPengunjung = res.data.pengunjung
+        setPengunjung(dataPengunjung)
+        setSemuaMuseum([...new Set(dataPengunjung.map(pengunjung => pengunjung.museum))])
         setLoading(false);
       }
   });
+  initTE({ Modal, Ripple });
 }, [])
+
+console.log(namaMuseum);
+
+
+const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false);
+const btnDropdownRef = React.createRef();
+
+function refreshPage() {
+  window.location.reload(false);
+}
+const popoverDropdownRef = React.createRef();
+const openDropdownPopover = () => {
+  createPopper(btnDropdownRef.current, popoverDropdownRef.current, {
+    placement: "bottom-start",
+  });
+  setDropdownPopoverShow(true);
+};
+const closeDropdownPopover = () => {
+  setDropdownPopoverShow(false);
+};
+
+const handleFilterMusuem = (e) =>{
+  setNamaMuseumSelected(e.target.value)
+} 
 
 if(loading) {
   var pengunjung_HTMLTABLE =   
@@ -95,33 +135,23 @@ else {
     <>
     <div className="flex">
       {/* search bar */}
-
-      {/* export excel  */}
-      <div className="flex justify-end items-center w-full px-6 pb-2">
-        <button className="bg-green-400 rounded-xl h-7 px-5 text-sm font-nunito text-green-800" onClick={handleDownload}><p className="flex">Unduh Laporan<img src={excel} className='w-4 ml-2' alt="excel"/></p></button>
-      </div>
+    
     </div>   
-    <div className="flex w-full">    
+    <div className="flex w-full items-center">    
       <div className="flex my-2 w-80 px-6 pt-4">
         <input type='text' className="w-full font-nunito border-none ring-2 ring-red-300 focus:border-none focus:ring-red-500 focus:ring-2 active:border-none rounded-lg"  placeholder="Cari kode tiket, nama, kategori, kota,..." onChange={e=>{setSearchTerm(e.target.value)}} /> 
       </div>
       <div className="flex w-full justify-end"> 
         {/* <h3>Export Data Pengunjung</h3> */}
-        <div className='justify-end items-center mx-2'>
-          <label className='block font-nunito font-bold'>Museum:</label>
-            <input className="block font-nunito py-2 px-4 w-28 text-black font-bold hover:bg-red-200 transition-all duration-300 ease-in-out active:bg-red-400 focus:bg-red-400 bg-white text-base z-50 float-left list-none text-left rounded-xl  shadow-none border-red-300 min-w-0 border-2" type="text" value={namaMuseum} onChange={e => setNamaMuseum(e.target.value)}/>
-        </div>
-        <div className='justify-end items-center mx-2'>
-          <label className='block font-nunito font-bold'>Tanggal Mulai:</label>
-          <input className="block font-nunito py-2 px-4 w-28 text-black font-bold hover:bg-red-200 transition-all duration-300 ease-in-out active:bg-red-400 focus:bg-red-400 bg-white text-base z-50 float-left list-none text-left rounded-xl  shadow-none border-red-300 min-w-0 border-2" type="date" value={startDate} onChange={e => setStartDate(e.target.value)}/>
-        </div>
-        <div className='justify-end items-center mx-2'>
-          <label className='block font-nunito font-bold'>Tanggal Akhir:</label>
-          <input className="block font-nunito py-2 px-4 w-28 text-black font-bold hover:bg-red-200 transition-all duration-300 ease-in-out active:bg-red-400 focus:bg-red-400 bg-white text-base z-50 float-left list-none text-left rounded-xl  shadow-none border-red-300 min-w-0 border-2" type="date" value={endDate} onChange={e => setEndDate(e.target.value)}/>
-        </div>
-        <div className="flex justify-end items-center px-6 pt-5">
-          <button className="bg-green-400 rounded-xl h-7 px-5 text-sm font-nunito text-green-800" onClick={handleDownload}><p className='flex'>Export<img src={excel} className='w-4 ml-2' alt="excel"/></p></button>
-        </div>
+        <button
+          type="button"
+          class="bg-green-400 rounded-xl px-6 py-3 h-modal text-sm font-nunito text-white flex items-center"
+          data-te-toggle="modal"
+          data-te-target="#exampleModalCenter"
+          data-te-ripple-init
+          data-te-ripple-color="light">
+          Export Data <img src={excel} className='w-4 ml-2' alt="excel"/>
+        </button>
       </div>
       </div>
 
@@ -129,13 +159,32 @@ else {
 
     {/* header */}
     <div className= {"relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded" + (color === "light" ? "bg-white" : "bg-lightBlue-900 text-white")}>
-        <div className="rounded-t mb-0 px-4 py-3 border-0">
+        <div className="rounded-t mb-0 py-3 border-0 bg-white">
           <div className="flex flex-wrap items-center">
-            <div className="relative w-full px-4 max-w-full flex-grow flex-1">
-              <h3 className="font-semibold text-lg font-merriweather text-red-600">Data Pengunjung</h3>
+            <div className="relative w-full max-w-full flex-grow flex">
+              <h3 className="flex w-full items-center px-5 font-semibold text-lg font-merriweather text-red-600">Data Pengunjung</h3>
+              <div className="relative w-full px-4 flex-grow flex justify-end">
+                <a className="text-blueGray-500 block" href="#pablo" ref={btnDropdownRef} onClick={(e) => { e.preventDefault(); dropdownPopoverShow ? closeDropdownPopover() : openDropdownPopover(); }}>
+                <div className="items-center flex">
+                  <div className="px-4 py-2 border-2 bg-white border-red-300  text-black font-nunito font-bold flex items-center hover:bg-red-200 rounded-xl transition-all duration-300 ease-in-out active:bg-red-400"><p className="pr-1">{namaMuseumSelected}</p><BiDownArrow/></div>
+                </div>
+                </a>
+                <div ref={popoverDropdownRef} className={ (dropdownPopoverShow ? "block " : "hidden ") + "bg-white text-base z-50 float-left py-2 px-3 list-none text-left rounded-xl shadow-lg border-2 border-gray-200" }>
+                  <div>
+                    <button className="block font-nunito py-2 px-4 w-full text-black font-bold hover:bg-red-200 transition-all duration-300 ease-in-out active:bg-red-400 focus:bg-red-400" onClick={handleFilterMusuem} value='Semua Museum'>Semua Musuem</button>
+                  </div>
+                    {namaMuseum.map((item,index)=>{
+                      return(
+                    <div key={index}>
+                      <button className="block font-nunito py-2 px-4 text-black font-bold hover:bg-red-200  transition-all duration-300 ease-in-out active:bg-red-400 focus:bg-red-400" onClick={handleFilterMusuem} value={item}>{item}</button>
+                    </div>
+                  )
+                  })}
+                </div>
+              </div>
             </div>
           </div>
- 
+
         </div>
 
 
@@ -165,6 +214,109 @@ else {
           </table>
         </div>
       </div>
+      
+      {/* MODAL */}
+<div
+  data-te-modal-init
+  class="fixed left-0 top-0 z-[1055] hidden h-full w-full overflow-y-auto overflow-x-hidden outline-none"
+  id="exampleModalCenter"
+  tabindex="-1"
+  aria-labelledby="exampleModalCenterTitle"
+  aria-modal="true"
+  role="dialog">
+  <div
+    data-te-modal-dialog-ref
+    class="pointer-events-none relative flex min-h-[calc(100%-1rem)] w-auto translate-y-[-50px] items-center opacity-0 transition-all duration-300 ease-in-out min-[576px]:mx-auto min-[576px]:mt-7 min-[576px]:min-h-[calc(100%-3.5rem)] min-[576px]:max-w-[500px]">
+    <div
+      class="pointer-events-auto relative flex w-full flex-col rounded-md border-none bg-white bg-clip-padding text-current shadow-lg outline-none dark:bg-red-600">
+      <div
+        class="flex flex-shrink-0 items-center justify-between rounded-t-md border-b-2 border-red-100 border-opacity-100 p-4 dark:border-opacity-50">
+        <h5
+          class="text-xl font-medium leading-normal text-red-800 dark:text-red-200"
+          id="exampleModalScrollableLabel">
+          Export Data Pengunjung
+        </h5>
+        <button
+          type="button"
+          class="box-content rounded-none border-none hover:no-underline hover:opacity-75 focus:opacity-100 focus:shadow-none focus:outline-none"
+          data-te-modal-dismiss
+          aria-label="Close">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="h-6 w-6">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="relative p-4 my-5 flex flex-wrap w-full">
+        
+        {/* <h3>Export Data Pengunjung</h3> */}
+        <div className='mb-5 m-2 w-full '>
+          {/* <label className='block font-nunito font-bold'>Museum:</label>
+            <input className=" font-nunito py-2 px-4  text-black font-bold hover:bg-red-200 transition-all duration-300 ease-in-out active:bg-red-400 focus:bg-red-400 bg-white text-base z-50 float-left list-none text-left rounded-xl  shadow-none border-red-300 min-w-0 border-2" type="text" value={namaMuseum} onChange={e => setNamaMuseum(e.target.value)}/> */}
+            <Box sx={{ minWidth: 120 }}>
+              <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">Pilih Museum</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={namaMuseum}
+                  label="Pilih Museum"
+                  onChange={e => setNamaMuseum(e.target.value)}
+                >
+                  {namaMuseum &&  namaMuseum.map((item,index)=>{
+                    return(
+                      <MenuItem value={item} key={index}>{item}</MenuItem>
+
+                    )
+                  })}
+                </Select>
+              </FormControl>
+            </Box>
+        </div>
+       <div className="flex">
+        <div className=' mx-2'>
+            <label className='block font-nunito font-bold'>Tanggal Mulai:</label>
+            <input className="block font-nunito py-2 px-4  text-black font-bold hover:bg-red-200 transition-all duration-300 ease-in-out active:bg-red-400 focus:bg-red-400 bg-white text-base z-50 float-left list-none text-left rounded-xl  shadow-none border-red-300 min-w-0 border-2" type="date" value={startDate} onChange={e => setStartDate(e.target.value)}/>
+          </div>
+          <div className=' mx-2'>
+            <label className='block font-nunito font-bold'>Tanggal Akhir:</label>
+            <input className="block font-nunito py-2 px-4  text-black font-bold hover:bg-red-200 transition-all duration-300 ease-in-out active:bg-red-400 focus:bg-red-400 bg-white text-base z-50 float-left list-none text-left rounded-xl  shadow-none border-red-300 min-w-0 border-2" type="date" value={endDate} onChange={e => setEndDate(e.target.value)}/>
+          </div>
+       </div>
+      </div>
+
+
+      <div
+        class="flex flex-shrink-0 flex-wrap items-center justify-end rounded-b-md border-t-2 border-red-100 border-opacity-100 p-4 dark:border-opacity-50">
+        <button
+          type="button"
+          class="inline-block rounded bg-primary-100 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-primary-700 transition duration-150 ease-in-out hover:bg-primary-accent-100 focus:bg-primary-accent-100 focus:outline-none focus:ring-0 active:bg-primary-accent-200"
+          data-te-modal-dismiss
+          data-te-ripple-init
+          data-te-ripple-color="light">
+          Close
+        </button>
+        <button
+          type="button"
+          class="bg-green-400 rounded-xl  px-6 py-3 text-sm font-nunito bold text-white flex items-center"
+          onClick={handleDownload}
+          data-te-ripple-init
+          data-te-ripple-color="light">
+          Export<img src={excel} className='w-4 ml-2' alt="excel"/>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
     </>
   );
 }

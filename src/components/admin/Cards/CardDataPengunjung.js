@@ -6,6 +6,8 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import { createPopper } from "@popperjs/core";
+import {BiDownArrow} from 'react-icons/bi'
 
 // components
 import axios from "axios";
@@ -24,16 +26,13 @@ export default function CardDataPengunjung ({ color }) {
 const [loading,setLoading] = useState(true)
 const [pengunjung,setPengunjung] = useState([])
 //for search bar
-const [selectedMuseum, setSelectedMuseum] = useState('');
 const [searchTerm, setSearchTerm] = useState("")
 const [semuaMuseum, setSemuaMuseum] = useState('');
-const [namaMuseum, setNamaMuseum] = useState('');
+const [namaMuseum,setNamaMuseum] = useState([])
+const [namaMuseumSelected,setNamaMuseumSelected] = useState('Semua Museum')
+
 const [startDate, setStartDate] = useState('');
 const [endDate, setEndDate] = useState('');
-
-
-
-
 
 const history = useHistory()
 
@@ -98,6 +97,28 @@ useEffect(() => {
 
 console.log(namaMuseum);
 
+
+const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false);
+const btnDropdownRef = React.createRef();
+
+function refreshPage() {
+  window.location.reload(false);
+}
+const popoverDropdownRef = React.createRef();
+const openDropdownPopover = () => {
+  createPopper(btnDropdownRef.current, popoverDropdownRef.current, {
+    placement: "bottom-start",
+  });
+  setDropdownPopoverShow(true);
+};
+const closeDropdownPopover = () => {
+  setDropdownPopoverShow(false);
+};
+
+const handleFilterMusuem = (e) =>{
+  setNamaMuseumSelected(e.target.value)
+} 
+
 if(loading) {
   var pengunjung_HTMLTABLE =   
     <tr className="bg-white border-b">
@@ -138,13 +159,32 @@ else {
 
     {/* header */}
     <div className= {"relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded" + (color === "light" ? "bg-white" : "bg-lightBlue-900 text-white")}>
-        <div className="rounded-t mb-0 px-4 py-3 border-0">
+        <div className="rounded-t mb-0 py-3 border-0 bg-white">
           <div className="flex flex-wrap items-center">
-            <div className="relative w-full px-4 max-w-full flex-grow flex-1">
-              <h3 className="font-semibold text-lg font-merriweather text-red-600">Data Pengunjung</h3>
+            <div className="relative w-full max-w-full flex-grow flex">
+              <h3 className="flex w-full items-center px-5 font-semibold text-lg font-merriweather text-red-600">Data Pengunjung</h3>
+              <div className="relative w-full px-4 flex-grow flex justify-end">
+                <a className="text-blueGray-500 block" href="#pablo" ref={btnDropdownRef} onClick={(e) => { e.preventDefault(); dropdownPopoverShow ? closeDropdownPopover() : openDropdownPopover(); }}>
+                <div className="items-center flex">
+                  <div className="px-4 py-2 border-2 bg-white border-red-300  text-black font-nunito font-bold flex items-center hover:bg-red-200 rounded-xl transition-all duration-300 ease-in-out active:bg-red-400"><p className="pr-1">{namaMuseumSelected}</p><BiDownArrow/></div>
+                </div>
+                </a>
+                <div ref={popoverDropdownRef} className={ (dropdownPopoverShow ? "block " : "hidden ") + "bg-white text-base z-50 float-left py-2 px-3 list-none text-left rounded-xl shadow-lg border-2 border-gray-200" }>
+                  <div>
+                    <button className="block font-nunito py-2 px-4 w-full text-black font-bold hover:bg-red-200 transition-all duration-300 ease-in-out active:bg-red-400 focus:bg-red-400" onClick={handleFilterMusuem} value='Semua Museum'>Semua Musuem</button>
+                  </div>
+                    {namaMuseum.map((item,index)=>{
+                      return(
+                    <div key={index}>
+                      <button className="block font-nunito py-2 px-4 text-black font-bold hover:bg-red-200  transition-all duration-300 ease-in-out active:bg-red-400 focus:bg-red-400" onClick={handleFilterMusuem} value={item}>{item}</button>
+                    </div>
+                  )
+                  })}
+                </div>
+              </div>
             </div>
           </div>
- 
+
         </div>
 
 
@@ -232,7 +272,7 @@ else {
                   label="Pilih Museum"
                   onChange={e => setNamaMuseum(e.target.value)}
                 >
-                  {semuaMuseum &&  semuaMuseum.map((item,index)=>{
+                  {namaMuseum &&  namaMuseum.map((item,index)=>{
                     return(
                       <MenuItem value={item} key={index}>{item}</MenuItem>
 
