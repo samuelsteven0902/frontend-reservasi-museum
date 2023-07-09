@@ -9,6 +9,12 @@ function PaginationDataKehadiran(props){
   const [dataKehadiran, setDataKehadiran] = useState(Object.entries(props));
   const searchTerm = props.searchTerm
 
+  // loading
+  const [loading,setLoading] = useState(true)
+
+  // data pengunjung
+  const [pengunjung,setPengunjung] = useState([])
+
 const [token, setToken] = useState(Cookies.get('token'));
 const [user,setUser] = useState('loading');
 
@@ -29,14 +35,38 @@ const json = await data.json();
 setUser(result);
 }
  
+const fetchPengunjung = () => {
+  axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/pengunjung`, {headers : {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json',
+    Authorization: `Bearer ${Cookies.get('token')}`,
+  }})
+  
+.then(res=>{
+    
+    if(res.status === 200) {
+      setPengunjung(res.data.pengunjung)
+      setLoading(false);
+    }
+  });
+}
+
+useEffect(() => {
+  fetchData ();
+  fetchPengunjung();
+}, 
+[]);
+console.log(user);
 
 const handleKonfirmasi = (e,idData) =>{
   const data = {
     idData : idData,
     idAdmin: user
   }
+console.log(data);
 
-  swal({
+// alert konfirmasi
+swal({
   title: "Konfirmasi kedatangan Pengunjung?",
   text: "Sekali Konfirmasi, anda tidak bisa mengubahnya lagi!",
   icon: "warning",
@@ -53,6 +83,7 @@ const handleKonfirmasi = (e,idData) =>{
         }}).then(res=>{
           if(res.data.status === 200) {
             swal("Berhasil!",res.data.message,"success")
+            fetchPengunjung();
           }
         else if(res.data.status === 404) {
         }})

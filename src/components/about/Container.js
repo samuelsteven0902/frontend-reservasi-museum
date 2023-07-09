@@ -69,7 +69,7 @@ export default function Container() {
             <div className='flex justify-center flex-wrap flex-col my-24'>
                 <p className='text-5xl font-merriweather  font-bold p-4 pb- w-full text-center'>About</p>
                     <hr className='h-1 bg-red-300 w-1/3 flex mx-auto'/>
-                <p className='tracking-wider w-full mx-auto pt-6 text-base font-medium font-nunito pt-auto text-black text-center'>
+                <p className='tracking-wider w-full mx-auto pt-6 text-base font-medium font-nunito pt-auto text-black text-justify'>
                     {t('about.desc1')} {t('about.desc2')}
                 </p>
             </div>

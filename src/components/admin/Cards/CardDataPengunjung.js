@@ -163,7 +163,7 @@ else {
           <div className="flex flex-wrap items-center">
             <div className="relative w-full max-w-full flex-grow flex">
               <h3 className="flex w-full items-center px-5 font-semibold text-lg font-merriweather text-red-600">Data Pengunjung</h3>
-              <div className="relative w-full px-4 flex-grow flex justify-end">
+              {/* <div className="relative w-full px-4 flex-grow flex justify-end">
                 <a className="text-blueGray-500 block" href="#pablo" ref={btnDropdownRef} onClick={(e) => { e.preventDefault(); dropdownPopoverShow ? closeDropdownPopover() : openDropdownPopover(); }}>
                 <div className="items-center flex">
                   <div className="px-4 py-2 border-2 bg-white border-red-300  text-black font-nunito font-bold flex items-center hover:bg-red-200 rounded-xl transition-all duration-300 ease-in-out active:bg-red-400"><p className="pr-1">{namaMuseumSelected}</p><BiDownArrow/></div>
@@ -181,7 +181,7 @@ else {
                   )
                   })}
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
 
@@ -205,6 +205,7 @@ else {
                 <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-nunito font-semibold text-left">Harga</th>
                 <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-nunito font-semibold text-left">Pembayaran</th>
                 <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-nunito font-semibold text-left">Tanggal Pembayaran</th>
+                <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-nunito font-semibold text-left">Tanggal Kehadiran</th>
                 <th className="sticky right-0 bg-white text-red-700 px-2">Tiket</th>
               </tr>
             </thead>

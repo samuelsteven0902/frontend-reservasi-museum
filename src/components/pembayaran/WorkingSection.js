@@ -46,7 +46,8 @@ function WorkingSection(input) {
                 pembayaran: "tunai",
                 kehadiran:'Tidak Hadir',
                 // tiket: input.data.kode_tiket,
-                status: input.input === 0?'Lunas':'Belum Lunas' ,
+                status: input.input === 0?'Lunas':'Belum Lunas',
+                tanggal_pembayaran: input.input === 0 ? new Date().getTime() : null
             }
             console.log(data);
 

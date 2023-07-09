@@ -199,11 +199,11 @@ function Content({id}) {
             </div>
             <div>
               <p className='text-base'>{t('tiket.total')}</p>
-              <p className='font-semibold text-xl font-nunito'>{tiket[0].harga}</p>
+              <p className='font-semibold text-xl font-nunito'>{tiket[0].harga_awal * tiket[0].jumlah}</p>
             </div>
             <div>
               <p className='text-base'>{t('tiket.keterangan')}</p>
-              <p className='font-semibold text-xl font-nunito'>{tiket[0]  .status}</p>
+              <p className='font-semibold text-xl font-nunito'>{tiket[0].status}</p>
             </div>
           </div>
         </div>

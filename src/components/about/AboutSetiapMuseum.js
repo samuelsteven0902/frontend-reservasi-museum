@@ -22,7 +22,7 @@ function AboutSetiapMuseum() {
     var html_about = ''
     if(loading) {
       html_about = 
-      <div className='h-screen flex justify-center items-center'>
+      <div className='h-screen flex justify-center items-justify'>
         <ReactLoading type={"spin"} color={"red"} height={'10%'} width={'10%'} className="m-auto h-screen"/>
       </div>
     }

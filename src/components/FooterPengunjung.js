@@ -33,9 +33,9 @@ return (
                             <BsGlobe/>
                             <p className='text-sm ml-2 text-blue-600 underline'>uptmuseum.surakarta.go.id</p>
                         </a>
-                        <a href="https://www.youtube.com/@uptmuseumkotasurakarta1625" className="my-3 flex justify-center mr-6 text-black text-xl">
+                        <a href="https://www.youtube.com/@museumsolo" className="my-3 flex justify-center mr-6 text-black text-xl">
                             <AiFillYoutube/>
-                            <p className='text-sm ml-2 text-blue-600 underline'>uptmuseumkotasurakarta1625</p>
+                            <p className='text-sm ml-2 text-blue-600 underline'>uptmuseumkotasurakarta</p>
                         </a>
                         <a href="https://www.instagram.com/uptmuseum_surakarta/ " className="flex justify-center mr-6 text-black text-xl">
                             <AiFillInstagram />
@@ -52,7 +52,7 @@ return (
                         <div className="fas fa-solid fa-envelope mr-4 text-base text-black"></div>uptdmuseum@gmail.com
                     </div>
                     <div className="flex items-center w-1/2 sm:w-full justify-center font-nunito text-black sm:justify-start mb-2">
-                        <div className="fas fa-solid fa-phone mr-4 text-base text-black"></div>+ 62 822-2654-0845
+                        <div className="fas fa-solid fa-phone mr-4 text-base text-black"></div>+6282226540845
                     </div>
                 </div>
             </div>
