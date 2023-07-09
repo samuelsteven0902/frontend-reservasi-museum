@@ -1,7 +1,7 @@
 import StatusCard from 'components/landing/StatusCard';
 import { useEffect, useRef, useState } from 'react';
 import { Calendar } from 'react-date-range';
-import { addDays, format, isMonday, isSunday } from 'date-fns';
+import { addDays, format, isMonday, isSunday, isSaturday } from 'date-fns';
 import { Link,  useHistory } from 'react-router-dom';
 import ReactLoading from 'react-loading';
 import axios from 'axios';
@@ -122,6 +122,21 @@ export default function WorkingSection({setRes}) {
                 />
             )
         }
+        if (isSaturday(day)) {
+            extraDot = (
+                <div
+                style={{
+                    height: "5px",
+                    width: "5px",
+                    borderRadius: "100%",
+                    background: "orange",
+                    position: "absolute",
+                    top: 2,
+                    right: 2,
+                }}
+                />
+            )
+        }
         return (
             <div>
                 {extraDot}
@@ -179,7 +194,7 @@ console.log(museum)
                                     <option className=' text-xl '>{namaInput.namaCategory}</option>
                                     {category && typeof category !== 'string'  && category.map((itemm,indexx)=>{
                                     return(
-                                        <option key={indexx} id={itemm.id} value={x === 'id'?itemm.nama_kategori:itemm.nama_kategori_en} >{x === 'id'?itemm.nama_kategori:itemm.nama_kategori_en}</option>
+                                        <option key={indexx} id={itemm.id} value={x === 'id'?itemm.nama_kategori:itemm.nama_kategori_en} >{x === 'id'?itemm.nama_kategori:itemm.nama_kategori_en}{itemm.max }</option>
                                         )})}
                                 </select>
                                 <input value={calendar} readOnly onClick={(e)=>{ setOpen(open => !open); 

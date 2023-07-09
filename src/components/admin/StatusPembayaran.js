@@ -39,11 +39,17 @@ function StatusPembayaran({ color }) {
     }
     setUser(result);
   }
-  console.log();
+  console.log(user);
 
   // fetch pengunjung
   const fetchPengunjung = () => {
-  axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/status-pembayaran`).then(res=>{
+  axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/pengunjung`, {
+    headers : {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      Authorization: `Bearer ${token}`,
+    }
+  }).then(res=>{
     if(res.status === 200) {
       setPengunjung(res.data.pengunjung)
       setLoading(false);      }
@@ -67,33 +73,33 @@ function StatusPembayaran({ color }) {
     console.log(data);
 
   // alert 
-    swal({
-      title: "Konfirmasi Pembayaran Pengunjung?",
-      text: "Sekali Konfirmasi, anda tidak bisa mengubahnya lagi!",
-      icon: "warning",
-      buttons: true,
-      dangerMode: true,
-    })
-    .then((update) => {
-      if (update) {
-        axios.put(`${process.env.REACT_APP_API_ENDPOINT}/api/status`,data, {
-          headers : {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-            Authorization: `Bearer ${Cookies.get('token')}`,
-          }} ).then(res=>{
-              if(res.data.status === 200) {
-                swal("Berhasil!",res.data.message,"success")
-                fetchPengunjung();
-              }
-              else if(res.data.status === 404) {
-              }
-            })
-          } 
-          else {
-          swal("Membatalkan Aksi!");
-          }
-  })
+  //   swal({
+  //     title: "Konfirmasi Pembayaran Pengunjung?",
+  //     text: "Sekali Konfirmasi, anda tidak bisa mengubahnya lagi!",
+  //     icon: "warning",
+  //     buttons: true,
+  //     dangerMode: true,
+  //   })
+  //   .then((update) => {
+  //     if (update) {
+  //       axios.put(`${process.env.REACT_APP_API_ENDPOINT}/api/status`,data, {
+  //         headers : {
+  //           'Content-Type': 'application/json',
+  //           'Accept': 'application/json',
+  //           Authorization: `Bearer ${Cookies.get('token')}`,
+  //         }} ).then(res=>{
+  //             if(res.data.status === 200) {
+  //               swal("Berhasil!",res.data.message,"success")
+  //               fetchPengunjung();
+  //             }
+  //             else if(res.data.status === 404) {
+  //             }
+  //           })
+  //         } 
+  //         else {
+  //         swal("Membatalkan Aksi!");
+  //         }
+  // })
 }
 
 if(loading) {

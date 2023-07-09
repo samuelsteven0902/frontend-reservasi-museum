@@ -46,7 +46,13 @@ function DataKehadiran ({ color }) {
 
   // api konfirmasi
   const fetchPengunjung = () => {
-    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/konfirmasi-pengunjung`).then(res=>{
+    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/pengunjung`, {
+      headers : {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        Authorization: `Bearer ${token}`,
+      }
+    }).then(res=>{
       if(res.status === 200) {
         setPengunjung(res.data.pengunjung)
         setLoading(false);

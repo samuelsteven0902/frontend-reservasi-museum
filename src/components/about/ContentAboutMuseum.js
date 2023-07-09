@@ -87,12 +87,7 @@ function ContentAboutMuseum(input) {
               <div class="carousel-inner relative bg-center bg-cover overflow-hidden justify-center items-center mx-auto w-11/12 h-[26rem] mb-40 rounded-[2rem]">
                 <div className='max-w-[1400px] h-[780px] w-full m-auto py-20 px-4 relative group'>
                   { images.length === 0 ?
-                    <div class="carousel-item active relative float-left w-full">
-                      <div class="absolute bg-cover sm:bg-cover bg-landing-background bg-[#ECE3DE] bg-center w-full h-72 sm:h-[20rem] rounded-[2rem]" alt="..."/>
-                        <div class="md:block absolute w-full lg:w-6/12 px-0 sm:ml-24 ml-10 mr-auto text-left mb-12 mt-36 sm:mb-0">
-                          <p className='tracking-[0.3rem] font-bold font-nunito pt-auto text-[#A70B0B]'>- UPT Museum Surakarta</p>
-                        </div>
-                    </div>
+                    ''
                     : 
                     <div style={{ backgroundImage: `url(${`${process.env.REACT_APP_API_ENDPOINT}/uploads/` +images[currentIndex].nama_gambar})` }} className='w-full rounded-2xl bg-center bg-cover duration-500 sm:bg-cover bg-[#ECE3DE] h-72 sm:h-[20rem] rounded-[2rem]" alt="..."'>
                       <div class="md:block absolute w-full lg:w-6/12 px-0 sm:ml-24 ml-10 mr-auto text-left mb-12 mt-36 sm:mb-0">

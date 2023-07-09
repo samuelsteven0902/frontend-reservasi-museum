@@ -26,9 +26,12 @@ const json = await data.json();
   if(json.message !== 'Unauthenticated.') {
     result = json.user.name;
   }
-setUser(result);
+  setUser(result);
 }
  
+useEffect(() => {
+  fetchData()
+}, [])
 
 const handleKonfirmasi = (e,idData) =>{
   const data = {
