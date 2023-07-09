@@ -6,8 +6,15 @@ import axios from 'axios';
 import swal from 'sweetalert';
 
 function PaginationDataKehadiran(props){
-  const [dataKehadiran, setDataKehadiran] = useState(Object.entries(props));
+  const [dataKehadiran, setDataKehadiran] = useState(props.data);
   const searchTerm = props.searchTerm
+
+  console.log(dataKehadiran);
+  // loading
+  const [loading,setLoading] = useState(true)
+
+  // data pengunjung
+  const [pengunjung,setPengunjung] = useState([])
 
 const [token, setToken] = useState(Cookies.get('token'));
 const [user,setUser] = useState('loading');
@@ -29,14 +36,39 @@ const json = await data.json();
 setUser(result);
 }
  
+const fetchPengunjung = () => {
+  axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/pengunjung`, {headers : {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json',
+    Authorization: `Bearer ${Cookies.get('token')}`,
+  }})
+  
+.then(res=>{
+    
+    if(res.status === 200) {
+      setPengunjung(res.data.pengunjung)
+      setLoading(false);
+      setDataKehadiran(res.data.pengunjung)
+    }
+  });
+}
+
+useEffect(() => {
+  fetchData ();
+  fetchPengunjung();
+}, 
+[]);
+console.log(user);
 
 const handleKonfirmasi = (e,idData) =>{
   const data = {
     idData : idData,
     idAdmin: user
   }
+console.log(data);
 
-  swal({
+// alert konfirmasi
+swal({
   title: "Konfirmasi kedatangan Pengunjung?",
   text: "Sekali Konfirmasi, anda tidak bisa mengubahnya lagi!",
   icon: "warning",
@@ -53,6 +85,7 @@ const handleKonfirmasi = (e,idData) =>{
         }}).then(res=>{
           if(res.data.status === 200) {
             swal("Berhasil!",res.data.message,"success")
+            fetchPengunjung();
           }
         else if(res.data.status === 404) {
         }})
@@ -67,12 +100,12 @@ const handleKonfirmasi = (e,idData) =>{
   const itemsPerPage = 6 ;
 
   const endOffset = itemOffset + itemsPerPage;
-  const currentItems = dataKehadiran[0][1].slice(itemOffset, endOffset);
+  const currentItems = dataKehadiran.slice(itemOffset, endOffset);
   var pageCount = 0;
   console.log(currentItems)
 
   const handlePageClick = (event) => {
-    const newOffset = (event.selected * itemsPerPage) % dataKehadiran[0][1]
+    const newOffset = (event.selected * itemsPerPage) % dataKehadiran
     .filter(val=>{
       if(searchTerm === ""){
           return val
@@ -81,8 +114,7 @@ const handleKonfirmasi = (e,idData) =>{
         val.kode_tiket.toLowerCase().includes(searchTerm.toLowerCase()) ||
         val.nama.toLowerCase().includes(searchTerm.toLowerCase()) ||
         val.museum.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        val.kategori.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        val.nama_kategori.toLowerCase().includes(searchTerm.toLowerCase())) {
+        val.kategori.toLowerCase().includes(searchTerm.toLowerCase()) ) {
           return val
       }
     })
@@ -96,7 +128,7 @@ const handleKonfirmasi = (e,idData) =>{
   return (
     <>
       {searchTerm === "" ? currentItems.map((item,index)=>{
-        pageCount = Math.ceil(dataKehadiran[0][1].length / itemsPerPage);
+        pageCount = Math.ceil(dataKehadiran.length / itemsPerPage);
 
         return (
         <tr className='bg-white text-gray-900' key={index}>
@@ -112,7 +144,7 @@ const handleKonfirmasi = (e,idData) =>{
         )  
     })
 :
-  dataKehadiran[0][1].filter(val=>{
+  dataKehadiran.filter(val=>{
     if(
       val.kode_tiket.toLowerCase().includes(searchTerm.toLowerCase()) ||
       val.nama.toLowerCase().includes(searchTerm.toLowerCase()) ||

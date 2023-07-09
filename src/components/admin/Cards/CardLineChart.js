@@ -44,7 +44,7 @@ export default function CardLineChart() {
   const [result, setResult] = useState('month')
 
   const fetchData = () =>{
-    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/pengunjung`, {
+    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/konfirmasi-pengunjung`, {
       headers : {
         'Content-Type': 'application/json',
         'Accept': 'application/json',

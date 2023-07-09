@@ -54,7 +54,7 @@ function Content({id}) {
   const handleCaptureClick = async () => {
     const canvas = await html2canvas(document.getElementById('tiket'));
     const dataURL = canvas.toDataURL('image/png');
-    downloadjs(dataURL, tiket.kode_tiket + '.png', 'image/png');
+    downloadjs(dataURL, tiket[0].kode_tiket + '.png', 'image/png');
   };
 
   const handleTiket = (e) =>{
@@ -69,6 +69,17 @@ function Content({id}) {
   }, [])
 
   console.log(tiket);
+
+  function formatCurrency(amount) {
+    const number = Number(amount);
+    const formattedAmount = number.toLocaleString("id-ID", {
+      style: "currency",
+      currency: "IDR",
+      minimumFractionDigits: 2,
+    });
+    return formattedAmount;
+  }
+
 
 
   if(loading)
@@ -199,11 +210,11 @@ function Content({id}) {
             </div>
             <div>
               <p className='text-base'>{t('tiket.total')}</p>
-              <p className='font-semibold text-xl font-nunito'>{tiket[0].harga}</p>
+              <p className='font-semibold text-xl font-nunito'>{formatCurrency(tiket[0].harga_awal)}</p>
             </div>
             <div>
               <p className='text-base'>{t('tiket.keterangan')}</p>
-              <p className='font-semibold text-xl font-nunito'>{tiket[0]  .status}</p>
+              <p className='font-semibold text-xl font-nunito'>{tiket[0].status}</p>
             </div>
           </div>
         </div>

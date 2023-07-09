@@ -209,18 +209,18 @@ return (
                                 <div className='w-full mx-auto md:mt-0 mt-8'>    
                                     <div className="w-96 mb-4 mx-auto">
                                         <label className="block text-gray-700 text-sm font-nunito font-semibold mb-2" for="username">Nama</label>
-                                        <input name='nama' className="shadow appearance-none border rounded-full w-72 mx-auto text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" value={input.nama} onChange={handleInput}/>
+                                        <input name='nama' className="shadow appearance-none border rounded-full w-72 sm:w-full mx-auto py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" value={input.nama} onChange={handleInput}/>
                                         <span className="text-sm text-red-500"></span>
                                     </div>
                                     <div className="w-96 mb-4 mx-auto">
                                         <label className="block text-gray-700 text-sm font-nunito font-semibold mb-2" for="email">Email</label>
-                                        <input name='email' className="shadow appearance-none border rounded-full w-72 mx-auto text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="email" value={input.email} onChange={handleInput}/>
+                                        <input name='email' className="shadow appearance-none border rounded-full w-72 sm:w-full mx-auto py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="email" value={input.email} onChange={handleInput}/>
                                         <span className="text-sm text-red-500"></span>
                                     </div>
                                     <div className="w-96 mb-4 mx-auto">
                                         <label className="block text-gray-700 text-sm font-nunito font-semibold mb-2" for="password">Password</label>
                                         <div className='relative'>
-                                            <input name='password' className="shadow appearance-none border rounded-full z-10 w-72 mx-auto text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type={passwordType} value={input.password} onChange={handleInput}/>
+                                            <input name='password' className="shadow appearance-none border rounded-full w-72 sm:w-full mx-auto py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type={passwordType} value={input.password} onChange={handleInput}/>
                                             <button className=" py-2.5 absolute -ml-14 -mt-1 z-40 focus:border-none active:border-none focus:outline-none focus:ring-0"  onClick={togglePassword}>{ passwordType==="password"? <AiOutlineEyeInvisible size={24} /> :<AiOutlineEye size={24}/>}</button>
                                         </div>
                                         <span className="text-xs text-red-500"><ul>{input.err_msg.map((item,index) => {return (<li>{index+1 }. {item}</li>)})}</ul></span>

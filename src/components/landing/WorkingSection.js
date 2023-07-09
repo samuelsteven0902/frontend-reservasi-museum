@@ -194,7 +194,7 @@ console.log(museum)
                                     <option className=' text-xl '>{namaInput.namaCategory}</option>
                                     {category && typeof category !== 'string'  && category.map((itemm,indexx)=>{
                                     return(
-                                        <option key={indexx} id={itemm.id} value={x === 'id'?itemm.nama_kategori:itemm.nama_kategori_en} >{x === 'id'?itemm.nama_kategori:itemm.nama_kategori_en}{itemm.max }</option>
+                                        <option key={indexx} id={itemm.id} value={x === 'id'?itemm.nama_kategori:itemm.nama_kategori_en} >{x === 'id'?itemm.nama_kategori:itemm.nama_kategori_en}</option>
                                         )})}
                                 </select>
                                 <input value={calendar} readOnly onClick={(e)=>{ setOpen(open => !open); 

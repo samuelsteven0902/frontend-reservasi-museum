@@ -76,7 +76,7 @@ export default function DefaultNavbar() {
                     <div className="collapse navbar-collapse my-5" id="navbarNav"></div>
             </NavbarWrapper>
                 <NavbarCollapse open={openNavbar}>
-                    <div className='px-4 py-2  text-black font-nunito font-bold hover:bg-red-200 rounded-xl transition-all duration-300 ease-in-out active:bg-red-400'>{t('navbar_header')}</div>
+                    <div className='px-4 py-2  text-black font-nunito font-bold rounded-xl transition-all duration-300 ease-in-out'>{t('navbar_header')}</div>
                     <Nav>
                         <div className="flex flex-col z-50 py-2 pr-2 lg:flex-row lg:items-center">
                             
@@ -94,7 +94,7 @@ export default function DefaultNavbar() {
             <NavbarContainer>
             <NavbarWrapper>
                 <NavbarToggler onClick={() => setOpenNavbar(!openNavbar)} color="red" className=""/>
-                <div className='px-4 py-2  text-black font-nunito font-bold hover:bg-red-200 rounded-xl transition-all duration-300 ease-in-out active:bg-red-400'>{t('navbar_header')}</div>
+                <div className='px-4 py-2  text-black font-nunito font-bold rounded-xl transition-all duration-300 ease-in-out'>{t('navbar_header')}</div>
             </NavbarWrapper>
                 <NavbarCollapse open={openNavbar}>
                     <Nav>

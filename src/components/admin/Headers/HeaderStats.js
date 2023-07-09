@@ -12,7 +12,7 @@ export default function HeaderStats() {
   const [loading,setLoading] = useState(true)
 
   const fetchData = () =>{
-    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/pengunjung`, {
+    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/konfirmasi-pengunjung`, {
       headers : {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
@@ -92,7 +92,7 @@ export default function HeaderStats() {
             <div className="flex flex-wrap">
               <div className="w-full lg:w-6/12 xl:w-3/12 px-2 font-merriweather">
                 <CardStats
-                  statSubtitle="Total Pemasukan Bulan Lalu"
+                  statSubtitle="Total Pengunjung Bulan Lalu"
                   statTitle={dataPengunjungBulanIni !== undefined ?  (dataPengunjungBulanLalu) : "Loading..." }
                   statIconName="far fa-chart-bar"
                   statIconColor="bg-[#A70B0B]"
@@ -100,7 +100,7 @@ export default function HeaderStats() {
               </div>
               <div className="w-full lg:w-6/12 xl:w-3/12 px-2 font-merriweather">
                 <CardStats
-                  statSubtitle="Total Pemasukan Bulan Ini"
+                  statSubtitle="Total Pengunjung Bulan Ini"
                   statTitle={dataPengunjungBulanIni !== undefined ? (dataPengunjungBulanIni) : "Loading..."}
                   statIconName="far fa-chart-bar"
                   statIconColor="bg-[#A70B0B]"
@@ -108,7 +108,7 @@ export default function HeaderStats() {
               </div>
               <div className="w-full lg:w-6/12 xl:w-3/12 px-2 font-merriweather">
                 <CardStats
-                  statSubtitle="Total Pemasukan Kemarin"
+                  statSubtitle="Total Pengunjung Kemarin"
                   statTitle={dataPengunjungBulanIni !== undefined ?  (dataPengunjungKemarin): "Loading..."}
                   statIconName="far fa-chart-bar"
                   statIconColor="bg-[#A70B0B]"
@@ -116,7 +116,7 @@ export default function HeaderStats() {
               </div>
               <div className="w-full lg:w-6/12 xl:w-3/12 px-2 font-merriweather">
                 <CardStats
-                  statSubtitle="Total Pemasukan Hari Ini"
+                  statSubtitle="Total Pengunjung Hari Ini"
                   statTitle={dataPengunjungBulanIni !== undefined ? (dataPengunjungHariIni):"Loading..."}
                   statIconName="far fa-chart-bar"
                   statIconColor="bg-[#A70B0B]"

@@ -6,7 +6,7 @@ import axios from 'axios';
 import swal from 'sweetalert';
 
 function PaginationStatusPembayaran(props){
-  const [dataPembayaran, setDataPembayaran] = useState(Object.entries(props));
+  const [dataPembayaran, setDataPembayaran] = useState(props.data);
   const searchTerm = props.searchTerm
 
 const [token, setToken] = useState(Cookies.get('token'));
@@ -27,6 +27,21 @@ const json = await data.json();
     result = json.user.name;
   }
   setUser(result);
+}
+
+const fetchPengunjung = () => {
+  axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/pengunjung`, {headers : {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json',
+    Authorization: `Bearer ${Cookies.get('token')}`,
+  }})
+  
+.then(res=>{
+    
+    if(res.status === 200) {
+      setDataPembayaran(res.data.pengunjung)
+    }
+  });
 }
  
 useEffect(() => {
@@ -56,6 +71,7 @@ const handleKonfirmasi = (e,idData) =>{
         }}).then(res=>{
           if(res.data.status === 200) {
             swal("Berhasil!",res.data.message,"success")
+            fetchPengunjung()
           }
         else if(res.data.status === 404) {
         }})
@@ -70,12 +86,12 @@ const handleKonfirmasi = (e,idData) =>{
   const itemsPerPage = 6 ;
 
   const endOffset = itemOffset + itemsPerPage;
-  const currentItems = dataPembayaran[0][1].slice(itemOffset, endOffset);
+  const currentItems = dataPembayaran.slice(itemOffset, endOffset);
   var pageCount = 0;
   console.log(currentItems)
 
   const handlePageClick = (event) => {
-    const newOffset = (event.selected * itemsPerPage) % dataPembayaran[0][1]
+    const newOffset = (event.selected * itemsPerPage) % dataPembayaran
     .filter(val=>{
       if(searchTerm === ""){
           return val
@@ -98,7 +114,7 @@ const handleKonfirmasi = (e,idData) =>{
   return (
     <>
       {searchTerm === "" ? currentItems.map((item,index)=>{
-        pageCount = Math.ceil(dataPembayaran[0][1].length / itemsPerPage);
+        pageCount = Math.ceil(dataPembayaran.length / itemsPerPage);
 
         return (
         <tr className='bg-white text-gray-900' key={index}>
@@ -109,13 +125,13 @@ const handleKonfirmasi = (e,idData) =>{
         <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.jumlah}</td>
         <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.harga_awal}</td>
         <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.pembayaran}</td>
-        <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.status != "Belum Lunas" ? "Lunas" : "Belum Lunas"}</td>
+        <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.status === "Lunas" ? "Lunas" : "Belum Lunas"}</td>
         <td className='sticky right-0 bg-gray-50 px-2 '> <button id={`konfirmasi-${item.id}`} className='p-1.5 text-sm bg-green-400 rounded-lg' onClick={e=>handleKonfirmasi(e, item.id)}>Konfirmasi</button></td>
       </tr>
         )  
     })
 :
-  dataPembayaran[0][1].filter(val=>{
+  dataPembayaran.filter(val=>{
     if(
       val.kode_tiket.toLowerCase().includes(searchTerm.toLowerCase()) ||
       val.nama.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -136,7 +152,7 @@ const handleKonfirmasi = (e,idData) =>{
         <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.jumlah}</td>
         <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.harga_awal}</td>
         <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.pembayaran}</td>
-        <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.status != "Belum Lunas" ? "Lunas" : "Belum Lunas"}</td>
+        <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.status === "Lunas" ? "Lunas" : "Belum Lunas"}</td>
         <td className='sticky right-0 bg-gray-50 px-2 '> <button id={`konfirmasi-${item.id}`} className='p-1.5 text-sm bg-green-400 rounded-lg' onClick={e=>handleKonfirmasi(e, item.id)}>Konfirmasi</button></td>
       </tr>
     )

@@ -2,12 +2,33 @@ import React from 'react'
 import { useEffect } from 'react';
 import { useState } from 'react';
 import ReactPaginate from 'react-paginate';
+import Cookies from 'js-cookie';
 
 function PaginationPemasukan(props) {
 
   const [dataTiket,setDataTiket] = useState(Object.entries(props));
   const searchTerm = props.searchTerm
   // console.log(props);
+
+  const [token, setToken] = useState(Cookies.get('token'));
+  const [user,setUser] = useState('loading');
+  
+  const fetchData = async () => {
+    const data = await fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/me`, {
+      headers : {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        Authorization: `Bearer ${token}`,
+      }
+      });
+  const json = await data.json();
+    console.log(json);
+    var result =''
+    if(json.message !== 'Unauthenticated.') {
+      result = json.user.name;
+    }
+  setUser(result);
+  }
 
   useEffect(() =>
   setDataTiket(Object.entries(props))
@@ -37,7 +58,7 @@ function PaginationPemasukan(props) {
       }
       else if(
         val.tanggal.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        val.id_admin.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        // val.id_admin.toLowerCase().includes(searchTerm.toLowerCase()) ||
         val.nama.toLowerCase().includes(searchTerm.toLowerCase()) ||
         val.harga_awal.toLowerCase().includes(searchTerm.toLowerCase()) ) 
         {
@@ -71,7 +92,7 @@ function PaginationPemasukan(props) {
       dataTiket[0][1].filter(val=>{
         if(
           val.tanggal.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          val.id_admin.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          (val.id_admin && val.id_admin.toLowerCase().includes(searchTerm.toLowerCase())) ||
           val.nama.toLowerCase().includes(searchTerm.toLowerCase()) ||
           val.harga_awal.toLowerCase().includes(searchTerm.toLowerCase())
         ) {

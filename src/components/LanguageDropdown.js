@@ -31,19 +31,19 @@ const LanguageDropdownn = () => {
   };
 
   return (
-    <>
+    <div className="mx-4">
       <a className="text-blueGray-500 block" href="#pablo" ref={btnDropdownRef} onClick={(e) => {e.preventDefault(); dropdownPopoverShow ? closeDropdownPopover() : openDropdownPopover();}}>
-        <div className="items-center flex">
-          <div className="px-4 py-2 shadow-lg bg-[#ECE3DE] text-black font-nunito font-bold flex items-center justify-center mx-auto w-40 hover:bg-red-200 rounded transition-all duration-300 ease-in-out active:bg-red-400"><p className="pr-1">{t('navbar_lg')} </p> {localStorage.getItem("i18nextLng") === "id"?<img alt="kosong" src={id} className="w-8 mx-1" />:<img alt="kosong" src={en} className="w-8 mx-1" />}<BiDownArrow/></div>
+        <div className="items-center flex float-left">
+          <div className="px-6 py-2 shadow-lg bg-[#ECE3DE] text-black font-nunito font-bold flex items-center justify-center mx-auto w-20 hover:bg-red-200 rounded transition-all duration-300 ease-in-out active:bg-red-400"><p className="pr-1"></p> {localStorage.getItem("i18nextLng") === "id"?<img alt="kosong" src={id} className="w-8 mx-1" />:<img alt="kosong" src={en} className="w-8 mx-1" />}</div>
         </div>
       </a>
 
-      <div ref={popoverDropdownRef} className={(dropdownPopoverShow ? "block " : "hidden ") + "bg-white text-base z-50 float-left py-2 justify-center mx-auto list-none text-left rounded shadow-lg min-w-40 w-40 flex flex-col"}
+      <div ref={popoverDropdownRef} className={(dropdownPopoverShow ? "block " : "hidden ") + "bg-white text-base z-50 float-left py-2 justify-center mx-auto list-none text-left rounded shadow-lg min-w-40 w-20 flex flex-col"}
 				value={localStorage.getItem("i18nextLng")}>
-        <button onClick={()=> {i18n.changeLanguage('en');}} className="justify-center items-center hover:bg-red-300 border-b-2 py-1  flex">English<img src={en} className="w-8 pl-2" alt="kosong" /></button>
-        <button onClick={()=>{i18n.changeLanguage('id');}} className=" justify-center items-center hover:bg-red-300  flex">Indonesia<img src={id} className="w-8 ml-2" alt="kosong" /></button>
+        <button onClick={()=> {i18n.changeLanguage('en');closeDropdownPopover()}} className="justify-center items-center hover:bg-red-300 border-b-2 py-1  flex"><img src={en} className="w-8 pl-2" alt="kosong"/></button>
+        <button onClick={()=>{i18n.changeLanguage('id');closeDropdownPopover()}} className=" justify-center items-center hover:bg-red-300  flex"><img src={id} className="w-8 ml-2" alt="kosong" /></button>
       </div>
-    </>
+    </div>
   );
 };
 

@@ -83,15 +83,13 @@ else
     var faq_HTMLTABLE = ''
     faq_HTMLTABLE = dataFAQ.map((item,index)=>{
         return(
-            <tr className='' key={index}>
-                <th scope="col" class="text-base font-medium text-[#A70B0B] px-6 py-4 text-left ">{index + 1}</th>
-                <th scope="col" class="text-base font-medium text-[#A70B0B] px-6 py-4 text-left">
-                    <p>Q : {item.question}</p>
-                    <p>A : {item.answer}</p>
-                </th>
-                <th scope="col" class="text-base font-medium text-[#A70B0B] px-6 py-4 text-left">
-                    <p>Q : {item.question_en}</p>
-                    <p>A : {item.answer_en}</p>
+            <tr className='border-b-2' key={index}>
+                <th scope="col" class="text-base font-medium text-[#421a1a] px-6 py-4 text-left ">{index + 1}</th>
+                <th scope="col" class="text-base font-medium text-[#611e1e] px-6 py-4 text-left">
+                    <p><span className='text-black'>Pertanyaan :</span> {item.question}</p>
+                    <p><span className='text-black'>Jawaban :</span> {item.answer}</p>
+                    <p><span className='text-black'>Question :</span> {item.question_en}</p>
+                    <p><span className='text-black'>Answer :</span> {item.answer_en}</p>
                 </th>
                    
                     <td class=" text-gray-900 px-6 py-4 text-center w-7 whitespace-nowrap ">

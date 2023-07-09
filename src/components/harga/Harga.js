@@ -10,6 +10,8 @@ import { useTranslation } from 'react-i18next'
 
 function Harga() {
     const {t} = useTranslation()
+    var lang = localStorage.getItem("i18nextLng");
+    console.log(lang);
 
     const {pathname } = useLocation();
 
@@ -93,7 +95,7 @@ else
                         {/* {getFirstLetters(item.nama_museum)} */}
                     </td>
                     <td className=" text-gray-900  px-6 py-4 whitespace-nowrap">
-                        {item.nama_kategori}
+                        {lang === 'id' ? item.nama_kategori:item.nama_kategori_en}
                     </td>
                     <td className=" text-gray-900  px-6 py-4 whitespace-nowrap">
                         {rupiah(item.hari_biasa)}
@@ -185,7 +187,7 @@ else
                         {indexx + 1}
                     </td>
                     <td className=" text-gray-900  px-6 py-4 whitespace-nowrap">
-                        {itemm.nama_kategori}
+                    {lang === 'id' ? itemm.nama_kategori:itemm.nama_kategori_en}
                     </td>
                     <td className=" text-gray-900  px-6 py-4 whitespace-nowrap">
                         {itemm.hari_biasa == 0 ?<p className='text-green-600'>Gratis</p>:rupiah(itemm.hari_biasa)}

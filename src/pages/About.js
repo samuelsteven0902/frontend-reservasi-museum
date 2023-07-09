@@ -13,8 +13,6 @@ export default function About() {
         window.scrollTo(0,0)
     },[pathname])
 
-
-    
     return (
         <div className='bg-gray-50'>
             <div className="absolute w-full z-20">
@@ -22,9 +20,7 @@ export default function About() {
             </div>  
             
             <main className='container mx-auto p-10 h- relative min-h-screen'>
-               {/* <p>ini about museum</p> */}
                 <Container/>
-                
             </main>
             <FooterPengunjung />
         </div>
