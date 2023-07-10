@@ -62,25 +62,25 @@ export default function HeaderStats() {
 
     var dataPemasukanHariIni = data.filter(val=>{
       return val.updated_at.slice(0, val.updated_at.lastIndexOf('-') + 3) === hariIni
-    }).map((item,index)=>Math.floor(item.harga_awal * item.jumlah)).reduce((accumulator, value) => {
+    }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
       return accumulator + value;
     }, 0);
 
     var dataPemasukankemarin = data.filter(val=>{
       return val.updated_at.slice(0, val.updated_at.lastIndexOf('-') + 3) === kemarin
-    }).map((item,index)=>Math.floor(item.harga_awal * item.jumlah)).reduce((accumulator, value) => {
+    }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
       return accumulator + value;
     }, 0);
 
     var dataPemasukanBulanLalu = data.filter(val=>{
       return val.updated_at.slice(0,val.updated_at.lastIndexOf('-')) === bulanLalu
-    }).map((item,index)=>Math.floor(item.harga_awal * item.jumlah)).reduce((accumulator, value) => {
+    }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
       return accumulator + value;
     }, 0);
 
     var dataPemasukanBulanIni = data.filter(val=>{
       return val.updated_at.slice(0,val.updated_at.lastIndexOf('-')) === bulanIni
-    }).map((item,index)=>Math.floor(item.harga_awal * item.jumlah)).reduce((accumulator, value) => {
+    }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
       return accumulator + value;
     }, 0);
   }

@@ -176,7 +176,7 @@ return (
                         <div className='flex flex-col justify-end content-end items-end '>
                             <div className='lg:w- pr-6 flex'>
                                 <p className='p-3 font-nunito font-bold text-xl'>{t('pembayaran.metode.pilih')} : </p>
-                                <p className='p-3 font-nunito font-bold text-xl'>{lang === 'id' ? pembayaran=== 'tunai' ? 'Tunai': 'Non-Tunai'  :pembayaran=== 'tunai' ? 'Cash': 'Cashless'}</p>
+                                <p className='p-3 font-nunito font-bold text-xl'>{lang === 'id' ? pembayaran=== 'tunai' ? 'Tunai': 'Non-Tunai'  :pembayaran=== 'tunai' ? 'Tunai': 'Non-Tunai'}</p>
                             </div>    
                             {/* <p className='pr-6 text-red-500 text-sm'>{"* " + danger}</p> */}
                         </div>
