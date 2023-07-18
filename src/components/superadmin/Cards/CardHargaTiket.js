@@ -58,7 +58,7 @@ export default function CardAdmin({ color }) {
                   {item.jumlah}
                 </td>
                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                  {item.harga_awal}
+                  {item.total_harga}
                 </td>
                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                   {item.potongan_harga}

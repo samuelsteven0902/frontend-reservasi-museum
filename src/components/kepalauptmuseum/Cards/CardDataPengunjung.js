@@ -33,6 +33,8 @@ const [namaMuseumSelected,setNamaMuseumSelected] = useState('Semua Museum')
 
 const [startDate, setStartDate] = useState('');
 const [endDate, setEndDate] = useState('');
+const [startDateFilter, setStartDateFilter] = useState('');
+const [endDateFilter, setEndDateFilter] = useState('');
 
 const history = useHistory()
 
@@ -70,6 +72,20 @@ const handleDownload = () => {
   });
 };
 
+const fetchMuseum = () =>{
+  axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/show_museum`, {
+    headers : {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      Authorization: `Bearer ${Cookies.get('token')}`,
+    }}).then(res=>{
+    console.log(res);  
+    if(res.status === 200) {
+      setSemuaMuseum(res.data.museum);        
+      }
+  });
+}
+
 
 //go page tiket
 const handleTiket = (e) =>{
@@ -77,6 +93,7 @@ const handleTiket = (e) =>{
 }
 
 useEffect(() => {
+  fetchMuseum()
   //axios perlu header authorization karena API di backend mengharuskan untuk login
   axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/pengunjung`, {
     headers : {
@@ -86,16 +103,16 @@ useEffect(() => {
     }}).then(res=>{
     console.log(res);  
     if(res.status === 200) {
-        const dataPengunjung = res.data.pengunjung
-        setPengunjung(dataPengunjung)
-        setSemuaMuseum([...new Set(dataPengunjung.map(pengunjung => pengunjung.museum))])
-        setLoading(false);
+      const dataPengunjung = res.data.pengunjung;
+      setPengunjung(dataPengunjung);
+      setLoading(false);
       }
   });
   initTE({ Modal, Ripple });
 }, [])
 
 console.log(namaMuseum);
+console.log(semuaMuseum);
 
 
 const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false);
@@ -127,8 +144,8 @@ if(loading) {
       </td>
     </tr>
   }
-else {
-  pengunjung_HTMLTABLE = <PaginationDataPengunjung data={pengunjung} searchTerm={searchTerm} handleTiket={handleTiket}/>
+else if (pengunjung.length > 0) {
+  pengunjung_HTMLTABLE = <PaginationDataPengunjung pengunjung={pengunjung} startDate={startDateFilter} endDate={endDateFilter} searchTerm={searchTerm} handleTiket={handleTiket} />;
 }
 
   return (
@@ -163,25 +180,35 @@ else {
           <div className="flex flex-wrap items-center">
             <div className="relative w-full max-w-full flex-grow flex">
               <h3 className="flex w-full items-center px-5 font-semibold text-lg font-merriweather text-red-600">Data Pengunjung</h3>
-              <div className="relative w-full px-4 flex-grow flex justify-end">
-                <a className="text-blueGray-500 block" href="#pablo" ref={btnDropdownRef} onClick={(e) => { e.preventDefault(); dropdownPopoverShow ? closeDropdownPopover() : openDropdownPopover(); }}>
-                <div className="items-center flex">
-                  <div className="px-4 py-2 border-2 bg-white border-red-300  text-black font-nunito font-bold flex items-center hover:bg-red-200 rounded-xl transition-all duration-300 ease-in-out active:bg-red-400"><p className="pr-1">{namaMuseumSelected}</p><BiDownArrow/></div>
-                </div>
-                </a>
-                <div ref={popoverDropdownRef} className={ (dropdownPopoverShow ? "block " : "hidden ") + "bg-white text-base z-50 float-left py-2 px-3 list-none text-left rounded-xl shadow-lg border-2 border-gray-200" }>
-                  <div>
-                    <button className="block font-nunito py-2 px-4 w-full text-black font-bold hover:bg-red-200 transition-all duration-300 ease-in-out active:bg-red-400 focus:bg-red-400" onClick={handleFilterMusuem} value='Semua Museum'>Semua Musuem</button>
-                  </div>
-                    {namaMuseum.map((item,index)=>{
-                      return(
-                    <div key={index}>
-                      <button className="block font-nunito py-2 px-4 text-black font-bold hover:bg-red-200  transition-all duration-300 ease-in-out active:bg-red-400 focus:bg-red-400" onClick={handleFilterMusuem} value={item}>{item}</button>
-                    </div>
-                  )
-                  })}
-                </div>
+            </div>
+            <div>
+          <div>
+            
+          </div>
+            <div className="flex my-2  px-6 pt-4">
+              <div className="flex flex-col mx-2">
+                <label htmlFor="startDate" className="text-black">Mulai Tanggal:</label>
+                <input  
+                  type="date"
+                  id="startDate"
+                  value={startDateFilter}
+                  onChange={(e) => setStartDateFilter(e.target.value)}
+                  className="block font-nunito py-2 px-4  text-black font-bold hover:bg-red-200 transition-all duration-300 ease-in-out active:bg-red-400 focus:bg-red-400 bg-white text-base z-50 float-left list-none text-left rounded-xl  shadow-none border-red-300 min-w-0 border-2"
+                />
               </div>
+              <div className="flex flex-col mx-2">
+
+                <label htmlFor="endDate" className="text-black">Akhir Tanggal:</label>
+                <input
+                  type="date"
+                  id="endDate"
+                  value={endDateFilter}
+                  onChange={(e) => setEndDateFilter(e.target.value)}
+                  className="block font-nunito py-2 px-4  text-black font-bold hover:bg-red-200 transition-all duration-300 ease-in-out active:bg-red-400 focus:bg-red-400 bg-white text-base z-50 float-left list-none text-left rounded-xl  shadow-none border-red-300 min-w-0 border-2"
+                />
+                </div>
+            </div>
+
             </div>
           </div>
 
@@ -205,6 +232,7 @@ else {
                 <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-nunito font-semibold text-left">Harga</th>
                 <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-nunito font-semibold text-left">Pembayaran</th>
                 <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-nunito font-semibold text-left">Tanggal Pembayaran</th>
+                <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-nunito font-semibold text-left">Tanggal Kehadiran</th>
                 <th className="sticky right-0 bg-white text-red-700 px-2">Tiket</th>
               </tr>
             </thead>
@@ -272,9 +300,11 @@ else {
                   label="Pilih Museum"
                   onChange={e => setNamaMuseum(e.target.value)}
                 >
-                  {namaMuseum &&  namaMuseum.map((item,index)=>{
+                <MenuItem value='' >Semua Museum</MenuItem>
+                  {semuaMuseum.length > 0 &&  semuaMuseum.map((item,index)=>{
+
                     return(
-                      <MenuItem value={item} key={index}>{item}</MenuItem>
+                      <MenuItem value={item.id} key={index}>{item.nama_museum}</MenuItem>
 
                     )
                   })}
@@ -282,7 +312,7 @@ else {
               </FormControl>
             </Box>
         </div>
-       <div className="flex">
+      <div className="flex">
         <div className=' mx-2'>
             <label className='block font-nunito font-bold'>Tanggal Mulai:</label>
             <input className="block font-nunito py-2 px-4  text-black font-bold hover:bg-red-200 transition-all duration-300 ease-in-out active:bg-red-400 focus:bg-red-400 bg-white text-base z-50 float-left list-none text-left rounded-xl  shadow-none border-red-300 min-w-0 border-2" type="date" value={startDate} onChange={e => setStartDate(e.target.value)}/>
@@ -291,7 +321,7 @@ else {
             <label className='block font-nunito font-bold'>Tanggal Akhir:</label>
             <input className="block font-nunito py-2 px-4  text-black font-bold hover:bg-red-200 transition-all duration-300 ease-in-out active:bg-red-400 focus:bg-red-400 bg-white text-base z-50 float-left list-none text-left rounded-xl  shadow-none border-red-300 min-w-0 border-2" type="date" value={endDate} onChange={e => setEndDate(e.target.value)}/>
           </div>
-       </div>
+      </div>
       </div>
 
 

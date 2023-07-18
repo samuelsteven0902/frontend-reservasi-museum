@@ -35,14 +35,14 @@ function WorkingSection(input) {
             const data = {
                 nama:input.data.nama,
                 kota:input.data.kota,
+                museum:input.data.museum,
                 phone:input.data.phone,
                 jumlah:input.data.jumlah,
-                museum:input.data.museum,
-                kategori:input.data.kategori,
+                id_kategori:input.data.kategori.id,
                 tanggal:input.data.tanggal,
                 email:input.data.email,
                 foto:input.data.foto,
-                harga_awal:input.input,  
+                total_harga:input.input,  
                 pembayaran: "tunai",
                 kehadiran:'Tidak Hadir',
                 // tiket: input.data.kode_tiket,
@@ -77,14 +77,13 @@ function WorkingSection(input) {
                 const data = {
                     nama:input.data.nama,
                     kota:input.data.kota,
+                    museum:input.data.museum,
                     phone:input.data.phone,
                     jumlah:input.data.jumlah,
-                    museum:input.data.museum,
-                    email:input.data.email,
-                    kategori:input.data.kategori,
+                    id_kategori:input.data.kategori.id,
                     tanggal:input.data.tanggal,
-                    foto:input.data.foto,
-                    harga_awal:input.input,  
+                    email:input.data.email,
+                    total_harga:input.input,  
                     pembayaran: pembayaran,
                     kehadiran:'Tidak Hadir',
                     // tiket: input.data.kode_tiket,
@@ -208,7 +207,7 @@ return (
                                 <div className='w-1/2 mt-4 lg:w-full ' >
                                     <div>
                                         <p className='font-bold font-nunito'>{t('pembayaran.detail.kategori')}</p>
-                                        <p>{input.data.kategori}</p>
+                                        <p>{input.data.kategori.nama_kategori}</p>
                                     </div>
                                 </div>
                                 <div className='w-1/2 mt-4 lg:w-full '>

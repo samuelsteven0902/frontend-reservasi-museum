@@ -56,30 +56,34 @@ export default function HeaderStats() {
 
 
 
-    var dataPemasukanHariIni = data.filter(val=>{
-      return val.updated_at.slice(val.updated_at.lastIndexOf('-') + 1,val.updated_at.lastIndexOf('-') + 3) == hariIni
-    }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
-      return accumulator + value;
-    }, 0);
+  var dataPemasukanHariIni = data.filter(val => {
+    return new Date(val.updated_at).getDate() === hariIni;
+  }).map((item, index) => Math.floor(item.total_harga)).reduce((accumulator, value) => {
+    return accumulator + value;
+  }, 0);
+  
+  var dataPemasukankemarin = data.filter(val => {
+    const yesterday = new Date();
+    yesterday.setDate(yesterday.getDate() - 1);
+    return new Date(val.updated_at).getDate() === yesterday.getDate();
+  }).map((item, index) => Math.floor(item.total_harga)).reduce((accumulator, value) => {
+    return accumulator + value;
+  }, 0);
+  
+  var dataPemasukanBulanLalu = data.filter(val => {
+    const previousMonth = new Date().getMonth() - 1;
+    return new Date(val.updated_at).getMonth() === previousMonth;
+  }).map((item, index) => Math.floor(item.total_harga)).reduce((accumulator, value) => {
+    return accumulator + value;
+  }, 0);
+  
 
-    var dataPemasukankemarin = data.filter(val=>{
-      return val.updated_at.slice(val.updated_at.lastIndexOf('-') + 1,val.updated_at.lastIndexOf('-') + 3) == kemarin
-    }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
+    var dataPemasukanBulanIni = data.filter(val => {
+      return val.updated_at.slice(val.updated_at.indexOf('-') + 1, val.updated_at.lastIndexOf('-')) === bulanIni.toString().padStart(2, '0');
+    }).map((item, index) => Math.floor(item.total_harga)).reduce((accumulator, value) => {
       return accumulator + value;
     }, 0);
-
-    var dataPemasukanBulanLalu = data.filter(val=>{
-      return val.updated_at.slice(val.updated_at.indexOf('-') + 1,val.updated_at.lastIndexOf('-')) == bulanLalu
-    }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
-      return accumulator + value;
-    }, 0);
-
-    var dataPemasukanBulanIni = ''
-    dataPemasukanBulanIni = data.filter(val=>{
-      return val.updated_at.slice(val.updated_at.indexOf('-') + 1,val.tanggal.lastIndexOf('-')) == bulanIni
-    }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
-      return accumulator + value;
-    }, 0);
+    
 
     
   }

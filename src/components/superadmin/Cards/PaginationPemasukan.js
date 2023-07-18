@@ -1,36 +1,58 @@
+import dayjs from 'dayjs';
+import moment from 'moment';
 import React from 'react'
 import { useEffect } from 'react';
 import { useState } from 'react';
 import ReactPaginate from 'react-paginate';
 
-function PaginationPemasukan(props) {
+function PaginationPemasukan({dataPengunjung,searchTerm,startDate, endDate}) {
 
-  const [dataTiket,setDataTiket] = useState(Object.entries(props));
-  const searchTerm = props.searchTerm
-  // console.log(props);
+  const [dataTiket,setDataTiket] = useState(dataPengunjung);
+  console.log(dataPengunjung);
 
   useEffect(() =>
-  setDataTiket(Object.entries(props))
-  ,[props] )
+  setDataTiket(dataPengunjung)
+  ,[dataPengunjung] )
 
-  const rupiah = (number)=>{
-    return new Intl.NumberFormat("id-ID", {
-    //   style: "currency",
-      currency: "IDR"
-    }).format(number);
+  function rupiah(amount) {
+    const number = Number(amount)
+    const formattedAmount = number.toLocaleString("id-ID", {
+      style: "currency",
+      currency: "IDR",
+      minimumFractionDigits: 2,
+    });
+  
+    return formattedAmount.replace(",00", "");
   }
+
+  const formattedDate = (data) => dayjs(data.toString()).format('DD-MM-YYYY HH:mm:ss');
+
+  const filteredData = dataTiket.filter((val) => {
+    if (startDate && endDate) {
+      const tanggalVal = moment(val.tanggal, 'DD-MM-YYYY').toDate();
+      const start = moment(startDate, 'YYYY-MM-DD').toDate();
+      const end = moment(endDate, 'YYYY-MM-DD').toDate();
+      return tanggalVal >= start && tanggalVal <= end;
+    }
+
+    if (val.nama.toLowerCase().includes(searchTerm.toLowerCase())) {
+      return true;
+    }
+
+    return false;
+  });
 
   const [itemOffset, setItemOffset] = useState(0);
   const itemsPerPage = 6 ;
 
   const endOffset = itemOffset + itemsPerPage;
-  const currentItems = dataTiket[0][1].slice(itemOffset, endOffset);
+  const currentItems = filteredData.slice(itemOffset, endOffset);
 
   //jumlah halaman tanpa search
   var pageCount = 0;
 
   const handlePageClick = (event) => {
-    const newOffset = (event.selected * itemsPerPage) % dataTiket[0][1]
+    const newOffset = (event.selected * itemsPerPage) % filteredData
     .filter(val=>{
       if(searchTerm === ""){
           return val
@@ -39,7 +61,7 @@ function PaginationPemasukan(props) {
         val.tanggal.toLowerCase().includes(searchTerm.toLowerCase()) ||
         val.id_admin.toLowerCase().includes(searchTerm.toLowerCase()) ||
         val.nama.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        val.harga_awal.toLowerCase().includes(searchTerm.toLowerCase()) ) 
+        val.total_harga.toLowerCase().includes(searchTerm.toLowerCase()) ) 
         {
           return val
       }
@@ -56,24 +78,24 @@ function PaginationPemasukan(props) {
     <>
     {searchTerm === "" ? currentItems.map((item,index)=>{
         //jumlah halaman tanpa search
-        pageCount = Math.ceil(dataTiket[0][1].length / itemsPerPage);
+        pageCount = Math.ceil(filteredData.length / itemsPerPage);
         
         return(
             <tr className="bg-white border-b text-center" key={index}>
-              <td className=" text-gray-900 px-6 py-4 whitespace-nowrap">{item.tanggal}</td>
+              <td className=" text-gray-900 px-6 py-4 whitespace-nowrap">{formattedDate(item.updated_at)}</td>
               <td className=" text-gray-900 px-6 py-4 whitespace-nowrap">{item.id_admin}</td>
               <td className=" text-gray-900 px-6 py-4 whitespace-nowrap">{item.nama}</td>
-              <td className=" text-gray-900 px-6 py-4 whitespace-nowrap">{rupiah(item.harga_awal)}</td>
+              <td className=" text-gray-900 px-6 py-4 whitespace-nowrap">{rupiah(item.total_harga)}</td>
             </tr>
           )
         })
       :
-      dataTiket[0][1].filter(val=>{
+      dataTiket.filter(val=>{
         if(
           val.tanggal.toLowerCase().includes(searchTerm.toLowerCase()) ||
           val.id_admin.toLowerCase().includes(searchTerm.toLowerCase()) ||
           val.nama.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          val.harga_awal.toLowerCase().includes(searchTerm.toLowerCase())
+          val.total_harga.toLowerCase().includes(searchTerm.toLowerCase())
         ) {
           return val
         }
@@ -87,7 +109,7 @@ function PaginationPemasukan(props) {
               <td className=" text-gray-900 px-6 py-4 whitespace-nowrap">{item.tanggal}</td>
               <td className=" text-gray-900 px-6 py-4 whitespace-nowrap">{item.id_admin}</td>
               <td className=" text-gray-900 px-6 py-4 whitespace-nowrap">{item.nama}</td>
-              <td className=" text-gray-900 px-6 py-4 whitespace-nowrap">{rupiah(item.harga_awal)}</td>
+              <td className=" text-gray-900 px-6 py-4 whitespace-nowrap">{rupiah(item.total_harga)}</td>
             </tr>
             )
           })

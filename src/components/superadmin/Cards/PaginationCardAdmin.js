@@ -119,11 +119,10 @@ function Items({data,handleLoadingStatus,fetchData}) {
             <td class=" text-gray-900 px-6 py-4 whitespace-nowrap text-center">{item.name}</td>
             <td class=" text-gray-900 px-6 py-4 whitespace-nowrap text-center">{item.roles[0].name}</td>
             <td class=" text-gray-900 px-6 py-4 whitespace-nowrap text-center">{item.email}</td>
-            <td class=" text-gray-900 px-6 py-4 whitespace-nowrap text-center" >Sensor</td>
             <td class=" text-gray-900 px-6 py-4 whitespace-nowrap ">
                 {/* <button type="button" className="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out ml-1" onClick={e=>deleteFAQ(e,item.id)}>Hapus</button> */}
                 <FormControlLabel
-                            control={<Android12Switch checked={item.status}
+                            control={<Android12Switch checked={Number(item.status)}
                             id={item.id} />}
                             onChange={handleSwitch}
                         />

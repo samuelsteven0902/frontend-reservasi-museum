@@ -36,7 +36,7 @@ export default function CardLineChart() {
         label: new Date().getFullYear(),
         backgroundColor: "#4c51bf",
         borderColor: "#4c51bf",
-        data: [2, dataPemasukanFeb, dataPemasukanMar , dataPemasukanApril, dataPemasukanMei, dataPemasukanJuni, dataPemasukanJuli, dataPemasukanAgus, dataPemasukanSept, dataPemasukanOkt, dataPemasukanNov,dataPemasukanDes],
+        data: [dataPemasukanJan, dataPemasukanFeb, dataPemasukanMar , dataPemasukanApril, dataPemasukanMei, dataPemasukanJuni, dataPemasukanJuli, dataPemasukanAgus, dataPemasukanSept, dataPemasukanOkt, dataPemasukanNov,dataPemasukanDes],
         fill: false,
       },
     ],
@@ -72,27 +72,27 @@ export default function CardLineChart() {
     //annually
     var dataCurrYear = data.filter(val=>{
       return val.updated_at.slice(0, val.updated_at.indexOf('-')) == new Date().getFullYear();
-    }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
+    }).map((item,index)=>Math.floor(item.total_harga)).reduce((accumulator, value) => {
       return accumulator + value;
     }, 0);
     var dataYear1 = data.filter(val=>{
       return val.updated_at.slice(0, val.updated_at.indexOf('-')) == new Date().getFullYear() - 1;
-    }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
+    }).map((item,index)=>Math.floor(item.total_harga)).reduce((accumulator, value) => {
       return accumulator + value;
     }, 0);
     var dataYear2 = data.filter(val=>{
       return val.updated_at.slice(0, val.updated_at.indexOf('-')) == new Date().getFullYear() - 2;
-    }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
+    }).map((item,index)=>Math.floor(item.total_harga)).reduce((accumulator, value) => {
       return accumulator + value;
     }, 0);
     var dataYear3 = data.filter(val=>{
       return val.updated_at.slice(0, val.updated_at.indexOf('-')) == new Date().getFullYear() - 3;
-    }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
+    }).map((item,index)=>Math.floor(item.total_harga)).reduce((accumulator, value) => {
       return accumulator + value;
     }, 0);
     var dataYear4 = data.filter(val=>{
       return val.updated_at.slice(0, val.updated_at.indexOf('-')) == new Date().getFullYear() - 4;
-    }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
+    }).map((item,index)=>Math.floor(item.total_harga)).reduce((accumulator, value) => {
       return accumulator + value;
     }, 0);
 
@@ -100,62 +100,62 @@ export default function CardLineChart() {
     //monthly
     var dataPemasukanJan = data.filter(val=>{
       return val.updated_at.slice(0,val.updated_at.lastIndexOf('-')) === new Date().getFullYear() + '-01'
-    }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
+    }).map((item,index)=>Math.floor(item.total_harga)).reduce((accumulator, value) => {
       return accumulator + value;
     }, 0);
     var dataPemasukanFeb = data.filter(val=>{
       return val.updated_at.slice(0,val.updated_at.lastIndexOf('-')) === new Date().getFullYear() + '-02'
-    }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
+    }).map((item,index)=>Math.floor(item.total_harga)).reduce((accumulator, value) => {
       return accumulator + value;
     }, 0);
     var dataPemasukanMar =  data.filter(val=>{
       return val.updated_at.slice(0,val.updated_at.lastIndexOf('-')) === new Date().getFullYear() + '-03'
-    }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
+    }).map((item,index)=>Math.floor(item.total_harga)).reduce((accumulator, value) => {
       return accumulator + value;
     }, 0);
     var dataPemasukanApril = data.filter(val=>{
       return val.updated_at.slice(0,val.updated_at.lastIndexOf('-')) === new Date().getFullYear() + '-04'
-    }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
+    }).map((item,index)=>Math.floor(item.total_harga)).reduce((accumulator, value) => {
       return accumulator + value;
     }, 0);
     var dataPemasukanMei = data.filter(val=>{
       return val.updated_at.slice(0,val.updated_at.lastIndexOf('-')) === new Date().getFullYear() + '-05'
-    }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
+    }).map((item,index)=>Math.floor(item.total_harga)).reduce((accumulator, value) => {
       return accumulator + value;
     }, 0);
     var dataPemasukanJuni = data.filter(val=>{
       return val.updated_at.slice(0,val.updated_at.lastIndexOf('-')) === new Date().getFullYear() + '-06'
-    }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
+    }).map((item,index)=>Math.floor(item.total_harga)).reduce((accumulator, value) => {
       return accumulator + value;
     }, 0);
     var dataPemasukanJuli = data.filter(val=>{
       return val.updated_at.slice(0,val.updated_at.lastIndexOf('-')) === new Date().getFullYear() + '-07'
-    }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
+    }).map((item,index)=>Math.floor(item.total_harga)).reduce((accumulator, value) => {
       return accumulator + value;
     }, 0);
     var dataPemasukanAgus = data.filter(val=>{
       return val.updated_at.slice(0,val.updated_at.lastIndexOf('-')) === new Date().getFullYear() + '-08'
-    }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
+    }).map((item,index)=>Math.floor(item.total_harga)).reduce((accumulator, value) => {
       return accumulator + value;
     }, 0);
     var dataPemasukanSept = data.filter(val=>{
       return val.updated_at.slice(0,val.updated_at.lastIndexOf('-')) === new Date().getFullYear() + '-09'
-    }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
+    }).map((item,index)=>Math.floor(item.total_harga)).reduce((accumulator, value) => {
       return accumulator + value;
     }, 0);
     var dataPemasukanOkt = data.filter(val=>{
       return val.updated_at.slice(0,val.updated_at.lastIndexOf('-')) === new Date().getFullYear() + '-10'
-    }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
+    }).map((item,index)=>Math.floor(item.total_harga)).reduce((accumulator, value) => {
       return accumulator + value;
     }, 0);
     var dataPemasukanNov = data.filter(val=>{
       return val.updated_at.slice(0,val.updated_at.lastIndexOf('-')) === new Date().getFullYear() + '-11'
-    }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
+    }).map((item,index)=>Math.floor(item.total_harga)).reduce((accumulator, value) => {
       return accumulator + value;
     }, 0);
     var dataPemasukanDes = data.filter(val=>{
       return val.updated_at.slice(0,val.updated_at.lastIndexOf('-')) === new Date().getFullYear() + '-12'
-    }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
+    }).map((item,index)=>Math.floor(item.total_harga)).reduce((accumulator, value) => {
       return accumulator + value;
     }, 0);
 
@@ -178,37 +178,37 @@ export default function CardLineChart() {
   //daily
   var thisDay = data.filter(val=>{
     return val.updated_at.slice(0, val.updated_at.lastIndexOf('-') + 3) === labelHari1
-  }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
+  }).map((item,index)=>Math.floor(item.total_harga)).reduce((accumulator, value) => {
     return accumulator + value;
   }, 0);
   var thisDay2 = data.filter(val=>{
     return val.updated_at.slice(0, val.updated_at.lastIndexOf('-') + 3) === labelHari2
-  }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
+  }).map((item,index)=>Math.floor(item.total_harga)).reduce((accumulator, value) => {
     return accumulator + value;
   }, 0);
   var thisDay3 = data.filter(val=>{
     return val.updated_at.slice(0, val.updated_at.lastIndexOf('-') + 3) === labelHari3
-  }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
+  }).map((item,index)=>Math.floor(item.total_harga)).reduce((accumulator, value) => {
     return accumulator + value;
   }, 0);
   var thisDay4 = data.filter(val=>{
     return val.updated_at.slice(0, val.updated_at.lastIndexOf('-') + 3) === labelHari4
-  }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
+  }).map((item,index)=>Math.floor(item.total_harga)).reduce((accumulator, value) => {
     return accumulator + value;
   }, 0);
   var thisDay5 = data.filter(val=>{
     return val.updated_at.slice(0, val.updated_at.lastIndexOf('-') + 3) === labelHari5
-  }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
+  }).map((item,index)=>Math.floor(item.total_harga)).reduce((accumulator, value) => {
     return accumulator + value;
   }, 0);
   var thisDay6 = data.filter(val=>{
     return val.updated_at.slice(0, val.updated_at.lastIndexOf('-') + 3) === labelHari6
-  }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
+  }).map((item,index)=>Math.floor(item.total_harga)).reduce((accumulator, value) => {
     return accumulator + value;
   }, 0);
   var thisDay7 = data.filter(val=>{
     return val.updated_at.slice(0, val.updated_at.lastIndexOf('-') + 3) === labelHari7
-  }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
+  }).map((item,index)=>Math.floor(item.total_harga)).reduce((accumulator, value) => {
     return accumulator + value;
   }, 0);
   }
@@ -222,7 +222,7 @@ export default function CardLineChart() {
         labels: ["January", "February", "March", "April", "May", "June", "July", "August", "Sept", "Oct", "Nov", "Dec",
         ],
         datasets: [ { label: new Date().getFullYear(), backgroundColor: "#4c51bf", borderColor: "#4c51bf",
-            data: [2, dataPemasukanFeb, dataPemasukanMar , dataPemasukanApril, dataPemasukanMei, dataPemasukanJuni, dataPemasukanJuli, dataPemasukanAgus, dataPemasukanSept, dataPemasukanOkt, dataPemasukanNov,dataPemasukanDes],
+            data: [dataPemasukanJan, dataPemasukanFeb, dataPemasukanMar , dataPemasukanApril, dataPemasukanMei, dataPemasukanJuni, dataPemasukanJuli, dataPemasukanAgus, dataPemasukanSept, dataPemasukanOkt, dataPemasukanNov,dataPemasukanDes],
             fill: false,
           },
         ],

@@ -16,6 +16,7 @@ import {
   Ripple,
   initTE,
 } from "tw-elements";
+import moment from 'moment';
 
 function CardPemasukan() {
 
@@ -23,12 +24,30 @@ function CardPemasukan() {
   const [loading,setLoading] = useState(true)
   const [pemasukan,setPemasukan] = useState([])
   const [namaMuseum,setNamaMuseum] = useState([])
+  const [semuaMuseum,setSemuaMuseum] = useState([])
   const [namaMuseumSelected,setNamaMuseumSelected] = useState('Semua Museum')
   const [museumExport,setMuseumExport] = useState(null)
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
+  const [startDateFilter, setStartDateFilter] = useState('');
+  const [endDateFilter, setEndDateFilter] = useState('');
+
+  const fetchMuseum = () =>{
+    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/show_museum`, {
+      headers : {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        Authorization: `Bearer ${Cookies.get('token')}`,
+      }}).then(res=>{
+      console.log(res);  
+      if(res.status === 200) {
+        setSemuaMuseum(res.data.museum);        
+        }
+    });
+  }
 
   useEffect(() => {
+    fetchMuseum();
     axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/pemasukan` , {
       headers : {
           'Content-Type': 'application/json',
@@ -39,9 +58,6 @@ function CardPemasukan() {
     // console.log(res);  
     if(res.status === 200)
       {
-          const dataPendapatan = res.data.pemasukan
-          setNamaMuseum([...new Set(dataPendapatan.map(pemasukan => pemasukan.museum))])
-
           setPemasukan(res.data.pemasukan)
           setLoading(false);
       }
@@ -52,19 +68,19 @@ function CardPemasukan() {
   //export excel
 const handleDownload = () => {
   const queryParams = new URLSearchParams();
-  if (namaMuseum) {
+  if (museumExport) {
     queryParams.append('nama_museum', museumExport);
   }
-  if (startDate) {
-    queryParams.append('start_date', startDate);
+  if (startDateFilter) {
+    queryParams.append('start_date', startDateFilter);
   }
-  if (endDate) {
-    queryParams.append('end_date', endDate);
+  if (endDateFilter) {
+    queryParams.append('end_date', endDateFilter);
   }
 
   const url = `${process.env.REACT_APP_API_ENDPOINT}/api/pemasukanExport?${queryParams.toString()}`;
   console.log(url);
-  console.log(museumExport);
+  console.log(namaMuseumSelected);
 
   axios({
     url,
@@ -85,7 +101,7 @@ const handleDownload = () => {
   });
 };
 
-  console.log(namaMuseum);
+  console.log(pemasukan);
 
   const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false);
   const btnDropdownRef = React.createRef();
@@ -106,7 +122,43 @@ const handleDownload = () => {
 
   const handleFilterMusuem = (e) =>{
     setNamaMuseumSelected(e.target.value)
+    setMuseumExport(e.target.id)
   } 
+
+  function formatCurrency(amount) {
+    const formattedAmount = amount.toLocaleString("id-ID", {
+      style: "currency",
+      currency: "IDR",
+      minimumFractionDigits: 2,
+    });
+  
+    return formattedAmount.replace(",00", "");
+  }
+
+  const totalPemasukan = pemasukan
+  .filter((item) => {
+    // Filter by museum name
+    if (namaMuseumSelected === '' || namaMuseumSelected === 'Semua Museum') {
+      return true;
+    } else {
+      return item.kategori.museum.nama_museum === namaMuseumSelected;
+    }
+  })
+  .filter((item) => {
+    // Filter by start and end dates
+    if (startDateFilter && endDateFilter) {
+      const tanggalVal = moment(item.tanggal, 'DD-MM-YYYY').toDate();
+        const start = moment(startDateFilter, 'YYYY-MM-DD').toDate();
+        const end = moment(endDateFilter, 'YYYY-MM-DD').toDate();
+      return tanggalVal >= start && tanggalVal <= end;
+    }
+    return true;
+  })
+  .map((item) => Math.floor(item.total_harga))
+  .reduce((accumulator, value) => {
+    return accumulator + value;
+  }, 0);
+
 
 
   if(loading) {
@@ -118,13 +170,13 @@ const handleDownload = () => {
       </tr>
   }
   else {     
-    pemasukan_HTMLTABLE = <PaginationPemasukan data={pemasukan.filter((item) => {
+    pemasukan_HTMLTABLE = <PaginationPemasukan dataPengunjung={pemasukan.filter((item) => {
       if (namaMuseumSelected === ''|| namaMuseumSelected === 'Semua Museum' ) {
         return true;
       } else {
-        return item.museum == namaMuseumSelected;
+        return item.kategori.museum.nama_museum == namaMuseumSelected;
       }
-    })} searchTerm={searchTerm} />
+    })} searchTerm={searchTerm} startDate={startDateFilter} endDate={endDateFilter} />
   }
   return (
   <div className='container relative flex flex-col min-w-0 break-words w-full mb-6'>
@@ -135,9 +187,7 @@ const handleDownload = () => {
         <button
           type="button"
           class="bg-green-400 rounded-xl px-6 py-3 h-modal text-sm font-nunito text-white flex items-center"
-          data-te-toggle="modal"
-          data-te-target="#exampleModalCenter"
-          data-te-ripple-init
+          onClick={handleDownload}
           data-te-ripple-color="light">
           Export Data <img src={excel} className='w-4 ml-2' alt="excel"/>
         </button>
@@ -146,42 +196,60 @@ const handleDownload = () => {
       <div class="flex flex-col">
         <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
-            <div class="overflow-hidden shadow-lg rounded-xl m-2">
+            <div class="overflow-hidden shadow-lg rounded-xl m-2 bg-white">
               
-              <div className=" p-5 bg-white">
-              <div className="flex items-center my-2 w-72 ">
-          <a className="text-blueGray-500 block" href="#pablo" ref={btnDropdownRef} onClick={(e) => { e.preventDefault(); dropdownPopoverShow ? closeDropdownPopover() : openDropdownPopover(); }}>
-          <div className="items-center flex">
-            <div className="px-4 py-2 border-2 bg-white border-red-300  text-black font-nunito font-bold flex items-center hover:bg-red-200 rounded-xl transition-all duration-300 ease-in-out active:bg-red-400"><p className="pr-1">{namaMuseumSelected}</p><BiDownArrow/></div>
-          </div>
-          </a>
-          <div ref={popoverDropdownRef} className={ (dropdownPopoverShow ? "block " : "hidden ") + "bg-white text-base z-50 float-left py-2 px-3 list-none text-left rounded-xl shadow-lg border-2 border-gray-200" }>
-            <div>
-              <button className="block font-nunito py-2 px-4 w-full text-black font-bold hover:bg-red-200 transition-all duration-300 ease-in-out active:bg-red-400 focus:bg-red-400" onClick={handleFilterMusuem} value='Semua Museum'>Semua Musuem</button>
-            </div>
-              {namaMuseum.map((item,index)=>{
-                return(
-              <div key={index}>
-                <button className="block font-nunito py-2 px-4 text-black font-bold hover:bg-red-200  transition-all duration-300 ease-in-out active:bg-red-400 focus:bg-red-400" onClick={handleFilterMusuem} value={item}>{item}</button>
+              <div className="flex p-5  ">
+
+                
+              <div className="flex flex-col  my-2 ">
+                <a className="text-blueGray-500 block" href="#pablo" ref={btnDropdownRef} onClick={(e) => { e.preventDefault(); dropdownPopoverShow ? closeDropdownPopover() : openDropdownPopover(); }}>
+                  <div className="items-center flex">
+                    <div className="px-4 py-2 border-2 bg-white border-red-300  text-black font-nunito font-bold flex items-center hover:bg-red-200 rounded-xl transition-all duration-300 ease-in-out active:bg-red-400"><p className="pr-1">{namaMuseumSelected}</p><BiDownArrow/></div>
+                    </div>
+                </a>
+                <div ref={popoverDropdownRef} className={ (dropdownPopoverShow ? "block " : "hidden ") + "bg-white text-base z-[5000] float-left py-2 px-3 list-none text-left rounded-xl shadow-lg border-2 border-gray-200" }>
+                    <div>
+                      <button className="block font-nunito py-2 px-4 w-full text-black font-bold hover:bg-red-200 transition-all duration-300 ease-in-out active:bg-red-400 focus:bg-red-400" onClick={handleFilterMusuem} value='Semua Museum'>Semua Musuem</button>
+                    </div>
+                    {semuaMuseum.map((item,index)=>{
+                      return(
+                    <div key={index}>
+                      <button className="block font-nunito py-2 px-4 text-black font-bold hover:bg-red-200  transition-all duration-300 ease-in-out active:bg-red-400 focus:bg-red-400" onClick={handleFilterMusuem} id={item.id} value={item.nama_museum}>{item.nama_museum}</button>
+                    </div>
+                  )
+                  })}
+               </div>
+
+              <div className="flex my-2  px-6 pt-4 ">
+                <div className="flex flex-col mx-2">
+                  <label htmlFor="startDate" className="text-black">Mulai Tanggal:</label>
+                  <input  
+                    type="date"
+                    id="startDate"
+                    value={startDateFilter}
+                    onChange={(e) => setStartDateFilter(e.target.value)}
+                    className="block font-nunito py-2 px-4  text-black font-bold hover:bg-red-200 transition-all duration-300 ease-in-out active:bg-red-400 focus:bg-red-400 bg-white text-base z-50 float-left list-none text-left rounded-xl  shadow-none border-red-300 min-w-0 border-2"
+                  />
+                </div>
+                <div className="flex flex-col mx-2">
+                  <label htmlFor="endDate" className="text-black">Akhir Tanggal:</label>
+                  <input
+                    type="date"
+                    id="endDate"
+                    value={endDateFilter}
+                    onChange={(e) => setEndDateFilter(e.target.value)}
+                    className="block font-nunito py-2 px-4  text-black font-bold hover:bg-red-200 transition-all duration-300 ease-in-out active:bg-red-400 focus:bg-red-400 bg-white text-base z-50 float-left list-none text-left rounded-xl  shadow-none border-red-300 min-w-0 border-2"
+                  />
+                </div>
+             </div>
+          
               </div>
-            )
-            })}
-          </div>
-        </div>
-            <th scope="col" class="text-xl font-nunito font-semibold text-[#A70B0B] px-6 items-center text-center flex bg-white">
-              Total = {
-                loading?<p> Loading...</p>:
-                pemasukan.filter((item) => {
-                  if (namaMuseumSelected === ''|| namaMuseumSelected === 'Semua Museum' ) {
-                    return true;
-                  } else {
-                    return item.museum == namaMuseumSelected;
-                  }
-                }).map((item,index)=>Math.floor(item.harga_awal)).reduce((accumulator, value) => {
-                  return accumulator + value;
-                }, 0)
-              }
-            </th>   
+              <div className='flex pr-10 justify-end items-center w-full'>
+              <span className='text-3xl font-nunito font-semibold  px-6 items-center text-center flex'>Total = {
+                loading?<p> Loading...</p>: formatCurrency(totalPemasukan)
+              }</span>
+              </div>
+  
           </div>
             <table id="pemasukann" class="min-w-full">
               <thead class="border-b bg-white">
@@ -259,9 +327,9 @@ const handleDownload = () => {
                   onChange={e => setMuseumExport(e.target.value)}
                 >
                 <MenuItem value='' >Semua Museum</MenuItem>
-                  {namaMuseum &&  namaMuseum.map((item,index)=>{
+                  {semuaMuseum &&  semuaMuseum.map((item,index)=>{
                     return(
-                      <MenuItem value={item} key={index}>{item}</MenuItem>
+                      <MenuItem value={item.id} key={index}>{item.nama_museum}</MenuItem>
 
                     )
                   })}

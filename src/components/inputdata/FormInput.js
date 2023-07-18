@@ -8,7 +8,10 @@ import $ from 'jquery';
 
 function FormInput({dataAwal,dataa}) {
     const { t } = useTranslation()
+
+    console.log(dataa);
  
+    var lang = localStorage.getItem("i18nextLng");
     const [checked, setChecked] = useState(false);
     const [text, setText] = useState("");
     const [dataPengunjung,setDataPengunjung] = useState({
@@ -72,8 +75,8 @@ function FormInput({dataAwal,dataa}) {
                     jumlah:dataa.max,
                     email:dataPengunjung.email,
                     foto:dataPengunjung.foto,
-                    museum:dataa.nama_museum,
-                    kategori:dataa.nama_kategori,
+                    museum:dataa.museum.nama_museum,
+                    kategori:dataa,
                     tanggal:dataAwal.calendar,  
                 }
                 axios.post(`${process.env.REACT_APP_API_ENDPOINT}/api/validasi-pengunjung`, dataInput,{
@@ -104,8 +107,8 @@ function FormInput({dataAwal,dataa}) {
                     jumlah:dataPengunjung.jumlah,
                     foto:dataPengunjung.foto,
                     email:dataPengunjung.email,
-                    museum:dataa.nama_museum,
-                    kategori:dataa.nama_kategori,
+                    museum:dataa.museum.nama_museum,
+                    kategori:dataa,
                     tanggal:dataAwal.calendar,  
                 }
 
@@ -167,7 +170,7 @@ function FormInput({dataAwal,dataa}) {
         <div className="w-full px-6 md:px-16 py-12 mx-auto">
             <form onSubmit={validasiDataPengunjung} className="bg-white shadow-md rounded-lg px-8 lg:pt-56 md:pt-64 pt-[20rem] pb-8 mb-4">
         <div className='justify-center text-center py-10'>
-            <h1 className='sm:text-4xl text-3xl font-merriweather font-bold'>{t('formInput.input.judul')} <span>{dataa && dataa.nama_kategori}</span></h1>
+            <h1 className='sm:text-4xl text-3xl font-merriweather font-bold'>{t('formInput.input.judul')} <span>{dataa !== undefined && lang === 'id' ? dataa && dataa.nama_kategori: dataa && dataa.nama_kategori_en}</span></h1>
         </div>
             <div className='md:flex justify-around'>    
                 <div className="w-96 mb-4 mx-auto md:mx-0">
@@ -189,7 +192,7 @@ function FormInput({dataAwal,dataa}) {
                     </div>
                     <div className="w-96 mb-4 md:mx-6 mx-auto md:mt-0 mt-8">
                         <label className="block text-gray-700 text-sm font-bold mb-2 font-nunito" for="jumlah">{t('formInput.input.jumlah')}</label>
-                        <input type="number" inputmode="numeric" pattern="[0-9]*" name='jumlah' onChange={(e)=>{ handleJummlah(e);  }} value={orang} className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder={dataa && "Contoh : " + dataa.min + " orang"}></input>
+                        <input type="number" inputmode="numeric" pattern="[0-9]*" name='jumlah' onChange={(e)=>{ handleJummlah(e);  }} value={orang} className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder={t('formInput.input.contohjumlah')}></input>
                         <div className='flex justify-end pr-2'>
                             <span className="text-sm pr-6">min : {dataa && dataa.min}</span>
                             <span className="text-sm ">max : {dataa && dataa.max}</span>
@@ -200,7 +203,7 @@ function FormInput({dataAwal,dataa}) {
                 <div className='md:flex justify-around md:mt-0 mt-8'>    
                     <div className="w-96 mb-4 mx-auto md:mx-0">
                         <label className="block text-gray-700 text-sm font-bold mb-2 font-nunito" for="email">Email</label>
-                        <input name='email' onChange={handleInput} value={dataPengunjung.email} className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="text" placeholder="Contoh : pengunjung@Gmail.com" />
+                        <input name='email' onChange={handleInput} value={dataPengunjung.email} className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="text" placeholder={t('formInput.input.contohemail')} />
                         <span className="text-sm text-red-500">{dataPengunjung.error_list.email}</span>
                     </div>
                 </div>

@@ -68,8 +68,6 @@ function Content({id}) {
     fetchTicket(id);
   }, [])
 
-  console.log(tiket);
-
   function formatCurrency(amount) {
     const number = Number(amount);
     const formattedAmount = number.toLocaleString("id-ID", {
@@ -77,8 +75,10 @@ function Content({id}) {
       currency: "IDR",
       minimumFractionDigits: 2,
     });
-    return formattedAmount;
+  
+    return formattedAmount.replace(",00", "");
   }
+  
 
 
 
@@ -206,11 +206,11 @@ function Content({id}) {
             </div>
             <div>
               <p className='text-base'>{t('tiket.kategori')}</p>
-              <p className='font-semibold text-xl font-nunito'>{tiket[0].kategori}</p>
+              <p className='font-semibold text-xl font-nunito'>{tiket[0].kategori.nama_kategori}</p>
             </div>
             <div>
               <p className='text-base'>{t('tiket.total')}</p>
-              <p className='font-semibold text-xl font-nunito'>{formatCurrency(tiket[0].harga_awal)}</p>
+              <p className='font-semibold text-xl font-nunito'>{formatCurrency(tiket[0].total_harga)}, -</p>
             </div>
             <div>
               <p className='text-base'>{t('tiket.keterangan')}</p>

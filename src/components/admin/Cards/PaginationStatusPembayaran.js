@@ -93,14 +93,18 @@ const handleKonfirmasi = (e,idData) =>{
   const handlePageClick = (event) => {
     const newOffset = (event.selected * itemsPerPage) % dataPembayaran
     .filter(val=>{
+      console.log(val);
       if(searchTerm === ""){
+        
           return val
       }
       else if(
         val.kode_tiket.toLowerCase().includes(searchTerm.toLowerCase()) ||
         val.nama.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        val.museum.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        val.kategori.toLowerCase().includes(searchTerm.toLowerCase()) ) {
+        (val.status && val.status.toLowerCase().includes(searchTerm.toLowerCase()) )||
+        val.kategori.museum.nama_museum.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        val.kategori.nama_kategori.toLowerCase().includes(searchTerm.toLowerCase())
+         ) {
           return val
       }
     })
@@ -120,10 +124,10 @@ const handleKonfirmasi = (e,idData) =>{
         <tr className='bg-white text-gray-900' key={index}>
         <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.kode_tiket }</td>
         <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.nama }</td>
-        <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.museum}</td>
-        <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.kategori}</td>
+        <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.kategori.museum.nama_museum}</td>
+        <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.kategori.nama_kategori}</td>
         <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.jumlah}</td>
-        <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.harga_awal}</td>
+        <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.total_harga}</td>
         <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.pembayaran}</td>
         <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.status === "Lunas" ? "Lunas" : "Belum Lunas"}</td>
         <td className='sticky right-0 bg-gray-50 px-2 '> <button id={`konfirmasi-${item.id}`} className='p-1.5 text-sm bg-green-400 rounded-lg' onClick={e=>handleKonfirmasi(e, item.id)}>Konfirmasi</button></td>
@@ -134,9 +138,11 @@ const handleKonfirmasi = (e,idData) =>{
   dataPembayaran.filter(val=>{
     if(
       val.kode_tiket.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      val.nama.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      val.museum.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      val.kategori.toLowerCase().includes(searchTerm.toLowerCase())) {
+        val.nama.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        val.status.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        val.kategori.museum.nama_museum.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        val.kategori.nama_kategori.toLowerCase().includes(searchTerm.toLowerCase())
+      ) {
         return val
       }
   }).map((item,index)=>{
@@ -146,11 +152,10 @@ const handleKonfirmasi = (e,idData) =>{
     return(
       <tr className='bg-white text-gray-900' key={index}>
         <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.kode_tiket }</td>
-        <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.nama }</td>
-        <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.museum}</td>
-        <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.kategori}</td>
+        <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.kategori.museum.nama_museum}</td>
+        <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.kategori.nama_kategori}</td>
         <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.jumlah}</td>
-        <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.harga_awal}</td>
+        <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.total_harga}</td>
         <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.pembayaran}</td>
         <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{item.status === "Lunas" ? "Lunas" : "Belum Lunas"}</td>
         <td className='sticky right-0 bg-gray-50 px-2 '> <button id={`konfirmasi-${item.id}`} className='p-1.5 text-sm bg-green-400 rounded-lg' onClick={e=>handleKonfirmasi(e, item.id)}>Konfirmasi</button></td>

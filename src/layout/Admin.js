@@ -18,6 +18,7 @@ import StatusPembayaran from "components/admin/StatusPembayaran";
 import Jadwal from "components/admin/Jadwal";
 import CardDataPengunjung from "components/admin/Cards/CardDataPengunjung";
 import Pemasukan from "components/admin/Pemasukan";
+import ChangePassword from "components/superadmin/Cards/ChangePassword";
 
 export default function Admin() {
   return (
@@ -38,6 +39,7 @@ export default function Admin() {
             <Route path="/admin/data-kehadiran" exact component={DataKehadiran} />
             <Route path="/admin/status-pembayaran" exact component={StatusPembayaran} />
             <Route path="/admin/pemasukan" exact component={Pemasukan} />
+            <Route path="/admin/ganti-password" exact component={ChangePassword} />
             <Redirect from="/admin" to="/admin/dashboard" />
             <Redirect from="/superadmin" to="/admin/dashboard" />
           </Switch>

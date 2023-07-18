@@ -66,7 +66,7 @@ class CardDataaaa extends Component {
                 sortable: true
             },
             {
-                key: "harga_awal",
+                key: "total_harga",
                 text: "Harga",
                 className: "border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4",
                 TrOnlyClassName:"border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-red-200",

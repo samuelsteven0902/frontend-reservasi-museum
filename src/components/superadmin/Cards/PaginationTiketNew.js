@@ -63,11 +63,14 @@ const deleteKategori = (e, id) => {
 //   }
 
   const CloseRef = useRef();
-const rupiah = (number)=>{
-    return new Intl.NumberFormat("id-ID", {
-    //   style: "currency",
-      currency: "IDR"
-    }).format(number);
+const rupiah =  (amount) => {
+    const formattedAmount = Number(amount).toLocaleString("id-ID", {
+      style: "currency",
+      currency: "IDR",
+      minimumFractionDigits: 2,
+    });
+  
+    return formattedAmount.replace(",00", "");
   }
 
   const [itemOffset, setItemOffset] = useState(0);

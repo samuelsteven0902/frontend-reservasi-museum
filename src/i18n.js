@@ -104,7 +104,7 @@ i18n
               contohnama:'Example: Kirana',
               contohkota:'Example: Bali',
               contohno:'Example: 081234567890',
-              contohjumlah:'Example: ',
+              contohjumlah:'Example: 2',
               contohemail:'Example: budi@gmail.com',
             },
             syarat:{
@@ -253,7 +253,7 @@ i18n
               contohnama:'Contoh: Kirana',
               contohkota:'Contoh: Bali',
               contohno:'Contoh: 081234567890',
-              contohjumlah:'Contoh: ',
+              contohjumlah:'Contoh: 2',
               contohemail:'Contoh: budi@gmail.com',
             },
             syarat:{

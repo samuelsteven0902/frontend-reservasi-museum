@@ -59,7 +59,7 @@ return (
         </div>
         <hr className='w-full h-0.5 bg-gray-500'/>
         <div className="text-center font-merriweather text-black p-4 text-xs bg-[#ECE3DE]">
-            <span>© {new Date().getFullYear()} Copyright </span><a className="font-merriweather text-black font-bold" href="https://uptmuseum.surakarta.go.id/">UPT Museum Surakarta </a><span> by KMI UNS Team 22 </span>
+            <span>© {new Date().getFullYear()} Copyright </span><a className="font-merriweather text-black font-bold" href="https://uptmuseum.surakarta.go.id/">UPT Museum Surakarta </a><span> by D3 Teknik Informatika SV UNS </span>
         </div>
     </footer>
     </>

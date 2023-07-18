@@ -31,6 +31,7 @@ const [input,setInput] = useState({
 })
 
 
+
 const [namaInput, setNamaInput] = useState({
     namaMuseum : 'Pilih Museum',
 })
@@ -45,13 +46,25 @@ useEffect(() => {
     fetchMuseum();
 }, [])
 
+
+const formatHarga = (amount) => {
+    const formattedAmount = Number(amount).toLocaleString("id-ID", {
+      style: "currency",
+      currency: "IDR",
+      minimumFractionDigits: 2,
+    });
+  
+    return formattedAmount.replace(",00", "");
+  }
+
+
 // set tambah museum
 const [tambahMuseum,setTambahMuseum] = useState({
     id_museum : '',
     nama_kategori : '',
     nama_kategori_en : '',
-    hari_biasa : '',
-    hari_libur : '',
+    hari_biasa : '0',
+    hari_libur : '0',
     min : '',
     max : '',
 })
@@ -81,7 +94,6 @@ const handleHarga = (e,item) =>{
 
 const handleInput = (e) => {
     e.persist();
-    console.log(e.target.value);
     setTambahMuseum({...tambahMuseum, [e.target.name]: e.target.value });
 }
 
@@ -135,7 +147,6 @@ const handleInputTambahMuseum= (e) =>{
     e.persist();
     setTambahMuseum({...tambahMuseum, [e.target.name]: e.target.value });
 }
-console.log(tambahMuseum);
 
 //send to api
 const storeMuseum = (e) => {
@@ -185,6 +196,7 @@ const storeMuseum = (e) => {
     });
 }
 //end
+
 
 
 var htmlKategori = ''
@@ -260,24 +272,32 @@ return (
                                             </div>
                                         </div>
                                         <div className="w-96 mb-4 mx-auto md:mt-0 mt-8">
-                                            <label className="block text-gray-700 text-sm font-bold mb-2" for="hari_biasa"> Hari Biasa</label>
-                                            <input name='hari_biasa' onChange={handleInput} className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="hari_biasa" type="number" value={tambahMuseum.hari_biasa} />
+                                            <label className="block text-gray-700 text-sm font-bold mb-2" for="hari_biasa"> Harga Hari Biasa</label>
+                                            <input name='hari_biasa' onChange={e=>setTambahMuseum({...tambahMuseum, [e.target.name]: e.target.value.replace(/[^0-9]/g, '') })} className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="hari_biasa" type="text" value={formatHarga(tambahMuseum.hari_biasa)} />
                                             <span className="text-sm text-red-500"></span>
                                         </div>
                                         <div className="w-96 mb-4  mx-auto md:mt-0 mt-8">
-                                            <label className="block text-gray-700 text-sm font-bold mb-2" for="hari_libur">Hari Libur</label>
-                                            <input name='hari_libur' onChange={handleInput} className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="hari_libur" type="number" value={tambahMuseum.hari_libur} />
+                                            <label className="block text-gray-700 text-sm font-bold mb-2" for="hari_libur">Harga Hari Libur</label>
+                                            <input name='hari_libur' onChange={e=>setTambahMuseum({...tambahMuseum, [e.target.name]: e.target.value.replace(/[^0-9]/g, '') })} className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="hari_libur" 
+                                            type="text" 
+                                            value={formatHarga(tambahMuseum.hari_libur)} />
                                             <span className="text-sm text-red-500"></span>
                                         </div>
-                                        <div className="w-96 mb-4 flex justify-around mx-auto md:mt-0 mt-8">
-                                            <div className="w-2/5">
-                                            <label className="w-3/4 block text-gray-700 text-sm font-bold mb-2" for="min">Minimal</label>
-                                                <input name='min' className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="min" type="number" onChange={handleInput} value={tambahMuseum.min}/>
+                                        <div className="w-96  mb-4 flex justify-around mx-auto md:mt-0 mt-8">
+                                            <div className="w-1/2 mr-1">
+                                            <label className="block text-gray-700 text-sm font-bold mb-2" for="min">Minimal Pengunjung</label>
+                                            <div className="flex relative">
+                                                <input name='min' className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline " id="min" type="number" onChange={handleInput} value={tambahMuseum.min}/>
+                                                <span className="absolute right-2 top-1/2 -translate-y-1/2 items-center ml-2 text-gray-500">Pengunjung</span>
+                                            </div>
                                                 <span className="text-sm text-red-500"></span>
                                             </div>
-                                            <div className="w-2/5">
-                                                <label className="block text-gray-700 text-sm font-bold mb-2" for="max">Maksimal</label>
-                                                <input name='max' className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="max" type="number" onChange={handleInput} value={tambahMuseum.max}/>
+                                            <div className="w-1/2 ml-1">
+                                                <label className="block text-gray-700 text-sm font-bold mb-2" for="max">Maksimal Pengunjung</label>
+                                                <div className="flex relative">
+                                                    <input name='max' className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="max" type="number" onChange={handleInput} value={tambahMuseum.max}/>
+                                                    <span className="absolute right-2 top-1/2 -translate-y-1/2 items-center ml-2 text-gray-500">Pengunjung</span>
+                                                </div>
                                                 <span className="text-sm text-red-500"></span>
                                             </div>
                                         </div>
@@ -348,23 +368,48 @@ return (
                                         </div>
                                         <div className="w-96 mb-4 mx-auto md:mt-0 mt-8">
                                             <label className="block text-gray-700 text-sm font-bold mb-2" for="hari_biasa">Harga Hari Biasa</label>
-                                            <input name='hari_biasa' className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="hari_biasa" type="number" onChange={handleInputTambahMuseum}/>
+                                            <input
+                                            name='hari_biasa'
+                                            className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                            id="hari_biasa"
+                                            min={1}
+                                            type="text" // Ganti type menjadi "text"
+                                            onChange={handleInputTambahMuseum}
+                                            value={formatHarga(tambahMuseum.hari_biasa)} // Gunakan formatHarga untuk memberikan format pada nilai input
+                                            />
                                             <span className="text-sm text-red-500"></span>
                                         </div>
                                         <div className="w-96 mb-4 mx-auto md:mt-0 mt-8">
-                                            <label className="block text-gray-700 text-sm font-bold mb-2" for="hari_libur">Hari Libur</label>
-                                            <input name='hari_libur' className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="hari_libur" type="number" onChange={handleInputTambahMuseum}/>
+                                            <label className="block text-gray-700 text-sm font-bold mb-2" for="hari_libur">Harga Hari Libur</label>
+                                            <input
+                                            name='hari_libur'
+                                            className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                            id="hari_libur"
+                                            min={1}
+                                            type="text" // Ganti type menjadi "text"
+                                            onChange={handleInputTambahMuseum}
+                                            value={formatHarga(tambahMuseum.hari_libur)} // Gunakan formatHarga untuk memberikan format pada nilai input
+                                            />
+                          
                                             <span className="text-sm text-red-500"></span>
                                         </div>
                                         <div className="w-96 mb-4 flex justify-around mx-auto md:mt-0 mt-8">
-                                            <div className="w-2/5">
-                                                <label className="w-3/4 block text-gray-700 text-sm font-bold mb-2" for="min">Minimal</label>
+                                            <div className="w-1/2">
+                                                <label className="w-3/4 block text-gray-700 text-sm font-bold mb-2" for="min">Minimal Pengunjung</label>
+                                            <div className="flex relative">
+                                               
                                                 <input name='min' className=" shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="min" type="number" onChange={handleInputTambahMuseum}/>
+                                                <span className="absolute right-2 top-1/2 -translate-y-1/2 items-center ml-2 text-gray-500">Pengunjung</span>
+                                                </div>
                                                 <span className="text-sm text-red-500"></span>
                                             </div>
-                                            <div className="w-2/5">
-                                                <label className="block text-gray-700 text-sm font-bold mb-2" for="max">Maksimal</label>
+                                            <div className="w-1/2">
+                                                <label className="block text-gray-700 text-sm font-bold mb-2" for="max">Maksimal Pengunjung</label>
+                                            <div className="flex relative">
+                                                
                                                 <input name='max' className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="max" type="number" onChange={handleInputTambahMuseum}/>
+                                                <span className="absolute right-2 top-1/2 -translate-y-1/2 items-center ml-2 text-gray-500">Pengunjung</span>
+                                                </div>
                                                 <span className="text-sm text-red-500"></span>
                                             </div>
                                         </div>

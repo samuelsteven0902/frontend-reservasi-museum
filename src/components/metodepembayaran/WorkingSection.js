@@ -57,16 +57,16 @@ const handleCheckout = () =>{
       "nama":dataDiri.nama,
       "email":dataDiri.email,
       "museum":dataDiri.museum,
-      "kategori":dataDiri.kategori,
+      "id_kategori":dataDiri.id_kategori,
       "phone":dataDiri.phone,
       "kota":dataDiri.kota,
-      "harga":dataDiri.harga_awal,
+      "harga":dataDiri.total_harga,
       "jumlah":dataDiri.jumlah,
       "tanggal":dataDiri.tanggal,
-      "harga_awal":dataDiri.harga_awal + metode.fee ,
+      "total_harga":dataDiri.total_harga + metode.fee ,
       "metode":metode.name
     }
-  
+
     axios.post(`https://backend.museumsolo.com/api/transaksi_proses`,data).then(res=>{
       console.log(res.data.data.checkout_url);
       window.location.replace(res.data.data.checkout_url)
@@ -283,7 +283,7 @@ if(loading){
                             </div>
                             <div className=' flex items-center justify-between px-5 '>
                                 <p className='text-gray-600 '>Harga Tiket : </p>
-                                <p className=' font-nunito font-semibold text-xl'>{rupiah(dataDiri.harga_awal)} -</p>
+                                <p className=' font-nunito font-semibold text-xl'>{rupiah(dataDiri.total_harga)} -</p>
                             </div>
                             <div className=' flex items-center justify-between px-5 '>
                                 <p className='text-gray-600 '>Fee : </p>
@@ -292,7 +292,7 @@ if(loading){
                             <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"></hr>
                             <div className=' flex items-center justify-between px-5 pb-4 '>
                                 <p className='text-gray-600 '>Total : </p>
-                                <p className=' font-nunito font-bold text-xl'>{rupiah(metode.fee + dataDiri.harga_awal)} -</p>
+                                <p className=' font-nunito font-bold text-xl'>{rupiah(metode.fee + dataDiri.total_harga)} -</p>
                             </div>
 
 

@@ -39,7 +39,7 @@ function PaginationPemasukan(props) {
         val.tanggal.toLowerCase().includes(searchTerm.toLowerCase()) ||
         val.id_admin.toLowerCase().includes(searchTerm.toLowerCase()) ||
         val.nama.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        val.harga_awal.toLowerCase().includes(searchTerm.toLowerCase()) ) 
+        val.total_harga.toLowerCase().includes(searchTerm.toLowerCase()) ) 
         {
           return val
       }
@@ -63,7 +63,7 @@ function PaginationPemasukan(props) {
               <td className=" text-gray-900 px-6 py-4 whitespace-nowrap">{item.tanggal}</td>
               <td className=" text-gray-900 px-6 py-4 whitespace-nowrap">{item.id_admin}</td>
               <td className=" text-gray-900 px-6 py-4 whitespace-nowrap">{item.nama}</td>
-              <td className=" text-gray-900 px-6 py-4 whitespace-nowrap">{rupiah(item.harga_awal)}</td>
+              <td className=" text-gray-900 px-6 py-4 whitespace-nowrap">{rupiah(item.total_harga)}</td>
             </tr>
           )
         })
@@ -73,7 +73,7 @@ function PaginationPemasukan(props) {
           val.tanggal.toLowerCase().includes(searchTerm.toLowerCase()) ||
           val.id_admin.toLowerCase().includes(searchTerm.toLowerCase()) ||
           val.nama.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          val.harga_awal.toLowerCase().includes(searchTerm.toLowerCase())
+          val.total_harga.toLowerCase().includes(searchTerm.toLowerCase())
         ) {
           return val
         }
@@ -87,7 +87,7 @@ function PaginationPemasukan(props) {
               <td className=" text-gray-900 px-6 py-4 whitespace-nowrap">{item.tanggal}</td>
               <td className=" text-gray-900 px-6 py-4 whitespace-nowrap">{item.id_admin}</td>
               <td className=" text-gray-900 px-6 py-4 whitespace-nowrap">{item.nama}</td>
-              <td className=" text-gray-900 px-6 py-4 whitespace-nowrap">{rupiah(item.harga_awal)}</td>
+              <td className=" text-gray-900 px-6 py-4 whitespace-nowrap">{rupiah(item.total_harga)}</td>
             </tr>
             )
           })

@@ -201,6 +201,27 @@ export default function Sidebar() {
               </li>
 
               <hr className="my-1 md:min-w-full" />
+              <li className="items-center">
+                <Link
+                  className={
+                    "text-xs uppercase py-3 font-merriweather font-bold block " +
+                    (window.location.href.indexOf("/admin/ganti-password") !== -1
+                      ? "text-lightBlue-500 hover:text-lightBlue-600"
+                      : "text-blueGray-700 hover:text-blueGray-500  hover:bg-gray-100 rounded-xl pl-4 duration-300 transition-all hover:pl-6")
+                  }
+                  to="/admin/ganti-password"
+                >
+                  <i
+                    className={ 
+                      "fas fa-solid fa-clipboard-list mr-2 text-sm " +
+                      (window.location.href.indexOf("/admin/ganti-password") !== -1
+                        ? "opacity-50"
+                        : "text-blueGray-500")
+                    }
+                  ></i>{" "}
+                  Ganti Pasword
+                </Link>
+              </li>
 
               <li className="items-center">
                 <Link

@@ -40,8 +40,8 @@ export default function CardTable({ color }) {
       selector: row => row.jumlah
     },
     {
-      name: 'Harga_awal',
-      selector: row => row.harga_awal
+      name: 'total_harga',
+      selector: row => row.total_harga
     },
     {
       name: 'Pembayaran',
@@ -126,9 +126,11 @@ pengunjung_HTMLTABLE = pengunjung.filter(val=>{
   {
     return val
   }
-  else if(val.nama.toLowerCase().includes(searchTerm.toLowerCase()) ||
-  val.museum.toLowerCase().includes(searchTerm.toLowerCase()) ||
-  val.kategori.toLowerCase().includes(searchTerm.toLowerCase()) ||
+  else if(val.kode_tiket.toLowerCase().includes(searchTerm.toLowerCase()) ||
+  val.nama.toLowerCase().includes(searchTerm.toLowerCase()) ||
+  val.status.toLowerCase().includes(searchTerm.toLowerCase()) ||
+  val.kategori.museum.nama_museum.toLowerCase().includes(searchTerm.toLowerCase()) ||
+  val.kategori.nama_kategori.toLowerCase().includes(searchTerm.toLowerCase())||
   val.phone.toLowerCase().includes(searchTerm.toLowerCase()) ||
   val.kota.toLowerCase().includes(searchTerm.toLowerCase()) )
   {

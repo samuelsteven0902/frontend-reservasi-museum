@@ -114,7 +114,7 @@ function Content({id}) {
             <div className='w-1/3 items-center justify-center mx-auto'>
               <p className='text-center text-xl font-semibold my-1'>Scan QR code</p>
               <img src={qr} className="mx-auto w-[40%] "/>
-              {/* <p className='text-center text-3xl font-semibold py-4'>{rupiah(tiket.harga_awal)} -</p> */}
+              {/* <p className='text-center text-3xl font-semibold py-4'>{rupiah(tiket.total_harga)} -</p> */}
             </div>
             
           </div>

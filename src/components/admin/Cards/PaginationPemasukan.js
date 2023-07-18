@@ -2,57 +2,62 @@ import React from 'react'
 import { useEffect } from 'react';
 import { useState } from 'react';
 import ReactPaginate from 'react-paginate';
-import Cookies from 'js-cookie';
+import moment from 'moment';
 
-function PaginationPemasukan(props) {
+function PaginationPemasukan({searchTerm,dataPengunjung,startDate, endDate}) {
 
-  const [dataTiket,setDataTiket] = useState(Object.entries(props));
-  const searchTerm = props.searchTerm
-  // console.log(props);
+  const [dataTiket,setDataTiket] = useState(dataPengunjung);
+  const [itemOffset, setItemOffset] = useState(0);
 
-  const [token, setToken] = useState(Cookies.get('token'));
-  const [user,setUser] = useState('loading');
-  
-  const fetchData = async () => {
-    const data = await fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/me`, {
-      headers : {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        Authorization: `Bearer ${token}`,
-      }
-      });
-  const json = await data.json();
-    console.log(json);
-    var result =''
-    if(json.message !== 'Unauthenticated.') {
-      result = json.user.name;
-    }
-  setUser(result);
-  }
 
   useEffect(() =>
-  setDataTiket(Object.entries(props))
-  ,[props] )
+  setDataTiket(dataPengunjung)
+  ,[dataPengunjung] )
 
-  const rupiah = (number)=>{
-    return new Intl.NumberFormat("id-ID", {
-    //   style: "currency",
-      currency: "IDR"
-    }).format(number);
+  function rupiah(amount) {
+    const number = Number(amount)
+    const formattedAmount = number.toLocaleString("id-ID", {
+      style: "currency",
+      currency: "IDR",
+      minimumFractionDigits: 2,
+    });
+  
+    return formattedAmount.replace(",00", "");
   }
 
-  const [itemOffset, setItemOffset] = useState(0);
+  const filteredData = dataTiket.filter((val) => {
+    if (startDate && endDate) {
+      const tanggalVal = moment(val.tanggal, 'DD-MM-YYYY').toDate();
+      const start = moment(startDate, 'YYYY-MM-DD').toDate();
+      const end = moment(endDate, 'YYYY-MM-DD').toDate();
+      return tanggalVal >= start && tanggalVal <= end;
+    }
+
+    if (val.nama.toLowerCase().includes(searchTerm.toLowerCase())) {
+      return true;
+    }
+
+    return false;
+  });
+
   const itemsPerPage = 6 ;
 
   const endOffset = itemOffset + itemsPerPage;
-  const currentItems = dataTiket[0][1].slice(itemOffset, endOffset);
+  const currentItems = filteredData.slice(itemOffset, endOffset);
 
   //jumlah halaman tanpa search
-  var pageCount = 0;
+  let pageCount = Math.ceil(filteredData.length / itemsPerPage);
 
   const handlePageClick = (event) => {
-    const newOffset = (event.selected * itemsPerPage) % dataTiket[0][1]
+    const newOffset = (event.selected * itemsPerPage) % filteredData
     .filter(val=>{
+      if (startDate && endDate) {
+        const tanggalVal = moment(val.tanggal, 'DD-MM-YYYY').toDate();
+        const start = moment(startDate, 'YYYY-MM-DD').toDate();
+        const end = moment(endDate, 'YYYY-MM-DD').toDate();
+        return tanggalVal >= start && tanggalVal <= end;
+      }
+
       if(searchTerm === ""){
           return val
       }
@@ -60,7 +65,7 @@ function PaginationPemasukan(props) {
         val.tanggal.toLowerCase().includes(searchTerm.toLowerCase()) ||
         // val.id_admin.toLowerCase().includes(searchTerm.toLowerCase()) ||
         val.nama.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        val.harga_awal.toLowerCase().includes(searchTerm.toLowerCase()) ) 
+        val.total_harga.toLowerCase().includes(searchTerm.toLowerCase()) ) 
         {
           return val
       }
@@ -75,26 +80,34 @@ function PaginationPemasukan(props) {
 
   return (
     <>
-    {searchTerm === "" ? currentItems.map((item,index)=>{
+    {searchTerm === "" ? 
+    currentItems.map((item,index)=>{
         //jumlah halaman tanpa search
-        pageCount = Math.ceil(dataTiket[0][1].length / itemsPerPage);
+        pageCount = Math.ceil(filteredData.length / itemsPerPage);
         
         return(
             <tr className="bg-white border-b text-center" key={index}>
               <td className=" text-gray-900 px-6 py-4 whitespace-nowrap">{item.tanggal}</td>
               <td className=" text-gray-900 px-6 py-4 whitespace-nowrap">{item.id_admin}</td>
               <td className=" text-gray-900 px-6 py-4 whitespace-nowrap">{item.nama}</td>
-              <td className=" text-gray-900 px-6 py-4 whitespace-nowrap">{rupiah(item.harga_awal)}</td>
+              <td className=" text-gray-900 px-6 py-4 whitespace-nowrap">{rupiah(item.total_harga)}</td>
             </tr>
           )
         })
       :
-      dataTiket[0][1].filter(val=>{
+      dataTiket.filter(val=>{
+        if (startDate && endDate) {
+          const tanggalVal = moment(val.tanggal, 'DD-MM-YYYY').toDate();
+          const start = moment(startDate, 'YYYY-MM-DD').toDate();
+          const end = moment(endDate, 'YYYY-MM-DD').toDate();
+          return tanggalVal >= start && tanggalVal <= end;
+        }
+  
         if(
           val.tanggal.toLowerCase().includes(searchTerm.toLowerCase()) ||
           (val.id_admin && val.id_admin.toLowerCase().includes(searchTerm.toLowerCase())) ||
           val.nama.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          val.harga_awal.toLowerCase().includes(searchTerm.toLowerCase())
+          val.total_harga.toLowerCase().includes(searchTerm.toLowerCase())
         ) {
           return val
         }
@@ -108,7 +121,7 @@ function PaginationPemasukan(props) {
               <td className=" text-gray-900 px-6 py-4 whitespace-nowrap">{item.tanggal}</td>
               <td className=" text-gray-900 px-6 py-4 whitespace-nowrap">{item.id_admin}</td>
               <td className=" text-gray-900 px-6 py-4 whitespace-nowrap">{item.nama}</td>
-              <td className=" text-gray-900 px-6 py-4 whitespace-nowrap">{rupiah(item.harga_awal)}</td>
+              <td className=" text-gray-900 px-6 py-4 whitespace-nowrap">{rupiah(item.total_harga)}</td>
             </tr>
             )
           })
